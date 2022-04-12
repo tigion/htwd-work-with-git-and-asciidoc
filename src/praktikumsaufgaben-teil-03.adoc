@@ -1,0 +1,229 @@
+include::header.inc.adoc[]
+
+Ziel: Kennenlernen der Zusammenarbeit im Team mit Hilfe von *Git* an einem gemeinsamen Repository auf *GitHub*
+
+== Praktikumsaufgaben Teil 3 - Zusammenarbeit 1
+
+////
+- *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_
+- *Git*: _pull_, _branches_, _merges_, _conflicts_, _tags_
+- *AsciiDoc*: _includes_, _callouts_, _Q&A (Glossar)_, ...
+////
+
+Für die Bearbeitung der Aufgaben bilden Sie bitte Teams aus drei Personen. Entscheiden Sie, wer aus Ihrem Team der Verantwortliche für das Git-Repository ist.
+
+====
+.Hinweise für ein nicht an der HTW in Präsenz stattfindendes Praktikum
+
+* Bilden Sie mit Ihren Kommilitonen Teams aus 2 bis 3 Personen.
+* Sind Sie nur zu zweit, teilen Sie sich in die Aufgaben für Person C rein.
+* Es empfiehlt sich für eine geeignete Kommunikation (Video-, Sprach- oder Textchat) in Ihrem Team zu sorgen. Einige Aufgaben sind so ausgelegt, dass Sie erst auf das Bearbeiten der anderen Teammitglieder warten oder sich absprechen müssen.
+====
+
+.Rollen im Team:
+- icon:user[] **Person A** ... Mitglied im Team, Verantwortliche des Git-Repositories
+- icon:users[] **Person B, C** ... Mitglied im Team
+
+.Zusammenarbeit im Team mit Git
+image::grafik_overview_git_teamarbeit.jpg["Zusammenspiel von Git, GitHub und AsciiDoc im Praktikum", width=800, link="images/grafik_overview_git_teamarbeit.jpg"]
+
+include::hinweise-windows-labor.inc.adoc[]
+
+
+{section-separator}
+
+=== 1. Einrichtung des Teams
+
+==== Aufgabe 1.1 - Repository erstellen
+
+.icon:user[] Person A
+Erstellen Sie in Ihrem GitHub-Account ein neues *_privates_* Repository *htw-se-example-teamproject* mit folgenden Einstellungen:
+
+  * Repository name: `htw-se-example-teamproject`
+  * Description: `Beispielteamprojekt für die Praktikumsaufgaben zum Thema Git und AsciiDoc`
+  * Initialize this repository with a README: `Ja`
+
+==== Aufgabe 1.2 - Mitglieder hinzufügen
+
+.icon:user[] Person A
+Fügen Sie Ihrem Repository *htw-se-example-teamproject* über die Einstellungen "Settings > Manage access > Collaborators > Invite a collaborator" ihre Teammitglieder über den Account-Namen oder die E-Mail hinzu.
+
+NOTE: Alle Mitlgieder haben Schreibrechte und können gleichberechtigt Änderungen am Repository vornehmen. Siehe auch https://help.github.com/en/articles/permission-levels-for-a-user-account-repository[Permission levels for a user account repository].
+
+.icon:users[] Person B, C
+Schauen Sie in Ihr Mail-Postfach und nehmen Sie die Einladung zum *htw-se-example-teamproject* an. Öffnen Sie anschließend das Team-Repository auf GitHub von Person A.
+
+NOTE: Damit der Einladungslink funktioniert, müssen Sie im Webbrowser  schon bei GitHub angemeldet sein.
+
+==== Aufgabe 1.3 - lokale Git-Konfiguration prüfen
+
+.icon:users[] Person A, B, C
+Prüfen Sie mit `git config --list` Ihre lokale Git-Konfiguration, ob Ihr Name und Ihre E-Mail korrekt gesetzt sind. Sollte dies nicht der Fall sein, passen Sie sie laut <<praktikumsaufgaben-teil-01.adoc#section_git_config, Teil 1: Aufgabe 2.1 - Konfiguration>> an.
+
+==== Aufgabe 1.4 - Repository Clonen
+
+.icon:users[] Person A, B, C
+Clonen Sie Ihr gemeinsames Repository *htw-se-example-teamproject* von Person A mit Ihrem jeweiligen GitHub Account an einen geeigneten Platz als lokalen Workspace auf ihren Rechner.
+
+
+{section-separator}
+
+=== 2. Bearbeiten des Projektes
+
+Beim Bearbeiten Ihres Projektes im Team kann es an verschiedenen Stellen zu Konflikten kommen. Dies betrifft unterschiedliche Versionsstände Ihrer Teammitglieder gegenüber dem entfernten Repository auf GitHub und Ihres lokalen Repositories. Die Konflikte bzw. Unterschiede lassen sich entweder *automatisch* zusammenführen (_merge_) oder erfordern ein *manuelles* Eingreifen.
+
+.Hinweis: push-Error Konflikte lösen
+[%collapsible]
+====
+=====
+Beim Senden (*push*) der Änderungen des lokalen Repositories zum Remote-Repository kann es zu einem Konflikt bzw. Fehler kommen, wenn das Remote-Repository in der Zwischenzeit neuere Versionen (_commits_) erhalten hat.
+
+In diesem Falle ist es notwendig sich die aktuell Version vom Remote-Repository über ein *pull* zu laden, was zwei Möglichkeiten eröffnet:
+
+Änderung an unterschiedlicher Stelle::
+. Git kann Ihre lokalen Änderungen *automatisch* mit der neueren Version vom Remote-Repository zusammenführen (*merge*). Es wird automatisch ein neuer *Commit* vorbereitet (Message eingeben).
+. Anschließend können Sie mit einem wiederholten *push* die neu zusammengeführte Version an das Remote-Repository senden.
+
+Änderung an gleicher Stelle bzw. Überschneidung::
+Git kann Ihre lokalen Änderung *nicht automatisch* mit der neueren Version vom Remote-Repository zusammenführen (*mergen*). Die betreffenden Dateien beinhalten an den sich überschneidenden Zeilen beide Varianten. Oben die lokale und unten die entfernte Variante. Dies wird wie folgt markiert:
++
+----
+ <<<<<<< HEAD
+ Änderung 1
+ =======
+ Änderung 2
+ >>>>>>> feb62f7c8cb4201e4f7e2aede0b81c356c1cd31e
+----
++
+. Lösen sie den Konflikt *manuell*, besprechen Sie sich hierzu ggf. im Team, durch ein Ersetzen bzw. Vereinen der Änderungen in den betreffenden Dateien. Entfernen Sie die durch Git hinzugefügten Markierung.
++
+Alternativ entscheiden Sie sich für eine von beiden Versionen und ersetzen die lokale Version mit beiden Änderungen entweder mit Ihrer lokalen oder der entfernten Variante:
++
+----
+% git checkout --ours <file_name> <1>
+% git checkout --theirs <file_name> <2>
+----
+<1> ... Nimmt Ihre lokale Version
+<2> ... Nimmt die Version vom _remote_-Repository
++
+. Nehmen Sie Ihre neu bearbeiteten Änderungen (_add_ und _commit_) in Ihr lokales Repository auf. Anschließend können Sie mit einem wiederholten *push* die neu zusammengeführte Version an das Remote-Repository senden.
+=====
+====
+
+.Hinweis: pull-Error Konflikte lösen
+[%collapsible]
+====
+=====
+Sie haben in Ihrem lokalem Repository unversionierte oder noch im INDEX vorgemerkte Änderungen, welche auf einer älteren Version als das Remote-Repository basieren.
+
+Variante 1 - lokale unversionierte Änderung erst in das Repository aufnehmen::
+. Nehmen Sie Ihre lokale unversionierte Änderung (_add_ und _commit_) in Ihr Repository auf.
+. Laden Sie sich mit *pull* die aktuelle Version vom Remote-Repository.
+. Git versucht den Konflikt automatisch zu lösen bzw. müssen Sie Ihn manuell auflösen (_merge_).
+. Nehmen Sie Ihre neu bearbeiteten Änderungen (_add_ und _commit_) in Ihr lokales Repository auf. Anschließend können Sie mit *push* die neu zusammengeführte Version an das Remote-Repository senden.
+
+Variante 2 - lokale unversionierte Änderung verwerfen::
+. Mit `git checkout .` werden alle Änderungen im WORKSPACE gegenüber Ihrer letzten lokalen Version verworfen.
+. Anschließend können Sie mit *pull* die aktuelle Version des Remote-Repositories laden.
+
+Variante 3 - lokale unversionierte und vorgemerkte Änderung verwerfen::
+. Mit `git reset --hard` werden alle Änderungen im INDEX und WORKSPACE gegenüber Ihrer letzten lokalen Version verworfen.
+. Anschließend können Sie mit *pull* die aktuelle Version des Remote-Repositories laden.
+
+Weitere Varianten::
+- Mit https://git-scm.com/docs/git-stash[stash] können Sie lokale unversionierte Änderungen temporär Zwischenspeichern und Ihren lokalen Stand auf die letzte Version Ihres lokalen Repositories zurücksetzen.
+=====
+====
+
+==== Aufgabe 2.1 - vorgegebene Reihenfolge
+
+.icon:user[] Person A
+1. Erstellen Sie im lokalen Workspaces Ihres *htw-se-example-teamproject* Repositories ein Verzeichnis *docs* und legen Sie in diesem eine neue Datei *_Teamdokumentation.adoc_* mit folgendem Inhalt in Visual Studio Code an:
++
+.Teamdokumentation.adoc
+[source,asciidoc]
+----
+= Teamdokumentation
+Vorname Nachname <email>
+0.1, 01.09.2019
+:toc:
+:toc-title: Inhaltsverzeichnis
+// Platzhalter für weitere Dokumenten-Attribute
+
+== Einführung
+Dieses Dokument dient im Praktikum als Spielwiese für das Kennenlernen und praktische Üben von AsciiDoc und Teamarbeit mit Git.
+----
+2. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Team-Repository auf GitHub auf.
+
+.icon:user[] Person B
+1. Aktualisieren Sie mit "... > Pull" Ihr lokales Repository mit dem Stand von entfernten Repository auf GitHub.
+2. Legen Sie in Ihrem Repository die neue Datei *Teammitglieder.adoc* im Verzeichnis *docs* mit folgendem Inhalt in Visual Studio Code an:
++
+.Teammitglieder.adoc
+[source,asciidoc]
+----
+== Teammitglieder
+----
+3. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und das Team-Repository auf GitHub auf.
+
+.icon:user[] Person C
+1. Aktualisieren Sie mit "... > Pull" Ihr lokales Repository mit dem Stand von entfernten Repository auf GitHub.
+2. Legen Sie in Ihrem Repository die neue Datei *Software.adoc* im Verzeichnis *docs* mit folgendem Inhalt in Visual Studio Code an:
++
+.Software.adoc
+[source,asciidoc]
+----
+== Eingesetzte Software
+----
+3. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und das Team-Repository auf GitHub auf.
+
+.icon:users[] Person A, B, C
+Aktualisieren (_git pull_) Sie *alle im Team* Ihr lokales Repository, damit Sie alle den gleichen lokalen Versionsstand wie Ihr gemeinsames Team-Repository auf GitHub haben.
+
+.Aktuelle Projektstruktur:
+----
+htw-se-example-teamproject
+├── docs
+│   ├── Software.adoc
+│   ├── Teamdokumentation.adoc
+│   └── Teammitglieder.adoc
+└── README.md
+----
+
+==== Aufgabe 2.2 - freie Teamarbeit
+Bearbeiten Sie im Team die folgenden Aufgaben und nehmen Sie die gemachten Änderugen jeweils in Ihr lokales und Ihr entferntes Teamrepository auf GitHub auf. Es ist keine bestimmt Reihenfolge vorgegeben, nur was wer tun soll. Diskutieren Sie Ihr Vorgehen und auftretende Problemen. Probieren Sie etwas und versuchen Sie aufgetretene _merge_-Konflikte zu lösen.
+
+NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `;` geschrieben. Besteht ein Autorenname aus mehr als drei Teilen, müssen die Vor- und Nachnamen mit `_` jeweils zu einer Gruppe zusammengefasst werden.
+
+.Aufgaben - icon:user[] Person A
+- Binden Sie in der Datei *_Teamdokumentation.adoc_* an geeigneter Stelle die Dateien _Teammitglieder.adoc_ und _Software.adoc_ über https://asciidoctor.org/docs/user-manual/#include-directive[includes] ein.
+- Ergänzen Sie in der Datei *_Teamdokumentation.adoc_* im Dokumentenkopf Ihren Namen und Ihre E-Mail.
+- Passen Sie in der Datei *_README.md_* den Titel an und fügen Sie eine kurze Beschreibung für die Erzeugung des HTML-Dokumentes hinzu.
+
+.Aufgaben - icon:user[] Person B
+- Legen Sie in der Datei *_Teammitglieder.adoc_* eine Tabelle mit den Namen und der Rolle der Teammitglieder an.
+- Legen Sie eine Datei .gitignore an, um HTML- und PDF-Datei vom Repository auszuschließen.
+- Ergänzen Sie in der Datei *_Teamdokumentation.adoc_* im Dokumentenkopf Ihren Namen und Ihre E-Mail.
+
+.Aufgaben - icon:user[] Person C
+- Legen Sie in der Datei *_Software.adoc_* eine Auflistung der für das Teamprojekt eingesetzten Software mit Links zu den entsprechenden Webseiten an.
+- Ergänzen Sie in der Datei *_Teamdokumentation.adoc_* im Dokumentenkopf Ihren Namen und Ihre E-Mail.
+- Generieren Sie mit `asciidoctor` das finale HTML-Document.
+
+.Endaufgabe - icon:users[] Person A, B, C
+- Schauen Sie sich das fertige HTML-Document im Webbrowser und den Projektverlauf (commit history) in Ihrem GitHub Repository an.
+
+
+{section-separator}
+
+=== Ausblick
+
+Eine weitere Möglichkeiten für die Zusammenarbeit über GitHub sind *Pull requests*, welche wir uns im nächsten Semester (<<praktikumsaufgaben-teil-08.adoc#, Teil 8 - Zusammenarbeit 3>>) anschauen.
+
+Pull requests::
+Anfrage mit Diskussion für das Mitarbeiten oder Aufnehmen (_merge_) einer ausgelagerten Bearbeitungen (extra _Branch_ oder _Fork_) in den Haupt-Branch.
+- https://help.github.com/en/articles/about-pull-requests[GitHub - About pull requests]
+- https://yangsu.github.io/pull-request-tutorial/[A Visual Guide to Pull Requests]
+
+
+include::sitemap.inc.adoc[]

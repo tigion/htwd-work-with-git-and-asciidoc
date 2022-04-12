@@ -1,0 +1,315 @@
+include::header.inc.adoc[]
+
+Ziel: Kennenlernen weiterer Diagrammarten der textbasierten Diagrammgenerierung mit *AsciiDoc*
+
+== Praktikumsaufgaben Teil 9 - Diagramme 2
+
+In diesem Aufgabenteil schauen wir uns weiter Diagramme an, welche mit PlantUML in Asciidoctor-Dokumenten verwendet werden können.
+
+[NOTE]
+====
+* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
+* Hinweise zur Einrichtung und Verwendung von PlantUML in Asciidoctor und Visual Studio Code finden Sie unter <<praktikumsaufgaben-teil-05.adoc#c4-model-diagrams, Praktikumsaufgaben Teil 5 - Diagramme 1>> vom letzten Semester.
+====
+
+include::hinweise-windows-labor.inc.adoc[]
+
+{section-separator}
+
+=== PlantUML Notation
+
+==== Aufgabe 1 - C4 Dynamic Diagramm
+
+Für die Verwendung und Hinweise von C4-Modell Diagrammen siehe: <<praktikumsaufgaben-teil-05.adoc#c4-model-diagrams, Teil 5 - Diagramme 1 - C4 Model Diagramme>>.
+
+Schauen Sie sich die Syntax auf https://github.com/plantuml-stdlib/C4-PlantUML#supported-diagram-types[C4-PlantUML - Supported Diagram Types] und https://github.com/plantuml-stdlib/C4-PlantUML/blob/master/samples/C4CoreDiagrams.md#dynamic-diagram[Dynamic Diagram Sample] an und erstellen Sie, angelehnt an Ihr Projekt oder das Beispiel, ein C4 Dynamic Diagramm.
+
+._example_c4-dynamic-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_c4-dynamic-diagram.puml[]
+----
+====
+
+:diagramTitle: C4 Dynamic Diagramm mit PlantUML
+:diagramFile: example_c4-dynamic-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 2 - C4 Deployment Diagramm
+
+Für die Verwendung und Hinweise von C4-Modell Diagrammen siehe: <<praktikumsaufgaben-teil-05.adoc#, Teil 5 - Diagramme 1 - C4 Model Diagramme>>.
+
+Schauen Sie sich die Syntax auf https://github.com/plantuml-stdlib/C4-PlantUML#supported-diagram-types[C4-PlantUML - Supported Diagram Types] und https://github.com/plantuml-stdlib/C4-PlantUML/blob/master/samples/C4CoreDiagrams.md#deployment-diagram[Deployment Diagram Sample] an und erstellen Sie, angelehnt an Ihr Projekt oder das Beispiel, ein C4 Deployment Diagramm.
+
+._example_c4-deployment-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_c4-deployment-diagram.puml[]
+----
+====
+
+:diagramTitle: C4 Deployment Diagramm mit PlantUML
+:diagramFile: example_c4-deployment-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 3 - Komponentendiagramm
+
+Schauen Sie sich die https://plantuml.com/de/component-diagram[Syntax für ein Komponentendiagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein Komponentendiagramm.
+
+.Hinweise: Komponentendiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Komponente
+----
+component Komponente1 <1>
+[Komponente 2] as co2
+----
+<1> Komponenten werden über das Schlüsselwort `component` definiert oder in eckigen Klammern `[...]` eingeschlossen.
+
+.Schnittstellen
+----
+interface Interface1 <1>
+() Interface2
+() "Special Interface 3" as if1
+----
+<1> Interface werden über das Schlüsselwort `interface` oder mit `()` angegeben.
+
+.Beziehungen
+----
+[co2] ..> if1 : use <1>
+----
+<1> gestrichelte use-Beziehung zwischen Komponente 2 und dem Interface 1
+
+.Notizen
+----
+note left of Komponente1 : Text of note <1>
+note right of co2 <2>
+  A note can also
+  be on several lines
+end note
+----
+<1> Notizen können in Abhängigkeit der Richtung über `note left|right|top|bottom of` für Elemente vergeben werden.
+<2> Mehrzeilige Notizen sind ebenfalls möglich.
+
+.Gruppierung
+----
+cloud "Cloud" { <1>
+  [Opal]
+}
+node "Webserver" { <2>
+  database "Database" {
+    [MySQL]
+  }
+  [Apache]
+  [Web APP]
+}
+[Web APP] -> [Apache] <3>
+[Opal] <- [Web APP]
+----
+<1> Gruppierung der Komponente Opal als `cloud`. Andere Kontainer wären: `package`, `node`, `folder`, `frame` und `database`.
+<2> Verschachtelte Gruppierung
+<3> Angabe der Beziehung zwischen zwei Komponenten
+=====
+====
+
+._example_component-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_component-diagram.puml[]
+----
+====
+
+:diagramTitle: Komponentendiagramm mit PlantUML
+:diagramFile: example_component-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 4 - Paketdiagramm
+
+Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm (Abschnitt Package)] an und erstellen Sie, angelehnt an Ihr Projekt, ein Paketdiagramm.
+
+.Hinweise: Paketdiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Pakete
+----
+package Paket1 {} <1>
+package Paket2 #ffc {} <2>
+package Paket3 { <3>
+  package Paket3.1 {}
+  class Klasse1
+}
+----
+<1> Pakete werden mit dem Schlüsselwort `package` angelegt.
+<2> Mit einer hexadezimalen Angabe kann die Hintergrundfarbe des Pakete angegeben werden.
+<3> Pakete können Pakete und Klassen enthalten.
+
+.Beziehungen
+----
+Paket1 <- Paket2 : import <1>
+Paket2 .. Paket3
+----
+<1> Beziehungen zwischen Paketen oder den enthaltenen Klassen werden wie bisher angegeben.
+=====
+====
+
+._example_package-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_package-diagram.puml[]
+----
+====
+
+:diagramTitle: Paketdiagramm mit PlantUML
+:diagramFile: example_package-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 5 - Sequenzdiagramm
+
+Schauen Sie sich die https://plantuml.com/de/sequence-diagram[Syntax für ein Sequenzdiagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein Sequenzdiagramm.
+
+.Hinweise: Sequenzdiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Teilnehmer (Participants)
+- `participant` (default), `actor`, `boundary`, `control`, `entity`, `database`, `collections`
+
+----
+actor User as actor1 #LightGray <1> <2>
+participant "UI Class" as class1 <3>
+----
+<1> Teilnehmer können direkt `+User -> class1+` oder mit ihrem Alias `+actor1 -> class1+` verwendet werden.
+<2> Mit `#f00` oder `#LightGray` kann eine Hintergrundfarbe definiert werden.
+<3> Teilnehmernamen mit Leerzeichen werden in `"` eingefasst.
+
+.Beziehungen
+----
+ator1 -> class1: Request <1>
+class1 -> class1: Do <2>
+||| <3>
+class2 --> actor1: Send
+----
+<1> Beziehungen zwischen Teilnehmern werden mit `+->+` (durchgezogen) oder `+-->+` (gestrichelt) angegeben. Die verschiedenen Pfeilarten entnehmene Sie bitte der offiziellen Dokumentation unter https://plantuml.com/de/sequence-diagram#efeda651e89e596c[Pfeilarten].
+<2> Teilnehmer können Beziehungen auch auf sich selbst haben.
+<3> Extra Abstände können mit `|||` oder mit einer Angabe in Pixeln `||45||` eingefügt werden.
+=====
+====
+
+._example_sequence-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_sequence-diagram.puml[]
+----
+====
+
+:diagramTitle: Sequenzdiagramm mit PlantUML
+:diagramFile: example_sequence-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+
+==== Aufgabe 6 - Entity Relationship Diagramm (optional)
+
+Schauen Sie sich die https://plantuml.com/de/ie-diagram[Syntax für ein ER-Diagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein entsprechendes Entity-Relationship-Diagramm (ERD) bzw. Entity-Relationship-Modell (ERM).
+
+PlantUML nutzt hierfür eine Erweiterung der Notation der Klassendiagramme.
+
+.Hinweise: Entity Relationship Diagramm in PlantUML
+[%collapsible]
+====
+=====
+.Entities
+----
+entity Entity1 <1>
+entity Entity2 { <2>
+  * **id** : char(5) <3>
+  --
+  * name : varchar(255)
+  note : varchar(255)
+}
+----
+<1> Entities werden mit dem Schlüsselwort `entity` angelegt.
+<2> Entity mit Platz für Attribute
+<3> Attribute:
+* `*` ... kennzeichnet verpflichtende Attribute (NOT NULL)
+* In `**` eingefasster Text wird fett dargestellt. Geeignet, um Primär Schlüssel hervorzuheben bzw. ordnet man sie im oberen Bereich, getrennt durch `--`, an.
+* Dem Attributnamen folgt mit `:` der Datentyp.
+
+.Beziehungen mit Kardinalitäten
+----
+Entity1 ||--o{ Entity2 <1>
+----
+<1> Beziehung zwischen zwei Entitäten mit zugehöriger Kardinalität. Anzeige erfolgt als https://de.wikipedia.org/wiki/Martin-Notation[Krähenfussnotation]. +
+{empty} +
++
+.Notation Kardinalitäten
+[cols="1,3,2", width=70%]
+|===
+| `\|o--`  | keins oder eins  | `0..1`, `c`
+| `\|\|--` | eins             | `1`
+| `}o--`   | keins, eins oder viele | `0..*`, `cm`
+| `}\|--`  | eins oder viele  | `1..*`, `m`
+|===
+
+.Diagrammattribute (am Diagrammanfang)
+----
+hide circle <1>
+skinparam linetype ortho <2>
+----
+<1> Blendet das (E) im Entity-Kopf aus.
+<2> Verhindert schräge Linien, um eine unschöne Darstellungen der Krähenfußnotation zu unterbinden.
+=====
+====
+
+._example_erm-diagram_v1.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_erm-diagram_v1.puml[]
+----
+====
+
+:diagramTitle: Entity Relationship Diagramm mit PlantUML (Chen-Notation)
+:diagramFile: example_erm-diagram_v1
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+._example_erm-diagram_v2.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_erm-diagram_v2.puml[]
+----
+====
+
+:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Krähenfuss-Notaion)
+:diagramFile: example_erm-diagram_v2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+._example_rm-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_rm-diagram.puml[]
+----
+====
+
+:diagramTitle: Relationenmodell Diagramm (RM) mit PlantUML (Krähenfuss-Notaion)
+:diagramFile: example_rm-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+
+include::sitemap.inc.adoc[]

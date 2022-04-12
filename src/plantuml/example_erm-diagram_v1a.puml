@@ -1,0 +1,34 @@
+@startuml example-erm-diagram
+' hide the (E) in the entity name
+hide circle
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity Student {
+  * <&key> **id** : char(5)
+  --
+  * firstName : varchar(255)
+  * lastName : varchar(255)
+  ...
+}
+
+entity Subject {
+  * <&key> **id** : char(2)
+  --
+  * name : varchar(255)
+  ...
+}
+
+entity Mark {
+  * <&key> **studentId** : char(5) <<FK>>
+  * <&key> **subjectId** : char(2) <<FK>>
+  --
+  mark : float
+  ...
+}
+
+Student ||--o{ Mark
+Subject ||--o{ Mark
+
+note right of Mark : composite primary key,\nrefers to studentId and subjectId
+@enduml

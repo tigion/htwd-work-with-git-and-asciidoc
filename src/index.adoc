@@ -1,0 +1,136 @@
+include::header.inc.adoc[]
+
+== Worum geht es
+
+Im Praktikum wollen wir uns den Themen *Versionsverwaltung*, *Docs-as-Code* und *Zusammenarbeit* nähern.
+
+Die Aufgaben bieten eine Einführung in die Handhabung folgender Werkzeuge:
+
+- *Git* - Versionsverwaltung von Softwareprojekten
+- *AsciiDoc* - textbasierte Generierung von technischen Dokumentationen
+- icon:github[] *GitHub* - Online-Plattform für die Versionsverwaltung mit Git und die Zusammenarbeit im Team
+
+.Zusammenspiel von Git, GitHub und AsciiDoc im Praktikum
+image::grafik_overview_workspace_git_github_asciidoc.jpg["Zusammenspiel von Git, GitHub und AsciiDoc im Praktikum", width=800, link="images/grafik_overview_workspace_git_github_asciidoc.jpg"]
+
+
+== Ziel der Praktika
+
+Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden im Umgang mit den oben genannten Themen und Werkzeugen.
+
+=== Software Engineering I
+
+.Praktikumsaufgaben Teil 1 - Grundlagen
+- Umgang mit der Online-Plattform *GitHub* (_Login_, _Repository_)
+- Umgang mit dem Editor *Visual Studio Code* (_Extensions_, _Git_)
+- Umgang mit der Versionsverwaltung *Git* (_clone_, _add_, _commit_, _push_)
+- Kennenlernen der Syntax von *AsciiDoc* (_Syntax_, _Preview_)
+
+.Praktikumsaufgaben Teil 2 - AsciiDoc
+- Anwenden des Editors *Visual Studio Code* und der Syntax von *AsciiDoc*
+- Anwenden des Zusammenspiels von *Visual Studio Code*, *Git* und *GitHub*
+
+.Praktikumsaufgaben Teil 3 - Zusammenarbeit 1
+- Zusammenarbeit im Team mit *GitHub* (_Collaborators_, ...)
+- Weiterführende Anwendung von *Git* (_pull_, _merge-conflicts_)
+
+.Praktikumsaufgaben Teil 4 - Zusammenarbeit 2
+- Zusammenarbeit im Team mit *GitHub* (_Issues_, _Labels_, _Projects_, _Milestones_, ...)
+- Issues mit Filtern im Überblick behalten
+- Issues im Kontext des OpenUP
+
+.Praktikumsaufgaben Teil 5 - AsciiDoctor und Diagramme 1
+- Textbasierte Diagrammgenerierung mit *PlantUML*
+- Struktur und Verwendung in Asciidoctor
+- _Anwendungsfall-, Klassen-, Aktivitäts- und C4 Model Diagramm_
+
+=== Software Engineering II
+
+.Praktikumsaufgaben Teil 6 - Versionen
+- Änderungs- und Versionsverwaltung (_diff_, _checkout_, _restore_, _stash_, _reset_, _revert_, _amend_, _rebase_)
+
+.Praktikumsaufgaben Teil 7 - Branches
+- Branching (_branch_, _switch_, _checkout_, _rebase_, _merge_, _local-/remote-Branch_)
+
+.Praktikumsaufgaben Teil 8 - Zusammenarbeit 3
+- Code-Review (Pull-/Merge-Request), Fork
+
+.Praktikumsaufgaben Teil 9 - Asciidoctor und Diagramme 2
+- Weitere Diagrammtypen
+- _C4 Dynamic und Deployment Diagramm_
+- _Komponenten-, Paket-, Sequenz- und ER-/RM-Diagramm_
+
+.Praktikumsaufgaben Teil 10 - GitHub Actions
+- CIs und Workflows mit GitHub Actions
+
+== Hinweise & Einschränkungen
+
+//.Geek&Poke - The New Developer
+image::geek-and-poke_the_new_developer.jpg[Geek&Poke: The New Developer, width=200, role="right", link="http://geek-and-poke.com/geekandpoke/2012/4/25/the-new-developer.html"]
+
+- Die Praktikumsaufgaben können in den *Computer-Laboren* der Fakultät unter icon:linux[] Linux bzw. icon:windows[] Windows oder auf dem *eigenen Rechner* bearbeitet werden.
+- *Linux-Labore*: Nutzereinstellungen bleiben erhalten und werden in den jeweiligen Home- bzw. Profil-Verzeichnissen gespeichert.
+- *Windows-Labore*: Es werden keine Nutzerprofile gespeichert. Die Konfiguration von Git und das Anpassen der Werkzeuge (Erweiterungen, Einstellungen) muss nach jedem Anmelden neu vorgenommen werden.
+- *Eigener Rechner*: Unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor Installation und Konfiguration] finden Sie Hinweise, wie Sie die benötigten Programme auf Ihrem Rechner einrichten.
+
+IMPORTANT: Daten im Temp-Laufwerk `T:` unter Windows werden nach dem Abmelden gelöscht. Diese müssen vorher in Ihr Home-Laufwerk `U:` (`Z:`) verschoben oder anderweitig gesichert werden.
+
+== Eingesetzte Werkzeuge
+
+Eine Auflistung der im Praktikum eingesetzten Werkzeuge mit Links zu weiterführenden Informationen.
+
+=== Git
+
+NOTE: *Git* is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+- https://git-scm.com/
+
+- http://git-scm.com/[Git - offizielle Webseite]
+- http://git-scm.com/documentation[Git - Documentation Resource]
+- https://git-scm.com/book/[Pro GIT – Ebook von Scott Chacon und Ben Straub]
+
+- https://git-scm.com/downloads/guis/[Git - GUI Clients] eine Sammlung von Clients für verschiedene Betriebssysteme
+** Im Praktikum reicht https://code.visualstudio.com[Visual Studio Code] mit integrierter https://code.visualstudio.com/docs/editor/versioncontrol#_git-support[Git-Unterstützung] und integriertem Terminal (alternativ https://gitforwindows.org[GitBash] unter Windows).
+//** https://www.gitkraken.com/git-client[GitKraken] - Git GUI for Windows, Mac and Linux
+//** https://git-fork.com/[Fork] - Git client for Mac and Windows
+
+- Lernumgebungen
+** https://ohmygit.org/[Oh My Git!] - An open source game about learning Git!
+** https://github.com/jlord/git-it-electron[Git-it] is a (Mac, Win, Linux) Desktop App for Learning Git and GitHub
+
+=== GitHub
+
+NOTE: *GitHub* is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside 40 million developers. - https://github.com/
+
+- https://github.com/[GitHub - offizielle Webseite]
+  * Der kostenfreie Account *Free* bietet mittlerweile unbegrenzte öffentliche und private Repositories mit jeweils unbegrenzter Mitgliederanzahl.
+  * https://education.github.com/students[GitHub Education - Students]
+- https://guides.github.com/)[GitHub Guides] -> https://guides.github.com/introduction/git-handbook/[Git Handbook]
+
+=== AsciiDoc
+
+NOTE: *AsciiDoc* is a text document format for writing notes, documentation, articles, books, ebooks, slideshows, web pages, man pages and blogs. AsciiDoc files can be translated to many formats including HTML, PDF, EPUB, man page. - http://asciidoc.org
+
+
+* https://asciidoctor.org/[Asciidoctor] - is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems.
+** https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Documentation]
+** https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
+** https://asciidoctor.org/docs/asciidoc-writers-guide/[AsciiDoc Writer’s Guide]
+* Videos:
+** icon:film[] https://www.youtube.com/watch?v=JWuUyLTihac[Asciidoctor Deep Dive] - Alexander Schwartz (29.03.2020)
+
+* Editoren:
+** https://code.visualstudio.com[Visual Studio Code] + Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
+** https://atom.io[Atom] + Erweiterung https://atom.io/packages/asciidoc-preview[AsciiDoc Preview] (side-by-side live preview)
+** https://asciidoclive.com/[AsciiDocLIVE] ist ein freier online AsciiDoc Editor mit HTML-Export
+
+=== Visual Studio Code
+
+NOTE: *Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. - https://code.visualstudio.com/docs
+
+* https://code.visualstudio.com[Visual Studio Code]
+** Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
+** Preferences -> Settings -> Extensions -> asciidoc: *Use Editor Style*: _false_
+* https://code.visualstudio.com/docs/editor/versioncontrol#_git-support[Using Version Control in VS Code - Git support]
+
+
+include::sitemap.inc.adoc[]

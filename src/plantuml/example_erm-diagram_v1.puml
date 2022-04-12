@@ -1,0 +1,49 @@
+@startuml example-erm-diagram
+' diagram direction
+left to right direction
+' hide the (E) in the entity name
+hide circle
+' avoid problems with angled crows feet
+skinparam linetype ortho
+' Remove shadows
+skinparam shadowing false
+
+entity Address {
+  * <&key> **id** : char(5)
+  --
+  * street : varchar(255)
+  * zipCode : char(5)
+  * city : varchar(255)
+  * country : varchar(255)
+  ...
+}
+
+entity Student {
+  * <&key> **id** : char(5)
+  --
+  * firstName : varchar(255)
+  * lastName : varchar(255)
+  ...
+}
+
+entity Subject {
+  * <&key> **id** : char(2)
+  --
+  * name : varchar(255)
+  ...
+}
+
+entity Mark {
+  '* <&key> **studentId** : char(5) <<FK>>
+  '* <&key> **subjectId** : char(2) <<FK>>
+  --
+  mark : float
+  ...
+}
+
+Address ||--|{ Student
+Student }o--o{ Subject
+(Student, Subject) .. Mark
+
+'note bottom of Mark : composite primary key,\nrefers to Student.id and Subject.id
+@enduml

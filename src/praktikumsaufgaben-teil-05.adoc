@@ -1,0 +1,637 @@
+include::header.inc.adoc[]
+
+Ziel: Einrichtung und Anwendung der textbasierten Diagrammgenerierung mit *AsciiDoc*
+
+== Praktikumsaufgaben Teil 5 - Diagramme 1
+
+In diesem Aufgabenteil betrachten wir die Möglichkeit der textbasierten Diagrammgenerierung mit Asciidoctor und der textuellen Notation http://plantuml.com/de/guide[PlantUML].
+
+:diagramTitle: Asciidoctor mit PlantUML
+:diagramFile: grafik_overview_asciidoctor-with-plantuml
+:diagramWidth: 800
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}", width={diagramWidth}, subs=attributes+]
+
+* https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]
+//* http://plantuml.com/de/guide[PlantUML PDF Guide]
+* https://plantuml.com/de/sitemap-language-specification[PlantUML - Language specification]
+* https://crashedmind.github.io/PlantUMLHitchhikersGuide/[The Hitchhiker’s Guide to PlantUML]
+* https://real-world-plantuml.com/[Seite mit verschiedene PlantUML Beispielen]
+
+////
+****
+* VS Code + Asciidoctor-Erweiterung:
+** externe Generierung:
+*** v1: asciidoctor js + PlantUML-Server
+*** v2: lokales Asciidoctor + Asciidoctor-Diagram + PlantUML-Server
+** lokale Generierung:
+*** v3: lokales Asciidoctor + Asciidoctor-Diagram + graphviz
+****
+////
+
+[NOTE]
+====
+* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
+====
+
+include::hinweise-windows-labor.inc.adoc[]
+
+
+{section-separator}
+
+=== Vorbereitung
+
+Für die Unterstützung der PlantUML Syntax und der Generierung von Diagrammen sind Anpassungen in Visual Studio Code, Asciidoctor und Git notwendig.
+
+:imageTitle: VS Code mit Diagrammvorschau
+:imageFile: screenshot_vscode_asciidoctor-diagram.png
+:imageWidth: 800
+image::{imageFile}[title="{imageTitle}", alt="{imageTitle}, "width="{imageWidth}", link="{imagesdir}/{imageFile}"]
+
+////
+* Je nach Leistungsfähigkeit des Rechners oder Netzwerkes, kann es bei der Aktualisierung der Grafiken zu Verzögerungen der Vorschau kommen.
+* Bei externen Servern für die Generierung den Datenschutz im Auge behalten.
+* Die lokal installierte Variante mit Graphviz unterstützt auch andere Diagramm-Typen als PlantUML.
+////
+
+==== Visual Studio Code
+
+Werden Diagramme über die *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation) im Dokument verwendet, muss für eine passende Vorschau folgende Einstellung angepasst werden:
+
+* Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+
+==== Git Konfiguration
+
+Asciidoctor legt für die generierten Grafiken einen zugehörigen Bilder-Cache im Repository an. Dieser befindet sich im Verzeichnis der jeweiligen  _adoc_-Datei(en) unter _.asciidoctor/diagram/_.
+
+Dieser Bilder-Cache wird nicht im Repository benötigt, so dass er über die _.gitignore_ ausgeschlossen werden sollte. Nehmen Sie dazu das Verzeichnis `.asciidoctor/` in die _.gitignore_ auf.
+
+Möchte man zusätzlich die generierten Grafiken nicht ins Repository aufnehmen, da sie jederzeit neu generiert werden können, kann der dafür vorgegebene Ordner bspw. `images/diagrams/` (Siehe <<Asciidoctor und PlantUML>>) ebenfalls mit in die _.gitignore_ aufgenommen werden.
+
+..gitignore
+----
+*.html
+*.pdf
+.asciidoctor/
+images/diagrams/
+----
+
+==== Hinweise privater Rechner
+
+Mit der Erweiterung https://asciidoctor.org/docs/asciidoctor-diagram/#diagram-attributes[Asciidoctor Diagram] und https://graphviz.gitlab.io/[Graphviz] unterstützt die lokal installierte Asciidoctor Version die textuelle Notation der Grafiken. Graphviz übernimmt dabei das eigentliche rendern der Bilddateien.
+
+====
+Hinweise zur Installation von *asciidoctor-diagram* und *Graphviz* und der Einrichtung von *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
+
+[IMPORTANT]
+======
+Gibt es bei der Einrichtung von Asciidoctor und der Diagramm Erweiterung auf dem heimischen Rechner Probleme, kann für die Bearbeitung der Aufgaben die Vorschau in Visual Studio Code temporär wie folgt angepasst werden:
+
+. Folgend Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc" in Visual Studio Code setzen:
++
+* Asciidoc: *Use_asciidoctor_js*: icon:check-square-o[] (aktiviert)
+* Asciidoc: *Use_kroki*: icon:check-square-o[] (aktiviert)
+. Visual Studio Code ggf. neustarten!
+======
+====
+
+{section-separator}
+
+=== Asciidoctor und PlantUML
+
+Der folgende Abschnitt erklärt, wie im Asciidoctor-Dokument die PlantUML Notation angewendet wird, was es für nützliche Attribute gibt und wie das fertige Dokument inkl. der Diagramme generiert wird.
+
+====  Attribute
+
+Das Asciidoctor-Dokument benötigt folgende zusätzliche Attribute, wobei die Werte beispielhaft gewählt sind:
+
+----
+:imagesdir: images <1>
+:diagramsdir: diagrams <2>
+:plantumlsdir: plantuml <3>
+----
+////
+//:plantuml-server-url: https://www.plantuml.com/plantuml <4>
+////
+
+<1> In der Regel schon vorhanden. Verzeichnis bzw. Standardpfad, in welchem die Bilder des Dokumentes liegen. (Siehe https://docs.asciidoctor.org/asciidoc/latest/macros/images-directory/[Set the Images Directory])
+<2> Verzeichnis, in welchem die generierten Diagramme gespeichert werden. Es wird später dem Dateinamen der Diagramme mitgegeben, so dass sich die generierten Diagramme unterhalb des `+{imagesdir}+`-Verzeichnisses in ihrem eigenen Verzeichnis befinden.
+<3> Verzeichnis, in welchem die PlantUML Quelldateien liegen. Für die Variante, wenn die PlantUML Diagramme in extra Dateien ausgelagert werden.
+////
+<4> Optional: Die Angabe eines PlantUML-Server für die Generierung der Diagramme wird bei lokal installiertem Graphviz nicht benötigt. In diesem Beispiel auskommentiert.
+////
+
+Standardmäßig werden die generierten Grafiken im vorgegebenen Bildverzeichnis `+{imagesdir}+` gespeichert. Möchte man die Diagramme getrennt halten und unbeabsichtigtes Überschreiben anderer Bilder verhindern, empfiehlt es sich für die generierten Diagramme im Namen ein [.underline]#extra# Verzeichnis `+{diagramsdir}/diagram-name+` anzugeben. Dadurch werden die Diagramme in ihrem eigenen Verzeichnis unterhalb des `+{imagesdir}+`-Verzeichnisses gespeichert.
+
+.Beispiel einer Projektstruktur:
+----
+documentation-x
+├── images <1>
+│   ├── diagrams <2>
+│   │   ├── diagram1.jpg
+│   │   └── ...
+│   ├── image1.jpg
+│   └── ...
+├── ...
+├── plantuml <3>
+│   ├── class-diagram.puml
+│   └── ...
+├── ...
+├── document1.adoc
+├── document2.adoc
+└── ...
+----
+<1> `+{imagesdir}+`
+<2> `+{diagramsdir}+`
+<3> `+{plantumlsdir}+`
+
+==== Praktikumsbeispiel
+
+Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
+
+* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
+
+==== PlantUML Notation
+
+.PlantUML Notation Minimalbeispiel:
+----
+@startuml <1> <2>
+Bob -> Alice : Guten Tag! <3>
+@enduml <1>
+----
+<1> Ein PlantUML Diagramm beginnt mit dem Schlüsselwort `@startuml` und endet mit dem Schlüsselwort `@enduml`. (Kann in Asciidoctor bzw. bei nur einem Diagrammabschnitt auch weggelassen werden.)
+<2> Standardmäßig hat das generierte Diagramm den gleichen Namen wie die Quelldatei (_example.puml_ -> _example.svg_). Die Dateiendung ist von der Art der zu generierenden Datei abhängig (bspw. _.svg_, _.png_). +
+Gibt man mit `@startuml filename` einen Namen an, kann ein alternativer Dateiname festgelegt werden (_example.puml_ -> _filename.svg_).
+<3> Bereich für die Diagrammbeschreibung
+
+NOTE: Der Dateiname bei `@startuml filename` wird in Asciidoctor nicht beachtet bzw. über die Einbindungssyntax festgelegt.
+
+==== Diagramm eingebettet
+
+In Asciidoctor werden Diagramme über einen Block eingebunden, welcher die Attribute und die textliche Beschreibung (PlantUML Notation) der zu generierenden Grafik enthält.
+
+.Asciidoctor Syntax-Beispiel:
+----
+.Klassendiagramm mit PlantUML <1>
+[plantuml, "{diagramsdir}/syntax-example1", svg] <2> <3>
+....
+class Graphic <4>
+interface Shape <<Interface>> {
+  draw()
+}
+class Circle
+class Triangle
+class Square
+
+Graphic -> Shape
+Shape <|.. Circle
+Shape <|.. Triangle
+Shape <|.. Square
+....
+----
+<1> Titel der Grafik (Bildunterschrift)
+<2> Attribute für die Generierung mit der Asciidoktor-Diagramm Erweiterung
+<3> Attribute: Diagramm-Type (Textsyntax), generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`), Bildformat (png, svg)
+<4> textliche Beschreibung (PlantUML Notation) des entsprechenden Diagramm-Types
+
+
+Die erfolgreich generierte Grafik <<diagram_syntax-example1>> sieht wie folgt aus:
+
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+////
+.Klassendiagramm mit PlantUML
+[#diagram_syntax-example1]
+[plantuml, "{diagramsdir}/syntax-example1", svg]
+....
+include::{plantumlsdir}/syntax-example.puml[]
+....
+////
+
+==== Diagramm in extra Datei
+
+Die textlichen Diagrammbeschreibungen können, für eine bessere Wartbarkeit und Übersichtlichkeit im Asciidoctor-Dokument, mit Hilfe von `include::` in extra PlantUML-Dateien `*.puml` ausgelagert werden.
+
+._syntax-example.puml_
+[%collapsible]
+====
+----
+include::{plantumlsdir}/syntax-example.puml[]
+----
+====
+
+.Syntax-Beispiel: Include
+----
+.Klassendiagramm mit PlantUML
+[plantuml, "{diagramsdir}/syntax-example2", svg]
+....
+\include::{plantumlsdir}/syntax-example2.puml[]
+....
+----
+
+.Syntax-Beispiel: Block Macro mit Attributen
+----
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+----
+
+.Hinweise: Block Macro Variante
+[%collapsible]
+====
+=====
+IMPORTANT: Die Variante als Block Macro funktioniert nur mit einer lokal installierten Asciidoctor Version bzw. wenn diese für die Vorschau in Visual Studio Code verwendet wird.
+
+.Syntax-Beispiel: Block Macro
+----
+[#diagram_example] <1>
+plantuml::{plantumlsdir}/diagram-example.puml[format=svg, alt="Diagrammbeispiel", title="Diagrammbeispiel", target="{diagramsdir}/diagram-example"] <2>
+----
+<1> optionale ID für Verweise (`+<<#ID>>+`) oder als `id=` Attribute
+<2> Block Macro mit Diagramm-Type (Textsyntax) und Attribute für die Generierung mit der Asciidotor-Diagramm Erweiterung
+* `plantuml::\{plantumlsdir\}/diagram-example.puml` ... PlantUML Datei im extra PlantUML Ordner
+* `format` ... Bildformat
+* `alt` ... Alternativer Name
+* `title` ... Titel der Grafik (Bildunterschrift, ebenfalls relevant für Verweise)
+* `target` ... generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`)
+* (optional) `id=` ... ID für Verweise
+
+.Variante mit Attributen:
+----
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+----
+=====
+====
+
+[NOTE]
+====
+Visual Studio Code bietet Erweiterungen für die Unterstützung von PlantUML-Dateien (*.puml) für die Vorschau und Generierung an, bspw. die Erweiterung https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML].
+
+* "Code > View > Command Palette..."
+** `PlantUML: Preview Current Diagramm`
+** `PlantUML: Export Current Diagramm`
+====
+
+
+==== Generierung PDF/HTML
+
+Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden.
+
+.HTML
+----
+% asciidoctor -r asciidoctor-diagram plantuml_test.adoc
+----
+
+.PDF - v1
+----
+% asciidoctor-pdf -r asciidoctor-diagram plantuml_test.adoc
+----
+.PDF - v2
+----
+% asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf plantuml_test.adoc
+----
+
+
+{section-separator}
+
+=== PlantUML Notation im Detail
+
+In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die PlantUML Notation näher anschauen und erarbeiten.
+
+==== Hinweise und Tipps
+
+Neben den in den Aufgaben verlinkten Syntax-Hinweisen findet man auch die entsprechenden Abschnitte im https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]. Ebenfalls bereitgestellt sind jeweils die PlantUML-Quelltexte der verwendeten Beispieldiagramme.
+
+Hilfreich zum Layouten bzw. zur Positionierung von Elementen ist auch ein Blick in den entsprechenden Guide zu https://crashedmind.github.io/PlantUMLHitchhikersGuide/layout/layout.html[The Hitchhiker’s Guide to PlantUML - Layout].
+
+.Hinweise und Tipps zur Anwendung der PlantUML Notation
+[%collapsible]
+====
+=====
+* In der Regel definiert man erste die Elemente (Type, Bezeichnung) und nachfolgend die Beziehungen zwischen ihnen. Elemente in Kontainern/Paketen, werden am Anfang des entspechenden Kontainers definiert.
+* Lange Bezeichnungen mit Leerzeichen werden in Anführungszeichen bzw. den Eingrenzungszeichen des jeweiligen Elementes gesetzt und können mit `\n` Zeilenumbrüche enthalten.
+* Den Elementen kann über das Schlüsselwort `as` Alias-Namen vergeben werden, welche anstelle der Bezeichnung beim Definieren der Beziehungen verwendet werden.
+* Pro Zeile wird immer ein Elemente definiert.
+* Beziehungen können immer nur für zwei beteiligte Elemente pro Zeile angegeben werden. (Bspw. `A -- B` und `B -- C` statt `A -- B -- C`)
+* Die Hintergrundfarbe von Elemente kann durch Angabe eine Hexadezimalwertes festgelegt werden: `class MyClass #f00` (Siehe auch https://plantuml.com/de/color[Colors])
+** Weitere Möglichkeiten bieten https://plantuml.com/de/skinparam[Skinparam Befehl] und https://plantuml.com/de/style-evolution[Style (or CSS like style)]
+** Mit `skinparam shadowing false` können bspw. Schatten deaktiviert werden.
+* Stereotypen werden nach der Elementbezeichnung angegeben. Bsp.: `+class MyClass <<MyStereotype>>+`
+* Kommentare werden einzeilig mit `'` eingeleitet und mehrzeilig in `/' ... '/` eingeschlossen.
+* Standardmäßig werden Diagramme von oben nach unten aufgebaut. Je nach Diagramm kann auch ein Aufbau von links nach rechts besser aussehen.
+** `top to bottom direction` (Standard)
+** `left to right direction`
+* Diagramme können über die Webseite https://www.plantuml.com/plantuml/ direkt generiert und getestet werden.
+* Mit `together {...}` werden Elemente gruppiert bzw. zusammengehalten. (Siehe https://plantuml.com/de/class-diagram#c08f8d9927fcb626[Hilfe beim Layout])
+* Wird das Attribut `subs="attributes+"` bei der Einbindung in Asciidoctor verwendet, können innerhalb des PlantUML-Diagrammes Variablen vom Asciidoctor-Dokument verwendet werden.
++
+----
+:variable1: Human
+:variable2: Hallo
+:variable3: World
+
+[plantuml, format="svg", subs="attributes+"]
+....
+actor {variable1}
+note right of {variable1} : {variable2}
+usecase {variable3}
+....
+----
+=====
+====
+
+==== Aufgabe 1 - Anwendungsfalldiagramm
+
+Schauen Sie sich die https://plantuml.com/de/use-case-diagram[Syntax für ein Anwendungsfalldiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Anwendungsfalldiagramm.
+
+.Hinweise: Anwendungsfalldiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Akteure (Actor)
+----
+actor Akteur1 <1>
+:Akteur 2:
+actor "Akteur4 mit langem\nNamen" as ac2
+----
+<1> Akteure werden über das Schlüsselwort `actor` oder in Doppelpunkte `:...:` eingeschlossen.
+
+.Anwendungsfälle (Use Case)
+----
+usecase Anwendungsfall1 <1>
+usecase "Anweundgsfall 1" as uc01
+(Anwendungsfall 2) as uc02
+(UC03\nAnwendungsfall 3) as uc03
+
+usecase uc04 as "Langer Text <2>
+mit neuer Zeile
+--
+und Trennlinie"
+----
+<1> Anwendungsfälle werden über das Schlüsselwort `usecase` oder in Klammern `(...)` eingeschlossen.
+<2> Bei Inhalt mit mehreren Zeilen, muss erst der Alias und dann der mehrzeilige Inhalt angegeben werden.
+
+.Beziehungen
+----
+Akteur1 -- (Anwendungsfall1) <1>
+ac2 -- uc02
+uc02 <. uc03 : include <2> <3>
+----
+<1> Beziehungen werden mit `--` (senkrecht), `-` (waagerecht) und gestrichelt mit `..` (senkrecht), `.` (waagerecht) angegeben.
+<2> Für Pfeilrichtungen an den entsprechenden Seiten ein `<` bzw. `>` anfügen.
+<3> Mit `:` wird der Beziehung eine Beschreibung angegeben.
+=====
+====
+
+._example_usecase-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+----
+====
+
+:diagramTitle: Anwendungsfalldiagramm für eine beispielhafte eRoller App
+:diagramFile: example_usecase-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+////
+.Anwendungsfalldiagramm für eine beispielhafte eRoller App
+[#diagram_example_usecase-diagram]
+[plantuml, "{diagramsdir}/example_usecase-diagram", svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel"]
+....
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+....
+////
+
+////
+[#diagram_example_usecase-diagram]
+plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel", title="Anwendungsfalldiagramm vom Praktikumsbeispiel \"Cocktailversand\"", target="{diagramsdir}/q1_usecase-diagram"]
+////
+
+
+==== Aufgabe 2 - Klassendiagramm
+
+Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
+
+.Hinweise: Klassendiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Klassen
+----
+class Klasse1 <1>
+class Klasse2 { <2>
+  String var1
+  double var2
+  void methode1()
+  bool methode2(int x)
+}
+interface Interface1 <3>
+interface Interface1 {
+  void methode1()
+}
+----
+<1> Klassen werden mit dem Schlüsselwort `class` angelegt.
+<2> Klassen können Angaben zu den Typen und Methoden haben.
+<3> Interface Klassen werden mit dem Schlüsselwort `interface` angelegt. Abstrakte Klassen mit `abstract` bzw. `abstract class`.
+
+.Sichtbarkeiten
+----
+class Dummy { <1>
+  -field1
+  #field2
+  ~method1()
+  +method2()
+}
+----
+<1> Mit `-` (private), `#` (protected), `~` (package private) und `+` (public) werden Sichtbarkeiten festgelegt.
+
+.Abstrakt/Statisch
+----
+class Dummy { <1>
+  {static} String id
+  {abstract} void methods()
+}
+----
+<1> Modifikatoren für `{static}` (statisch) oder `{abstract}` abstrakt.
+
+.Beziehungen
+----
+Klasse1 <-- Klasse2 <1> <2> <3>
+Klasse3 <|-- Klasse4
+Klasse5 *-- Klasse6
+Klasse7 o-- Klasse8
+----
+<1> Assoziation `+<--+`, Generalisierung `<|--`, Realisierung `<|..`, Komposition `*--`, Aggregation `o--`
+<2> `--` durchgezogene Linie, `..` gestrichelte Linie
+<3> `-`/`.` vertikal, `--`/`..` horizontal, `---`/`...` horizontal lang
+
+.Multiplizitäten
+----
+Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
+----
+<1> `"1"` und `"many"` legen die Kardinalität fest.
+<2> in der Beschreibung `:` kann mit `< text` oder `text >` eine Richtung angegeben werden.
+=====
+====
+
+._example_class-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_class-diagram.puml[]
+----
+====
+
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: example_class-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 3 - Aktivitätsdiagramm
+
+Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
+
+.Hinweise: Aktivitätsdiagramm in PlantUML #TODO#
+[%collapsible]
+====
+=====
+Die Hinweise zur Erstellung von Aktivitätsdiagramm entnehmen Sie bitte, auf Grund der Veränderungen durch die *Beta* und *Legacy* Variante, direkt der offiziellen Dokumentation:
+
+- https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm (Beta)]
+- https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)]
+=====
+====
+
+._example_activity-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram.puml[]
+----
+====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (beta)
+:diagramFile: example_activity-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+.Hinweise: Bisherige Aktivitätsdiagramm (Legacy) Variante
+[%collapsible]
+====
+Unter https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)] findet man die bisherige Variante.
+
+._example_activity-diagram_legacy.puml_
+[%collapsible]
+=====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram_legacy.puml[]
+----
+=====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (legacy)
+:diagramFile: example_activity-diagram_legacy
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+====
+
+[#c4-model-diagrams]
+==== Aufgabe 4 - C4 Model Diagramme
+
+PlantUML kann neben UML auch Diagramme basierend auf dem https://c4model.com/[C4 Model] erzeugen. Dies wären, sortiert nach zunehmenden Detailgrad, die https://c4model.com/#SystemContextDiagram[Kontext-], https://c4model.com/#ContainerDiagram[Kontainer-] und https://c4model.com/#ComponentDiagram[Komponentendiagramme]. Es gibt noch die https://c4model.com/img/glyphicons-basic-351-link.svg[Codediagramme], diese können bspw. mit den aus der UML bekannten Klassendiagrammen dargestellt werden.
+
+* https://c4model.com/[The C4 model for visualising software architecture]
+* https://youtu.be/x2-rSnhpw0g[Visualising software architecture with the C4 model - Simon Brown, Agile on the Beach 2019]
+* [1] https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[The Hitchhiker’s Guide to PlantUML - C4 PlantUML]
+* [2] https://github.com/RicardoNiepel/C4-PlantUML[GitHub - C4-PlantUML]
+
+Schauen Sie sich auf https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[+[1]+] und https://github.com/RicardoNiepel/C4-PlantUML[+[2]+] die Syntax für die C4 Model Diagramme an und erstellen Sie, angelehnt an das Beispiel, ein C4 Model Diagramm.
+
+.Hinweise: C4 Model Diagramme in PlantUML
+[%collapsible]
+====
+=====
+
+.Layoutoptionen
+```
+LAYOUT_TOP_DOWN or LAYOUT_LEFT_RIGHT <1>
+LAYOUT_WITH_LEGEND <2>
+LAYOUT_AS_SKETCH <3>
+```
+<1> Diagrammausrichtung
+<2> Legende anzeigen
+<3> Darstellungsstil skizzenhaft
+
+.Diagrammtitel
+* Diagrammtitel werden mit `titel` vergeben:
++
+----
+title Dies ist ein Diagrammtitel
+----
+
+.Diagrammtypen und deren C4-Model Elemente
+* *System Context & System Landscape diagrams*
+** Import: `!include <c4/C4_Context.puml>`
+** C4-Model Elemente:
+*** `Person`, `Person_Ext`
+*** `System`, `System_Ext`
+*** `SystemDb`, `SystemDb_Ext`
+** C4 Model Kontainer:
+*** `Boundary`, `System_Boundary`, `Enterprise_Boundary`
+* *Container diagram*
+** Import: `!include <c4/C4_Container.puml>`
+** Zusätzliche C4-Model Elemente (Knoten):
+*** `Container`, `ContainerDb`
+** Zusätzliche C4-Model Elemente (Kontainer):
+*** `Container_Boundary`
+* *Component diagram*
+** Import: `!include <c4/C4_Component.puml>`
+** Zusätzliche C4-Model Elemente (Knoten):
+*** `Component`, `ComponentDb`
+
+.Elemente (Knoten)
+* Für jedes Element wird ein Alias, der Name und eine Beschreibung vergeben:
++
+----
+Person(alias, Name, "Beschreibung")
+----
+
+.Beziehungen (Kanten)
+* Beziehungen werden über `Rel(...)` beschrieben und können zwischen Elementen und Kontainern bestehen:
++
+----
+Rel(alias_person1, alias_container1, "Beschreibung")
+Rel(alias_element1, alias_element2, "Beschreibung", "Text in [...]")
+----
+* Über `Rel_R`, `Rel_L`, `Rel_D`, `Rel_U`, `Rel_Back`, `Rel_Neighbor` und `Rel_Back_Neighbor` kann die Pfeilrichtung und Ausrichtung des in Beziehung stehenden Elementes beeinflusst werden.
+
+.Kontainer (Bereiche)
+* Elemente kann man in Bereiche bündeln:
++
+----
+Boundary(alias, "Name") {
+  ...
+}
+----
+=====
+====
+
+._example_c4-model-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_c4-model-diagram.puml[]
+----
+====
+
+:diagramTitle: C4 Model Diagramm mit PlantUML
+:diagramFile: example_c4-model-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+include::sitemap.inc.adoc[]

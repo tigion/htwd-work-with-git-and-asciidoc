@@ -1,0 +1,24 @@
+@startuml example-component-diagram
+left to right direction
+
+cloud "Cloud" {
+  [Space]
+}
+
+node "Webserver" {
+  database "Database" {
+    [MySQL]
+  }
+  component [Web App] #fadbd8
+  [Apache] -- HTTP
+  [Web App] <-- [Apache]
+  [Web App] -> [MySQL] : <<local>>
+}
+
+package "Client" {
+  [Webbrowser] . [Javascript]
+}
+
+[Web App] -up-> [Space] : <<OAuth>>
+[Webbrowser] -up-> HTTP : <<https>>
+@enduml

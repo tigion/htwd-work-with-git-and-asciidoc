@@ -1,0 +1,55 @@
+
+====
+.Hinweise zum Praktikum in den Windows-Laboren
+Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind zu jedem Praktikumsbeginn folgende Schritte durchzuführen:
+
+.Schritte zur Vorbereitung des Praktikums
+[%collapsible]
+=====
+. Git-Konfiguration `C:\Users\<username>\.gitconfig` wiederherstellen oder anpassen:
++
+.per Editor in der _.gitconfig_
+----
+[user]
+	name = Vorname Nachname
+	email = s00000@htw-dresden.de
+[http]
+	proxy = http://www-cache.htw-dresden.de:3128
+----
++
+.oder per PowerShell und Git-Kommandos
+----
+> git config --global user.name "Vorname Nachname"
+> git config --global user.email s00000@informatik.htw-dresden.de
+----
+. Visual Studio Code: Installieren der Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] vom _asciidoctor_ Projekt.
+. Visual Studio Code: Anpassen der AsciiDoc-Einstellungen:
+** Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert)
+** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert)
+** ggf. Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+. icon:github[] GitHub Login mit gespeichertem oder neuem Personal Access Token über die PowerShell bekanntgeben:
++
+.Repository vorhanden
+----
+> U:
+> cd path/to/repository/<repo-name>/
+> git pull
+Authentifizierung ...
+----
++
+.Repository nicht vorhanden (Home-/SAMBA-Laufwerk)
+----
+> U:
+> cd path/to/repository/
+> git clone https://github.com/.../<repo-name>
+Authentifizierung ...
+----
++
+.Repository nicht vorhanden (TEMP-Laufwerk)
+----
+> T:
+> git clone https://github.com/.../<repo-name>
+Authentifizierung ...
+----
+=====
+====

@@ -1,0 +1,368 @@
+include::header.inc.adoc[]
+
+Ziel: Organisation von Aufgaben und Prozessen im Team mit Hilfe von *Issues* und des *OpenUP* an einem gemeinsamen Repository auf *GitHub*
+
+== Praktikumsaufgaben Teil 4 - Zusammenarbeit 2
+
+////
+- *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_
+- *Git*: _pull_, _branches_, _merges_, _conflicts_, _tags_
+- *AsciiDoc*: _includes_, _callouts_, _Q&A (Glossar)_, ...
+////
+
+Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Teamrepository *htw-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htw-se-example-project*.
+
+include::hinweise-windows-labor.inc.adoc[]
+
+{section-separator}
+
+
+=== 1. GitHub: Issues
+
+NOTE: Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. - https://guides.github.com/features/issues/[GitHub]
+
+GitHub bietet mit dem Bereich *Issues* eine Möglichkeit anstehende Aufgaben, aufgetretene Probleme und mögliche Verbesserungen zentral in Ihrem Projekt innerhalt Ihres Repository zu verwalten und zu diskutieren.
+
+:imageTitle: Screenshot: Bereich Issues auf GitHub
+:imageFile: screenshot_github_issues.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+Jeder Issue (Aufgabe, Ticket, ...) besteht aus einem *Titel* und der *Beschreibung* des Sachverhaltes. Zusätzlich können zur besserer Verwaltung noch *Assignees* (Beauftrage), *Labels* und weitere Kriterien hinzugefügt werden. Ebenfalls kann über *Kommentar* der Issue diskutiert und mit Anmerkungen versehen werden. Eine detailierte Beschreibung finden Sie in dem Guide: https://guides.github.com/features/issues/[Mastering Issues]
+
+Bei Verwendung bestimmter *Keywords* (https://help.github.com/en/github/managing-your-work-on-github/closing-issues-using-keywords[Closing issues using keywords]) in den Commit Messages können *referenzierte Issues* automatisch geschlossen werden.
+
+.Hinweise: Verwenden von Referenzen in Issue-Kommentaren und Commits
+[%collapsible]
+====
+=====
+In den Issues und Commits können in den Kommentaren/Mitteilungen Verweise auf andere Elemente verwendet werden. Diese werden von GitHub automatisch verlinkt.
+
+[#table_verweise]
+.Ausgewählte Verweise
+[cols="1,1,3"]
+|===
+| *Issue*  | Nummer      | `#2`
+| *Commit* | SHA hash    | `5000fb638483c95d5f0346181af32096db2d23ff`
+| *User*   | Accountname | `@account`
+|===
+
+Siehe auch: https://help.github.com/en/articles/autolinked-references-and-urls[Autolinked references and URLs]
+
+Beispiele:
+
+* Commit Message:
+** `Setze Erweiterung aus Issue #2 um`
+** `Setze Erweiterung um (#2)`
+* Commit Message mit automatischem Schließen der zugehörigen Issue:
+** `Korrigiere Fehler (close #2)`
+* Issue Kommentar:
+** `... siehe Commit 479bcfca71f10423c0f1181853017b83af062c46`
+=====
+====
+
+==== Aufgabe 1.1 - Issues anlegen, kommentieren
+
+Jeder im Team des Teamprojektes *htw-se-example-teamproject* denkt sich eine kleine machbare Änderung oder Erweiterung für die Dokumentation in AsciiDoc aus.
+
+.Aufgabe - icon:users[] Person A, B, C
+1. Legen Sie jeweils zwei neue *Issue* in Ihrem Teamprojekt an. Denken Sie sich hierfür eine kleine, sinnvolle und umsetzbare Erweiterung für Ihre Dokumentation (AsciiDoc) im Projekt aus. Vergeben Sie einen Titel, eine Beschreibung und ein Label `asciidoc`.
+2. Schauen Sie sich die Issues Ihrer Teammitglieder an und diskutieren (kommentieren) Sie sie.
+3. Weißen Sie sich gegenseitig über Assignees je zwei Issue zu und ergänzen Sie ein Label `documentation`.
+
+==== Aufgabe 1.2 - Issues bearbeiten, referenzieren
+
+.Aufgabe - icon:users[] Person A, B, C
+. Setzen Sie Ihre *erste* zugewiesene Issue um und nehmen Sie in der Commit Message eine *Referenz* der zugehörigen Issue auf.
++
+.Bspw. Commit Message mit Referenz zur Issue:
+----
+Korrigiere falschen Teamnamen (Issue #6)
+----
+. Nehmen Sie in der Issue eine Referenz zu Ihrem Commit als Kommentar auf und schließen Sie die fertig bearbeitete Issue am Ende über GitHub.
++
+.Bspw. Issue Kommentar auf GitHub mit Referenz zum Commit:
+----
+Änderung der Teamnamen in Commit 5000fb638483c95d5f0346181af32096db2d23ff erfolgt.
+----
+. Setzen Sie Ihre *zweite* zugewiesene Issue um und nehmen Sie in der Commit Message eine *Referenz mit Schlüsselwort zur automatischen Schließung* der zugehörigen Issue auf.
++
+.Bspw. Commit Message mit Referenz zur Issue und automatischer Schließung:
+----
+Ändere Inhalt (close #6)
+----
+. Schauen Sie sich die Issues (Open & Closed) und die dazu entstandenen Kommentare und Verweise durch die Referenzen an.
+
+
+{section-separator}
+
+=== 2. Issues mit Filtern im Überblick behalten
+
+In der *Issues* Anzeige von GitHub werden alle vorhandenen *Issues* und
+*Pull Requests* aufgelistet. Standardmäßig ist die Sicht mit `is:issue is:open` auf offene Issues gefiltert.
+
+:imageTitle: Issue-Ansicht in GitHub
+:imageFile: screenshot_github_issues_filter.jpg
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+.Hinweise zu den Filtermöglichkeiten
+[%collapsible]
+====
+=====
+Für eine gezielte Sicht auf bestimmt Einträge, gibt es ein Vielzahl an Filtermöglichkeiten und deren Kombination. Ausgewählte finden Sie in der <<table_filterkritterien>> und eine komplette Liste und weitere Informationen unter folgenden Links:
+
+- https://help.github.com/en/github/searching-for-information-on-github/searching-issues-and-pull-requests[GitHub - Searching issues and pull requests]
+- https://help.github.com/en/github/searching-for-information-on-github/understanding-the-search-syntax[GitHub - Understanding the search syntax]
+- https://help.github.com/en/github/searching-for-information-on-github/sorting-search-results[GitHub - Sorting search results].
+
+.Ausgewählte Filterkritterien
+[#table_filterkritterien]
+[cols="1,3"]
+|===
+| Filter      | Beschreibung
+
+| `is:pr`     | Pull-Requests
+| `is:issue`  | Issues
+| `is:open`   | offen
+| `is:closed` | geschlossen
+| `author:USERNAME` | von einem Nutzer erstellt
+| `assignee:USERNAME` | einem Nutzer zugewiesen
+| `label:LABEL` | einem Label zugeordnet
+| `milestone:MILESTONE` | einem Meilenstein zugeordnet
+| `project:PROJECT` | einem Projekt zugeordnet
+|===
+
+.Filterkritterien für fehlende Angaben
+[cols="1,3"]
+|===
+| Filter         | Beschreibung
+
+| `no:label`     | keinem Label zugeordnet
+| `no:milestone` | keinem Meilenstein zugeordnet
+| `no:project`   | keinem Projekt zugeordnet
+| `no:assignee`  | keinem Nutzer zugeordnet
+|===
+
+Ein Filter mit `is:issue is:open no:assignee` ist sehr hilfreich, um offenen *Issues*, welchen keine Nutzer zur Bearbeitung zugeordnet sind, im Blick zu haben. Über ein `sort:created-asc` lässt sich die Ausgabe zeitlich sortieren.
+
+NOTE: Filter lassen sich aktuell nicht direkt in GitHub speichern, aber die Seiten-URL enthält nach einer Suche den Filter und lässt sich so als Bookmark speichern. Für das obere Beispiel würde die URL am Ende wie folgt aussehen: +
+`/issues?q=is:open+is:issue+no:assignee+sort:created-asc`
+=====
+====
+
+==== Aufgabe 2.1 - Issues filtern
+
+Listen Sie in Ihrem Team-/Projekt-Repository oder einem anderen Repository Issues nach folgenden Filtern auf:
+
+- Alle geschlossenen Issues und Pull-Requests seit Semesterbeginn
+- Alle Issues die keinem Nutzer (Assignee) zugeordnet sind
+- Alle offenen Issues die keinem Projekt oder Meilenstein zugeordnet sind
+- Alle Issues die Sie erstellt haben und einem bestimmten Label
+- Alle offenen Issues denen Sie zugeordnet sind
+- Alle Issues in denen das Wort "Meeting" vorkommt
+- Alle Issues und Pull-Requests mit mehr als 2 Kommentaren
+
+Schauen Sie sich weiteren Filtermöglichkeiten über den Button kbd:[Filters ▼] oder Schnellfilter im Listenkopf (Author, Label, Projects, Milestines, Asignees, Sort) an und denken Sie sich ein paar weitere nützliche Filtermöglichkeiten für Ihr Projekt aus.
+
+////
+comments:>=2
+////
+
+{section-separator}
+
+=== 3. Issues im Kontext des OpenUP
+
+[#image_github_openup]
+:imageTitle: GitHub Issues im Kontext des OpenUP
+:imageFile: grafik_github_openup.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
+
+
+Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* und *Milestones* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
+
+"OpenUP is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. OpenUP embraces a pragmatic, agile philosophy that focuses on the collaborative nature of software development."
+-- https://www.informatik.htw-dresden.de/~anke/openup/index.htm[Quelle: OpenUP]
+
+Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issues, Projects und Milestones von GitHub (Siehe auch <<#image_github_openup>>):
+
+====
+.Abbildungsvariante OpenUP in GitHub
+[cols="1,1,2"]
+|===
+| OpenUP      | GitHub    | Hinweise
+
+| Phase       | Milestone
+a|
+* Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
+| Iteration   | Project
+a|
+* Iteration [1..n]
+| User Story  | Issue
+a|
+* Kurze Beschreibung einer Anforderung
+* Noch kein konkretes Work Item
+| Work Item   | Issue
+a|
+* Konkrete Aufgabe/Task
+* Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
+.2+| Work Item State
+| Issue
+a|
+* Offen, geschlossen, Label
+| Project Column
+a|
+* Todo, In progress, Done, ...
+.2+| Note
+| Issue
+a|
+* Label
+| Project Note
+a|
+* Karte im Projekt vom Type Notiz
+.2+| Role
+| Label
+a|
+* Analyst, Developer, Project Manager, ...
+| Assignee
+a|
+* Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
+|===
+
+
+*Dabei ist zu beachten:*
+
+- Es können beliebig viele Issues, Projekte und Meilensteine in GitHub erstellt werden.
+- Ein Issue kann mehreren Projekten, aber nur einem Meilenstein zugeordnet werden.
+- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
+- Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
+- Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
+- Issues können in Projekten zwischen den Zustands-Spalten mit Drag&Drop oder durch bestimmte Schlüsselwörter (automatisiert) bewegt werden.
+
+*Einschränkungen:*
+
+- GitHub bietet aktuell noch keine Möglichkeit Projekte einem Meilensteinen zuzuordnen. Die im Projekt enthaltenen Issues müssen von Hand, einzeln oder per Mehrfachauswahl, dem entsprechenden Meilenstein zugeordnet werden.
+
+====
+
+.Hinweise zu Issues und Work Items
+[%collapsible]
+====
+=====
+Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
+
+* Priorisierung von Work Items (Issues) nach Wichtigkeit (bspw. hoch, mittel, niedrig):
+** *hoch*: Work Items werden in die aktuelle Iteration aufgenommen
+** *mittel*: Work Items werden in die aktuelle oder nächste Iteration aufgenommen
+** *niedrig*: Work Items sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
+** *Zeit* und *Resourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Work Items auf die aktuelle bzw. folgenden Iterationen erfolgt.
+* Es ist sinnvoll den Issues (Work Items) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
+* Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Work Item X* in Ihrem Repository bitte passendere verwenden.
+* Labels, die sich an den Rollen des OpenUP orientieren, helfen sie entsprechend zu filtern.
+* Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories, Projekten und Meilensteinen.
+
+:imageTitle: Übersicht der Issues
+:imageFile: screenshot_github_issues_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
+====
+
+.Hinweise zu User Stories und Issue-Referenzen
+[%collapsible]
+====
+=====
+Verwendet man im Kommentar einer Issue die ID einer anderen Issue, taucht bei dieser ein entsprechender Verweis auf.
+
+Im folgenden Beispiel ist in den Issues #15, #16, #17 und #18 die ID der gezeigten Issue #2 erwähnt worden. Diese enthält jetzt Verweise auf die genannten Issues.
+
+:imageTitle: Referenzen eines User Story (Issue) zu seinen Work Items (Issues)
+:imageFile: screenshot_github_issue_reference.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=380]
+
+Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkreten Work Items (Issues #15, #16, #17 und #18) zu referenzieren.
+=====
+====
+
+.Hinweise zu Projekten (Projects) in GitHub
+[%collapsible]
+====
+=====
+NOTE: Aktivieren der Fortschrittsbalkenansicht über: https://docs.github.com/en/issues/organizing-your-work-with-project-boards/tracking-work-with-project-boards/tracking-progress-on-your-project-board[Tracking progress on your project board]
+
+* Neue Projekte werden in der  Projektübersicht (Reiter *Projects*) über den Button kbd:[*New project*] abgelegt:
+** Project board name: bspw. *Iteration 1* angeben
+** Template auswählen: kbd:[Template: *Automated kanban*]
+
+:imageTitle: Projektübersicht
+:imageFile: screenshot_github_projects_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+* Im Projekt können Sie jetzt:
+** Spalten (Columns) anlegen, bearbeiten oder entfernen
+** Karten (Cards) in die Spalten aufnehmen bzw. erstellen
+*** Cards sind Notes, Issues, Pull-Requests
+** Notes können in ein Issue umgewandelt werden
+** Über *+ Add cards* können vorhandene noch nicht zugeordnete Issues per Drag&Drop in die gewünschte Spalte gezogen werden.
+** Beim *Automated kanban* werden geschlossene Issues automatisch in die Spalten _Done_ verschoben.
+** Karten (Issues) können bearbeitet und ebenfalls per Drag&Drop zwischen den Spalten verschoben werden.
+
+:imageTitle: Detailansicht eines Projektes
+:imageFile: screenshot_github_project.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
+====
+
+.Hinweise zu Meilensteinen (Milestone) in GitHub
+[%collapsible]
+====
+=====
+* Neue Meilensteine werden in der Issue-Ansicht (Reiter *Issues*) -> *Milestones* über den Button kbd:[*New milestone*] abgelegt:
++
+image::grafik_github_open_milestones.png["Detailansicht eines Projektes", width=725]
+** Title: bspw. *Inception Phase*
+** Due date (optional): geplantes Ende
+** Description (optional): Beschreibung
+
+:imageTitle: Übersicht der Meilensteine
+:imageFile: screenshot_github_milestones_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+* In der Meilensteinübersicht bzw. Detailansicht können wahlweise die offenen oder geschlossenen Meilensteine bzw. enthaltenen Issues angezeigt werden.
+
+:imageTitle: Detailansicht eines Meilensteines
+:imageFile: screenshot_github_milestone.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
+====
+
+==== Aufgabe 3.1 - Üben
+
+. Legen Sie in Ihrem Repository eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
+** User Story 1: `*Dokumentation wie Code behandeln* - Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.`
+
+. Definieren sie drei *Work Items* als Issues mit dem Label `work item`, wovon sich *zwei* auf die vorher angelegte User Story beziehen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
+** Work Item 1: `*Dateien der Dokumentation erstellen* - Erstellen der Dateien Dokumentation.adoc, Software.inc.adoc und Mitglieder.inc.adoc im AsciiDoc-Format im Ordner docs.`
+** Work Item 2: `*Ausgelagerte Dateiinhalte einbinden* - Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.`
+** Work Item 3: `*Datei .gitignore anlegen* - Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.`
+
+. Erstellen Sie eine *Iteration*, bspw.: `Iteration 01`, als Project mit dem Template: Automated kanban und nehmen Sie Ihre drei Work Items (Issues) auf.
+
+. Erstellen Sie eine *Phase* oder *Meilenstein* als Milestone und weisen diesem Ihre drei Work Items (Issues) zu.
+
+. Schließen Sie eine Work Item (Issue) und schauen Sie sich die Änderung im *Iterations*-Projekt und dem *Phasen*-Meilenstein an.
+
+////
+==== Aufgabe 3.2 - Diskussion
+
+* Diskutieren Sie in Ihrem Projektteam wie weit und mit welchen Hilfsmitteln Sie bisher den OpenUP in Ihrer Projektorganisation angewendet haben und ob die stärkere Nutzung von GitHub (Issues, Projekte, Meilensteine) eine mögliche Alternative oder Verbesserung wäre.
+* Tauschen Sie sich mit anderen Projektteams und deren Erfahrungen mit OpenUP und git bzw. GitHub aus.
+////
+
+include::sitemap.inc.adoc[]

@@ -1,0 +1,36 @@
+@startuml example-usecase-diagram
+left to right direction
+
+' skin parameters for usecase with special stereotype
+skinparam usecase<<unspezifiziert>> {
+  BackgroundColor #eee
+  BorderColor #gray
+  StereotypeFontColor #gray
+  StereotypeFontSize 10
+}
+
+actor Nutzer
+actor Service
+
+rectangle "eRoller App" {
+  usecase "UC01\nRoller finden" as uc01
+  usecase "UC02\nRoller freischalten" as uc02
+  usecase "UC03\nRoller abstellen" as uc03
+  usecase "UC04\nRoller melden" as uc04
+
+  ' single line:
+  'usecase "UC05\nAnmeldedaten erfassen" as uc05
+  ' multiple lines:
+  usecase uc05 as "UC05
+  Anmeldedaten erfassen"
+
+  usecase "UC06\nRoller verwalten" <<unspezifiziert>> as uc06
+}
+
+Nutzer -- uc01
+Nutzer -- uc02
+Nutzer -- uc03
+Nutzer -- uc04
+uc02 .down.> uc05 : include
+Service -- uc06
+@enduml

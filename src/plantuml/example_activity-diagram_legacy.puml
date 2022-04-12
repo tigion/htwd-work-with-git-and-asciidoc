@@ -1,0 +1,15 @@
+@startuml example-activity-diagram
+(*) --> "Initialization"
+note right: The first <del>Avenger</del> Activity
+
+if "Some Test" then
+  -->[true] "Some Activity"
+  --> "Another Activity"
+  --> "Final Activity"
+else
+  -->[false] "Something else"
+  --> "Final Activity"
+endif
+
+--> (*)
+@enduml

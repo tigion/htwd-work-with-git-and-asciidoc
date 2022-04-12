@@ -1,0 +1,340 @@
+include::header.inc.adoc[]
+
+Ziel: Einrichtung und Kennenlernen der Grundlagen zur Nutzung von *GitHub*, *Git*, *Visual Studio Code* als Editor/Arbeitsumgebung und das Anlegen eines ersten Dokumentes mit *AsciiDoc*-Syntax
+
+== Praktikumsaufgaben Teil 1 - Grundlagen
+
+=== Vorbereitung privater Rechner
+
+Bearbeiten Sie die Aufgaben an Ihrem privaten Rechner, müssen Sie, falls noch nicht vorhanden, *Git*, *Asciidoctor* und *Visual Studio Code* installieren.
+
+Die zusammengefassten Hinweise zu der Installation für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
+
+
+{section-separator}
+
+=== 1. GitHub
+
+==== Aufgabe 1.1 - Login
+
+1. Loggen Sie sich auf der Webseite https://github.com/[github.com] ein. Sollten Sie noch keinen Account haben, kann er über https://github.com/join erstellt werden.
++
+Sie haben die Wahl, ob Sie einen neuen Account für ihre HTW-E-Mail-Adresse erstellen oder sie ihrem bestehenden Account ihre HTW-E-Mail-Adresse über "Settings > Emails" hinzufügen.
+
+TIP: Ist dem GitHub-Account die HTW-E-Mail-Adresse hinzugefügt oder dieser direkt damit angelegt worden, können über das https://education.github.com/students[GitHub Education] Programm weitere Features von GitHub freigeschaltet und an weiteren Bonusprogrammen teilgenommen werden.
+
+==== Aufgabe 1.2 - Repository Anlegen
+
+1. Erstellen Sie ein *_privates_* Repository mit folgenden Einstellungen:
+
+  * Repository name: `htw-se-example-project`
+  * Description: `Beispielprojekt für die Praktikumsaufgaben zum Thema Git und AsciiDoc`
+  * Initialize this repository with a README: `Ja`
+
+==== Aufgabe 1.3 - Repository Ändern
+
+1. Bearbeiten Sie die Datei *_README.md_* direkt auf GitHub und ersetzen Sie den Inhalt mit der unten angegebenen Vorgabe. Nehmen Sie die Änderung über kbd:[Commit changes] als neue Version in das Repository auf.
++
+Ist die Datei _README.md_ nicht vorhanden, legen Sie eine neue Datei *_README.md_* über kbd:[Create new file] in Ihrem Repository auf GitHub für die Projekt-Beschreibung im https://markdown.de/[Markdown]-Format an.
++
+.README.md
+[source,markdown]
+----
+# SE Praktikum - Beispielprojekt
+
+Ein Beispielprojekt für die Praktikumsaufgaben zum Thema Git und
+AsciiDoc im Fach Software Engineering I.
+
+## Praktikumsinhalt
+
+- Umgang mit **Git**, **AsciiDoc** und **GitHub**
+----
+
+* https://help.github.com/en/articles/basic-writing-and-formatting-syntax[GitHub Markdown - Basic writing and formatting syntax]
+
+==== Aufgabe 1.4 - Access Token anlegen
+
+Mit den *Tokens* (Personal access tokens) können Anwendungen gezielt eingeschränkte Zugriffsmöglichkeiten gegeben oder entzogen werden, ohne das Accountpasswort preiszugeben.
+
+====
+Seit dem 13. August 2021 akzeptiert GitHub für die Authentifizierung von Git-Operationen über HTTPS nur noch *Personal access tokens* statt des Account Passwortes. (https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/[Quelle])
+
+.Hinweise: Fehlermeldung
+[%collapsible]
+=====
+// https://stackoverflow.com/questions/68775869/support-for-password-authentication-was-removed-please-use-a-personal-access-to
+
+.Eine Verwendung des Passwortes über HTTPS führt zu folgendem Fehler:
+----
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+----
+=====
+====
+
+Anleitung für das Anlegen von Access Token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token[Creating a personal access token]
+
+. Legen Sie auf GitHub über "Settings > Developer settings > Personal access tokens" einen neuen Token bspw. `Praktikum SE I` mit einer Gültigkeit für dieses Semester und nur dem Scope `repo` an.
++
+WARNING: Der Personal access token ist nur nach dem Erstellen zu sehen und kann danach nicht wieder angezeigt werden!
++
+In den Laboren (Windows) werden ihre Profile nicht gespeichert, was zum Verlust des verwendeten Passwortes/Tokens nach dem Abmelden führt, weswegen wir zu jedem Praktikum wiederholt diesen Token für die (erste) Kommunikation mit Git zu GitHub benötigen.
++
+* Möglichkeit 1: Sie speichern den generierten Token an geeigneter Stelle ab, um diesen in jedem Praktikum wiederholt verwenden zu können.
+* Möglichkeit 2: Sie lassen sich zu jedem Praktikumsbeginn den vorhandenen Token über kbd:[Regenerate token] neu generieren.
+
+
+{section-separator}
+
+=== 2. Git
+
+[#section_git_config]
+==== Aufgabe 2.1 - Konfiguration
+
+Für die Verwendung von Git müssen Sie Ihren Name, Ihre E-Mail und eventuell einen Proxy festlegen. Die angegebene E-Mail dient zur Identifizierung ihrer Änderungen am Repository und zur Zuordnung ihres GitHub Accounts. Der Proxy ist notwendig, damit Sie aus dem geschützten HTW-Netz (Labore, VPN, WLAN) sich mit dem Internet verbinden können.
+
+Die globale Konfiguration von Git wird auf Ihrem Rechner im Benutzerverzeichnis, siehe <<table_git-config_speicherort>>, in der Datei `.gitconfig` abgelegt. Sie gilt global für alle Ihre Git-Repositories.
+
+[#table_git-config_speicherort]
+.Speicherort der globalen Git-Konfiguration
+[cols="1,3", width="60%"]
+|===
+| Linux   | `~/.gitconfig`
+| macOS   | `~/.gitconfig`
+| Windows | `C:\Users\<username>\.gitconfig`
+|===
+
+TIP: Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (andere E-Mail für Privat, Studium, Arbeit, ...), können Sie auch eine spezifische Konfiguration je Repository anlegen. Diese befindet sich im jeweiligen Git-Arbeitsverzeichnis (Workspace) in der Datei _.git/config_. Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_conditional_includes[Conditional includes] zu verwenden.
+
+. _Nur für privaten Rechner notwendig_: Starten Sie Visual Studio Code und öffnen Sie über kbd:[Ctrl+Shift+G] ("View > SCM") den Bereich des Source Controle Managements, welcher für die Versionsverwaltung zuständig ist. Taucht hier ein Meldung ähnlich wie: "_A valid git installation was not detected ... Please install git ..._" auf, schauen sie bitte unter <<Vorbereitung privater Rechner>> nach, ob sie Git installiert haben.
+
+. Öffnen Sie Ihren Dateimanager und schauen Sie nach, ob es schon eine _.gitconfig_ Datei gibt (Siehe <<table_git-config_speicherort>>).
+
+. Öffnen Sie in Visual Studio Code über "File > New File" die schon vorhandene Datei _.gitconfig_ oder legen legen Sie sich eine neue Datei an und passen Sie sie mit folgendem Inhalt an:
++
+.Inhalt der .gitconfig - #HTW Laborrechner#
+----
+[user]
+	name = Vorname Nachname
+	email = s00000@htw-dresden.de
+[http]
+	proxy = http://www-cache.htw-dresden.de:3128
+----
++
+.Inhalt der .gitconfig - #privater Rechner#
+----
+[user]
+	name = Vorname Nachname
+	email = s00000@htw-dresden.de
+----
++
+Für die E-Mail verwenden Sie bitte eine ihrer HTW Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche ebenfalls in Ihrem GitHub-Account verwendet wird.
+
+. Speichern Sie die gemachten Änderungen über "File > Save" bzw. kbd:[strg+s] oder kbd:[cmd+s].
++
+_Ist die Datei neu_: Speichern Sie die *neue Datei* über "File > Save As..." und wählen Sie als Datei-Typ/Format: *All files* aus. Geben Sie jetzt den Dateinamen `.gitconfig` an und speichern Sie in Ihrem Benutzerverzeichnis (Siehe <<table_git-config_speicherort>>).
+
+. Zum Testen der Konfiguration öffnen Sie in Visual Studio Code über kbd:[Ctrl+Shift+´] ("View > Terminal") das integrierte Terminal oder ein beliebiges anderes Terminal (Windows: PowerShell) und geben folgende Git-Kommandos ein:
++
+.Anzeige des festgelegten Namens:
+----
+% git config --global user.name
+Vorname Nachname
+----
++
+.Anzeige der festgelegten E-Mail:
+----
+% git config --global user.email
+s00000@htw-dresden.de
+----
++
+.Auflistung der kompletten Git-Konfiguration:
+----
+% git config --list
+...
+user.name=Vorname Nachname
+user.email=s00000@htw-dresden.de
+----
+
+.Hinweise: Alternative Git-Konfiguration per Git-Kommando
+[%collapsible]
+====
+=====
+Die Git-Konfiguration kann ebenfalls direkt mit den Git-Kommandos `git config [--global] ...` angelegt/bearbeitet, mit `git config --list` angezeigt und Einstellungen mit `git config [--global] --unset ...` entfernt werden.
+----
+$ git config --global user.name "Vorname Nachname"
+$ git config --global user.email s00000@informatik.htw-dresden.de
+----
+Für die Labore der HTW zusätzlich noch ein:
+----
+$ git config --global http.proxy http://www-cache.htw-dresden.de:3128
+----
+WARNING: Kommt es unter Windows in der Git Bash bei der Kommunikation mit Ihrem GitHub Repository zu einer Fehlermeldung: `ServicePointManager unterstützt keine Proxys mit dem www-cache.htw-dresden.de-Schema`, ist der Proxy ohne vorangestelltes *##http://##www-cache.htw-dresden.de:3128* konfiguriert. In dem Falle muss die Proxy Konfiguration, wie oben, neu gesetzt werden.
+=====
+====
+
+==== Aufgabe 2.3 - Repository Clonen
+
+https://help.github.com/en/articles/cloning-a-repository[Clonen] Sie Ihr Repository *htw-se-example-project* an einen geeigneten Platz lokal auf ihren Rechner.
+
+.Repository-URL
+----
+https://github.com/<account>/htw-se-example-project.git
+----
+Zu finden auf GitHub in Ihrem Repository beim Klick auf den grünen *Code* Button im Bereich HTTPS.
+
+===== Variante - Terminal (HTTPS):
+. Öffnen Sie ein Terminal (Windows: PowerShell)
+. Führen Sie darin folgendes Kommando aus und verwenden Sie, bei der Nachfrage zur Authentication-Methode Nummer *2* für den Personal access token von GitHub:
++
+----
+git clone https://github.com/<account>/htw-se-example-project.git
+----
++
+.Ausgabe icon:windows[] Windows - PowerShell:
+----
+> git clone https://github.com/<account>/htw-se-example-project.git
+Cloning into 'htw-se-example-project'...
+Select an authentication method for 'https://github.com/':
+  1. Web browser (default)
+  2. Personal access token
+option (enter for default): 2
+Enter GitHub personal access token for 'https://github.com/'...
+Token:
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+----
++
+.Ausgabe icon:linux[] Linux und icon:apple[] macOS - Terminal:
+----
+% git clone https://github.com/<account>/htw-se-example-project.git
+Klone nach 'htw-se-example-project' ...
+Username for 'https://github.com': <account>
+Password for 'https://<account>@github.com':
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+----
+
+Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedesmal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
+
+===== Variante - Visual Studio Code (HTTPS): #Probleme im Windows-Labor#
+. Öffnen Sie in Visual Studio Code über "View > SCM" den Bereich des Source Controle Managements
+. Über den erscheinenden Button kbd:[Clone Repository] können sie jetzt ein Repository clonen. Falls schon ein Repository geöffnet ist, kann dies über die drei Punkte "*...*" im oberen Bereich über den Menüeintrag *Clone* erfolgen.
+. Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welchem Sie ihre Repository-URL reinkopieren und Enter drücken.
+. Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
+. Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der Access Token abgefragt oder Visual Studio Code nutzt seine Access to GitHub Erweiterung.
+
+.Hinweise: Git-Kommunikation per SSH und SSH-Key
+[%collapsible]
+====
+=====
+Eine weitere Variante wäre die Kommunikation mit GitHub per *_ssh_* statt _https_ unter Nutzung eines SSH-Keys. Informationen zur Verwendung findet man unter: https://help.github.com/en/articles/connecting-to-github-with-ssh[Connecting to GitHub with SSH].
+
+.Variante - Terminal per SSH (SSH-Key bei GitHub hinterlegt):
+----
+$ git clone git@github.com:<account>/htw-se-example-project.git
+----
+Die Verwendung von ssh ist nur in den Linux-Laboren empfohlen, da unter Windows die Einstellungen in den Nutzerprofilen nicht gespeichert werden.
+=====
+====
+
+
+{section-separator}
+
+=== 3. Visual Studio Code, AsciiDoc
+
+==== Aufgabe 3.1 - Konfiguration, Grundsyntax
+
+. Erstellen Sie in Ihrem lokalen Repository ein Verzeichnis *docs* und legen Sie in diesem eine neue leere Datei names *_Beispieldokumentation.adoc_* mit *Visual Studio Code* an. Dies können Sie direkt in Visual Studio Code in der Explorer Ansicht über ein Rechtsklick (Kontextmenü: _New File_, _New Folder_) tun.
++
+NOTE: Unter *Windows* muss in Visual Studio Code beim Speichern der Dateityp: `+All files *.*+` ausgewählt sein, damit die Datei die Endung _.adoc_ und nicht _.adoc.txt_ bekommt.
++
+In den Linux-Laboren kann Visual Studio Code im Terminal über `/opt/VSCode/code` gestartet werden.
+
+. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
++
+////
+.Hinweis bei Problemen in den HTW Windows-Laboren mit der Installation der Asciidoc-Erweiterung
+[%collapsible]
+====
+=====
+In den Laboren kommt es aktuell zu Verbindungsproblemen, was das Installieren der Erweiterung AsciiDoc verhindert.
+
+Variante 1::
+  1. Manueller Download vom https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[Visual Studio Code Marketplace - AsciiDoc] oder direkt link:files/asciidoctor.asciidoctor-vscode-2.8.3.vsix[asciidoctor.asciidoctor-vscode-2.8.3.vsix]
+  2. In Visual Studio Code die Erweiterungsansicht öffnen und "... > Install von VSIX..."
+  3. Zum Download-Verzeichnis navigieren und die _asciidoctor.asciidoctor-vscode-x.x.x.vsix_ auswählen
+
+Variante 2::
+  In diesem Falle wird Ihnen Visual Studio Code einen manuellen Download in einem Hinweisfenster anbieten. Download starten und dann in Visual Studio Code über den Hinweis (rechts unten) die Erweiterung installieren.
+=====
+====
++
+////
+
+. Passen Sie in Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc" folgende Einstellungen an:
+** Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert), für eine neutrale Vorschau
+** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert), für die Verwendung der lokal installierten Asciidoctor Tools
+
+. Übernehmen Sie das folgende AsciiDoc-Beispiel und passen Sie den Autor, die Version und das Datum an. Öffnen sie zusätzlich die https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick reference] und das https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual] im Webbrowser.
++
+.Beispieldokumentation.adoc
+[source,asciidoc]
+----
+= Beispiel-Dokumentation mit AsciiDoc <1>
+Vorname Nachname <email> <2>
+1.0, 01.09.2019 <3>
+:toc: <4>
+:toc-title: Inhaltsverzeichnis
+// Platzhalter für weitere Dokumenten-Attribute <5>
+
+== Einführung
+Dieses Dokument dient im Praktikum als Spielwiese für das Kennenlernen und praktische Üben der Syntax von AsciiDoc.
+----
+<1> ... Titel des Dokumentes
+<2> ... Autor und E-Mail
+<3> ... Version, Datum
+<4> ... Attribut für das Inhaltsverzeichnis
+<5> ... Kommentar, wird später nicht generiert
++
+[NOTE]
+====
+Mehrere Autoren werden in *eine Zeile* getrennt mit `;` geschrieben. Besteht ein Autorenname aus mehr als *drei* Teilen, müssen die Vor- und Nachnamen mit `_` jeweils zu einer Gruppe zusammengefasst werden.
+
+- Bspw: `+Vorname1_Vorname2 Nachname1_Nachname2 <email>+` oder `+Vorname Nachname1_Nachname2_Nachname3 <email>+`
+====
+
+. Aktivieren Sie in Visual Studio Code die parallele Vorschau des AsciiDoc-Dokumentes, siehe <<image_vscode_asciidoc>>, mit dem dritten Button oben rechts (geteiltes Fenster mit Lupe) oder direkt über folgende Tastenkombination: kbd:[Ctrl+K] kbd:[V] (macOS kbd:[cmd+K] kbd:[V]).
++
+[#image_vscode_asciidoc]
+.Screenshot VSCode mit AsciiDoc
+image::screenshot_vscode_asciidoc.png[Screenshot VSCode mit AsciiDoc Vorschau, width=700]
+
+. Speichern Sie die Änderungen in Ihrer Datei _Beispieldokumentation.adoc_.
+
+==== Aufgabe 3.2 - Änderungen in das Repository aufnehmen
+
+Mit den folgenden Schritten nehmen Sie mithilfe von Visual Studio Code die Änderungen in Ihrem Workspace als neue Version in Ihr Git-Repository auf:
+
+[#image_vscode_git]
+.Screenshot VSCode mit AsciiDoc
+image::screenshot_vscode_git.png[Screenshot VSCode mit Git-Integration, width=600]
+
+. Aktivieren Sie über die Sidebar die Versionsverwaltungsansicht kbd:[Ctrl+Shift+G] ("View > SCM")
+. Im Bereich *CHANGES* sehen Sie alle _neuen_ *U* (unbeobachtet), _geänderten_ *M* (modifiziert) und _gelöschten_ *D* (gelöscht) Dateien gegenüber ihrer aktuellen Repository-Version. Über das icon:plus[] Symbol (_git add_) bei den einzelnen Dateien oder im Bereich CHANGES können Sie einzelne oder alle Änderungen in den *INDEX* (Bereich *STAGED CHANGES*) aufnehmen.
+. Im Bereich *STAGED CHANGES* sehen Sie alle im *INDEX* vorgemerkten geänderten Dateien. Über das icon:minus[] Symbol (_git rm --cached_, _git reset_) können diese wieder aus dem Index entfernt werden.
+. Geben Sie in der *Textbox* (_Message ..._) einen kurzen Text über die Änderungen die Sie an Ihrem Projekt vorgenommen haben an.
+. Über das icon:check[] Symbol (_git commit_) können Sie jetzt alle im INDEX vorgemerkten Änderungen mit der angegebenen Commit-Message als neue Version in Ihr *lokales* Repository aufnehmen.
+. Senden Sie jetzt den Stand Ihres *lokalen* Repositories zu Ihrem entfernten (_remote_) Repository auf GitHub. Dies erfolgt über "... > Pull, Push > Push / Push to...".
+. Schauen Sie sich im Webbrowser auf GitHub Ihre eben gemachten Änderungen in Ihrem Repository an.
+
+TIP: Klicken Sie in der Versionsverwaltungsansicht (SCM _SourceControlManagement_) auf den jeweiligen Dateinamen (im Bereich CHANGES, STAGED CHANGES), öffnet sich ein neuer Tab mit einer Gegenüberstellung (_diff_) Ihrer Bearbeitung zur letzten Version.
+
+
+include::sitemap.inc.adoc[]

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+    <style>
+        /*stripe orange: rgb(249,155,28), rgb(249,111,0)*/
+		path.change { fill: rgb(0,0,0); }
+		@media ( prefers-color-scheme: dark ) { path.change { fill: rgba(255,255,255,.85); } }
+	</style>
+    <path class="change" d="M28,16L12,16L12,30L8,30L8,16L0,16L0,48L8,48L8,34L12,34L12,48L16,48L16,20L20,20L20,48L28,48L28,16ZM40,16L32,16L32,48L40,48L52,16L44,16L36,37.333L36,20L40,20L40,16Z"/>
+    <path d="M64,16L56,16L44,48L52,48L64,16Z" style="fill:rgb(249,111,0);"/>
+</svg>

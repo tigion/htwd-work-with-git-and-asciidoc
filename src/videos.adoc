@@ -1,0 +1,52 @@
+include::header.inc.adoc[]
+
+== Videos
+
+====
+WARNING: Die Praktikumsaufgaben werden regelmäßig weiterentwickelt, so dass die aufgezeichneten Videos teilweise auf älteren Softwareständen basieren bzw. von den aktuellen Aufgabenstellungen abweichen. Hier zusätzlich immer die aktuellen Aufgaben und Hinweise aus dem Praktikum beachten.
+====
+
+=== SE I (Wintersemester)
+
+==== Einführung ^[26.10.2020]^
+video::videos/Arbeiten mit Git und AsciiDoc - Einfuehrung.mp4[width=640, start=0.5]
+
+==== Teil 1 - Grundlagen ^[26.10.2020]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 1 - Grundlagen.mp4[width=640, start=0.5]
+
+==== Teil 2 - AsciiDoc ^[26.10.2020]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 2 - AsciiDoc.mp4[width=640, start=0.5]
+
+==== Teil 3/4 - Zusammenarbeit 1/2 ^[26.10.2020]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 3 - Zusammenarbeit.mp4[width=640, start=0.5]
+
+[#part05]
+==== Teil 5 - Diagramme 1 ^[26.10.2020]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 4 - Diagramme.mp4[width=640, start=0.5]
+
+{section-separator}
+
+=== SE II (Sommersemester)
+
+==== Teil 6 - Versionen - Aufgabe 1.1 bis 1.4 ^[25.03.2021]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 5 - Versionen und Branches 1.mp4[width=640, start=0.5]
+
+==== Teil 6 - Versionen - Aufgabe 2.1, 2.2 ^[25.03.2021]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 5 - Versionen und Branches 2.mp4[width=640, start=0.5]
+
+==== Teil 7 - Branches - Aufgabe 3.1, 3.2 (Branches) ^[25.03.2021]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 5 - Versionen und Branches 3.mp4[width=640, start=0.5]
+
+==== Teil 8 - Zusammenarbeit 2 - Code-Review mit Pull Requests ^[01.04.2021]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 6 - Projektorganisation 1.mp4[width=640, start=0.5]
+
+==== Teil 8 - Zusammenarbeit 3 - Fork mit Pull Request ^[06.04.2021]^
+video::videos/Arbeiten mit Git und AsciiDoc - Teil 6 - Projektorganisation 2.mp4[width=640, start=0.5]
+
+==== Teil 9 - Diagramme 2
+* Siehe <<part05>>
+
+==== Teil 10 - GitHub Actions
+* Kein Video vorhanden
+
+include::sitemap.inc.adoc[]

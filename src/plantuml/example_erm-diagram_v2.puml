@@ -1,0 +1,55 @@
+@startuml example-erm-diagram
+' diagram direction
+left to right direction
+' hide the (E) in the entity name
+hide circle
+' avoid problems with angled crows feet
+skinparam linetype ortho
+' Remove shadows
+skinparam shadowing false
+
+entity Address {
+  * <&key> **id** : char(5)
+  --
+  * street : varchar(255)
+  * zipCode : char(5)
+  * city : varchar(255)
+  * country : varchar(255)
+  ...
+}
+
+entity Student {
+  * <&key> **id** : char(5)
+  --
+  * firstName : varchar(255)
+  * lastName : varchar(255)
+  ...
+}
+
+entity Subject {
+  * <&key> **id** : char(2)
+  --
+  * name : varchar(255)
+  ...
+}
+
+entity Mark {
+  --
+  mark : float
+  ...
+}
+
+diamond r1
+diamond r2
+
+' Notation: Funktionalität/Kardinalität und (min/max)
+
+Address "**1** (1,*)" -- r1
+r1 -- "**n** (1,1)" Student
+
+Student "**n** (0,*)" -- r2
+r2 -- "**m** (0,*)" Subject
+
+r2 - Mark
+
+@enduml

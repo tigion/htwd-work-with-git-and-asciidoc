@@ -1,0 +1,24 @@
+[#sitemap]
+== icon:sitemap[] Seitenübersicht
+
+[cols="1,1",frame="none",grid="none"]
+|===
+a|
+[discrete]
+=== SE I
+* icon:hand-o-right[] <<index.adoc#, Einführung>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-01.adoc#, Teil 1 - Grundlagen>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-02.adoc#, Teil 2 - AsciiDoc>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-03.adoc#, Teil 3 - Zusammenarbeit 1>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-04.adoc#, Teil 4 - Zusammenarbeit 2>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-05.adoc#, Teil 5 - Diagramme 1>>
+a|
+[discrete]
+=== SE II
+[unstyled]
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-06.adoc#, Teil 6 - Versionen>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-07.adoc#, Teil 7 - Branches>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-08.adoc#, Teil 8 - Zusammenarbeit 3>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Diagramme 2>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-10.adoc#, Teil 10 - GitHub Actions>>
+|===

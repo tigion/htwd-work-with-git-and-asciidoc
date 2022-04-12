@@ -1,0 +1,38 @@
+@startuml example-class-diagram
+class MyService {
+  -repository : MyRepository
+  +MyService(MyRepository)
+  +getProcessedStudents() : List
+  +getProcessedMarks() : List
+}
+
+interface MyRepository <<interface>> {
+  +getStudents() : List
+  +getMarks() : List
+}
+
+class DictionaryRepository {
+  -data : TestData
+  +getStudents() : List
+  +getMarks() : List
+}
+
+class TestData {
+  #students : Dictionary
+  #marks : Dictionary
+  +generateKey(Student, SubjectMark) : String
+}
+
+class MsSqlRepository {
+  -connection : OdbcConnection
+  +getStudents() : List
+  +getMarks() : List
+}
+
+MyService --> "1" MyRepository
+MyRepository <|.. DictionaryRepository
+MyRepository <|.. MsSqlRepository
+TestData "1" <- DictionaryRepository
+
+note left of MyRepository: Interface for local test data\nand different databases
+@enduml

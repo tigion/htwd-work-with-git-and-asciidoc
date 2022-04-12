@@ -1,0 +1,58 @@
+@startuml diagram_github-actions
+left to right direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+component "Events 1..*" as event #eafaf1
+
+package "Workflow 0..*" as workflow {
+  component "Jobs" as jobs #ebf5fb {
+
+    package "Job 1" as job1 #d6eaf8 {
+      component "Steps" as steps1 #fef9e7 {
+        package "Step 1" as step11 #fcf3cf {
+          component "Action 1" as action11 #f5b7b1
+        }
+        package "Step 2" as step12 #fcf3cf {
+          component "Action 2" as action12 #f5b7b1
+        }
+        package "Step 3" as step13 #fcf3cf {
+          component "Action 3" as action13 #f5b7b1
+        }
+        action11 --> action12
+        action12 --> action13
+      }
+    }
+
+    package "Job 2" as job2 #d6eaf8 {
+      component "Steps" as steps2 #fef9e7 {
+        package "Step 1" as step21 #fcf3cf {
+          component "Action 1" as action21 #f5b7b1
+        }
+        package "Step 2" as step22 #fcf3cf {
+          component "Action 2" as action22 #f5b7b1
+        }
+        action21 --> action22
+      }
+    }
+
+    package "Job *" as job3 #d6eaf8 {
+      component "Steps" as steps3 #fef9e7 {
+        package "Step 1..*" as step31 #fcf3cf {
+          component "Action" as action31 #f5b7b1
+        }
+      }
+    }
+  }
+}
+
+job1 -[hidden]---- job2
+job2 -[hidden]--- job3
+
+event .[hidden]..> workflow
+event ...> workflow
+event .[hidden]..> workflow
+'event .. action11
+event .[hidden]. jobs
+
+@enduml

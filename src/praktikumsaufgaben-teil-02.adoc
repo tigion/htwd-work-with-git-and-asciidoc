@@ -1,0 +1,473 @@
+include::header.inc.adoc[]
+
+Ziel: Kennenlernen und Erstellen von Dokumenten mit der *AsciiDoc*-Syntax und das Anwenden des *Git*-Workflows zur Versionsverwaltung
+
+== Praktikumsaufgaben Teil 2 - AsciiDoc
+
+.Überblick zum Git Workflow
+image::grafik_git_workflow.jpg[Überblick zum Git Workflow, width=800]
+
+include::hinweise-windows-labor.inc.adoc[]
+
+{section-separator}
+
+[#title_asciidoc]
+=== 1. AsciiDoc Syntax kennenlernen
+
+In den folgenden Aufgaben lernen Sie erste grundlegende Syntaxkomponenten von AsciiDoc zum Aufbau eines Dokumentes kennen. Gleichzeitig wird der Umgang mit Git und die Erstellung von Versionen in Ihrem Repository und der Abgleich zu GitHub angewendet.
+
+Öffnen Sie im Webbrowser, für das Recherchieren der AsciiDoc-Syntax zu den einzelnen Aufgaben, die https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Syntax Quick Reference] und das https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Documentation].
+
+==== Aufgabe 1.1 - Überschriften, Titel, Listen
+
+. Erweitern Sie Ihre Datei _Beispieldokumentation.adoc_ wie folgt:
++
+[source,asciidoc]
+----
+== Kennenlernen der Syntax
+
+Über die Aufgaben wird das Dokument Stück für Stück aufgebaut und angepasst.
+
+=== Listen
+
+.Beispiel: unsortierte Liste <1>
+// Platzhalter
+
+.Beispiel: sortierte Liste
+// Platzhalter
+----
+<1> Mit `.<Name>` können Abschnitte mit einem Titel benannt werden.
+
+. Fügen Sie je ein Beispiel für eine *unsortierte* (_Unordered list_) und *sortierte* (_Ordered list_) Liste ein.
+
+. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository (_add_, _commit_) und Ihr Repository auf GitHub (_push_) auf.
+
+==== Aufgabe 1.2 - Tabellen, Textformatierung
+
+. Erweitern Sie die Datei _Beispieldokumentation.adoc_ um die Überschrift `=== Tabellen und Textformatierung`
+
+. Fügen Sie folgende Tabelle (<<table_textformation>>) für ausgewählte Textformatierungen hinzu:
++
+[#table_textformation]
+.Formatierung von Text
+[cols="^1,^1,3"]
+|===
+| Formatierung         | Syntax                  | Beschreibung
+
+| *bold*               | `+*bold*+`              | fetter Text
+| _italic_             | `+_italic_+`            | kursiver Text
+| `monospace`          | `++`monospace`++`       | Text mit fester Laufweite
+| *_bolditalic_*       | `++*_bolditalic_*++`    | Text mit kombinierter Formatierung
+| **bold**__italic__   | `+**bold**__italic__+`  | Text mit Formatierung innerhalb eines Wortes
+|===
++
+.Hinweise: Weitere Formatierungsmöglichkeiten
+[%collapsible]
+====
+[#table_textformation2]
+.Erweiterte Formatierung von Text
+[cols="^1,^2,2"]
+|===
+| Formatierung         | Syntax                  | Beschreibung
+
+| #mark# | `+#mark#+` | markierter Text
+| [.underline]#underline# | `+[.underline]#underline#+`| unterstrichener Text
+| [.line-through]#strikethrough# | `+[.line-through]#strikethrough#+` | durchgestrichener Text
+| [.small]#small# | `+[.small]#small#+` | kleiner Text
+| [.big]#big# | `+[.big]#big#+` | großer Text
+| ^super^script | `+^super^script+` | hochgestellt
+| ~sub~script | `+~sub~script+` | tiefgestellt
+|===
+====
++
+.Hinweise: Escapen/Maskieren von Zeichen für die Formatierung
+[%collapsible]
+====
+Mit `\` kann ein Zeichen und mit `pass:[+...+]` bzw. `++pass:[...]++` kann ein Bereich maskiert werden, so das bspw. die Zeichen `*`, `_`, `#` nicht als Formatierungszeichen behandelt werden.
+
+* Siehe auch: https://docs.asciidoctor.org/asciidoc/latest/subs/prevent/[Escape and Prevent Substitutions] und https://docs.asciidoctor.org/asciidoc/latest/pass/[Passthroughs (Bocks, Inline)]
+
+.Sonderfall ``` und `pass:[`...`]` (_Backticks_):
+[cols="1a,4a,4a"]
+|===
+| Formatierung | Syntax | Beschreibung
+
+| `++`++` | `pass:[```]` | Backtick als _inline code_ maskiert
+| `pass:[`text`]` | `++`++++pass:[`text`]++++`++` , `pass:[\``text``]` , `pass:[`++`text`++`]` | Backticks-Bereich als _inline code_ maskiert
+|===
+
+////
+//| +`+ x | `pass:[+`+]` | Backtick maskiert
+//| +`+ ... +`+ ||
+
+* ``` <- `pass:[```]` /
+* `pass:[`...`]` <- `pass:[`++`...`++`]` oder `++`++++pass:[`...`]++++`++` `++`++`
+
+----
+// Zeichen:
+`     <- +`+
+
+// monospace:
+`     <- ``` | `++`++`
+`...` <- `++`...`++` | `pass:[`...`]`
+----
+////
+====
+
+
+. Formatieren Sie das Wort *Software Engeneering* so, dass es wie folgt aussieht:
+
+  * Ziel: **S**__o__ftw__a__r__e__ **__E__**ng__i__n__ee__``r__i__ng``
+  * Anfangsbuchstaben *bold*, Vokale _italic_ und "ring" `monospaced`
+
+. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
+
+==== Aufgabe 1.3 - Quellcode
+
+. Fügen Sie eine Überschrift `=== Quellcode` hinzu und betten Sie folgendes Quellcode-Beispiel ein:
++
+[#code_hello_world]
+.hello_world.c
+[source,c,linenums]
+----
+#include <stdio.h>
+
+int main(int argc, char* argv[])
+{
+    printf("Hello, World!\n");
+    return 0;
+}
+----
++
+Fügen Sie im Dokumenten-Kopf das Attribut `:source-highlighter: rouge` hinzu, um beim Generieren Quellcode mit Syntax-Highlighting zu erhalten.
+
+. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
+
+==== Aufgabe 1.4 - Bilder
+
+. Fügen Sie eine Überschrift `=== Bilder` ein.
+. Legen Sie in *docs* ein Verzeichnis *images* an. Hier wollen wir alle für das Dokument benötigten Bilder ablegen.
+. Fügen Sie im Dokumentenkopf das Attribut `:imagesdir: images` hinzu, um das globale Bildverzeichnis für das Dokument festzulegen. Bei Einbindung eines Bildes reicht es nun nur den Dateinamen ohne vorangestelltes `images/` anzugeben.
+. Erstellen Sie einen Screenshot ihres Editors und legen Sie die Bilddatei in das *images* Verzeichnis.
+. Binden Sie den Screenshot in ihr Dokument ein und vergeben Sie einen Bildtitel.
++
+[#image_vscode_asciidoc]
+.Screenshot VSCode mit AsciiDoc
+image::screenshot_vscode_asciidoc.png[Screenshot VSCode mit AsciiDoc Vorschau, width=700]
+
+. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
+
+==== Aufgabe 1.5 - Verweise
+
+. Fügen Sie eine Überschrift `=== Verweise` ein und schreiben Sie einen Text, welcher Verweise auf die in Ihrem Dokument enthaltene Überschrift: <<1. AsciiDoc Syntax kennenlernen>>, die Tabelle: <<table_textformation>>, den Quellcode: <<code_hello_world>> und das Bild: <<image_vscode_asciidoc>> enthält.
++
+.Hinweise: Verweise und IDs
+[%collapsible]
+====
+=====
+Verweise/Referenzen können auf Überschriften und IDs angewendet werden:
+
+.Syntaxbeispiel für Verweise und IDs
+[source, asciidoc]
+----
+== 1. AsciiDoc Syntax
+
+[#exercise_01] <1>
+=== 1.1 Aufgabe
+
+[#image_screenshot] <1>
+.Screenshot
+image::screenshot.png[]
+
+* <<1. AsciiDoc Syntax>> und <<_1_asciidoc_syntax>> <2>
+* <<exercise_01>>, <<image_screenshot>> <3>
+* <<image_screenshot, Bildschirmfoto des Editors>> <4>
+----
+<1> Eigene vergebene ID, Syntax: `+[[id]]+` oder `+[#id]+`
+<2> Verweis auf Überschrift und automatisch generierte ID
+<3> Verweise auf vergebene IDs
+<4> Zusätzliche Angabe eines alternativen Verweisnamens
+
+Mit der Verwendung von `:xrefstyle:` und der Angabe von `full`, `short` oder `basic`, bei den Attributen im Dokumentenkopf, kann die Ausgabe des referenzierten Titels angepasst werden.
+=====
+====
+
+. Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Remote-Repository auf GitHub auf.
+
+==== Aufgabe 1.6 - Includes
+
+. Fügen Sie eine Überschrift `=== Includes` ein.
+. Lagern Sie den Quelltext aus <<Aufgabe 1.3 - Quellcode>> in eine extra _hello_world.c_ Datei aus.
+. Binden Sie diese Datei, *limitiert auf die Zeilen der `main()`-Funktion*, mit einem `include` als Quellcode-Abschnitt wie folgt ein:
++
+.hello_world.c - main()
+[source,c]
+----
+int main(int argc, char* argv[])
+{
+    printf("Hello, World!\n");
+    return 0;
+}
+----
++
+.Hinweise: `include`
+[%collapsible]
+====
+=====
+Mit Hilfe von *https://docs.asciidoctor.org/asciidoc/latest/directives/include/[Includes]* wird das Einbetten von ausgelagerten Dokumenten und Teilen davon in ein Hauptdokument ermöglicht. Bspw. Quellcodeausschnitte oder CSV-Dateien. Ebenfalls können damit Dokumententeile in anderen Dokumenten wiederverwendet werden.
+
+
+.Einbinden einer Datei oder eines Dateibereiches:
+----
+include::path/to/sub-document.adoc[] <1>
+include::path/to/hello-world.c[lines=3..7] <2>
+----
+<1> Einbettung einer gesamten Datei
+<2> Es werden nur die Zeilen 3 bis 7 eingebettet
+
+.ausgewählte Attribute
+[cols="^1,3"]
+|===
+| `leveloffset` | beeinflusst das Überschriftenlevel des einzubindenden Dokumentes
+| `indent`      | beeinflusst das Einrücken des einzubindenden Bereiches
+| `lines`       | legt den einzubindenden Bereich anhand von Zeilen fest
+| `tag`, `tags` | legt den oder die einzubindende Bereiche anhand von Tag-Bereichen fest
+|===
+
+=====
+====
++
+.Beispiel: Einbinden von mit Tags markierten Bereichen aus einem anderen Dokument
+[%collapsible]
+====
+=====
+Mit *Tags* können relativ einfach Dateibereiche zeilenunabhängig wiederholt in anderen Dokumenten wiederverwendet werden, ohne diese mehrfach schreiben und pflegen zu müssen.
+
+In dem Beispiel (an den späteren Beleg angelehnt) werden Textabschnitte aus dem Dokument _system-wide_requirements.adoc_ bspw. in dem Dokument _architecture_notebook.adoc_ an betreffender Stelle wiederverwendet.
+
+._system-wide_requirements.adoc_
+[source,asciidoc]
+----
+=== Systemweite funktionale Anforderungen
+
+// tag::nfaf1[] <1>
+* *NFAF-1*: ...
+// end::nfaf1[] <2>
+
+=== Zuverlässigkeit (Reliability)
+
+// tag::nfar1[]
+* *NFAR-1*: ...
+// end::nfar1[]
+----
+<1> Start-Tag mit eindeutigem Tag-Namen
+<2> End-Tag für den mit dem zugehörigen Start-Tag markiertem Bereich
+
+._architecture_notebook.adoc_
+[source,asciidoc]
+----
+== Architektur-relevante Anforderungen
+
+=== Funktional
+include::../requirements/system-wide_requirements.adoc[tag=nfaf1] <1>
+
+=== Zuverlässigkeit (Reliability)
+\include::../requirements/system-wide_requirements.adoc[tag=nfar1]
+----
+<1> Das `tag`-Attribut legt den vom Include einzubettenden Bereich fest.
+=====
+====
+
+
+{section-separator}
+
+=== 2. Generieren des Ausgabeformates
+
+// https://asciidoctor.org/docs/user-manual/#processing-your-content
+
+////
+NOTE: Die zusammengefassten Hinweise zu der Installation der benötigten Tools *Git*, *Asciidoctor* und *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
+////
+
+Für die Generierung verwenden Sie im Terminal (PowerShell, Terminal in Visual Studio Code: "Menü > View > Terminal") den Befehle `asciidoctor` bzw. `asciidoctor-pdf`.
+
+.HTML
+----
+$ asciidoctor Beispieldokumentation.adoc
+----
+
+.PDF
+----
+$ asciidoctor-pdf Beispieldokumentation.adoc
+($ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc)
+----
+
+
+////
+.Hinweise: Variante - Visual Studio Code
+[%collapsible]
+====
+=====
+Über die *Command Palette* von Visual Studio Code lassen sich weitere Kommandos zu AsciiDoc ausführen.
+
+1. Command Palette über Hauptmenü: "View > Command Palette..." öffnen. Tastenkürzel wären:
+* icon:windows[] Windows und icon:linux[] Linux: kbd:[Shift+Ctrl+P]
+* icon:apple[] macOS: kbd:[Shift+Cmd+P]
+
+2. Nach einer Eingabe von `asciidoc` tauchen mögliche Befehle auf.
+
+.HTML
+-> AsciiDoc: Save HTML document
+
+.PDF
+-> AsciiDoc: Export document as PDF
+
+[IMPORTANT]
+======
+Eine zusätzlicher Download von *wkhtmltopdf* wird von Visual Studio Code für den PDF export angeboten. Dies ermöglicht eine einfache Umwandlung der HTML-Ausgabe in ein PDF, #welche aber nicht für das Generieren von ordentlichen PDF-Dokumenten, wie für den Beleg,  geeignet ist#.
+
+:imageTitle: Screenshot: Vergleich PDF-Export von Visual Studio Code (links) und Asciidoctor (rechts)
+:imageFile: screenshot_vscode_asciidoctor_pdf_export.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=700]
+
+Gegenüber dem installierten asciidoctor-pdf Terminalbefehl fehlen unter anderem speziell angepaste PDF Vorlagen, Seitennummern, ein Inhaltsverzeichnisse mit Seitennummern und das bessere Handling von Zeilenumbrüchen innerhalb von bspw. Tabellen und Code-Blöcken.
+======
+
+Ist *asciidoctor-pdf* jedoch lokal installiert, kann in den VS Code Einstellungen unter `Asciidoc: Use_asciidoctorpdf` deren Verwendung statt *wkhtmltopdf* für `AsciiDoc: Export document as PDF` aktiviert werden. In dem Falle ist das Ergebnis das Gleiche wie bei der Verwendung der Asciidoctor Terminal Kommandos.
+=====
+====
+////
+
+.Hinweise zur Nutzung über die *ilux150*
+[%collapsible]
+====
+=====
+Das Generieren der AsciiDoc-Dokumente kann auch auf dem Login-Server *ilux150* der Fakultät durchgeführt werden. Hier ist die entsprechenden Asciidoctor-Umgebung installiert.
+
+IMPORTANT: Studenten des Modules I925 (Studiengang Wirtschaftsingenieurwesen) haben keinen Zugriff auf die ilux150.
+
+*Variante 1 (erstmalig): Repository Clone auf der ilux150 nicht vorhanden*
+
+. Loggen Sie sich per SSH oder über einen SSH-Client (Windows: bspw. https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html[Putty]) auf den Linux-Server *ilux150* ein:
++
+----
+$ ssh s00000@ilux150.informatik.htw-dresden.de
+----
+
+. Passen Sie, falls noch nicht geschehen, ihre Git-Konfig _.gitconfig_ an und setzen Ihren Namen und E-Mail. (Siehe <<praktikumsaufgaben-teil-01.adoc#section_git_config, Teil 1 - Git-Konfiguration per Git-Kommando>>):
++
+----
+$ git config --global user.name "Vorname Nachname"
+$ git config --global user.email s00000@informatik.htw-dresden.de
+----
+
+. Navigieren Sie zu dem Verzeichnis, in dem Sie eine Kopie Ihres Repositories *clonen* wollen.
++
+----
+$ cd path/to/se1-praktikum
+----
+
+. Clonen Sie Ihr Repository *htw-se-example-project*:
++
+----
+$ git clone https://github.com/<username>/htw-se-example-project.git
+----
+
+. Wechseln Sie in das eben erstellte Verzeichnis *htw-se-example-project*:
++
+----
+$ cd htw-se-example-project
+----
+
+. Generieren Sie die benötigten Dokumente:
++
+.HTML
+----
+$ asciidoctor Beispieldokumentation.adoc
+----
++
+.PDF
+----
+$ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
+----
+
+*Variante 2: Repository Clone auf der ilux150 vorhanden*
+
+. Loggen Sie sich per SSH oder über einen SSH-Client (Windows: bspw. https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html[Putty]) auf den Linux-Server *ilux150* ein:
++
+----
+$ ssh s00000@ilux150.informatik.htw-dresden.de
+----
+
+. Navigieren Sie zu Ihrem Projektverzeichnis *htw-se-example-project*:
++
+----
+$ cd path/to/se1-praktikum/htw-se-example-project
+----
+
+. Aktualisieren Sie Ihr Repository auf den aktuellen Stand von GitHub:
++
+----
+$ git pull
+----
+
+. Generieren Sie die benötigten Dokumente:
++
+.HTML
+----
+$ asciidoctor Beispieldokumentation.adoc
+----
++
+.PDF
+----
+$ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
+----
+
+NOTE: Arbeiten Sie in den Windows-Laboren auf Ihrem `U:\`-Studentenlaufwerke (SAMBA), müssen Sie es auf der ilux150 nicht erst clonen, sondern navigieren direkt zu Ihrem Repository Verzeichnis.
+=====
+====
+
+
+==== Aufgabe 2.1 - HTML/PDF-Generierung
+
+1. Generieren Sie über das Terminal (oder das in Visual Studio Code integrierte Terminal) die HTML- und PDF-Version des AsciiDoc-Dokumentes _Beispieldokumentation.adoc_:
++
+----
+$ cd docs
+$ asciidoctor Beispieldokumentation.adoc
+$ asciidoctor-pdf Beispieldokumentation.adoc
+----
+2. Schauen Sie sich die Ergebnisse an.
+
+
+==== Aufgabe 2.2 - Datei .gitignore
+
+In der Datei _.gitignore_ werden alle Dateien, Verzeichnisse und Dateitypen festgelegt, welche Git ignorieren soll.
+
+Um zu verhindern, dass generierbare Dateien, wie bspw. html- und pdf-Dateien, in das Repository aufgenommen bzw. deren Änderungen überwacht werden, ist es sinnvoll diese in Ihrem Repository auszuschließen.
+
+1. Legen Sie im Projektverzeichnis (Workspace) die Datei `.gitignore` mit folgendem Inhalt an:
++
+..gitignore
+----
+*.html
+*.pdf
+----
+
+2. Nehmen Sie die Datei `.gitignore` als neue Version in Ihr lokales Git-Repository und Ihr Remote-Repository auf GitHub auf.
+
+
+{section-separator}
+
+=== Endergebnis
+
+Die fertig generierten Dokumente sehen dann wie folgt aus:
+
+:imageTitle: Screenshot Generiertes HTML (link) und PDF (rechts)
+:imageFile: screenshot_html_pdf.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=700]
+
+
+include::sitemap.inc.adoc[]

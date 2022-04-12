@@ -1,0 +1,42 @@
+@startuml example-sequence-diagram
+
+'skinparam responseMessageBelowArrow true
+'autonumber
+
+actor User as u01
+participant "UI Class" as c01
+participant "Controller Class" as c02
+participant "Work Class" as c03 #LightSalmon
+database "SQL Server" as db01 #LightGray
+
+u01 -> c01: Do Work
+activate c01
+note left: user requests data
+
+c01 -> c02: Create Request
+activate c02
+
+c02 -> c03: Do Work
+activate c03 #LightSalmon
+
+c03 -> db01: Request Data
+'|||
+db01 --> c03: Send Data
+
+c03 -> c03: Work
+note right
+processes data
+- calculate
+- filter and sort
+end note
+
+c03 --> c02: Work Done
+destroy c03
+
+c02 --> c01: Request Created
+deactivate c02
+
+c01 --> u01: Done
+deactivate c01
+
+@enduml

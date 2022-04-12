@@ -1,0 +1,10 @@
+*~
+.DS_Store
+
+.asciidoctor/
+build/
+src/files/*
+!src/files/.keep
+src/images/diagrams/
+src/images/videos/*
+!src/images/videos/.keep

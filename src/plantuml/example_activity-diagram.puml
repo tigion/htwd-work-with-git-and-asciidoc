@@ -1,0 +1,19 @@
+@startuml example-activity-diagram
+start
+
+:Initialization;
+note right: The first <del>Avenger</del> Activity
+
+if (Some Test) then (yes)
+  :Some Activity;
+  #LightBlue:Object] /'idea: activity as object flow'/
+  :Another Activity;
+else (no)
+  :Something else;
+  note right #LightBlue: Object /'idea: note as object'/
+endif
+
+:Final Activity;
+
+stop
+@enduml

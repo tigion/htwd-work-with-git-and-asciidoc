@@ -1,0 +1,44 @@
+@startuml example-package-diagram
+package Main #eafaf1 {
+  class MyDialog
+}
+
+package BusinessService  #fdedec {
+  class MyService
+  package Interfaces #fadbd8 {
+    interface MyRepository <<interface>>
+  }
+}
+
+package LocalTestData #ebf5fb {
+  class DictionaryRepository
+  class TestData
+}
+
+package DbMsSqlServer #ebf5fb {
+  class MsSqlRepository
+}
+
+'package Typen {
+'  class Student
+'  class SubjectMark
+'}
+' namespace with auto package variant
+class Typen.Student
+class Typen.SubjectMark
+
+
+Main -> BusinessService : <<import>>
+Main ..> LocalTestData : <<import>>
+Main ..> DbMsSqlServer : <<import>>
+'MyService --( MyRepository
+DictionaryRepository --() MyRepository
+MsSqlRepository --() MyRepository
+
+'Typen <.. Main : <<import>>
+'Typen <.. BusinessService : <<import>>
+'Typen <.. LocalTestData : <<import>>
+'Typen <.. DbMsSqlServer : <<import>>
+
+note bottom of Typen: Data types for students, subjects and marks\nare required in all packages
+@enduml
