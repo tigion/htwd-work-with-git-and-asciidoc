@@ -251,7 +251,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 Klicken Sie in den Suchergebnissen auf den Kommentartitel des betreffenden Pull-Request und man kann mögliche Kommentare und Reaktionen sehen.
 
 .Nachbessern
-Wird der Pull-Request (über Kommentare) beanstandet, korrigieren Sie dies und laden es als neue Version in Ihr geforktes Repository. Der neue Commit tauch automatisch im Pull-Request auf, so dass der Repo-Eigentümer es erneut anschauen und übernehmen kann.
+Wird der Pull-Request (über Kommentare) beanstandet, korrigieren Sie dies und laden es als neue Version in Ihr geforktes Repository. Der neue Commit taucht automatisch im Pull-Request auf, so dass der Repo-Eigentümer es erneut anschauen und übernehmen kann.
 =====
 ====
 
@@ -384,7 +384,7 @@ NOTE: Ist der Pull-Request vom Repository-Eigentümer erfolgreich übernommen bz
 IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Mergekonflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
 . Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repoository auf GitHub.
 . Erzeugen Sie jetzt einen **Pull-Request** auf das ursprüngliche Repository.
-. Nach erfolgreicher übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] Ihre Änderung.
+. Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
 . (optional) Jetzt können Sie den Fork auf GitHub und lokal löschen.
 
 

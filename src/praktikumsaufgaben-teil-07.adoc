@@ -56,7 +56,7 @@ include::hinweise-windows-labor.inc.adoc[]
 
 === 1. Branches verwenden
 
-Mit *Branches* (Verzweigungen) bietet Git die Möglichkeit, ausgehend vom Hauptzweig, Versionen auf unterschiedlichen Zweigen zu erstellen. Diese Versionen können mit andere Branches zusammengeführt (`merge`), verworfen oder bewusst getrennt gehalten werden.
+Mit *Branches* (Verzweigungen) bietet Git die Möglichkeit, ausgehend vom Hauptzweig, Versionen auf unterschiedlichen Zweigen zu erstellen. Diese Versionen können mit anderen Branches zusammengeführt (`merge`), verworfen oder bewusst getrennt gehalten werden.
 
 .Beispielhaftes Branching
 image::grafik_git_branching.png[Beispielhaftes Branching,width=495]
@@ -69,7 +69,7 @@ Mit Hilfe von Branching kann bspw. ein neues Feature oder ein Bugfix in einem ex
 =====
 *Merge*
 
-Wird der Versionsstand eines Branches in einen anderen Branch aufgenommen (gemerged) geschieht dies entweder mit der *fast-forward* oder *recursive* (3-Wege-Merge) Strategie.
+Wird der Versionsstand eines Branches in einen anderen Branch aufgenommen (`merge`) geschieht dies entweder mit der *fast-forward* oder *recursive* (3-Wege-Merge) Strategie.
 
 _fast-forward_::
 +
@@ -128,7 +128,7 @@ $ git merge feature
 ////
 ======
 +
-Gibt es im aktuellen Branch (_main_-Branch) Versionen, die nach der Abspaltung des zu mergenden Branches (_feature_-Branch) erstellt worden sind, wird beim Mergen im aktuellen Branch (_main_-Branch) eine neue Version (_merge_-Commit) erstellt. Diese enthält das vereinte Ergebnis aus den letzten Versionen der zu mergenden Branches.
+Gibt es im aktuellen Branch (_main_-Branch) Versionen, die nach der Abspaltung des zu mergenden Branches (_feature_-Branch) erstellt worden sind, wird beim Merge im aktuellen Branch (_main_-Branch) eine neue Version (_merge_-Commit) erstellt. Diese enthält das vereinte Ergebnis aus den letzten Versionen der zu mergenden Branches.
 =====
 ====
 
@@ -452,6 +452,7 @@ git push <remote-repo> --delete <remote-branch> <1>
 Sind die Branches remote und lokal gelöscht, aber ein `git branch -a` listet noch veraltete Referenzen zu _remote_-Branches auf, können Sie wie folgt entfernt werden:
 ----
 % git remote prune origin
+----
 =====
 ====
 
