@@ -1,33 +1,51 @@
 = Arbeiten mit Git und AsciiDoc
+// --- author, revision ---
 Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 //{localdatetime}
 //0.1, 30.09.2019
+// --- metadata ---
+//:description:
+//:keywords:
+// --- settings ---
+//:doctype: book
 :toc:
 //:toc: left
 :toclevels: 3
 :toc-title: Inhaltsverzeichnis
-:docinfo: shared
 :icons: font
-//:source-highlighter: highlightjs
-:source-highlighter: rouge
-:xrefstyle: full
-:experimental: // für kbd
-//:nofooter:
-//:last-update-label!:
+:experimental:
+//:sectnums:
+//:sectnumlevels:
 :figure-caption: Abbildung
 :table-caption: Tabelle
 :!example-caption:
+:xrefstyle: full
+//:source-highlighter: highlightjs
+:source-highlighter: rouge
+:rouge-style: github
+//:nofooter:
+//:last-update-label!:
+:last-update-label: Asciidoctor {asciidoctor-version} | Zuletzt geändert am
+// --- folders ---
+//ifndef::imagesdir[:imagesdir: images]
 :imagesdir: images
 :diagramsdir: diagrams
 :plantumlsdir: plantuml
-//:sectnums:
-//:sectnumlevels:
+// --- HTML ---
+:docinfo: shared
 :sectanchors:
 :favicon:
+// --- PDF ---
+// Hyphenation for PDF documents
+:lang: DE
+:hyphens:
+// --- Alias ---
 // blank line alias
 :bl: pass:[ +]
 //:s1: {empty} +
 :section-separator: pass:[<hr style="margin: 3em auto 2.8em; width: 75%; border-top: 1px dashed lightgray">]
+// --- main document ---
+:maindocument: true
 
 // Bugfix for current asciidoc extension
 // https://github.com/asciidoctor/asciidoctor-vscode/issues/352
