@@ -163,17 +163,13 @@ NOTE: Wenn kein Teammitglied vorhanden ist, können Sie in Teilaufgabe 5. sich d
 
 {section-separator}
 
-==== Aufgabe 1.2 - Fork mit Pull-Request
+=== 2. Fork (Pull-/Merge-Request)
 
-In dieser Aufgabe wollen wir eine Änderung an einem öffentlichen (public) Repository auf GitHub vornehmen bzw. vorschlagen, in welchem wir keine Bearbeitungsrechte haben. Dazu benötigen wir einen *Fork* des betreffenden Repositories.
+Mit Hilfe eines Forks kann einem öffentlichen Repository eine Änderung als Pull-/Merge-Request, ähnlich einer Code-Review, vorgeschlagen werden.
 
 Fork::
 Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repositorie können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
 Am häufigsten werden Forks verwendet, um entweder Änderungen am Projekt eines anderen vorzuschlagen oder um das Projekt eines anderen als Ausgangspunkt für Ihre eigene Idee zu verwenden.
-
-====
-Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htw-playground-fork-colors/[Fork Colors] darstellt.
-====
 
 .Hinweise: Erzeugen eines Fork mit zugehörigem Pull-Request
 [%collapsible]
@@ -375,6 +371,16 @@ Möchte man einen Pull-Request aus einem externen Fork lokal testen, kann man di
 ====
 
 NOTE: Ist der Pull-Request vom Repository-Eigentümer erfolgreich übernommen bzw. abgelehnt worden, kann das geforkte Repository bei keiner weiteren Verwendung aus dem eigenen Account über GitHub und lokal gelöscht werden.
+
+{section-separator}
+
+==== Aufgabe 2.1 - Fork mit Pull-Request
+
+In dieser Aufgabe wollen wir eine Änderung an einem öffentlichen (public) Repository auf GitHub vornehmen bzw. vorschlagen, in welchem wir keine Bearbeitungsrechte haben. Dazu benötigen wir einen *Fork* des betreffenden Repositories.
+
+====
+Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htw-playground-fork-colors/[Fork Colors] darstellt.
+====
 
 . Legen Sie auf GitHub über den kbd:[Fork]-Button einen **Fork** vom https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] Projekt an.
 . **Clonen** Sie die in Ihrem Account entstandene Kopie lokal auf Ihren Rechner.
