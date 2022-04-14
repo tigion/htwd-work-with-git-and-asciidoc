@@ -167,6 +167,11 @@ NOTE: Wenn kein Teammitglied vorhanden ist, können Sie in Teilaufgabe 5. sich d
 
 Mit Hilfe eines Forks kann einem öffentlichen Repository eine Änderung als Pull-/Merge-Request, ähnlich einer Code-Review, vorgeschlagen werden.
 
+:imageTitle: Mehrere von Forks genehmigte Pull Requests
+:imageFile: screenshot_vscode_git-graph_pull-requests.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
 Fork::
 Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repositorie können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
 Am häufigsten werden Forks verwendet, um entweder Änderungen am Projekt eines anderen vorzuschlagen oder um das Projekt eines anderen als Ausgangspunkt für Ihre eigene Idee zu verwenden.
