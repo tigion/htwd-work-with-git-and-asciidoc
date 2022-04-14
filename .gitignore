@@ -8,3 +8,4 @@ src/files/*
 src/images/diagrams/
 src/images/videos/*
 !src/images/videos/.keep
+src/*.pdf
