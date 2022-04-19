@@ -1,6 +1,6 @@
 include::header.inc.adoc[]
 
-Ziel: Kennenlernen der Automatisierung von Softwareentwicklungsprozesse mit Hilfe von *Workflows* und *Action* auf *GitHub*
+Ziel: Kennenlernen der Automatisierung von Softwareentwicklungsprozesse mit Hilfe von *Workflows* und *Actions* auf *GitHub*
 
 == Praktikumsaufgaben Teil 10 - GitHub Actions
 
@@ -106,7 +106,7 @@ jobs: <3>
 <10> ... `- name: <step_name>` Legt den Namen eines Steps fest.
 <11> ... `uses: <action>` Eine spezielle Action `actions/checkout@v2`, welche den Inhalt des Repositories in den Runner läd, so dass nachfolgende Actions damit arbeiten können.
 <12> ... `run: <shell_command>` Führt statt einer vorgegebenen Action einen *einzeiliges* Shell-Kommando aus.
-<13> ... `run: |` Führt ein *mehrzeiliges* Shell-Kommand aus.
+<13> ... `run: |` Führt ein *mehrzeiliges* Shell-Kommando aus.
 
 
 
@@ -408,7 +408,7 @@ public void setResidents(int residents) {
         #self.__residents = value
 ----
 ====
-. Überlegen Sie sich eine Erweiterung des Workflows, welche Sie als weiteren Step hinzufügen. Dies könnte bspw. die Ausgabe der Java- oder Python-Version oder ein Test, ob eine Datei exisitiert sein. Testen Sie anschließend durch Änderungen am Projekt, ob Ihre Anpassungen im Workflow funktionieren.
+. Überlegen Sie sich eine Erweiterung des Workflows, welche Sie als weiteren Step hinzufügen. Dies könnte bspw. die Ausgabe der Java- oder Python-Version oder ein Test, ob eine Datei existiert sein. Testen Sie anschließend durch Änderungen am Projekt, ob Ihre Anpassungen im Workflow funktionieren.
 
 
 {section-separator}

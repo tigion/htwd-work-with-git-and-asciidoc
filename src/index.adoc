@@ -39,7 +39,7 @@ Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden 
 - Issues mit Filtern im Überblick behalten
 - Issues im Kontext des OpenUP
 
-.Praktikumsaufgaben Teil 5 - AsciiDoctor und Diagramme 1
+.Praktikumsaufgaben Teil 5 - Asciidoctor und Diagramme 1
 - Textbasierte Diagrammgenerierung mit *PlantUML*
 - Struktur und Verwendung in Asciidoctor
 - _Anwendungsfall-, Klassen-, Aktivitäts- und C4 Model Diagramm_

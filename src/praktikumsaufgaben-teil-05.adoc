@@ -189,7 +189,7 @@ Shape <|.. Square
 ....
 ----
 <1> Titel der Grafik (Bildunterschrift)
-<2> Attribute für die Generierung mit der Asciidoktor-Diagramm Erweiterung
+<2> Attribute für die Generierung mit der Asciidoctor-Diagramm Erweiterung
 <3> Attribute: Diagramm-Type (Textsyntax), generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`), Bildformat (png, svg)
 <4> textliche Beschreibung (PlantUML Notation) des entsprechenden Diagramm-Types
 
@@ -305,13 +305,13 @@ In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die Pla
 
 Neben den in den Aufgaben verlinkten Syntax-Hinweisen findet man auch die entsprechenden Abschnitte im https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]. Ebenfalls bereitgestellt sind jeweils die PlantUML-Quelltexte der verwendeten Beispieldiagramme.
 
-Hilfreich zum Layouten bzw. zur Positionierung von Elementen ist auch ein Blick in den entsprechenden Guide zu https://crashedmind.github.io/PlantUMLHitchhikersGuide/layout/layout.html[The Hitchhiker’s Guide to PlantUML - Layout].
+Hilfreich für das Layout bzw. zur Positionierung von Elementen ist auch ein Blick in den entsprechenden Guide zu https://crashedmind.github.io/PlantUMLHitchhikersGuide/layout/layout.html[The Hitchhiker’s Guide to PlantUML - Layout].
 
 .Hinweise und Tipps zur Anwendung der PlantUML Notation
 [%collapsible]
 ====
 =====
-* In der Regel definiert man erste die Elemente (Type, Bezeichnung) und nachfolgend die Beziehungen zwischen ihnen. Elemente in Kontainern/Paketen, werden am Anfang des entspechenden Kontainers definiert.
+* In der Regel definiert man erste die Elemente (Type, Bezeichnung) und nachfolgend die Beziehungen zwischen ihnen. Elemente in Kontainern/Paketen, werden am Anfang des entsprechenden Kontainers definiert.
 * Lange Bezeichnungen mit Leerzeichen werden in Anführungszeichen bzw. den Eingrenzungszeichen des jeweiligen Elementes gesetzt und können mit `\n` Zeilenumbrüche enthalten.
 * Den Elementen kann über das Schlüsselwort `as` Alias-Namen vergeben werden, welche anstelle der Bezeichnung beim Definieren der Beziehungen verwendet werden.
 * Pro Zeile wird immer ein Elemente definiert.
@@ -326,7 +326,7 @@ Hilfreich zum Layouten bzw. zur Positionierung von Elementen ist auch ein Blick 
 ** `left to right direction`
 * Diagramme können über die Webseite https://www.plantuml.com/plantuml/ direkt generiert und getestet werden.
 * Mit `together {...}` werden Elemente gruppiert bzw. zusammengehalten. (Siehe https://plantuml.com/de/class-diagram#c08f8d9927fcb626[Hilfe beim Layout])
-* Wird das Attribut `subs="attributes+"` bei der Einbindung in Asciidoctor verwendet, können innerhalb des PlantUML-Diagrammes Variablen vom Asciidoctor-Dokument verwendet werden.
+* Wird das Attribut `subs="attributes+"` bei der Einbindung in Asciidoctor verwendet, können innerhalb des PlantUML-Diagramms Variablen vom Asciidoctor-Dokument verwendet werden.
 +
 ----
 :variable1: Human
@@ -362,7 +362,7 @@ actor "Akteur4 mit langem\nNamen" as ac2
 .Anwendungsfälle (Use Case)
 ----
 usecase Anwendungsfall1 <1>
-usecase "Anweundgsfall 1" as uc01
+usecase "Anwendungsfall 1" as uc01
 (Anwendungsfall 2) as uc02
 (UC03\nAnwendungsfall 3) as uc03
 
@@ -557,7 +557,7 @@ Schauen Sie sich auf https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C
 ====
 =====
 
-.Layoutoptionen
+.Layout-Optionen
 ```
 LAYOUT_TOP_DOWN or LAYOUT_LEFT_RIGHT <1>
 LAYOUT_WITH_LEGEND <2>

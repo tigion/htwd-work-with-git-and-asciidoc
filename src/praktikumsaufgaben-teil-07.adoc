@@ -23,7 +23,7 @@ Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
 Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htw-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
 
 ====
-Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Resourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
+Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Ressourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
 
 .Linkliste zu hilfreichen Webseiten und Videos
 [%collapsible]
@@ -405,7 +405,7 @@ Lokale Branches können auf einem _remote_-Repository bereitgestellt werden, so 
 1. Legen Sie in Ihrem Repository einen neuen lokalen _feature-x_-Branch an und wechseln Sie in diesen.
 2. Nehmen Sie in den _feature-x_-Branch ein paar Commits auf.
 3. Veröffentlichen Sie Ihren lokalen _feature-x_-Branch auf Ihrem _remote_-Repository.
-4. Übernehmen (mergen) Sie im lokalem Repository die Änderungen vom _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
+4. Übernehmen (mergen) Sie im lokalen Repository die Änderungen vom _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
 5. Entfernen Sie jetzt den _feature-x_-Branch auf Ihrem _remote_-Repository.
 
 .Hinweise: _remote_-Branches

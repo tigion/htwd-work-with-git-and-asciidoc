@@ -10,7 +10,7 @@ Ziel: Organisation von Aufgaben und Prozessen im Team mit Hilfe von *Issues* und
 - *AsciiDoc*: _includes_, _callouts_, _Q&A (Glossar)_, ...
 ////
 
-Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Teamrepository *htw-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htw-se-example-project*.
+Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Repository *htw-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htw-se-example-project*.
 
 include::hinweise-windows-labor.inc.adoc[]
 
@@ -21,7 +21,7 @@ include::hinweise-windows-labor.inc.adoc[]
 
 NOTE: Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. Most software projects have a bug tracker of some kind. GitHub’s tracker is called Issues, and has its own section in every repository. - https://guides.github.com/features/issues/[GitHub]
 
-GitHub bietet mit dem Bereich *Issues* eine Möglichkeit anstehende Aufgaben, aufgetretene Probleme und mögliche Verbesserungen zentral in Ihrem Projekt innerhalt Ihres Repository zu verwalten und zu diskutieren.
+GitHub bietet mit dem Bereich *Issues* eine Möglichkeit anstehende Aufgaben, aufgetretene Probleme und mögliche Verbesserungen zentral in Ihrem Projekt innerhalb Ihres Repository zu verwalten und zu diskutieren.
 
 :imageTitle: Screenshot: Bereich Issues auf GitHub
 :imageFile: screenshot_github_issues.png
@@ -256,7 +256,7 @@ Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
 ** *hoch*: Work Items werden in die aktuelle Iteration aufgenommen
 ** *mittel*: Work Items werden in die aktuelle oder nächste Iteration aufgenommen
 ** *niedrig*: Work Items sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
-** *Zeit* und *Resourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Work Items auf die aktuelle bzw. folgenden Iterationen erfolgt.
+** *Zeit* und *Ressourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Work Items auf die aktuelle bzw. folgenden Iterationen erfolgt.
 * Es ist sinnvoll den Issues (Work Items) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
 * Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Work Item X* in Ihrem Repository bitte passendere verwenden.
 * Labels, die sich an den Rollen des OpenUP orientieren, helfen sie entsprechend zu filtern.
@@ -335,7 +335,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 * In der Meilensteinübersicht bzw. Detailansicht können wahlweise die offenen oder geschlossenen Meilensteine bzw. enthaltenen Issues angezeigt werden.
 
-:imageTitle: Detailansicht eines Meilensteines
+:imageTitle: Detailansicht eines Meilensteins
 :imageFile: screenshot_github_milestone.png
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]

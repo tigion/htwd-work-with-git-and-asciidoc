@@ -25,7 +25,7 @@ Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
 Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htw-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
 
 ====
-Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Resourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
+Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Ressourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
 
 .Linkliste zu hilfreichen Webseiten und Videos
 [%collapsible]
@@ -56,8 +56,8 @@ include::hinweise-windows-labor.inc.adoc[]
 
 Die folgenden Aufgaben behandeln Möglichkeiten zum Umgang mit *Änderungen* und *Versionen* (Commits) im lokalen Arbeitsverzeichnis.
 
-- *Änderung* ... unversionierte Änderungen im lokalen Arbeitsverzeichnis
-- *Version* ... versionierte Änderungen (Commits) im lokalen Arbeitsverzeichnis
+- *Änderung* ... (noch) nicht versionierte Änderung im lokalen Arbeitsverzeichnis
+- *Version* ... versionierte Änderung (Commit) im lokalen Arbeitsverzeichnis
 
 ==== Aufgabe 1.1 - Versionen untersuchen
 
@@ -157,10 +157,10 @@ $ git restore <file(s)> <2>
 $ git reset --hard <3>
 $ git clean -df <4>
 ----
-<1> Setzt lokale Änderungen einer oder mehrerer versionierter Dateien auf die letzte Version zurück. Ein `.` statt `<file(s)>` nimmt alle lokalen Änderungen.
+<1> Setzt lokale Änderungen einer oder mehrerer unter Versionskontrolle stehender Dateien auf die letzte Version zurück. Ein `.` statt `<file(s)>` nimmt alle lokalen Änderungen.
 <2> Neuere alternative Variante gegenüber `checkout`.
 <3> Alternative Möglichkeit zu `git checkout .` bzw. `git restore .`. Ein `--hard` veranlasst bei einem `git reset` auch den Workspace, also die lokalen (geänderten) Dateien, zurückzusetzen.
-<4> Entfernt alle lokalen unversionierte Dateien. (https://git-scm.com/docs/git-clean[git-clean Dokumentation], `-n` Testlauf, `-i` interaktiv, `-d` beachte auch unversionierte Verzeichnisse, `-f` ignoriere Löschwarnung)
+<4> Entfernt alle lokalen nicht unter Versionskontrolle stehenden Dateien. (https://git-scm.com/docs/git-clean[git-clean Dokumentation], `-n` Testlauf, `-i` interaktiv, `-d` beachte auch entsprechende Verzeichnisse, `-f` ignoriere Löschwarnung)
 =====
 ====
 

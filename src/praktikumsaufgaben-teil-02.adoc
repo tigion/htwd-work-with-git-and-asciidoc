@@ -186,7 +186,7 @@ image::screenshot.png[]
 <1> Eigene vergebene ID, Syntax: `+[[id]]+` oder `+[#id]+`
 <2> Verweis auf Überschrift und automatisch generierte ID
 <3> Verweise auf vergebene IDs
-<4> Zusätzliche Angabe eines alternativen Verweisnamens
+<4> Zusätzliche Angabe eines alternativen Verweisnamen
 
 Mit der Verwendung von `:xrefstyle:` und der Angabe von `full`, `short` oder `basic`, bei den Attributen im Dokumentenkopf, kann die Ausgabe des referenzierten Titels angepasst werden.
 =====

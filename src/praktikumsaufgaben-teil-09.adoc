@@ -199,7 +199,7 @@ class1 -> class1: Do <2>
 ||| <3>
 class2 --> actor1: Send
 ----
-<1> Beziehungen zwischen Teilnehmern werden mit `+->+` (durchgezogen) oder `+-->+` (gestrichelt) angegeben. Die verschiedenen Pfeilarten entnehmene Sie bitte der offiziellen Dokumentation unter https://plantuml.com/de/sequence-diagram#efeda651e89e596c[Pfeilarten].
+<1> Beziehungen zwischen Teilnehmern werden mit `+->+` (durchgezogen) oder `+-->+` (gestrichelt) angegeben. Die verschiedenen Pfeilarten entnehmen Sie bitte der offiziellen Dokumentation unter https://plantuml.com/de/sequence-diagram#efeda651e89e596c[Pfeilarten].
 <2> Teilnehmer können Beziehungen auch auf sich selbst haben.
 <3> Extra Abstände können mit `|||` oder mit einer Angabe in Pixeln `||45||` eingefügt werden.
 =====
@@ -268,7 +268,7 @@ hide circle <1>
 skinparam linetype ortho <2>
 ----
 <1> Blendet das (E) im Entity-Kopf aus.
-<2> Verhindert schräge Linien, um eine unschöne Darstellungen der Krähenfußnotation zu unterbinden.
+<2> Verhindert schräge Linien, um eine unschöne Darstellungen der Krähenfuss-Notaion zu unterbinden.
 =====
 ====
 

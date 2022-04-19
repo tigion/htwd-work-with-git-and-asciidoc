@@ -221,12 +221,12 @@ remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
 Receiving objects: 100% (10/10), done.
 ----
 
-Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedesmal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
+Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
 
 ===== Variante - Visual Studio Code (HTTPS): #Probleme im Windows-Labor#
 . Öffnen Sie in Visual Studio Code über "View > SCM" den Bereich des Source Controle Managements
 . Über den erscheinenden Button kbd:[Clone Repository] können sie jetzt ein Repository clonen. Falls schon ein Repository geöffnet ist, kann dies über die drei Punkte "*...*" im oberen Bereich über den Menüeintrag *Clone* erfolgen.
-. Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welchem Sie ihre Repository-URL reinkopieren und Enter drücken.
+. Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
 . Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
 . Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der Access Token abgefragt oder Visual Studio Code nutzt seine Access to GitHub Erweiterung.
 

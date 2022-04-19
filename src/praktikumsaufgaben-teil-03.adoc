@@ -114,24 +114,24 @@ Alternativ entscheiden Sie sich für eine von beiden Versionen und ersetzen die 
 [%collapsible]
 ====
 =====
-Sie haben in Ihrem lokalem Repository unversionierte oder noch im INDEX vorgemerkte Änderungen, welche auf einer älteren Version als das Remote-Repository basieren.
+Sie haben in Ihrem lokalen Repository noch nicht versionierte oder noch im INDEX vorgemerkte Änderungen, welche auf einer älteren Version als das Remote-Repository basieren.
 
-Variante 1 - lokale unversionierte Änderung erst in das Repository aufnehmen::
-. Nehmen Sie Ihre lokale unversionierte Änderung (_add_ und _commit_) in Ihr Repository auf.
+Variante 1 - lokale nicht versionierte Änderung erst in das Repository aufnehmen::
+. Nehmen Sie Ihre lokale Änderung (_add_ und _commit_) als Version in Ihr Repository auf.
 . Laden Sie sich mit *pull* die aktuelle Version vom Remote-Repository.
 . Git versucht den Konflikt automatisch zu lösen bzw. müssen Sie Ihn manuell auflösen (_merge_).
 . Nehmen Sie Ihre neu bearbeiteten Änderungen (_add_ und _commit_) in Ihr lokales Repository auf. Anschließend können Sie mit *push* die neu zusammengeführte Version an das Remote-Repository senden.
 
-Variante 2 - lokale unversionierte Änderung verwerfen::
+Variante 2 - lokale nicht versionierte Änderung verwerfen::
 . Mit `git checkout .` werden alle Änderungen im WORKSPACE gegenüber Ihrer letzten lokalen Version verworfen.
 . Anschließend können Sie mit *pull* die aktuelle Version des Remote-Repositories laden.
 
-Variante 3 - lokale unversionierte und vorgemerkte Änderung verwerfen::
+Variante 3 - lokale nicht versionierte und vorgemerkte Änderung verwerfen::
 . Mit `git reset --hard` werden alle Änderungen im INDEX und WORKSPACE gegenüber Ihrer letzten lokalen Version verworfen.
 . Anschließend können Sie mit *pull* die aktuelle Version des Remote-Repositories laden.
 
 Weitere Varianten::
-- Mit https://git-scm.com/docs/git-stash[stash] können Sie lokale unversionierte Änderungen temporär Zwischenspeichern und Ihren lokalen Stand auf die letzte Version Ihres lokalen Repositories zurücksetzen.
+- Mit https://git-scm.com/docs/git-stash[stash] können Sie lokale noch nicht versionierte Änderungen temporär Zwischenspeichern und Ihren lokalen Stand auf die letzte Version Ihres lokalen Repositories zurücksetzen.
 =====
 ====
 
@@ -191,7 +191,7 @@ htw-se-example-teamproject
 ----
 
 ==== Aufgabe 2.2 - freie Teamarbeit
-Bearbeiten Sie im Team die folgenden Aufgaben und nehmen Sie die gemachten Änderugen jeweils in Ihr lokales und Ihr entferntes Teamrepository auf GitHub auf. Es ist keine bestimmt Reihenfolge vorgegeben, nur was wer tun soll. Diskutieren Sie Ihr Vorgehen und auftretende Problemen. Probieren Sie etwas und versuchen Sie aufgetretene _merge_-Konflikte zu lösen.
+Bearbeiten Sie im Team die folgenden Aufgaben und nehmen Sie die gemachten Änderungen jeweils in Ihr lokales und Ihr entferntes Teamrepository auf GitHub auf. Es ist keine bestimmt Reihenfolge vorgegeben, nur was wer tun soll. Diskutieren Sie Ihr Vorgehen und auftretende Problemen. Probieren Sie etwas und versuchen Sie aufgetretene _merge_-Konflikte zu lösen.
 
 NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `;` geschrieben. Besteht ein Autorenname aus mehr als drei Teilen, müssen die Vor- und Nachnamen mit `_` jeweils zu einer Gruppe zusammengefasst werden.
 

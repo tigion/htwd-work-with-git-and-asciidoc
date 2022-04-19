@@ -122,7 +122,7 @@ $ git pull
 ---
 .icon:user[] Person A
 [start=7]
-7. Der nicht mehr benötigte _feature-XYZ_-Branch kann jetzt auf GitHub und Lokal gelöscht werden.:
+. Der nicht mehr benötigte _feature-XYZ_-Branch kann jetzt auf GitHub und Lokal gelöscht werden.:
 ** *GitHub*: Im abgeschlossenen Pull-Request über kbd:[Delete branch] oder im Reiter "Code" -> branch -> Papierkorbsymbol
 ** *Lokal*: Im lokalen Workspace mit:
 +
@@ -173,7 +173,7 @@ Mit Hilfe eines Forks kann einem öffentlichen Repository eine Änderung als Pul
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 Fork::
-Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repositorie können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
+Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repository können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
 Am häufigsten werden Forks verwendet, um entweder Änderungen am Projekt eines anderen vorzuschlagen oder um das Projekt eines anderen als Ausgangspunkt für Ihre eigene Idee zu verwenden.
 
 .Hinweise: Erzeugen eines Fork mit zugehörigem Pull-Request
@@ -280,7 +280,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ----
 $ git clone ...
 ----
-. Den durch GitHub erstellten Pull-Request _tigion-main_-Branch lokal bereitstrellen:
+. Den durch GitHub erstellten Pull-Request _tigion-main_-Branch lokal bereitstellen:
 +
 ----
 $ git checkout -b tigion-main main
@@ -306,7 +306,7 @@ $ git push origin main
 . wechsle kbd:[Merge pull request] -> kbd:[Rebase und merge]
 . kbd:[Confirm rebase and merge]
 
-.Variante: Lokal - upstream-Remote und Rebase im lokalem Repository #TODO#
+.Variante: Lokal - upstream-Remote und Rebase im lokalen Repository #TODO#
 . add remote as "upstream":
 +
 `+% git remote add upstream https://github.com/user/public-repo.git+`
@@ -392,8 +392,8 @@ Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork
 . (optional) Erstellen Sie einen extra Branch für diese Änderung und wechseln Sie in diesen.
 . Nehmen Sie lokal **eine** Änderung laut https://github.com/tigion/htw-playground-fork-colors#readme[*README*] entsprechend *Ihres Platzes im Praktikum* (siehe `_comment`-Attribute) in der Datei */data/colors.json* vor.
 +
-IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Mergekonflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
-. Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repoository auf GitHub.
+IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Merge-Konflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
+. Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repository auf GitHub.
 . Erzeugen Sie jetzt einen **Pull-Request** auf das ursprüngliche Repository.
 . Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
 . (optional) Jetzt können Sie den Fork auf GitHub und lokal löschen.
