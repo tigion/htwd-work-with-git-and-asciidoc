@@ -196,14 +196,14 @@ Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issu
 | Phase       | Milestone
 a|
 * Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
-| Iteration   | Project
+| *Iteration*   | *Project*
 a|
 * Iteration [1..n]
 | User Story  | Issue
 a|
 * Kurze Beschreibung einer Anforderung
 * Noch kein konkretes Work Item
-| Work Item   | Issue
+| *Work Item*   | *Issue*
 a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
@@ -353,10 +353,12 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ** Work Item 3: `*Datei .gitignore anlegen* - Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.`
 
 . Erstellen Sie eine *Iteration*, bspw.: `Iteration 01`, als Project mit dem Template: Automated kanban und nehmen Sie Ihre drei Work Items (Issues) auf.
++
+#TODO#: Fortschrittsbalken aktivieren
+//. Erstellen Sie eine *Phase* oder *Meilenstein* als Milestone und weisen diesem Ihre drei Work Items (Issues) zu.
 
-. Erstellen Sie eine *Phase* oder *Meilenstein* als Milestone und weisen diesem Ihre drei Work Items (Issues) zu.
-
-. Schließen Sie eine Work Item (Issue) und schauen Sie sich die Änderung im *Iterations*-Projekt und dem *Phasen*-Meilenstein an.
+. Schließen Sie ein *Work Item* (Issue) und schauen Sie sich die Änderung im *Iterations*-Projekt an.
+//und dem *Phasen*-Meilenstein an.
 
 ////
 ==== Aufgabe 3.2 - Diskussion
@@ -364,5 +366,19 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 * Diskutieren Sie in Ihrem Projektteam wie weit und mit welchen Hilfsmitteln Sie bisher den OpenUP in Ihrer Projektorganisation angewendet haben und ob die stärkere Nutzung von GitHub (Issues, Projekte, Meilensteine) eine mögliche Alternative oder Verbesserung wäre.
 * Tauschen Sie sich mit anderen Projektteams und deren Erfahrungen mit OpenUP und git bzw. GitHub aus.
 ////
+
+
+{section-separator}
+
+=== Hinweise für den Beleg
+
+Für den Schwerpunkt der *Work Item*- und **Iterations**verwaltung mit GitHub Issues/Projects sind durch die Fachaustausche in SE II einige ergänzende und alternative Tools von Studenten empholen worden:
+
+* GitHub Erweiterungen:
+** https://help.zenhub.com/support/solutions/articles/43000010778-what-is-zenhub-an-intro-to-zenhub-in-github[ZenHub], ...
+* separate Aufgabenverwaltungen:
+** https://www.atlassian.com/de/software/jira[Jira], https://www.meistertask.com/[MeisterTask], https://trello.com/[Trello], ...
+
+
 
 include::sitemap.inc.adoc[]
