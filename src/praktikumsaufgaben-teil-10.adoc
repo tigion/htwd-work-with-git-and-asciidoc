@@ -374,6 +374,7 @@ Die Workflows werden jeweils durch *Push*- und *Pull-Request*-Events im *master*
 . Unit-Tests ausführen
 ****
 . Übernehmen Sie die eben angelegten Workflow-Dateien als neue Version in Ihr Repository und pushen diese zum _remote_-Repository.
+. Nehmen Sie eine Änderung (bspw. Kommentar in der jeweiligen Main-Klasse/-Methode) im Verzeichnis `example-java` oder `example-python` vor und als neue Version in das Repository auf, um den zugehörigen Workflow auszulösen.
 . Sehen Sie sich auf GitHub im Reiter *Actions* das Ergebnis Ihres Workflows an. Dies kann einen Moment dauern.
 . Ein Test ist fehlgeschlagen. Es darf nicht möglich sein, Einwohnerzahlen kleiner 0 einzugeben. Passen sie die *Town*-Klassen so an, dass bei weiteren Pushs keine Tests mehr fehlschlagen. Je nach Testanforderung, ist eine Exception oder ein minimaler Standardwert von 0 zu verwenden.
 +
@@ -386,7 +387,7 @@ Die Workflows werden jeweils durch *Push*- und *Pull-Request*-Events im *master*
 public void setResidents(int residents) {
   // variant: exception
   if (residents < 0)
-    throw new IllegalArgumentException("residents must be greater than 0: " + residents);
+    throw new IllegalArgumentException("residents must be equal or greater than 0: " + residents);
   this.residents = residents;
 
   // variant: min default value 0
@@ -404,7 +405,7 @@ public void setResidents(int residents) {
 
         # variant: exception
         #if value < 0:
-        #    raise ValueError("residents must be greater than 0")
+        #    raise ValueError("residents must be equal or greater than 0")
         #self.__residents = value
 ----
 ====

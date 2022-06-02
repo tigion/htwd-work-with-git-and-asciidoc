@@ -74,7 +74,7 @@ remote: Please see https://github.blog/2020-12-15-token-authentication-requireme
 
 Anleitung für das Anlegen von Access Token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token[Creating a personal access token]
 
-. Legen Sie auf GitHub über "Settings > Developer settings > Personal access tokens" einen neuen Token bspw. `Praktikum SE I` mit einer Gültigkeit für dieses Semester und nur dem Scope `repo` an.
+. Legen Sie auf GitHub über "Settings > Developer settings > Personal access tokens" einen neuen Token bspw. `Praktikum SE I` mit einer Gültigkeit für dieses Semester und nur dem Scope *repo* und *workflow* an.
 +
 WARNING: Der Personal access token ist nur nach dem Erstellen zu sehen und kann danach nicht wieder angezeigt werden!
 +
