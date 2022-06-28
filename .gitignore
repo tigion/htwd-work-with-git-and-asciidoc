@@ -1,11 +1,22 @@
 *~
 .DS_Store
 
+# ignore special folder '.asciidoctor'
 .asciidoctor/
+
+# ignore unwanted project folders
 build/
+src/images/diagrams/
+
+# ignore extra files, but keep folder 'files'
 src/files/*
 !src/files/.keep
-src/images/diagrams/
+
+# ignore video files, but keep folder 'videos'
 src/images/videos/*
 !src/images/videos/.keep
+
+# ignore generated html/pdf files only
 src/*.pdf
+src/**/*.html
+!src/**/docinfo.html
