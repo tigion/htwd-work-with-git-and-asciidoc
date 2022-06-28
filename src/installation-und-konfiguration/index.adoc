@@ -1,0 +1,599 @@
+= Asciidoctor - Installation und Konfiguration
+Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
+:toc:
+:toclevels: 3
+:icons: font
+:source-highlighter: rouge
+:xrefstyle: full
+:experimental:
+:imagesdir: images
+:!example-caption:
+:docinfo: shared-head
+:toc-title: Inhaltsverzeichnis
+:table-caption: Tabelle
+:figure-caption: Abbildung
+:imagesdir: images
+:sectnums:
+//:sectnumlevels: 2
+:sectanchors:
+
+
+Das Dokument beschreibt die Installation und Konfiguration der für das https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/[Praktikum] und den Beleg in Software Enigneering I + II benötigten Software *Git*, *Asciidoctor* und *Visual Studio Code*.
+
+== Installation
+
+=== Git
+
+====
+*Git* is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+- https://git-scm.com/
+====
+
+Test im Terminalfootnote:[Ein *Terminal* ermöglicht die Eingabe von Kommandos (https://de.wikipedia.org/wiki/Kommandozeile[CLI]) und ist unter Windows bspw. die PowerShell oder CMD] ob https://git-scm.com/[Git] schon installiert ist bzw. erfolgreich installiert wurde:
+
+[source,sh]
+----
+$ git --version
+git version 2.32.0 (Apple Git-132)
+----
+
+==== icon:windows[] Windows
+Laden und installieren Sie sich Git von der offiziellen Projektseite: https://git-scm.com/downloads[git-scm.com/downloads]. Es können die Standardeinstellungen bei der Installation übernomen werden. Dabei wird Git samt der Git Bash installiert.
+
+==== icon:linux[] Linux und icon:apple[] macOS
+In der Regel ist Git standartdmäßig vorhanden, so dass hier keine weitere Installation notwendig ist. Alternativ den Hinweisen auf  https://git-scm.com/downloads[git-scm.com/downloads] folgen.
+
+
+=== Asciidoctor
+
+====
+*Asciidoctor* is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems. - https://asciidoctor.org/[Asciidoctor]
+====
+
+Für die Installation von https://asciidoctor.org/[Asciidoctor] wird https://www.ruby-lang.org/de/[Ruby] und die zugehörigen RubyGemsfootnote:[*RubyGems* (Gems) ist das Paketsystem für die Programmiersprache Ruby (https://de.wikipedia.org/wiki/RubyGems[Quelle])] benötigt. Für die Erweiterung Asciidoctor Diagram wird zusätzlich https://openjdk.java.net/[Java (OpenJDK)] und https://graphviz.org/[Graphviz] benötigt.
+
+NOTE: Wird die Diagrammunterstützung von Asciidoctor nicht benötigt, muss *java*, *asciidoctor-diagram* und *graphviz* nicht installiert werden.
+
+.Benötigte Software und Erweiterungen für Asciidoctor
+[cols="2,4a"]
+|===
+| asciidoctor | https://asciidoctor.org/[Asciidoctor] is a fast, open source text processor and publishing toolchain.
+| asciidoctor-pdf | https://asciidoctor.org/docs/asciidoctor-pdf/[Asciidoctor PDF] is a native PDF converter for AsciiDoc
+| rouge | https://github.com/rouge-ruby/rouge[Rouge] is a pure Ruby syntax highlighter. Use in AsciiDoc documents the attribute `:source-highlighter: rouge`.
+| asciidoctor-diagram | https://asciidoctor.org/docs/asciidoctor-diagram/[Asciidoctor Diagram] is a set of Asciidoctor extensions that enable you to add diagrams, which you describe using plain text, to your AsciiDoc document.
+| graphviz | https://graphviz.org/[Graphviz] is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks.
+|===
+
+.Optionale Software und Erweiterungen für Asciidoctor
+[cols="2,4a"]
+|===
+| text-hyphen | Erweitert Asciidoctor-PDF um die Möglichkeit von Silbentrennung bei der Erstellung von PDF-Dokumenten. Asciidoctor Dokumentenattribute: `:lang: DE` und `:hyphens:`
+|===
+
+==== Test der Installation
+
+Tests im Terminal, ob Ruby, Java, Asciidoctor, Graphviz und benötigte RubyGems schon installiert sind bzw. erfolgreich installiert wurden. Die Versionen können je nach Betriebssystem oder alter der Anleitung abweichen.
+
+.Ruby
+[source,sh]
+----
+$ ruby -v
+ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]
+----
+
+.Java
+[source,sh]
+----
+$ java --version
+openjdk 17.0.2 2022-01-18
+OpenJDK Runtime Environment (build 17.0.2+8-86)
+OpenJDK 64-Bit Server VM (build 17.0.2+8-86, mixed mode, sharing)
+----
+
+.Asciidoctor
+[source,sh]
+----
+$ asciidoctor -v
+Asciidoctor 2.0.17 [https://asciidoctor.org]
+Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+
+# Asciidoctor-PDF Version (falls extra vorhanden)
+$ asciidoctor-pdf -v
+Asciidoctor PDF 1.6.2 using Asciidoctor 2.0.17 [https://asciidoctor.org]
+Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+----
+
+.Graphviz Dot
+[source,sh]
+----
+$ dot -V
+dot - graphviz version 3.0.0 (20220226.1711)
+----
+
+.RubyGems
+[source,sh]
+----
+$ gem list | grep rouge
+rouge (3.28.0)
+
+$ gem list | grep asciidoctor-pdf
+asciidoctor-pdf (1.6.2)
+
+$ gem list | grep asciidoctor-diagram
+asciidoctor-diagram (2.2.1)
+asciidoctor-diagram-ditaamini (1.0.1)
+asciidoctor-diagram-plantuml (1.2022.1)
+
+$ gem list | grep text-hyphen
+text-hyphen (1.4.1)
+----
+
+==== icon:windows[] Windows
+
+1. *Ruby* über den https://rubyinstaller.org/[RubyInstaller], bspw. `Ruby 3.x (x64)`, installieren. Eine minimale Installation ohne Devkit und ohne MSYS2 development toolchain reicht.
++
+Alternativ kann über das https://docs.microsoft.com/de-de/windows/wsl/[WSL] (Windows Subsystem für Linux) Ruby installiert werden. Hier kann je nach gewählter Distribution eine Ruby Version dabei sein. Andernfalls entsprechend für das gewählte Linux nachinstallieren.
++
+** https://phoenixnap.com/kb/install-ruby-on-windows-10[How to Install Ruby on Windows 10]
+
+2. *Asciidoctor* und benötigte Tools per RubyGems über das Terminal installieren:
++
+[source,sh]
+----
+$ gem install asciidoctor
+$ gem install asciidoctor-pdf
+$ gem install rouge
+$ gem install asciidoctor-diagram
+# optional
+$ gem install text-hyphen
+----
+
+3. *Java* https://openjdk.java.net/[OpenJDK] über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?package=jdk#download-openjdk[Azul Zulu] laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen.
+
+4. *Graphviz* über die https://graphviz.org/download/[Downloadseite] laden  und installieren:
++
+* Direktlink: Stable Windows install packages -> 10/cmake/Release/x64/ -> https://www2.graphviz.org/Packages/stable/windows/10/cmake/Release/x64/[graphviz-install-2.44.1-win64.exe]
+
+5. Graphviz *Dot* fertig konfigurieren:
++
+* "Windows Startmenü Button > Rechtsklick > *Eingabeaufforderung (Administrator)*" oder *PowerShell (Administrator)* öffnen
+* In das *bin* Verzeichnis der Graphviz-Installation wechseln `cd C:\Program Files\Graphviz 2.44.1\bin` und `dot -c` ausführen:
++
+.Screenshot: Eingabeaufforderung (Administrator)
+image::screenshot_eingabeaufforderung-dot.png[width="500"]
++
+.Hinweise zum Setzen der Umgebungsvariable `GRAPHVIZ_DOT`
+[%collapsible]
+====
+=====
+Das Anlegen der Umgebungsvariable `GRAPHVIZ_DOT` ist nur notwendig, wenn die Graphviz Installation nicht im Standardpfad liegt bzw. ein Fehler auftaucht, welcher besagte Umgebungsvariable vermisst.
+
+. icon:windows[]-Taste drücken und `umgebungsvariable` eingeben
+. *Systemumgebungsvariablen bearbeiten* auswählen
+. In den Systemeigenschaften den kbd:[Umgebungsvariablen...] Button betätigen
+. Im oberen Bereich *Benutzervariablen* über den Button kbd:[Neu...] folgende Umgebungsvariable anlegen:
+** Name der Variable: `GRAPHVIZ_DOT`
+** Wert der Variable: über kbd:[Datei durchsuchen...] in das Installationsverzeichnis von *Graphviz* wechseln und im Ordner *bin* die _dot.exe_ auswählen, bspw.: `C:\Program Files\Graphviz 2.44.1\bin\dot.exe`
+. Mit kbd:[OK] übernehmen und das Umgebungsvariablen-Fenster ebenfalls mit kbd:[OK] schließen
+. Terminal und Visual Studio Code neustarten
+=====
+====
+
+.Screenshot: Windows 10 mit Visual Studio Code unter VirtualBox
+[%collapsible]
+====
+image::screenshot_windows-10_vs-code.png[700]
+====
+
+NOTE: Beim wiederholten Generieren nach erfolgreicher Installation kann es sein, dass immer noch die alten fehlerhaften Diagrammbilder angezeigt werden. Hier hilft es die alten Diagrammbilder vorher zu löschen. In Praktikum 4 wären das der Ordner *.asciidoctor* und der Ordner images/*diagrams*.
+
+==== icon:linux[] Linux
+1. Ruby per Paketverwaltungssystem installieren, bspw. unter Ubuntu mit:
++
+[source,sh]
+----
+$ sudo apt-get install ruby
+----
+
+2. Asciidoctor und benötigte Tools per RubyGems über das Terminal installieren:
++
+[source,sh]
+----
+$ sudo gem install asciidoctor
+$ sudo gem install asciidoctor-pdf
+$ sudo gem install rouge
+$ sudo gem install asciidoctor-diagram
+# optional
+$ gem install text-hyphen
+----
+
+3. Java https://openjdk.java.net/[OpenJDK] über die Packetquellen oder  über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?package=jdk#download-openjdk[Azul Zulu] laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
+
+4. Für die lokale Generierung der Diagramme wird noch Graphviz benötigt und kann über die Packetquellen (Alternativ entsprechende https://graphviz.org/download/[Downloadseite]) installiert werden:
++
+[source,sh]
+----
+$ sudo apt-get install graphviz
+----
+
+==== icon:apple[] macOS
+
+1. https://brew.sh/index_de[Homebrew] nach zugehöriger Anleitung installieren.
+
+2. Ruby per Homebrew über das Terminal installieren (alternative https://mac.install.guide/ruby/13.html[Anleitung]):
++
+[source,sh]
+----
+% brew install ruby
+----
++
+Zusätzlich muss noch die Umgebungsvariable `PATH` für die mit Homebrew installierte Ruby Version angepasst werden:
++
+.Hinweise: Anpassen der `PATH`-Variable
+[%collapsible]
+====
+=====
+. Im Terminal die verwendete Shell und Architektur des Macs identifizieren:
++
+.Shell
+[source,sh]
+----
+% echo $SHELL
+/bin/zsh
+----
++
+.Architektur
+[source,sh]
+----
+% uname -m
+arm64 oder x86_64
+----
+. Die Konfigurationsdatei der verwendeten Shell _.zshrc_ (_.bashrc_) zum Bearbeiten öffnen:
++
+[source,sh]
+----
+% open -e ~/.zshrc
+#oder
+% vi ~/.zshrc
+----
+. In der Konfigurationsdatei die `PATH`-Variable anpassen. Dazu, entsprechend der Architektur des Macs, am Ende folgendes hinzufügen:
++
+.Mac mit Apple-Chip (arm64)
+[source,sh]
+----
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+----
++
+.Mac mit Intel-Prozessor (x86_64) oder Rosetta
+[source,sh]
+----
+if [ -d "/usr/local/opt/ruby/bin" ]; then
+  export PATH=/usr/local/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+----
++
+.Alternativ beides per IF-ELSE
+[source,sh]
+----
+if [ `uname -m` = "arm64" ] && [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  # arm64 (apple)
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  export PATH=`gem environment gemdir`/bin:$PATH
+elif [ `uname -m` = "x86_64" ] && [ -d "/usr/local/opt/ruby/bin" ]; then
+  # x86_64 (intel)
+  export PATH=/usr/local/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
+----
+. Das Terminal beenden und neustarten oder mit `source ~/.zshrc` die geänderte Konfiguration neuladen lassen.
+=====
+====
+
+3. Asciidoctor per Homebrew über das Terminal installieren:
++
+[source,sh]
+----
+% brew install asciidoctor
+----
+//Alternativ stattdessen als RubyGems:
+//$ sudo gem install asciidoctor
+
+4. Asciidoctor Tools per RubyGems über das Terminal installieren:
++
+[source,sh]
+----
+$ gem install asciidoctor-pdf
+$ gem install rouge
+$ gem install asciidoctor-diagram
+# optional
+$ gem install text-hyphen
+----
+
+5. Java https://openjdk.java.net/[OpenJDK] über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?os=macos&package=jdk[Azul Zulu] in passender Architektur laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
++
+.Hinweise: OpenJDK Download Variante
+[%collapsible]
+====
+[source,sh]
+----
+$ cd ~/Downloads
+$ tar -xf openjdk-17.0.2_macos-aarch64_bin.tar.gz
+$ sudo mv ~/Downloads/jdk-17.0.2.jdk /Library/Java/JavaVirtualMachines
+----
+====
+
+6. Für die lokale Generierung der Diagramme wird noch Graphviz benötigt:
++
+[source,sh]
+----
+$ brew install graphviz
+----
+
+
+=== Asciidoctor per icon:ship[] Docker
+
+NOTE: Voraussetzung für die Verwendung dieser Variante ist eine vorhandene https://docs.docker.com/get-docker/[Installation von Docker].
+
+==== Variante: Interaktive Shell
+
+In dieser Variante wird das Generieren der Dokumente über einen Asciidoctor Docker Container gelöst. Die Vorschau des Dokumentes in VS Code erfolgt über die Asciidoctor Erweiterung (JavaScript).
+
+. In das lokale Projektverzeichnis `my-asciidoctor-project` wechseln und Docker Container mit interaktiver Shell im Terminal (bspw. von VS Code) starten:
++
+```sh
+% cd my-asciidoctor-project/
+% docker run -it -v "$(pwd):/documents/" asciidoctor/docker-asciidoctor <1> <2>
+```
++
+<1> Im Docker Container ist das Projektverzeichnis im Verzeichnis `/documents` gemountet.
+<2> Der angegebene Asciidoctor Docker Container https://github.com/asciidoctor/docker-asciidoctor[asciidoctor/docker-asciidoctor] ist vom Asciidoctor Projekt und enthält alle relevanten Tools.
++
+Alternativ direkt mit Pfad zum Projektverzeichnis starten:
++
+```sh
+% docker run -it -v "/path/to/my-asciidoctor-project/:/documents/" asciidoctor/docker-asciidoctor
+```
+
+. Prüfen, ob lokaler Projektinhalt im Docker Container im `/documents` Verzeichnis verfügbar ist:
++
+```sh
+bash-5.1# pwd
+/documents
+bash-5.1# ls
+document.adoc ...
+```
+
+. Dokument mit Asciidoctor-Befehl im Docker Container als HTML/PDF erstellen:
++
+```sh
+bash-5.1# asciidoctor document.adoc
+bash-5.1# asciidoctor-pdf document.adoc
+bash-5.1# asciidoctor -r asciidoctor-diagram document.adoc
+bash-5.1# asciidoctor-pdf -r asciidoctor-diagram document.adoc
+```
++
+Das Ergebnis liegt anschließend im Projektverzeichnis.
+
+. Docker Container in der interaktiver Shell mit `exit` beenden:
++
+```sh
+bash-5.1# exit
+```
+
+==== Variante: Dev Container in Visual Studio Code
+
+In dieser Variante wird das Projektverzeichnis innerhalb von Visual Studio Code in einem zugehörigen Dev Container gestartet. Das Generieren und die Vorschau geschieht über den Asciidoctor Docker Container.
+
+. Installation der VS Code Erweiterung: **Remote - Containers**
+
+. Projektverzeichnis über "File > Open folder…" in VS Code öffnen
+
+. Im geöffneten Projektverzeichnis wird ein Ordner __**.devcontainer**__ mit den Dateien __**devcontainer.json**__ und __**Dockerfile**__ erstellt.
+
+. Folgenden Inhalte für die Datei _devcontainer.json_ übernehmen:
++
+[source, json, title="devcontainer.json"]
+----
+{
+    "name": "Asciidoctor", <1>
+    "context": "..", <2>
+    "dockerFile": "Dockerfile", <3>
+    "extensions": [ <4>
+        "asciidoctor.asciidoctor-vscode",
+        "jebbs.plantuml"
+    ],
+    "settings": { <5>
+        "asciidoc.asciidoctor_command": "asciidoctor -r asciidoctor-diagram",
+        "asciidoc.preview.useEditorStyle": false,
+        "asciidoc.use_asciidoctor_js": false
+    }
+}
+----
+<1> Sets the name of the dev container
+<2> Sets the run context to one level up instead of the .devcontainer folder.
+<3> Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+<4> Add the IDs of extensions you want installed when the container is created.
+<5> Set *default* container specific settings.json values on container create.
++
+Enthält den Namen, den Ort des zugehörigen Dockerfiles und die für den Container von VS Code benötigten Erweiterungen mit den zugehörigen Einstellungen.
+
+. Folgenden Inhalte für die Datei _Dockerfile_ übernehmen:
++
+[source, docker, title="Dockerfile"]
+----
+FROM asciidoctor/docker-asciidoctor
+----
++
+Enthält die Angabe des zu verwendenden Asciidoctor Docker Containers https://github.com/asciidoctor/docker-asciidoctor[asciidoctor/docker-asciidoctor] vom Asciidoctor Projekt.
+
+. In VS Code die **View > Command Palette…** öffnen und `Remote-Containers: Reopen in Container` auswählen.
++
+.Screenshot: Laufender Dev Container in VS Code
+image::screenshot_vscode_dev-container.png[width="500"]
++
+Die Vorschau und das Terminal in VS Code nutzen jetzt den Asciidoctor Docker Container.
+
+. Beenden mit Rechtsklick auf Dev Container: Asciidoctor (links unten) …`Close Remote Connection` oder  `Reopen folder localy`
+
+=== Visual Studio Code
+
+====
+*Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. - https://code.visualstudio.com/docs
+====
+
+==== icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS
+Laden und installieren Sie sich https://code.visualstudio.com/[Visual Studio Code] von der offiziellen Projektseite: https://code.visualstudio.com/Download[code.visualstudio.com/download].
+
+==== AsciiDoc Extension
+
+Für eine bessere Unterstützung von AsciiDoc-Dokumenten (Syntax Highlighting, Live-Vorschau, ...) wird noch eine Erweiterung (Extension) in Visual Studio Code benötigt.
+
+1. Starten Sie Visual Studio Code
+2. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht ("View > Extensions") und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
+
+==== Extensions (optional)
+
+Weitere hilfreiche Erweiterungen wären:
+
+* https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces[Trailing Spaces] ... highlight trailing spaces and delete them in a flash
+* https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles[Markdown Preview Github Styling] ... changes VS Code's built-in markdown preview to match Github's styling
+* https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML] ... rich PlantUML support for Visual Studio Code
+
+== Konfiguration
+
+=== Git-Identität
+
+Legen Sie Ihre lokale Git-Identität in der globalen Git-Konfiguration fest:
+
+----
+$ git config --global user.name "Vorname Nachname"
+$ git config --global user.email s00000@informatik.htw-dresden.de
+----
+
+Ausgewählte Inhalte bzw. alles kann mit folgenden Git-Kommandos angezeigt werden:
+
+----
+$ git config --global user.name
+Vorname Nachname
+$ git config --global user.email
+s00000@informatik.htw-dresden.de
+$ git config --list
+...
+----
+
+.Hinweise für verschiedene Git-Identitäten (Privat, Studium, Arbeit, ...)
+[%collapsible]
+====
+=====
+Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (andere E-Mail für Privat, Studium, Arbeit, ...), können Sie auch eine spezifische Konfiguration je Repository anlegen.
+
+Befehle wie oben, nur ohne `--global` und innerhalb ihres Repository-Verzeichnisses ausgeführt:
+
+----
+$ git config user.name "Vorname Nachname"
+$ git config user.email s00000@informatik.htw-dresden.de
+----
+
+Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_conditional_includes[Conditional includes] zu verwenden. Hier kann man bspw. Git-Konfigurationen abhängig von der Verzeichnisstruktur setzen:
+
+..gitconfig (global)
+----
+[user]
+    name = Vorname Nachname
+    email = vorname.nachname@private.de
+[includeIf "gitdir:~/Studium/"]
+    path = "~/.gitconfig_studium"
+----
+
+..gitconfig_studium
+----
+[user]
+    name = Vorname Nachname
+    email = s00000@htw-dresden.de
+----
+=====
+====
+
+=== GitHub - Personal access token verwenden
+
+Eine Möglichkeit für die Authentifizierung zu GitHub über die Shell/Terminal bzw. Visual Studio Code ist der *Personal access token*.
+
+Mit den Access Tokens (Personal access tokens) können Anwendungen gezielt eingeschränkte Zugriffsmöglichkeiten gegeben oder entzogen werden, ohne das Accountpasswort preiszugeben.
+
+1. Legen Sie auf GitHub über "Settings > Developer settings > Personal access tokens" einen neuen Token bspw. `Privater Rechner` mit einer unendlichen Gültigkeit und nur dem Scope `repo` an.
++
+WARNING: Der Personal access token ist nur nach dem Erstellen zu sehen und kann danach nicht wieder angezeigt werden!
+
+2. Führen Sie im Terminal (Windows bspw. Power Shell) ein `git clone` oder bei existierendem Repository `git pull` durch. Dabei wird der Login abgefragt und in der Regle im Login-Manager (Credential Manager) des Systems hinterlegt.
++
+NOTE: Wird nach einem Passwort gefragt, wird stattdessen der eben angelegte Personal access token verwendet. +
+Bei der Frage nach der Authentication Methode entsprechend 2 für Personal access token wählen.
++
+.Ausgabe: icon:windows[] Windows - PowerShell
+[%collapsible]
+====
+----
+> git clone https://github.com/<account>/htw-se-example-project.git
+Cloning into 'htw-se-example-project'...
+Select an authentication method for 'https://github.com/':
+  1. Web browser (default)
+  2. Personal access token
+option (enter for default): 2
+Enter GitHub personal access token for 'https://github.com/'...
+Token:
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+----
+====
++
+.Ausgabe: icon:linux[] Linux und icon:apple[] macOS - Terminal
+[%collapsible]
+====
+----
+% git clone https://github.com/<account>/htw-se-example-project.git
+Klone nach 'htw-se-example-project' ...
+Username for 'https://github.com': <account>
+Password for 'https://<account>@github.com':
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
+Receiving objects: 100% (10/10), done.
+----
+====
+
+=== Visual Studio Code
+
+==== Anpassung der AsciiDoc Extension
+
+Die Einstellungen finden Sie unter: Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc".
+
+.Vorschau: Verwendung des Asciidoctor-Themas (weißer Hintergrund)
+Für eine neutrale Vorschau des AsciiDoc Dokumentes passen Sie bitte folgende Einstellung an:
+
+* Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert)
+
+.Vorschau: Verwendung der lokal installierten Asciidoctor Version
+Sind die Asciidoctor Tools lokal installiert, kann die Erweiterung statt der integrierten JavaScript-Variante direkt die Asciidoctor-Kommandos verwenden. Dazu sind folgende Einstellungen anzupassen:
+
+//* Asciidoc: Asciidoctor_command: `asciidoctor`
+//* Asciidoc: Asciidoctorpdf_command: `asciidoctor-pdf`
+// alternativ?: asciidoctor -r asciidoctor-pdf
+* Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert)
+//* Asciidoc: *Use_asciidoctorpdf*: icon:check-square-o[] (aktiviert)
+
+.Vorschau: Verwendung der asciidoctor-diagram Erweiterung
+Werden Diagramme über die *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation) im Dokument verwendet, muss für eine passende Vorschau folgende Einstellung angepasst werden:
+
+* Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+
+==== Bugs & Bugfixes
+
+* Funktioniert in Visual Studio Code die Anzeige von Bildern in der Vorschau eines AsciiDoc-Dokumentes nicht, aber beim Rendern über das Terminal, könnte es nach obiger Konfiguration an folgendem liegen: https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-faq-and-tips/index.html#_warum_funktioniert_in_visual_studio_code_die_anzeige_von_bildern_in_der_vorschau_eines_asciidoc_dokumentes_nicht[Preview Attributes: data-uri]

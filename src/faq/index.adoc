@@ -1,0 +1,441 @@
+= FAQ & Tipps
+Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
+:toc:
+:toclevels: 2
+:icons: font
+:source-highlighter: rouge
+:xrefstyle: full
+:experimental:
+:imagesdir: images
+:!example-caption:
+:docinfo: shared-head
+:toc-title: Inhaltsverzeichnis
+:table-caption: Tabelle
+:figure-caption: Abbildung
+:sectanchors:
+
+
+== icon:comments-o[] Asciidoctor
+
+=== Wie kann ich die Beschriftungen für Elemente wie Tabellen, Abbildungen, etc. anpassen?
+
+In der Asciidoctor-Dokumentation findet man unter https://asciidoctor.org/docs/user-manual/#language-support[Using Asciidoctor with Other Languages] Attribute und Möglichkeiten für das Anpassen und Übersetzen von Beschriftungen.
+
+Folgend ein paar ausgewählte Dokument-Attribute, die die standardmäßig in englisch vorgegebene Beschriftung umbenennen:
+
+----
+:toc-title: Inhaltsverzeichnis
+:table-caption: Tabelle
+:figure-caption: Abbildung
+----
+
+Alternativ lassen sich diese auch sprachabhängig oder angepasst aus dem Asciidoctor Projekt übernehmen:
+
+1. Im Dokumentenverzeichnis wird ein Ordner _locale_ angelegt.
+2. In dieses Verzeichnis werden aus dem https://github.com/asciidoctor/asciidoctor/tree/master/data/locale[Asciidoctor-Repository] die Dateien _attributes.adoc_ und _attributes-de.adoc_ kopiert.
+3. Dokument-Attribute wir folgt ergänzen:
++
+----
+:lang: de
+\include::locale/attributes.adoc[]
+----
+
+=== Wie kann ich einen Teil einer Quelltextdatei einbinden?
+
+Mit dem Attribut `lines` wird beim `include` die Anfangs- und Endzeile getrennt durch `..` des einzubindenden Abschnittes festgelegt. Es ist auch möglich mehrere Abschnitte aus einer Datei mit `lines=2..4;8..12` festzulegen. Eine Angabe von `-1` für die Endzeile bedeutet bis zur letzten Zeile.
+
+.Syntax
+-----
+.Ergebnis
+[source,c]
+----
+include::src/code.c[lines=5..8] <1>
+----
+-----
+<1> Es werden die Zeilen 5 bis 8 inkludiert.
+
+Weitere Hinweise und Varianten (bspw. Tags) findet man im offiziellen https://asciidoctor.org/docs/user-manual/#include-partial[User Manual: Select Portions of a Document to Include].
+
+
+=== Wie kann ich einen ausklappbaren Block erstellen?
+
+.Syntax mit aufklappbarem Block
+-----
+.Ergebnis <1>
+[%collapsible] <2>
+====
+[source,c]
+----
+\include::src/code.c[lines=11..12]
+----
+====
+-----
+<1> Titel des aufklappbaren Blockes
+<2> Das Makro `[%collapsible]` erzeugt im generierten HTML Dokument einen aufklappbarer Block mit allem, was sich zwischen den Blockbegrenzungen `====` befindet.
+
+.Ergebnis (Klick mich)
+[%collapsible]
+====
+[source,c]
+----
+fgets(vBuf, 128, stdin);
+x = atof(vBuf);
+----
+====
+
+
+=== Wie kann ich Bilder und Diagramm besser einbinden?
+
+Um Schreibfehler beim mehrfachen Verwenden der Angaben eines Bildes bei der Einbindung im Dokument zu vermeiden, ist es sinnvoll, diese vorab als https://asciidoctor.org/docs/user-manual/#attributes[Attribute] zu definieren. Attribute können für jedes weitere Bild wieder neu gesetzt werden.
+
+.Einbindung eines Bildes
+[%collapsible]
+====
+=====
+----
+:imageTitle: Ich bin ein Bildtitel <1>
+:imageFile: image-file.jpg <2>
+:imageWidth: 800 <3>
+image::{imageFile}[title="{imageTitle}", alt="{imageTitle}", width={imageWidth}] <5> <6>
+----
+----
+:imageTitle: Ich bin ein Bildtitel <1>
+:imageFile: image-file.jpg <2>
+:imageWidth: 800 <3>
+:imageID: id01 <4>
+image::{imageFile}[title="{imageTitle}", alt="{imageTitle}", id="{imageID}", width={imageWidth}] <5> <6>
+----
+<1> Attribut für den Bildtitel und Alternativtext. Unterscheiden sie sich, kann ein `:imageAlt: dafür verwendet werden`.
+<2> Attribut für den Dateinamen mit Dateiendung
+<3> (optional) Angabe der Bildbreite
+<4> (optional) Vergabe einer ID, welche im Dokument als Sprungmarke verwendet wird. Alternativ geht auch ein `[#id01]` ohne dem `id="{imageID}"` Attribut.
+<5> Einbindung des Bildes (https://asciidoctor.org/docs/user-manual/#images[Blocksyntax]) mit Hilfe der Attribute.
+<6> Weitere optionale Attribute: +
+* `width=` ... gibt die Ausgabebreite des Bildes an
+* `link=` ... Link auf sich selbst oder ein anderes Ziel
+=====
+====
+
+
+.Einbindung eines PlantUML-Diagrammes (Beispiel für ein Block Macro)
+[%collapsible]
+====
+=====
+----
+:diagramTitle: Asciidoctor mit PlantUML <1>
+:diagramFile: asciidoctor-with-plantuml <2>
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"] <5>
+----
+----
+:diagramTitle: Asciidoctor mit PlantUML <1>
+:diagramFile: asciidoctor-with-plantuml <2>
+:diagramWidth: 800 <3>
+:diagramID: id02 <4>
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", id="{diagramID}", format="svg", target="{diagramsdir}/{diagramFile}", width=800, link="{imagesdir}/{diagramsdir}/{diagramFile}.svg", subs=attributes+] <5> <6>
+----
+<1> Attribut für den Diagrammtitel und Alternativtext. Unterscheiden sie sich, kann ein `:diagramAlt: dafür verwendet werden`.
+<2> Attribut für den Dateinamen ohne Dateiendung, da der Dateiname als Name für die generierte Datei genommen wird. So wird aus `diagram.puml` eine `diagram.svg` Datei.
+<3> (optional) Angabe der Bildbreite
+<4> (optional) Vergabe einer ID, welche im Dokument als Sprungmarke verwendet wird. Alternativ geht auch ein `[#id02]` ohne dem `id="{imageID}"` Attribut.
+<5> Einbindung des Diagrammes (https://docs.asciidoctor.org/diagram-extension/latest/[Asciidoctor Diagram]) mit Hilfe der Attribute. +
+* `format=` ... Zielformat des generierten Diagramms
+* `target=` ... Zielordner, in welchem das generierte Diagramm abgelegt wird. Ist ein globales `:imagesdir:` gesetzt, befindet der Zielordner darin.
+<6> Weitere optionale Attribute: +
+* `width=` ... gibt die Ausgabebreite des Diagramms an
+* `link=` ... Link auf sich selbst oder ein anderes Ziel
+* `subs=attributes+` ... Attribute des Asciidoctor-Dokumentes werden an das PlantUML-Diagramm durchgereicht
+=====
+====
+
+
+=== Wie verwende ich Silbentrennung im PDF Export?
+
+Damit Silbentrennung in den exportierten PDF-Dokumenten angewendet wird, muss das RubyGem *text-hyphen* installiert und zwei Dokumentenattribute vorhanden sein.
+
+. Vorbereitung (https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration]):
++
+----
+$ gem install text-hyphen
+----
+
+. Dokumentenattribute:
++
+----
+:lang: DE
+:hyphens:
+----
+
+Die generierten PDF-Dokumente enthalten jetzt eine Silbentrennung, was gerade für Texte in Tabellen sinnvoll ist.
+
+
+=== Wie kann ich mehrere Bilder nebeneinander ausgeben?
+Am einfachsten kann man Bilder nebeneinander als *inline-Makro* (Variante 1) ausgeben:
+
+.Variante 1: Bilder ohne Titel als inline-Bilder (HTML, PDF)
+[%collapsible]
+====
+=====
+.Code:
+[source]
+----
+image:test.jpg[test, width=200]
+image:test.jpg[test, width=200]
+image:test.jpg[test, width=200]
+----
+
+.Ergebnis:
+image:test.jpg[test, width=200]
+image:test.jpg[test, width=200]
+image:test.jpg[test, width=200]
+=====
+====
+
+Möchte man zusätzlich die Abbildungsbezeichnung mit ausgeben, wofür das *block-Makro* verwendet wird, wären mögliche Lösungen die Varianten 2 und 3:
+
+.Variante 2: Bilder mit Titel und Textposition mit float (left/right), nur für HTML
+[%collapsible]
+====
+=====
+NOTE: Diese Variante funktioniert nur für die Generierung von HTML-Dokumenten. In PDFs werden Sie untereinander angeordnet.
+
+.Code:
+[source]
+----
+[.clearfix] <1>
+--
+.Testbild 1 <2>
+image::test.jpg[test, width=200, float="left"] <3>
+.test2
+image::test.jpg[test, width=200, float="left"]
+.test3
+image::test.jpg[test, width=200, float="left"]
+--
+----
+<1> Aufheben des float-Verhaltens nach dem `--`-Block.
+<2> Bildtitel
+<3> Bild als block-Makro mit `float="left"`
+
+.Ergebnis:
+[.clearfix]
+--
+.Testbild 1
+image::test.jpg[test, width=200, float="left"]
+.Testbild 2
+image::test.jpg[test, width=200, float="left"]
+.Testbild 3
+image::test.jpg[test, width=200, float="left"]
+--
+=====
+====
+
+.Variante 3: Bilder mit Titel und Tabelle mit ausgeblendeten Linien (HTML, PDF)
+[%collapsible]
+====
+=====
+.Code:
+[source]
+----
+[%autowidth, frame=none, grid=none, cols="3*a"] <1>
+|===
+| .Testbild 1 <2>
+image::test.jpg[test, width=200]
+| .Testbild 2
+image::test.jpg[test, width=200]
+| .Testbild 3
+image::test.jpg[test, width=200]
+|===
+----
+<1> Die Angabe der Spaltenanzahl `X` in `cols=X*a` muss zur Bildanzahl passen.
+<2> Angabe des Bildes mit Titel und als block-Makro `image::`.
+
+.Ergebnis:
+--
+[%autowidth, frame=none, grid=none, cols="3*a"]
+|===
+| .Testbild 1
+image::test.jpg[test, width=200]
+| .Testbild 2
+image::test.jpg[test, width=200]
+| .Testbild 3
+image::test.jpg[test, width=200]
+|===
+--
+=====
+====
+
+
+=== Wie kann ich eigene HTML-/CSS-formatierte Inhalte einbinden?
+
+Eigene Stylesheets und HTML-Codes können über ein https://asciidoctor.org/docs/user-manual/#docinfo-file[Docinfo File] und https://asciidoctor.org/docs/user-manual/#pass-blocks[Passthrough Blocks] in das Asciidoc-Document aufgenommen.
+
+[%collapsible]
+====
+=====
+._docinfo.html_
+[source,html]
+----
+<link rel="stylesheet" media="screen" type="text/css" href="file.css" />
+----
+
+.Variante: html-Code
+[source,asciidoc]
+----
+++++
+<div class=""><p>...</p></div>
+++++
+----
+
+.Variante: html-Datei
+[source,asciidoc]
+----
+++++
+\include::file.html[]
+++++
+----
+=====
+====
+
+Ein Beispiel ist in meinem https://tigion.github.io/htw-playground-asciidoc/#_html[Asciidoctor-Playground auf GitHub] zu finden.
+
+
+== icon:comments-o[] Git
+
+=== Was ist bei mehreren GitHub-Accounts zu beachten?
+
+Damit das System bei zwischengespeicherten Logindaten (Passwortmanager, Schlüsselbund, Cache, ...) den richtigen Username und das passende Passwort verwendet, muss in der Remote-URL zusätzlich der _Username_ des gewünschten GitHub-Accounts mit angegeben werden.
+
+Direkt beim Clonen des Repositories:
+
+----
+$ git clone https://<USERNAME>@github.com/username/repository.git
+----
+
+Oder nachträglich in der Konfiguration:
+
+* Das Kommando `git remote set-url` ändert die vorhandene Remote-URL eines Repositories:
++
+----
+$ git remote -v
+origin	https://github.com/username/repository.git (fetch)
+origin	https://github.com/username/repository.git (push)
+
+$ git remote set-url origin https://<USERNAME>@github.com/username/repository.git
+----
+
+* Alternativ kann die Konfiguration mit `git config` angepasst werden:
++
+----
+$ git config remote.origin.url
+github.com/username/repository.git
+
+$ git config remote.origin.url <USERNAME>@github.com/username/repository.git
+----
+
+=== Was ist bei mehreren Git-Identitäten zu beachten?
+Alle Repositories verwenden standardmäßig die in der globalen Konfiguration mit `git config --global` angegebene Identität (_user.name_, _user.email_).
+
+----
+$ git config --global user.name "Vorname Nachname"
+$ git config --global user.email mail@example.org
+----
+
+Möchte man in verschiedenen lokalen Repositories mit jeweils anderen Git-Identitäten arbeiten, hat man folgende Möglichkeiten:
+
+.Variante 1 - Identität je Repository setzen
+[%collapsible]
+====
+=====
+Angaben der globalen Konfiguration können innerhalb jedes Repositories in einer lokalen Konfiguration überschrieben werden:
+
+----
+$ cd ~/Git/Studium/Projekt-Repository
+$ git config user.name "Vorname Nachname"
+$ git config user.email mail@example.org
+----
+=====
+====
+
+.Variante 2 - Bedingungsabhängig Konfigurationen
+[%collapsible]
+====
+=====
+Mit https://git-scm.com/docs/git-config#_conditional_includes[Conditional includes] können Konfiguration bspw. abhängig vom Verzeichnis/Pfad gesetzt werden.
+
+private Identität::
+Globale Konfiguration _~/.gitconfig_ für alle Repositories mit *privater* Identität (+privat@example.org+):
++
+.~/.gitconfig
+----
+[user]
+    name = Vorname Nachname
+    email = privat@example.org
+[includeIf "gitdir:~/Git/Studium/"] <1>
+    path = "~/.gitconfig_studium" <2>
+----
+<1> Include ist bedingungsabhängig: _Gilt nur Innerhalb des angegebenen Verzeichnisses_
+<2> Pfad zur speziellen Konfiguration. Wird nur geladen, wenn Bedingung erfüllt ist.
+
+
+studentische Identität::
+Spezielle Konfiguration _~/.gitconfig_studium_ für alle Repositories unterhalb des Verzeichnisses _~/Git/Studium/_ mit *studentischer* Identität (+studium@example.org+):
++
+.~/.gitconfig_studium
+----
+[user]
+    name = Vorname Nachname
+    email = studium@example.org
+----
+
+Test:
+----
+% cd ~
+% git config user.email
+privat@example.org
+% cd ~/Git/Studium/Projekt-Repository
+% git config user.email
+studium@example.org
+----
+=====
+====
+
+== icon:comments-o[] Visual Studio Code
+
+😴
+
+== icon:bug[] Fehler & Bugs
+
+=== Warum erscheint beim erzeugen eines PDFs die Fehlermeldung "PNG uses unsupported interlace method"?
+
+Es gibt im Dokument Bilder, welche mit einem nicht unterstützten https://de.wikipedia.org/wiki/Interlacing_(Grafiken)[Interlacing]-Format erstellt wurden. Dies kann beim Erstellen von PDF-Dokumenten aus Asciidoctor heraus zu obigem Fehler und dem Nichteinfügen führen.
+
+.Fehlermeldung:
+[source]
+----
+% asciidoctor-pdf documentation.adoc
+asciidoctor: WARNING: could not embed image: /.../example.png; PNG uses unsupported interlace method; install prawn-gmagick gem to add support
+----
+
+==== Lösungsvariante 1
+Öffnen Sie die betreffenden Bilder in einem Bildbearbeitungsprogramm ihrer Wahl und speichern Sie diese erneut als PNG-Datei ab. (Falls vorhanden, im Speichern-/Exportieren-Dialog ggf. entsprechende Interlacing-Einstellungen beachten.)
+
+==== Lösungsvariante 2
+Installieren Sie, wie in der obigen Fehlermeldung erwähnt, noch zusätzlich das RubyGem prawn-gmagick:
+
+[source, sh]
+----
+% gem install prawn-gmagick
+----
+
+=== Warum funktioniert in Visual Studio Code die Anzeige von Bildern in der Vorschau eines AsciiDoc-Dokumentes nicht?
+
+Grund könnte ein Fehler in der aktuellen https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] Extension (2.8.3, 2.8.4) von VS Code sein. Hier hilft es die Bilder direkt als data url in das HTML-Dokument für die Vorschau generieren zu lassen.
+
+Das kann in den Einstellungen von VS Code unter: "Preferences > Extensions > Asciidoc" -> Asciidoc: *Preview Attributes* -> [underline]#Edit in settings.json# angepasst werden. Hier wird ein `"data-uri": ""` in den  `"asciidoc.preview.attributes": {}` Bereich eingefügt:
+
+----
+"asciidoc.preview.attributes": {
+    "data-uri": ""
+},
+----
+
+Der Bugfix hat keine Auswirkung auf das Generieren der Dokumente mit den `asciidoctor` Kommandos im Terminal, sondern bezieht sich nur auf die Vorschau in VS Code.
