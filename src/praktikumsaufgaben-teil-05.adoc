@@ -80,7 +80,7 @@ images/diagrams/
 Mit der Erweiterung https://asciidoctor.org/docs/asciidoctor-diagram/#diagram-attributes[Asciidoctor Diagram] und https://graphviz.gitlab.io/[Graphviz] unterstützt die lokal installierte Asciidoctor Version die textuelle Notation der Grafiken. Graphviz übernimmt dabei das eigentliche rendern der Bilddateien.
 
 ====
-Hinweise zur Installation von *asciidoctor-diagram* und *Graphviz* und der Einrichtung von *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
+Hinweise zur Installation von *asciidoctor-diagram* und *Graphviz* und der Einrichtung von *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter link:installation-und-konfiguration/[Installation & Konfiguration].
 
 [IMPORTANT]
 ======

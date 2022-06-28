@@ -285,10 +285,6 @@ include::../requirements/system-wide_requirements.adoc[tag=nfaf1] <1>
 
 // https://asciidoctor.org/docs/user-manual/#processing-your-content
 
-////
-NOTE: Die zusammengefassten Hinweise zu der Installation der benötigten Tools *Git*, *Asciidoctor* und *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
-////
-
 Für die Generierung verwenden Sie im Terminal (PowerShell, Terminal in Visual Studio Code: "Menü > View > Terminal") den Befehle `asciidoctor` bzw. `asciidoctor-pdf`.
 
 .HTML

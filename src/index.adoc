@@ -71,7 +71,7 @@ image::geek-and-poke_the_new_developer.jpg[Geek&Poke: The New Developer, width=2
 - Die Praktikumsaufgaben können in den *Computer-Laboren* der Fakultät unter icon:linux[] Linux bzw. icon:windows[] Windows oder auf dem *eigenen Rechner* bearbeitet werden.
 - *Linux-Labore*: Nutzereinstellungen bleiben erhalten und werden in den jeweiligen Home- bzw. Profil-Verzeichnissen gespeichert.
 - *Windows-Labore*: Es werden keine Nutzerprofile gespeichert. Die Konfiguration von Git und das Anpassen der Werkzeuge (Erweiterungen, Einstellungen) muss nach jedem Anmelden neu vorgenommen werden.
-- *Eigener Rechner*: Unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor Installation und Konfiguration] finden Sie Hinweise, wie Sie die benötigten Programme auf Ihrem Rechner einrichten.
+- *Eigener Rechner*: Unter link:installation-und-konfiguration/[Installation & Konfiguration] finden Sie Hinweise, wie Sie die benötigten Programme auf Ihrem Rechner einrichten.
 
 IMPORTANT: Daten im Temp-Laufwerk `T:` unter Windows werden nach dem Abmelden gelöscht. Diese müssen vorher in Ihr Home-Laufwerk `U:` (`Z:`) verschoben oder anderweitig gesichert werden.
 

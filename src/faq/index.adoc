@@ -1,4 +1,4 @@
-= FAQ & Tipps
+= Arbeiten mit Git und AsciiDoc: pass:q[<br>]FAQ & Tipps
 Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :toc:
 :toclevels: 2
@@ -152,7 +152,7 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 
 Damit Silbentrennung in den exportierten PDF-Dokumenten angewendet wird, muss das RubyGem *text-hyphen* installiert und zwei Dokumentenattribute vorhanden sein.
 
-. Vorbereitung (https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration]):
+. Vorbereitung:
 +
 ----
 $ gem install text-hyphen

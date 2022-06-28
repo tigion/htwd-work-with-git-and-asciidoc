@@ -8,7 +8,7 @@ Ziel: Einrichtung und Kennenlernen der Grundlagen zur Nutzung von *GitHub*, *Git
 
 Bearbeiten Sie die Aufgaben an Ihrem privaten Rechner, müssen Sie, falls noch nicht vorhanden, *Git*, *Asciidoctor* und *Visual Studio Code* installieren.
 
-Die zusammengefassten Hinweise zu der Installation für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter https://www.informatik.htw-dresden.de/~zirkelba/notes/se/asciidoc-installation-and-configuration/[Asciidoctor - Installation und Konfiguration].
+Die zusammengefassten Hinweise zu der Installation für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter link:installation-und-konfiguration/[Installation & Konfiguration].
 
 
 {section-separator}

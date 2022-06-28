@@ -1,4 +1,4 @@
-= Asciidoctor - Installation und Konfiguration
+= Arbeiten mit Git und AsciiDoc: pass:q[<br>]Installation & Konfiguration
 Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :toc:
 :toclevels: 3
@@ -18,7 +18,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :sectanchors:
 
 
-Das Dokument beschreibt die Installation und Konfiguration der für das https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/[Praktikum] und den Beleg in Software Enigneering I + II benötigten Software *Git*, *Asciidoctor* und *Visual Studio Code*.
+Das Dokument beschreibt die Installation & Konfiguration der für das link:../[Praktikum] und den Beleg in Software Enigneering I + II benötigten Software *Git*, *Asciidoctor* und *Visual Studio Code*.
 
 == Installation
 
