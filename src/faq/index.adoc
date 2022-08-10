@@ -18,6 +18,234 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 
 == icon:comments-o[] Asciidoctor
 
+=== Wie kann ich die von Asciidoctor genutzten Google Fonts Datenschutzkonform verwenden?
+
+Wird das standardmäßige Stylesheet von Asciidoctor verwendet, werden Google Fonts von Google nachgeladen. Dabei fallen Daten an, welche nicht Datenschutzkonform sein können.
+
+Dies kann verhindert werden, in dem die benötigten Google Fonts mit im Projekt hinterlegt werden. In der Asciidoctor-Dokumentation findet man unter https://docs.asciidoctor.org/asciidoctor/latest/html-backend/default-stylesheet/#disable-or-modify-the-web-fonts[Asciidoctor Docs - Disable or modify the web fonts] entsprechende Hinweise.
+
+Folgend eine Variante für das Standardthema von Asciidoctor mit den selbst gehosteten Google Fonts:
+
+. Es werden zwei Dokumenten-Attribute benötigt:
++
+----
+:!webfonts: <1>
+:docinfo: shared-head <2>
+----
+<1> Die negierte Form verhindert das externe Laden der Schriften von Google Fonts.
+<2> Beim Generieren der HTML-Dokumente wird die Datei _docinfo.html_ mit beachtet, welche eigene Stylesheet-Angaben enthalten kann (Siehe https://docs.asciidoctor.org/asciidoctor/latest/docinfo/[Docinfo Files]).
+
+. Eine eigene Stylesheet-Anpassung (Link zur Stylesheet-Datei) dem Projekt mit der Datei _docinfo.html_ mitgeben:
++
+.docinfo.html
+----
+<link rel="stylesheet" media="screen" type="text/css" href="css/fonts.css" />
+----
+
+. Die benötigten CSS-Angaben (schon in nachfolgender _fonts.css_ enthalten) und Google Fonts müssen über die Webseite https://google-webfonts-helper.herokuapp.com/fonts[google-webfonts-helper] identifiziert und geladen werden.
++
+.Liste der identifizierte Dateien mit Schriftarten und Stile:
+[%collapsible]
+====
+----
+/* Noto Sans Mono */
+noto-sans-mono-v20-latin-700.woff
+noto-sans-mono-v20-latin-700.woff2
+noto-sans-mono-v20-latin-regular.woff
+noto-sans-mono-v20-latin-regular.woff2
+
+/* Noto Serif */
+noto-serif-v21-latin-700.woff
+noto-serif-v21-latin-700.woff2
+noto-serif-v21-latin-700italic.woff
+noto-serif-v21-latin-700italic.woff2
+noto-serif-v21-latin-italic.woff
+noto-serif-v21-latin-italic.woff2
+noto-serif-v21-latin-regular.woff
+noto-serif-v21-latin-regular.woff2
+
+/* Open Sans */
+open-sans-v29-latin-300.woff
+open-sans-v29-latin-300.woff2
+open-sans-v29-latin-300italic.woff
+open-sans-v29-latin-300italic.woff2
+open-sans-v29-latin-600.woff
+open-sans-v29-latin-600.woff2
+open-sans-v29-latin-600italic.woff
+open-sans-v29-latin-600italic.woff2
+open-sans-v29-latin-italic.woff
+open-sans-v29-latin-italic.woff2
+open-sans-v29-latin-regular.woff
+open-sans-v29-latin-regular.woff2
+----
+====
+
+. Einen Ordner `css/` und eine Stylesheet-Datei `fonts.css` für die kopierten CSS-Angaben der Font-Beschreibung anlegen:
++
+.Inhalt der fonts.css:
+[%collapsible]
+====
+----
+/* open-sans-300 - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-300.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-300.woff') format('woff');
+  }
+
+/* open-sans-regular - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-regular.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-regular.woff') format('woff');
+}
+
+/* open-sans-600 - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-600.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-600.woff') format('woff');
+}
+
+/* open-sans-300italic - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 300;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-300italic.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-300italic.woff') format('woff');
+}
+
+/* open-sans-italic - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-italic.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-italic.woff') format('woff');
+}
+
+/* open-sans-600italic - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local(''),
+        url('fonts/open-sans-v29-latin-600italic.woff2') format('woff2'),
+        url('fonts/open-sans-v29-latin-600italic.woff') format('woff');
+}
+
+/* noto-serif-regular - latin */
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/noto-serif-v21-latin-regular.woff2') format('woff2'),
+        url('fonts/noto-serif-v21-latin-regular.woff') format('woff');
+}
+
+/* noto-serif-italic - latin */
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: italic;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/noto-serif-v21-latin-italic.woff2') format('woff2'),
+        url('fonts/noto-serif-v21-latin-italic.woff') format('woff');
+}
+
+/* noto-serif-700 - latin */
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/noto-serif-v21-latin-700.woff2') format('woff2'),
+        url('fonts/noto-serif-v21-latin-700.woff') format('woff');
+}
+
+/* noto-serif-700italic - latin */
+@font-face {
+    font-family: 'Noto Serif';
+    font-style: italic;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/noto-serif-v21-latin-700italic.woff2') format('woff2'),
+        url('fonts/noto-serif-v21-latin-700italic.woff') format('woff');
+}
+
+/* noto-sans-mono-regular - latin */
+@font-face {
+    font-family: 'Noto Sans Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/noto-sans-mono-v20-latin-regular.woff2') format('woff2'),
+        url('fonts/noto-sans-mono-v20-latin-regular.woff') format('woff');
+}
+
+/* noto-sans-mono-700 - latin */
+@font-face {
+    font-family: 'Noto Sans Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/noto-sans-mono-v20-latin-700.woff2') format('woff2'),
+        url('fonts/noto-sans-mono-v20-latin-700.woff') format('woff');
+}
+
+/* replace: droid-sans-mono-regular - latin */
+@font-face {
+    font-family: 'Droid Sans Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/noto-sans-mono-v20-latin-regular.woff2') format('woff2'),
+        url('fonts/noto-sans-mono-v20-latin-regular.woff') format('woff');
+}
+
+/* replace: droid-sans-mono-700 - latin */
+@font-face {
+    font-family: 'Droid Sans Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/noto-sans-mono-v20-latin-700.woff2') format('woff2'),
+        url('fonts/noto-sans-mono-v20-latin-700.woff') format('woff');
+}
+----
+====
++
+NOTE: Das Standardthema verwendet die nicht mehr als Download verfügbare `Droid Sans Mono`, weswegen sie mit der `Noto Sans Mono` ersetzt wurde.
+
+. Einen Ordner `fonts/` für die Schriftarten im Ordner `css/` anlegen und die geladenen Google Fonts entpacken und hineinkopieren.
+
+Im Projekt müsste es jetzt folgende neue Struktur geben:
+
+----
+documentation-x/
+├── ...
+├── css/
+│   ├── fonts/
+│   │   └── ... (woff und woff2 Dateien)
+│   └── fonts.css
+├── ...
+├── docinfo.html
+└── ...
+----
+
 === Wie kann ich die Beschriftungen für Elemente wie Tabellen, Abbildungen, etc. anpassen?
 
 In der Asciidoctor-Dokumentation findet man unter https://asciidoctor.org/docs/user-manual/#language-support[Using Asciidoctor with Other Languages] Attribute und Möglichkeiten für das Anpassen und Übersetzen von Beschriftungen.
