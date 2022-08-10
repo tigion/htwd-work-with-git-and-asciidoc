@@ -35,6 +35,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :docinfo: shared
 :sectanchors:
 :favicon:
+:!webfonts:
 // --- PDF ---
 // Hyphenation for PDF documents
 :lang: DE

@@ -13,6 +13,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :table-caption: Tabelle
 :figure-caption: Abbildung
 :sectanchors:
+:!webfonts:
 
 
 == icon:comments-o[] Asciidoctor

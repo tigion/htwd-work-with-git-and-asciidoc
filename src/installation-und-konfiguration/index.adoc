@@ -16,6 +16,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :sectnums:
 //:sectnumlevels: 2
 :sectanchors:
+:!webfonts:
 
 
 Das Dokument beschreibt die Installation & Konfiguration der für das link:../[Praktikum] und den Beleg in Software Enigneering I + II benötigten Software *Git*, *Asciidoctor* und *Visual Studio Code*.
