@@ -110,7 +110,7 @@ TIP: Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäte
 
 . Öffnen Sie Ihren Dateimanager und schauen Sie nach, ob es schon eine _.gitconfig_ Datei gibt (Siehe <<table_git-config_speicherort>>).
 
-. Öffnen Sie in Visual Studio Code über "File > New File" die schon vorhandene Datei _.gitconfig_ oder legen legen Sie sich eine neue Datei an und passen Sie sie mit folgendem Inhalt an:
+. Öffnen Sie in Visual Studio Code über "File > Open..." die schon vorhandene Datei _.gitconfig_ oder legen legen Sie eine neue Datei über "File > New File" an. Passen Sie den Inhalt wie folgt an:
 +
 .Inhalt der .gitconfig - #HTW Laborrechner#
 ----
