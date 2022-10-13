@@ -183,6 +183,25 @@ https://github.com/<account>/htw-se-example-project.git
 ----
 Zu finden auf GitHub in Ihrem Repository beim Klick auf den grünen *Code* Button im Bereich HTTPS.
 
+[WARNING]
+====
+.Hinweis zum Clonen und Unsave-Fehler #TODO#
+. Repository clonen: "VS Code > Git" -> Clone Repository -> URL einsetzen -> Zielverzeichnis wählen -> hinein wechseln
+. Terminal öffnen: "View > Terminal"
+. im Terminal `git status` ausführen
++
+```
+fatal: unsafe repository ('//141.56...)
+To add an exception for this directory, call:
+
+        git config --global --add safe.directory '%(prefix)///141.56...
+```
+. Befehl `git config --global --add safe.directory...` ausführen
+
+(Aufgabestellung wird noch entsprechend angepasst.)
+====
+
+
 ===== Variante - Terminal (HTTPS):
 . Öffnen Sie ein Terminal (Windows: PowerShell)
 . Führen Sie darin folgendes Kommando aus und verwenden Sie, bei der Nachfrage zur Authentication-Methode Nummer *2* für den Personal access token von GitHub:
