@@ -303,7 +303,7 @@ NOTE: Unter *Windows* muss in Visual Studio Code beim Speichern der Dateityp: `+
 +
 In den Linux-Laboren kann Visual Studio Code im Terminal über `/opt/VSCode/code` gestartet werden.
 
-. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
+. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht und suchen Sie nach `AsciiDoc`. Installieren Sie, falls noch nicht vorhanden, die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
 +
 ////
 .Hinweis bei Problemen in den HTW Windows-Laboren mit der Installation der Asciidoc-Erweiterung
