@@ -209,6 +209,7 @@ To add an exception for this directory, call:
 ** "View > SCM" -> Button kbd:[Clone Repository]
 ** "View > Command Palette..." -> `Git: Clone`
 ** "Get Started"-Seite -> Start: _Clone Git Repository..._
+** "View > Terminal" -> `cd path/to/folder`  -> `git clone ...`
 +
 Falls in VS Code schon ein Repository geöffnet ist, kann dies auch in "View > SCM" über die drei Punkte "*...*" im oberen Bereich mit dem Menüeintrag *Clone* erfolgen.
 . Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
