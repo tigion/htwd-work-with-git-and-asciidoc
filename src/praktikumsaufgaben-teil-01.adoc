@@ -183,6 +183,7 @@ https://github.com/<account>/htw-se-example-project.git
 ----
 Zu finden auf GitHub in Ihrem Repository beim Klick auf den grünen *Code* Button im Bereich HTTPS.
 
+////
 [WARNING]
 ====
 .Hinweis zum Clonen und Unsave-Fehler #TODO#
@@ -197,12 +198,45 @@ To add an exception for this directory, call:
         git config --global --add safe.directory '%(prefix)///141.56...
 ```
 . Befehl `git config --global --add safe.directory...` ausführen
+. im Terminal `git status` ausführen
 
 (Aufgabestellung wird noch entsprechend angepasst.)
 ====
+////
 
+===== Variante - Visual Studio Code (HTTPS):
+. In Visual Studio Code kann über folgende Varianten ein Git-Rpository geclont werden:
+** "View > SCM" -> Button kbd:[Clone Repository]
+** "View > Command Palette..." -> `Git: Clone`
+** "Get Started"-Seite -> Start: _Clone Git Repository..._
++
+Falls in VS Code schon ein Repository geöffnet ist, kann dies auch in "View > SCM" über die drei Punkte "*...*" im oberen Bereich mit dem Menüeintrag *Clone* erfolgen.
+. Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
+. Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
+. Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der *Access Token* abgefragt oder Visual Studio Code nutzt seine *Access to GitHub* Erweiterung.
+. Wenn der Zielordner sich auf einem Netzlaufwerk befindet, kann aus Sicherheitsgründen Git das eben geclonte Repository nicht nutzen (Einstellung: https://git-scm.com/docs/git-config/2.35.2#Documentation/git-config.txt-safedirectory[safe.directory]). Folgendes ist noch zu tun:
++
+[IMPORTANT]
+====
+. Terminal öffnen: "View > Terminal"
+. im Terminal `git status` ausführen
++
+```
+fatal: unsafe repository ('//141.56...)
+To add an exception for this directory, call:
 
-===== Variante - Terminal (HTTPS):
+        git config --global --add safe.directory '%(prefix)///141.56...
+```
+. Befehl `git config --global --add safe.directory...` aus obiger Meldung ausführen
+. im Terminal `git status` noch einmal ausführen
+====
+
+Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
+
+.Variante - Terminal (HTTPS):
+[%collapsible]
+====
+=====
 . Öffnen Sie ein Terminal (Windows: PowerShell)
 . Führen Sie darin folgendes Kommando aus und verwenden Sie, bei der Nachfrage zur Authentication-Methode Nummer *2* für den Personal access token von GitHub:
 +
@@ -239,15 +273,8 @@ remote: Compressing objects: 100% (8/8), done.
 remote: Total 10 (delta 0), reused 4 (delta 0), pack-reused 0
 Receiving objects: 100% (10/10), done.
 ----
-
-Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
-
-===== Variante - Visual Studio Code (HTTPS): #Probleme im Windows-Labor#
-. Öffnen Sie in Visual Studio Code über "View > SCM" den Bereich des Source Controle Managements
-. Über den erscheinenden Button kbd:[Clone Repository] können sie jetzt ein Repository clonen. Falls schon ein Repository geöffnet ist, kann dies über die drei Punkte "*...*" im oberen Bereich über den Menüeintrag *Clone* erfolgen.
-. Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
-. Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
-. Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der Access Token abgefragt oder Visual Studio Code nutzt seine Access to GitHub Erweiterung.
+=====
+====
 
 .Hinweise: Git-Kommunikation per SSH und SSH-Key
 [%collapsible]
