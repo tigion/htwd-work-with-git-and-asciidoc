@@ -117,9 +117,43 @@ TIP: Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäte
 [user]
 	name = Vorname Nachname
 	email = s00000@htw-dresden.de
+[safe]
+  directory = * <1>
 [http]
 	proxy = http://www-cache.htw-dresden.de:3128
 ----
+<1> Erlaubt es Git, Repositories auf (Netz-)Laufwerken mit unterschiedlichen Eigentümer-Einstellungen trotz `fatal: unsafe repository`-Sicherheitsmeldung zu nutzen. +
+Dies in den Windows-Laboren der HTW der Fall, wenn sie auf ihrem Studenten-Laufwerk (`U:`) arbeiten.
++
+.Hinweise: Git-Meldung: `fatal: unsafe repository`
+[%collapsible]
+====
+=====
+Git verweigert, seit Version 2.35.2, aus Sicherheitsgründen (Security Fix https://github.blog/2022-04-12-git-security-vulnerability-announced/#cve-2022-24765[CVE-2022-24765]) die Nutzung von Repositories auf (Netz-)Laufwerken mit unterschiedlichen Eigentümer-Einstellungen. Möchte man diese trotzdem nutzen, muss dies über die Konfiguration (Einstellung: https://git-scm.com/docs/git-config/2.35.2#Documentation/git-config.txt-safedirectory[safe.directory]) von Git explizit erlaubt werden.
+
+.Für alle betreffenden Repositories erlauben:
+Mit `git config --global --add safe.directory *` oder direkt über die _.gitconfig_ muss folgendes hinzugefügt werden:
+----
+[safe]
+  directory = * <1>
+----
+<1> Der `*`-Stern dient als Platzhalter für alle betreffenden Repositories, egal in welchem Verzeichnispfad sie sich befinden.
+
+.Nur ein bestimmtes Repository erlauben:
+. Terminal öffnen, bspw. in VS Code: "View > Terminal"
+. zum passenden Repository-Verzeichnis navigieren `cd path/to/repo`
+. im Terminal `git status` ausführen
++
+```
+fatal: unsafe repository ('//141.56...)
+To add an exception for this directory, call:
+
+        git config --global --add safe.directory '%(prefix)///141.56...
+```
+. Befehl `git config --global --add safe.directory...` aus obiger Meldung ausführen
+. im Terminal `git status` noch einmal ausführen
+=====
+====
 +
 .Inhalt der .gitconfig - #privater Rechner#
 ----
@@ -167,6 +201,7 @@ $ git config --global user.email s00000@informatik.htw-dresden.de
 ----
 Für die Labore der HTW zusätzlich noch ein:
 ----
+$ git config --global --add safe.directory *
 $ git config --global http.proxy http://www-cache.htw-dresden.de:3128
 ----
 WARNING: Kommt es unter Windows in der Git Bash bei der Kommunikation mit Ihrem GitHub Repository zu einer Fehlermeldung: `ServicePointManager unterstützt keine Proxys mit dem www-cache.htw-dresden.de-Schema`, ist der Proxy ohne vorangestelltes *##http://##www-cache.htw-dresden.de:3128* konfiguriert. In dem Falle muss die Proxy Konfiguration, wie oben, neu gesetzt werden.
@@ -215,22 +250,6 @@ Falls in VS Code schon ein Repository geöffnet ist, kann dies auch in "View > S
 . Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
 . Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
 . Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der *Access Token* abgefragt oder Visual Studio Code nutzt seine *Access to GitHub* Erweiterung.
-. Wenn der Zielordner sich auf einem Netzlaufwerk befindet, kann aus Sicherheitsgründen Git das eben geclonte Repository nicht nutzen (Einstellung: https://git-scm.com/docs/git-config/2.35.2#Documentation/git-config.txt-safedirectory[safe.directory]). Folgendes ist noch zu tun:
-+
-[IMPORTANT]
-====
-. Terminal öffnen: "View > Terminal"
-. im Terminal `git status` ausführen
-+
-```
-fatal: unsafe repository ('//141.56...)
-To add an exception for this directory, call:
-
-        git config --global --add safe.directory '%(prefix)///141.56...
-```
-. Befehl `git config --global --add safe.directory...` aus obiger Meldung ausführen
-. im Terminal `git status` noch einmal ausführen
-====
 
 Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
 
