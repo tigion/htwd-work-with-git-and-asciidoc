@@ -218,6 +218,31 @@ https://github.com/<account>/htw-se-example-project.git
 ----
 Zu finden auf GitHub in Ihrem Repository beim Klick auf den grünen *Code* Button im Bereich HTTPS.
 
+.Hinweise: Einbindung des Rechenzentrum-Netzlaufwerkes Windows
+[%collapsible]
+====
+=====
+.icon:windows[] Windows
+. *Windows Explorer* (kbd:[icon:windows[\]-Taste + e]) öffnen
+. Seitenleiste: *Netzwerk* -> Rechtsklick: *Netzlaufwerk verbinden...*
+. Netzwerkordner angeben:
+** Ordner: `\\samba.htw-dresden.de\sXXXXX` -> kbd:[Fertig stellen]
+. Netzwerkanmeldeinformationen eingeben:
+** Benutzername: `dom\sXXXXX`, Kennwort: `...` -> kbd:[OK]
+
+.icon:apple[] macOS
+. *Finder* öffnen
+. "Menü > Gehe zu > Mit Server verbinden ..."
+. Daten eingeben:
+** Ordner: `smb://samba.htw-dresden.de/sXXXXX`
+** Name: `dom\sXXXXX`
+** Passwort: `...`
+
+.icon:linux[] Linux #todo#
+...
+=====
+====
+
 ////
 [WARNING]
 ====
