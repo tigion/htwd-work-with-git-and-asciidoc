@@ -197,7 +197,8 @@ Mit der Verwendung von `:xrefstyle:` und der Angabe von `full`, `short` oder `ba
 ==== Aufgabe 1.6 - Includes
 
 . Fügen Sie eine Überschrift `=== Includes` ein.
-. Lagern Sie den Quelltext aus <<Aufgabe 1.3 - Quellcode>> in eine extra _hello_world.c_ Datei aus.
+. Legen sie parallel zu *docs* ein neues Verzeichnis *src* an.
+. Lagern Sie den Quelltext aus <<Aufgabe 1.3 - Quellcode>> in eine extra _hello_world.c_ Datei in das Verzeichnis *src* aus.
 . Binden Sie diese Datei, *limitiert auf die Zeilen der `main()`-Funktion*, mit einem `include` als Quellcode-Abschnitt wie folgt ein:
 +
 .hello_world.c - main()
@@ -216,11 +217,10 @@ int main(int argc, char* argv[])
 =====
 Mit Hilfe von *https://docs.asciidoctor.org/asciidoc/latest/directives/include/[Includes]* wird das Einbetten von ausgelagerten Dokumenten und Teilen davon in ein Hauptdokument ermöglicht. Bspw. Quellcodeausschnitte oder CSV-Dateien. Ebenfalls können damit Dokumententeile in anderen Dokumenten wiederverwendet werden.
 
-
 .Einbinden einer Datei oder eines Dateibereiches:
 ----
 include::path/to/sub-document.adoc[] <1>
-include::path/to/hello-world.c[lines=3..7] <2>
+include::../src/hello_world.c[lines=3..7] <2>
 ----
 <1> Einbettung einer gesamten Datei
 <2> Es werden nur die Zeilen 3 bis 7 eingebettet
