@@ -450,6 +450,23 @@ Um zu verhindern, dass generierbare Dateien, wie bspw. html- und pdf-Dateien, in
 *.html
 *.pdf
 ----
++
+..gitignore (komplexeres Beispiel)
+----
+# ignore unwanted files <1>
+*~
+.DS_Store
+
+# ignore special folder '.asciidoctor'
+.asciidoctor/ <2>
+
+# ignore generated files
+docs/*.html <3>
+docs/*.pdf
+----
+<1> mit `#` erhält man eine Kommentarzeile
+<2> Dies ist ein spezielles Verzeichnis, welches Asciidoctor beim Generieren (inkl. Vorschau) anlegt und temporäre Daten zwischenspeichert.
+<3> ignoriert `\*.html` und `*.pdf` Dateien nur im *docs*-Verzechnis
 
 2. Nehmen Sie die Datei `.gitignore` als neue Version in Ihr lokales Git-Repository und Ihr Remote-Repository auf GitHub auf.
 
