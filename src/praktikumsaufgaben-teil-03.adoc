@@ -72,6 +72,9 @@ Clonen Sie Ihr gemeinsames Repository *htw-se-example-teamproject* von Person A 
 
 Beim Bearbeiten Ihres Projektes im Team kann es an verschiedenen Stellen zu Konflikten kommen. Dies betrifft unterschiedliche Versionsstände Ihrer Teammitglieder gegenüber dem entfernten Repository auf GitHub und Ihres lokalen Repositories. Die Konflikte bzw. Unterschiede lassen sich entweder *automatisch* zusammenführen (_merge_) oder erfordern ein *manuelles* Eingreifen.
 
+.Schritte zum Lösen eines push-Error Konfliktes
+image::grafik_git_push_error.png["Schritte zum Lösen eines push-Error Konfliktes", width=1024, link="images/grafik_git_push_error.png"]
+
 .Hinweis: push-Error Konflikte lösen
 [%collapsible]
 ====
