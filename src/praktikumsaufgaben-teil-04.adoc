@@ -196,14 +196,14 @@ Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issu
 | Phase       | Milestone
 a|
 * Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
-| *Iteration*   | *Project*
+| #*Iteration*#   | #*Project*#
 a|
 * Iteration [1..n]
 | User Story  | Issue
 a|
 * Kurze Beschreibung einer Anforderung
 * Noch kein konkretes Work Item
-| *Work Item*   | *Issue*
+| #*Work Item*#   | #*Issue*#
 a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
