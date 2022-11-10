@@ -290,6 +290,8 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 [%collapsibleX]
 ====
 =====
+NOTE: Siehe auch https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[]
+
 * Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
 ** Select a template: *Table* oder *Board* -> kbd:[Create]
 +
