@@ -286,7 +286,20 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 =====
 ====
 
-.Hinweise zu Projekten (Projects) in GitHub
+.#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
+[%collapsible]
+====
+=====
+* Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
+** Select a template: *Board* -> kbd:[Create]
+** Mit einem Klick auf den Titel *@tigion's untitled project* wird der Namen des Projektes in bspw. *Iteration 1* geändert.
+
+* Neue Aufgaben (Issues) können wie folgt hinzugefügt werden:
+** Spalte *Todo* -> kbd:[+ Add item] -> kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
+=====
+====
+
+.#icon:warning[] outdated icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
 [%collapsible]
 ====
 =====
@@ -352,12 +365,12 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ** Work Item 2: `*Ausgelagerte Dateiinhalte einbinden* - Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.`
 ** Work Item 3: `*Datei .gitignore anlegen* - Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.`
 
-. Erstellen Sie eine *Iteration*, bspw.: `Iteration 01`, als Project mit dem Template: Automated kanban und nehmen Sie Ihre drei Work Items (Issues) auf.
+. Erstellen Sie eine *Iteration*, bspw.: `Iteration 01`, als Project mit dem Template: *Board* und nehmen Sie Ihre drei Work Items (Issues) auf.
 +
-#TODO#: Fortschrittsbalken aktivieren
+//#TODO#: Fortschrittsbalken aktivieren
 //. Erstellen Sie eine *Phase* oder *Meilenstein* als Milestone und weisen diesem Ihre drei Work Items (Issues) zu.
 
-. Schließen Sie ein *Work Item* (Issue) und schauen Sie sich die Änderung im *Iterations*-Projekt an.
+. Schließen Sie ein *Work Item* (Issue) per Commit oder in der Issue-Anicht und schauen Sie sich die Änderung im *Iterations*-Projekt an.
 //und dem *Phasen*-Meilenstein an.
 
 ////
