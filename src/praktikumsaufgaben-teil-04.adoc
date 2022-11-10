@@ -287,7 +287,7 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 ====
 
 .#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
-[%collapsibleX]
+[%collapsible]
 ====
 =====
 NOTE: Siehe auch https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[]
