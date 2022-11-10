@@ -287,15 +287,49 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 ====
 
 .#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
-[%collapsible]
+[%collapsibleX]
 ====
 =====
 * Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
-** Select a template: *Board* -> kbd:[Create]
+** Select a template: *Table* oder *Board* -> kbd:[Create]
++
+:imageTitle: GitHub Projekt anlegen - Template wählen
+:imageFile: screenshot_github_project_select_a_template.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=500, link="{imagesdir}/{imageFile}"]
 ** Mit einem Klick auf den Titel *@tigion's untitled project* wird der Namen des Projektes in bspw. *Iteration 1* geändert.
 
 * Neue Aufgaben (Issues) können wie folgt hinzugefügt werden:
-** Spalte *Todo* -> kbd:[+ Add item] -> kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
+** Spalte *Todo* -> kbd:[+ Add item]:
+*** per Suche -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus demgewählten Repository auswählen
+*** per kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
+
+* Weitere Sichten (Views) für das Projekt anlegen:
+** über den Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden.
+
+:imageTitle: GitHub Projekt - Board view
+:imageFile: screenshot_github_project_board_view.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+:imageTitle: GitHub Projekt - Table view - gruppiert per Status
+:imageFile: screenshot_github_project_table_view.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+
+[WARNING]
+======
+Projekte sind losgelöst vom Repository, deswegen müssen Teammitglieder extra dafür eingeladen werden.
+======
+
+* Teammitglieder zu Projekt einladen:
+. im Projekt oben rechts auf kbd:[...] klicken
+. den Menüpunkt *Settings* -> **Manage access* auswählen.
+. über *Invite collaborators* können jetzt die Teammitglieder gesucht und hinzugefügt werden
++
+Als Rolle kann entweder `Admin`, `Write` oder `Read` ausgewählt werden.
+
 =====
 ====
 
