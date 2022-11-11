@@ -198,7 +198,7 @@ a|
 * Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
 | #*Iteration*#   | #*Project*#
 a|
-* Iteration [1..n]
+* Einteilung der Work Items in Iteration [1..n]
 | User Story  | Issue
 a|
 * Kurze Beschreibung einer Anforderung
@@ -207,13 +207,17 @@ a|
 a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
-.2+| Work Item State
+.2+| #Work Item State#
 | Issue
 a|
-* Offen, geschlossen, Label
-| Project Column
+* offen, geschlossen, Label
+| Project
 a|
-* Todo, In progress, Done, ...
+* Status (Table view) / Spalten (Board View): Todo, In Progress, Done, ...
+| #Complexity/Velocity#
+| Project
+a|
+* extra Spalte (Field, numeric)
 .2+| Note
 | Issue
 a|
@@ -230,15 +234,19 @@ a|
 * Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
 |===
 
+:imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
+:imageFile: screenshot_github_projects_view_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 *Dabei ist zu beachten:*
 
-- Es können beliebig viele Issues, Projekte und Meilensteine in GitHub erstellt werden.
-- Ein Issue kann mehreren Projekten, aber nur einem Meilenstein zugeordnet werden.
-- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
+//- Es können beliebig viele Issues, Projekte und Meilensteine in GitHub erstellt werden.
+//- Ein Issue kann mehreren Projekten, aber nur einem Meilenstein zugeordnet werden.
+//- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
 - Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
 - Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
-- Issues können in Projekten zwischen den Zustands-Spalten mit Drag&Drop oder durch bestimmte Schlüsselwörter (automatisiert) bewegt werden.
+- Issues können in Projekten zwischen den Zuständen mit Drag&Drop oder durch bestimmte Schlüsselwörter (automatisiert) bewegt werden.
 
 *Einschränkungen:*
 
@@ -286,51 +294,83 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 =====
 ====
 
-.#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
+.#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) und Planung von Iterationen in GitHub
 [%collapsible]
 ====
 =====
-NOTE: Siehe auch https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[]
+Die neuen GitHub Projects ermöglichen es innerhalb eines Projektes, die komplette Projektplanung mit allen Iterationen und zugehörigen Repositories abzubilden.
 
-* Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
+* Planung, Zustände und Übersicht über die vergangenen, aktuelle und zukünftige Iterationen
+* Erfassung einer Complexity/Velocity zu den Work Items (Issue) in den Iterationen
+* Verwaltung von Projektmitgliedern
+* Verwendung von Work Items (Issues) aus verschiedenen Repositories
+* Erstellung unterschiedlicher Sichten mit verschiedenen Schwerpunkten auf das Projekt
+* Erstellung von Diagrammen zum Zustand des Projektes
+
+Folgend zwei Beispiele für eine Übersicht über alle Iterationen und eine fokussierte Sicht auf die aktuelle Iteration:
+
+:imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
+:imageFile: screenshot_github_projects_view_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+:imageTitle: GitHub Projects - Beispiel: Aktuelle Iteration (Board view)
+:imageFile: screenshot_github_projects_view_current_iteration.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[Planning and tracking with Projects]
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[About iteration fields - Create iterations to plan upcoming work]
+
+Damit so ein Projekt im Team genutzt werden kann, legt der Repository-Eigentümer das neue Projekt an und läd die anderen Teammitglieder, wie auch zum Repository, dazu ein.
+
+.Ein neues *Projekt* anlegen:
+. Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
 ** Select a template: *Table* oder *Board* -> kbd:[Create]
 +
 :imageTitle: GitHub Projekt anlegen - Template wählen
 :imageFile: screenshot_github_project_select_a_template.png
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=500, link="{imagesdir}/{imageFile}"]
-** Mit einem Klick auf den Titel *@tigion's untitled project* wird der Namen des Projektes in bspw. *Iteration 1* geändert.
+. Nach dem Anlegen, kann mit einem Klick auf den Titel *@account untitled project* der Namen des Projektes in bspw. *Projektplan: Thema I1* geändert werden.
 
-* Neue Aufgaben (Issues) können wie folgt hinzugefügt werden:
-** Spalte *Todo* -> kbd:[+ Add item]:
-*** per Suche -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus demgewählten Repository auswählen
-*** per kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
-
-* Weitere Sichten (Views) für das Projekt anlegen:
-** über den Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden.
-
-:imageTitle: GitHub Projekt - Board view
-:imageFile: screenshot_github_project_board_view.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-:imageTitle: GitHub Projekt - Table view - gruppiert per Status
-:imageFile: screenshot_github_project_table_view.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-
-[WARNING]
-======
-Projekte sind losgelöst vom Repository, deswegen müssen Teammitglieder extra dafür eingeladen werden.
-======
-
-* Teammitglieder zu Projekt einladen:
+.*Teammitglieder* zum Projekt einladen
 . im Projekt oben rechts auf kbd:[...] klicken
-. den Menüpunkt *Settings* -> **Manage access* auswählen.
+. den Menüpunkt *Settings* -> *Manage access* auswählen.
 . über *Invite collaborators* können jetzt die Teammitglieder gesucht und hinzugefügt werden
 +
 Als Rolle kann entweder `Admin`, `Write` oder `Read` ausgewählt werden.
+
+.*Iterationen* hinzufügen:
+* Iterationen können mit regelmäßigen, veränderlichen Zeiten und Pausen angelegt werden. Eine nachträgliche Anpassung ist ebenfalls möglich. +
+Siehe: https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[Hinweise zum Anlegen und Verwenden von Iteration Fields]
++
+:imageTitle: GitHub Projects - Iteration Setings
+:imageFile: screenshot_github_projects_field_iteration.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+.Issues als *Work Items* aufnehmen:
+** Table view: Zeile mit kbd:[+]-Button
+** Board view: kbd:[+ Add item]-Button (Spalte Todo)
+*** per kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
+** per Suche (Add item) -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus dem gewählten Repository auswählen
+
+.**Complexity**/**Velocity** im Projekt zu den Work Items (Issues) erfassen:
+. Ein neues Feld über das kbd:[+] im Tabellenkopf (Table View) hinzufügen
+. kbd:[+ New files] wählen
+** Fieldname: *Complexity*
+** Field type: *Number*
+. Jetzt können den Work Items entsprechende Werte zugewiesen werden. Nach diesen kann jetzt gruppiert, gefiltert und über Insights in Diagrammen genutzt werden.
+
+.Weitere *Views* hinzufügen:
+. Mit dem Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden. +
+Der Inhalt und das Aussehen der Views können über den kleinen kbd:[▼] neben dem View-Namen angepasst werden. Anpassungsmöglichkeiten wären: gruppieren, sortieren, filtern, extra Spalten und weiteres.
+. Vorschläge für hilfreiche Views:
+** *Overview*: Table view, Gruppierung: Iteration
+** *Current Iteration*: Board view, Filter: `iteration:@current`
+** *Current & Next Iteration*: Table view, Filter: `iteration:>=@current`, Gruppierung: Iteration, Sortierung: Status
+** *Backlog*: Table view, Filer: `no:iteration`
 
 =====
 ====
@@ -393,7 +433,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 3.1 - Üben
 
-. Legen Sie in Ihrem Repository eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
+. Legen Sie in Ihrem privaten pository eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
 ** User Story 1: `*Dokumentation wie Code behandeln* - Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.`
 
 . Definieren sie drei *Work Items* als Issues mit dem Label `work item`, wovon sich *zwei* auf die vorher angelegte User Story beziehen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
@@ -401,12 +441,19 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ** Work Item 2: `*Ausgelagerte Dateiinhalte einbinden* - Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.`
 ** Work Item 3: `*Datei .gitignore anlegen* - Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.`
 
-. Erstellen Sie eine *Iteration*, bspw.: `Iteration 01`, als Project mit dem Template: *Board* und nehmen Sie Ihre drei Work Items (Issues) auf.
-+
-//#TODO#: Fortschrittsbalken aktivieren
-//. Erstellen Sie eine *Phase* oder *Meilenstein* als Milestone und weisen diesem Ihre drei Work Items (Issues) zu.
+. Erstellen Sie ein neues Projekt *Projektplanung: Beispiel*.
 
-. Schließen Sie ein *Work Item* (Issue) per Commit oder in der Issue-Anicht und schauen Sie sich die Änderung im *Iterations*-Projekt an.
+. Nehmen Sie Ihre eben erstellten Work Items (nicht die User Story) in das Projekt auf.
+
+. Erstellen Sie ein neues Feld *Complexity* (numeric) und ein neues Feld *Iteration* mit einem wöchentlichen Zyklus.
+. Vergeben Sie jedem *Work Item* einen *Complexity Score*.
+. Weisen Sie *zwei* Work Items der *aktuellen Iteration* zu.
+
+. Richten Sie sich zwei Sichten: *Overview* und *Current Iteration* ein.
+** *Overview*: Table view, Gruppierung: Iteration
+** *Current Iteration*: Board view, Filter: `iteration:@current`
+
+. Schließen Sie ein *Work Item* (Issue) per Commit oder in der Issue-Anicht und schauen Sie sich die Änderung im Projekt bzw. den Sichten an.
 //und dem *Phasen*-Meilenstein an.
 
 ////
