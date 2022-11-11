@@ -360,7 +360,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 .**Complexity**/**Velocity** im Projekt zu den Work Items (Issues) erfassen:
 . Ein neues Feld über das kbd:[+] im Tabellenkopf (Table View) hinzufügen
-. kbd:[+ New files] wählen
+. kbd:[+ New field] wählen
 ** Fieldname: *Complexity*
 ** Field type: *Number*
 . Jetzt können den Work Items entsprechende Werte zugewiesen werden. Nach diesen kann jetzt gruppiert, gefiltert und über Insights in Diagrammen genutzt werden.
