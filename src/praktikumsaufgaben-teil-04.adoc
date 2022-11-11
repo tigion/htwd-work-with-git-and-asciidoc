@@ -214,7 +214,7 @@ a|
 | Project
 a|
 * Status (Table view) / Spalten (Board View): Todo, In Progress, Done, ...
-| #Complexity/Velocity#
+| #Complexity#
 | Project
 a|
 * extra Spalte (Field, numeric)
@@ -296,18 +296,27 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 =====
 ====
 
-.#icon:warning[] new, todo icon:warning[]# Hinweise zu Projekten (Projects) und Planung von Iterationen in GitHub
+.Hinweise zu Projekten (Projects) und Planung von Iterationen in GitHub
 [%collapsible]
 ====
 =====
-Die neuen GitHub Projects ermöglichen es innerhalb eines Projektes, die komplette Projektplanung mit allen Iterationen und zugehörigen Repositories abzubilden.
+Die neuen *GitHub Projects* ermöglichen es innerhalb eines Projektes, die komplette Projektplanung mit allen Iterationen und zugehörigen Repositories abzubilden.
 
 * Planung, Zustände und Übersicht über die vergangenen, aktuelle und zukünftige Iterationen
-* Erfassung einer Complexity/Velocity zu den Work Items (Issue) in den Iterationen
+* Erfassung einer Complexity zu den Work Items (Issue) in den Iterationen
 * Verwaltung von Projektmitgliedern
 * Verwendung von Work Items (Issues) aus verschiedenen Repositories
 * Erstellung unterschiedlicher Sichten mit verschiedenen Schwerpunkten auf das Projekt
 * Erstellung von Diagrammen zum Zustand des Projektes
+
+[NOTE]
+======
+Die GitHub Projects sind in dieser Form noch relativ neu, so dass die Aufgaben noch nicht in allen Aspekten komplett angepasst sind.
+Ausführliche Informationen findet man unter folgenden Links:
+
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[Planning and tracking with Projects]
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[About iteration fields - Create iterations to plan upcoming work]
+======
 
 Folgend zwei Beispiele für eine Übersicht über alle Iterationen und eine fokussierte Sicht auf die aktuelle Iteration:
 
@@ -320,9 +329,6 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 :imageFile: screenshot_github_projects_view_current_iteration.png
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-* https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[Planning and tracking with Projects]
-* https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[About iteration fields - Create iterations to plan upcoming work]
 
 Damit so ein Projekt im Team genutzt werden kann, legt der Repository-Eigentümer das neue Projekt an und läd die anderen Teammitglieder, wie auch zum Repository, dazu ein.
 
@@ -377,6 +383,7 @@ Der Inhalt und das Aussehen der Views können über den kleinen kbd:[▼] neben 
 =====
 ====
 
+////
 .#icon:warning[] outdated icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
 [%collapsible]
 ====
@@ -407,6 +414,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 =====
 ====
+////
 
 .Hinweise zu Meilensteinen (Milestone) in GitHub
 [%collapsible]
