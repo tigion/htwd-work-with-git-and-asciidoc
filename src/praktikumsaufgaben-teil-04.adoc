@@ -180,12 +180,12 @@ comments:>=2
 image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
 
 
-Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* und *Milestones* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
+Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
 
 "OpenUP is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. OpenUP embraces a pragmatic, agile philosophy that focuses on the collaborative nature of software development."
 -- https://www.informatik.htw-dresden.de/~anke/openup/index.htm[Quelle: OpenUP]
 
-Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issues, Projects und Milestones von GitHub (Siehe auch <<#image_github_openup>>):
+Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
 
 ====
 .Abbildungsvariante OpenUP in GitHub
@@ -248,9 +248,11 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 - Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
 - Issues können in Projekten zwischen den Zuständen mit Drag&Drop oder durch bestimmte Schlüsselwörter (automatisiert) bewegt werden.
 
+////
 *Einschränkungen:*
 
 - GitHub bietet aktuell noch keine Möglichkeit Projekte einem Meilensteinen zuzuordnen. Die im Projekt enthaltenen Issues müssen von Hand, einzeln oder per Mehrfachauswahl, dem entsprechenden Meilenstein zugeordnet werden.
+////
 
 ====
 
