@@ -199,6 +199,7 @@ a|
 | #*Iteration*#   | #*Project*#
 a|
 * Einteilung der Work Items in Iteration [1..n]
+* extra Spalte (Field, iteration)
 | User Story  | Issue
 a|
 * Kurze Beschreibung einer Anforderung
@@ -234,6 +235,8 @@ a|
 * Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
 |===
 
+Mit einem *GitHub Project* und verschiedenen Sichten (Views) ist der Projektfortschritt mit seinen Iterationen und WorkItems (Issues) für alle Teammitglieder immer ersichtlich. Folgend ein Beispiel:
+
 :imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
 :imageFile: screenshot_github_projects_view_overview.png
 .{imageTitle}
@@ -246,7 +249,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 //- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
 - Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
 - Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
-- Issues können in Projekten zwischen den Zuständen mit Drag&Drop oder durch bestimmte Schlüsselwörter (automatisiert) bewegt werden.
+- Issues können in Projekten zwischen den Zuständen mit Drag&Drop (Table View) oder durch bestimmte Schlüsselwörter (automatisiert, Status-Spalte) bewegt werden.
 
 ////
 *Einschränkungen:*
