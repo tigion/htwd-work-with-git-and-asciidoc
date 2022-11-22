@@ -13,7 +13,7 @@ if [ "$1" = "--build" -o "$1" = "-b" ]; then
 fi
 
 # upload to webserver
-host="ilux150"
+host="ilux151"
 targetFolder="~/upload_arbeiten-mit-git-und-asciidoc"
 gitBranch=`git rev-parse --abbrev-ref HEAD`
 if [ "$gitBranch" = "next" ]; then
