@@ -200,10 +200,10 @@ $ sudo apt-get install ruby
 +
 [source,sh]
 ----
-$ sudo gem install asciidoctor
-$ sudo gem install asciidoctor-pdf
-$ sudo gem install rouge
-$ sudo gem install asciidoctor-diagram
+$ gem install asciidoctor
+$ gem install asciidoctor-pdf
+$ gem install rouge
+$ gem install asciidoctor-diagram
 # optional
 $ gem install text-hyphen
 ----
@@ -219,9 +219,9 @@ $ sudo apt-get install graphviz
 
 ==== icon:apple[] macOS
 
-1. https://brew.sh/index_de[Homebrew] nach zugehöriger Anleitung installieren.
+. https://brew.sh/index_de[Homebrew] nach zugehöriger Anleitung installieren.
 
-2. Ruby per Homebrew über das Terminal installieren (alternative https://mac.install.guide/ruby/13.html[Anleitung]):
+. Ruby per Homebrew über das Terminal installieren (alternative https://mac.install.guide/ruby/13.html[Anleitung]):
 +
 [source,sh]
 ----
@@ -294,7 +294,8 @@ fi
 =====
 ====
 
-3. Asciidoctor per Homebrew über das Terminal installieren:
+////
+. Asciidoctor per Homebrew über das Terminal installieren:
 +
 [source,sh]
 ----
@@ -302,11 +303,13 @@ fi
 ----
 //Alternativ stattdessen als RubyGems:
 //$ sudo gem install asciidoctor
+////
 
-4. Asciidoctor Tools per RubyGems über das Terminal installieren:
+. Asciidoctor Tools per RubyGems über das Terminal installieren:
 +
 [source,sh]
 ----
+$ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
@@ -314,7 +317,7 @@ $ gem install asciidoctor-diagram
 $ gem install text-hyphen
 ----
 
-5. Java https://openjdk.java.net/[OpenJDK] über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?os=macos&package=jdk[Azul Zulu] in passender Architektur laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
+. Java https://openjdk.java.net/[OpenJDK] über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?os=macos&package=jdk[Azul Zulu] in passender Architektur laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
 +
 .Hinweise: OpenJDK Download Variante
 [%collapsible]
@@ -327,7 +330,7 @@ $ sudo mv ~/Downloads/jdk-17.0.2.jdk /Library/Java/JavaVirtualMachines
 ----
 ====
 
-6. Für die lokale Generierung der Diagramme wird noch Graphviz benötigt:
+. Für die lokale Generierung der Diagramme wird noch Graphviz benötigt:
 +
 [source,sh]
 ----
