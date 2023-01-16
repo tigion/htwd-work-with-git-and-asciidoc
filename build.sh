@@ -11,7 +11,7 @@ sourceFolder="src";
 #rm -rf "$buildFolder"; mkdir "$buildFolder"
 ##rm -rf `ls -Ad "$buildFolder"/{*,.*}`
 ###rm -rf "$buildFolder"/{..?*,.[!.]*,*}
-printf "Clear '${buildFolder}' folder: "
+printf "Clear '%s' folder: ", "$buildFolder"
 mkdir -p "$buildFolder"
 if [ -d "$buildFolder" ]; then
   find "$buildFolder" -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
@@ -25,12 +25,12 @@ echo "done"
 attributes="-a toc=left"
 resources=" -r asciidoctor-diagram"
 echo "Generate HTML files:"
-find "$sourceFolder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "$buildFolder" {} \;
+find "$sourceFolder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "$buildFolder" {} \;
 attributes="-a toc=auto"
 specialSubFolder="faq"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
+find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "${buildFolder}/${specialSubFolder}" {} \;
 specialSubFolder="installation-und-konfiguration"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
+find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "${buildFolder}/${specialSubFolder}" {} \;
 
 
 # sed: add sitemap to html files in 'build' folder
@@ -58,7 +58,7 @@ replace='\
 '
 
 printf "Replace text: "
-if [ $(uname -s) = "Darwin" ]; then
+if [ "$(uname -s)" = "Darwin" ]; then
   find "$buildFolder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
 else
   find "$buildFolder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
@@ -66,12 +66,12 @@ fi
 echo "done"
 
 # add preview warning
-gitBranch=`git rev-parse --abbrev-ref HEAD`
+gitBranch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$gitBranch" = "next" ]; then
   search='<div id="header">'
   replace='<div id="cz_preview_warning" style="position: fixed;padding: 15px;background-color: rgba(255,244,0,.9);right: -130px;top: 15px;z-index: 1000;width: 400px;text-align: center;transform: rotate(35deg);border: 3px dashed #e00;">PREVIEW<br \/><a href="..\/arbeiten-mit-git-und-asciidoc\/" style="font-size: 10px;">Come to the productive side!<\/a><\/div><div id="header">'
   printf "Add preview warning: "
-  if [ $(uname -s) = "Darwin" ]; then
+  if [ "$(uname -s)" = "Darwin" ]; then
     find "$buildFolder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
   else
     find "$buildFolder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
@@ -88,6 +88,6 @@ echo "done"
 
 # check options
 # deploy
-if [ "$1" = "--deploy" -o "$1" = "-d" ]; then
+if [ "$1" = "--deploy" ] || [ "$1" = "-d" ]; then
   ./deploy.sh
 fi
