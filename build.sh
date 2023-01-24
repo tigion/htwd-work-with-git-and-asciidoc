@@ -23,14 +23,14 @@ echo "done"
 
 # asciidoctor: generate html files in the 'build' folder
 attributes="-a toc=left"
-resources=" -r asciidoctor-diagram"
+resources="-r asciidoctor-diagram"
 echo "Generate HTML files:"
-find "$sourceFolder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "$buildFolder" {} \;
+find "$sourceFolder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "$buildFolder" {} \;
 attributes="-a toc=auto"
 specialSubFolder="faq"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "${buildFolder}/${specialSubFolder}" {} \;
+find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
 specialSubFolder="installation-und-konfiguration"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor "$attributes" "$resources" -D "${buildFolder}/${specialSubFolder}" {} \;
+find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
 
 
 # sed: add sitemap to html files in 'build' folder
