@@ -23,9 +23,9 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 //:source-highlighter: highlightjs
 :source-highlighter: rouge
 :rouge-style: github
-//:nofooter:
+:nofooter:
 //:last-update-label!:
-:last-update-label: Asciidoctor {asciidoctor-version} | Zuletzt geändert am
+//:last-update-label: Asciidoctor {asciidoctor-version} | Zuletzt geändert am
 // --- folders ---
 //ifndef::imagesdir[:imagesdir: images]
 :imagesdir: images

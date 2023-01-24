@@ -19,4 +19,4 @@ src/images/videos/*
 # ignore generated html/pdf files only
 src/*.pdf
 src/**/*.html
-!src/**/docinfo.html
+!src/**/*docinfo*.html
