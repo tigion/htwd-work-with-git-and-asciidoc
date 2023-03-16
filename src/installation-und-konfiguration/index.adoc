@@ -6,16 +6,19 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :source-highlighter: rouge
 :xrefstyle: full
 :experimental:
-:imagesdir: images
 :!example-caption:
-:docinfo: shared-head
 :toc-title: Inhaltsverzeichnis
 :table-caption: Tabelle
 :figure-caption: Abbildung
 :imagesdir: images
 :sectnums:
 //:sectnumlevels: 2
+// --- HTML ---
+:nofooter:
+//:docinfo: shared-head
+:docinfo: shared
 :sectanchors:
+:favicon:
 :!webfonts:
 
 

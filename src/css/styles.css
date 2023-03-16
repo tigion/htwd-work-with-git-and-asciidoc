@@ -1,0 +1,38 @@
+/* htwd header */
+#htwd {
+  display: table;
+  padding: 28px;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+}
+#htwd .htwd-logo,
+#htwd .htwd-menu {
+  display: table-cell;
+}
+#htwd .htwd-menu {
+  width: 100%;
+  vertical-align: middle;
+  line-height: 1.4em;
+}
+#htwd img {
+  width: 120px;
+  min-width: 120px;
+  margin: 0 28px 0 0;
+  padding: 0;
+}
+#htwd a {
+  color: inherit;
+  text-decoration: underline;
+}
+#htwd span.text {
+  display: inline-block;
+}
+#htwd span.separator {
+  margin: 0 7px;
+}
+
+/* Asciidoctor */
+
+.listingblock {
+  font-size: 0.9em;
+}

@@ -23,7 +23,6 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 //:source-highlighter: highlightjs
 :source-highlighter: rouge
 :rouge-style: github
-:nofooter:
 //:last-update-label!:
 //:last-update-label: Asciidoctor {asciidoctor-version} | Zuletzt geändert am
 // --- folders ---
@@ -32,6 +31,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :diagramsdir: diagrams
 :plantumlsdir: plantuml
 // --- HTML ---
+:nofooter:
 :docinfo: shared
 :sectanchors:
 :favicon:
