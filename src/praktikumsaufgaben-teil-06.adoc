@@ -131,12 +131,12 @@ $ git stash show -p <8>
 +
 * `-u` ... speichert auch neue bzw. noch nicht unter Versionskontrolle stehende Dateien weg
 * `save "..."` ... benennt den erzeugten Stash für eine bessere Unterscheidung
-<3> stellt die weggespeicherte Änderung wieder her und entfernt den zugehörigen _Stash_
-<4> stellt die weggespeicherte Änderung wieder her und behält den zugehörigen _Stash_ (nützlich, wenn die Änderung noch an anderer Stelle (bspw. anderer _Branch_) gebraucht wird)
-<5> entfernt den Stash mit den enthaltenen Änderungen
-<6> Liste der vorhandenen _Stashes_
-<7> ... zeigt Kurzform der Änderungen im _Stash_ gegenüber der aktuellen Version
-<8> ... zeigt auch inhaltliche Änderungen (Patch-Form)
+<3> `pop` ... stellt die weggespeicherte Änderung wieder her und entfernt den zugehörigen _Stash_
+<4> `apply` ... stellt die weggespeicherte Änderung wieder her und behält den zugehörigen _Stash_ (nützlich, wenn die Änderung noch an anderer Stelle (bspw. anderer _Branch_) gebraucht wird)
+<5> `drop` ... entfernt den Stash mit den enthaltenen Änderungen
+<6> `list` ... Liste der vorhandenen _Stashes_
+<7> `show` ... zeigt Kurzform der Änderungen im _Stash_ gegenüber der aktuellen Version
+<8> `show -p` ... zeigt auch inhaltliche Änderungen (Patch-Form)
 
 NOTE: Hat man mehrere Stashs, wird bei `pop`, `apply` und `drop` der zuletzt angelegte genommen. Man kann auch den gewünschten Stash mit bspw. `git stash pop stash@{1}` angegeben. Der neueste ist `stash@{0}` (default), der nächst ältere `stash@{1}` und so weiter.
 =====
