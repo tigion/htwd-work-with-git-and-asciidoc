@@ -71,15 +71,18 @@ Untersuchen Sie in Ihrem lokalen Repository einen älteren Projektstand (Version
 $ git diff <1>
 $ git diff <file> <2>
 
-$ git diff <commit-id> <3>
-$ git diff <commit-id> HEAD <4>
-$ git diff <commit-id-1> <commit-id-2> <5>
+$ git diff --cached <3>
+
+$ git diff <commit-id> <4>
+$ git diff <commit-id> HEAD <5>
+$ git diff <commit-id-1> <commit-id-2> <6>
 ----
 <1> zeigt Unterschied der letzten Version (_HEAD_) zum lokalen Arbeitsstand
 <2> mit der zusätzlichen Angabe `<file>` kann gezielt eine Datei oder ein Verzeichnis verglichen werden
-<3> zeigt Unterschied der Version `<commit-id>` zum lokalen Arbeitsstand
-<4> zeigt Unterschied der Version `<commit-id>` zur letzten Version `HEAD`
-<5> zeigt Unterschied von Version `<commit-id-1>` (älter) zur Version `<commit-id-2>` (neuer)
+<3> mit `--cached` werden die vorgemerkten Änderungen gegenüber `HEAD` oder einer angegebenen Version verglichen 
+<4> zeigt Unterschied der Version `<commit-id>` zum lokalen Arbeitsstand
+<5> zeigt Unterschied der Version `<commit-id>` zur letzten Version `HEAD`
+<6> zeigt Unterschied von Version `<commit-id-1>` (älter) zur Version `<commit-id-2>` (neuer)
 =====
 ====
 
