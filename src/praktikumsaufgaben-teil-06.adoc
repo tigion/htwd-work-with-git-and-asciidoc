@@ -266,8 +266,10 @@ $ git log --oneline
 00af044 (HEAD -> main) Fix typo in <object>
 0af0043 Update <object>
 af00042 Add new <object>
+f000041 Fixup #11 <object>
 ...
 
+//$ git rebase -i f000041
 $ git rebase -i HEAD~3 <1>
 pick af00042 Add new <object>
 f    0af0043 Update <object> <2>
