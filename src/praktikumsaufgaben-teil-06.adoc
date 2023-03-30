@@ -286,7 +286,7 @@ f000045 (HEAD -> main) Add new <object>
 
 | p, pick   | Commit verwenden
 | r, reword | Commit verwenden und Commit-Message ändern
-| s, sqash  | Commit und Commit-Message in vorherigen Commit aufnehmen
+| s, squash | Commit und Commit-Message in vorherigen Commit aufnehmen
 | f, fixup  | Commit ohne Commit-Message in vorherigen Commit aufnehmen
 |===
 
