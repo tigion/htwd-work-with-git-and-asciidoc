@@ -287,12 +287,12 @@ f000045 (HEAD -> main) Add new <object>
 
 [cols="^1,3"]
 |===
-| Kommando         | Beschreibung
+| Kommando      | Beschreibung
 
-| p, pick   | Commit verwenden
-| r, reword | Commit verwenden und Commit-Message ändern
-| s, squash | Commit und Commit-Message in vorherigen Commit aufnehmen
-| f, fixup  | Commit ohne Commit-Message in vorherigen Commit aufnehmen
+| `p`, `pick`   | Commit verwenden
+| `r`, `reword` | Commit verwenden und Commit-Message ändern
+| `s`, `sqash`  | Commit und Commit-Message in vorherigen Commit aufnehmen
+| `f`, `fixup`  | Commit ohne Commit-Message in vorherigen Commit aufnehmen
 |===
 
 NOTE: Ist bei Ihnen im Terminal für Git der Editor vi(m) eingestellt, können Sie mit kbd:[i] in den Bearbeitungsmodus wechseln und nach der Änderung mit kbd:[esc] und der Eingabe von `:wq` speichern und den Editor schließen.
