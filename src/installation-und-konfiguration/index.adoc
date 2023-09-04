@@ -265,33 +265,32 @@ arm64 oder x86_64
 .Mac mit Apple-Chip (arm64)
 [source,sh]
 ----
-if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
-  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
-  export PATH=`gem environment gemdir`/bin:$PATH
+if [[ -d "/opt/homebrew/opt/ruby/bin" ]]; then
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 ----
 +
 .Mac mit Intel-Prozessor (x86_64) oder Rosetta
 [source,sh]
 ----
-if [ -d "/usr/local/opt/ruby/bin" ]; then
-  export PATH=/usr/local/opt/ruby/bin:$PATH
-  export PATH=`gem environment gemdir`/bin:$PATH
+if [[ -d "/usr/local/opt/ruby/bin" ]]; then
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
+  export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 ----
 +
 .Alternativ beides per IF-ELSE
 [source,sh]
 ----
-if [ `uname -m` = "arm64" ] && [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+if [[ `uname -m` = "arm64" && -d "/opt/homebrew/opt/ruby/bin" ]]; then
   # arm64 (apple)
   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-  export PATH=`gem environment gemdir`/bin:$PATH
-elif [ `uname -m` = "x86_64" ] && [ -d "/usr/local/opt/ruby/bin" ]; then
+elif [[ `uname -m` = "x86_64" && -d "/usr/local/opt/ruby/bin" ]]; then
   # x86_64 (intel)
-  export PATH=/usr/local/opt/ruby/bin:$PATH
-  export PATH=`gem environment gemdir`/bin:$PATH
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
 fi
+gem_path="$(gem environment gemdir)/bin" && export PATH="$gem_path:$PATH"
 ----
 . Das Terminal beenden und neustarten oder mit `source ~/.zshrc` die geänderte Konfiguration neuladen lassen.
 =====
