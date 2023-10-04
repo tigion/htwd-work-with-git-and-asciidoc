@@ -342,11 +342,13 @@ Die Verwendung von ssh ist nur in den Linux-Laboren empfohlen, da unter Windows 
 
 ==== Aufgabe 3.1 - Konfiguration, Grundsyntax
 
+. Öffnen Sie das eben geclonte Projekt, falls noch nicht geschehen, als Ordner in Visual Studio Code: "File > Open Folder..."
++
+NOTE: In den *Linux*-Laboren kann Visual Studio Code im Terminal über `/opt/VSCode/code` gestartet werden.
+
 . Erstellen Sie in Ihrem lokalen Repository ein Verzeichnis *docs* und legen Sie in diesem eine neue leere Datei names *_Beispieldokumentation.adoc_* mit *Visual Studio Code* an. Dies können Sie direkt in Visual Studio Code in der Explorer Ansicht über ein Rechtsklick (Kontextmenü: _New File_, _New Folder_) tun.
 +
 NOTE: Unter *Windows* muss in Visual Studio Code beim Speichern der Dateityp: `+All files *.*+` ausgewählt sein, damit die Datei die Endung _.adoc_ und nicht _.adoc.txt_ bekommt.
-+
-In den Linux-Laboren kann Visual Studio Code im Terminal über `/opt/VSCode/code` gestartet werden.
 
 . Gehen Sie in Visual Studio Code in die *Extensions* Ansicht und suchen Sie nach `AsciiDoc`. Installieren Sie, falls noch nicht vorhanden, die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
 +
@@ -371,7 +373,7 @@ Variante 2::
 
 . Passen Sie in Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc" folgende Einstellungen an:
 ** Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert), für eine neutrale Vorschau
-** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert), für die Verwendung der lokal installierten Asciidoctor Tools
+//** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert), für die Verwendung der lokal installierten Asciidoctor Tools
 
 . Übernehmen Sie das folgende AsciiDoc-Beispiel und passen Sie den Autor, die Version und das Datum an. Öffnen sie zusätzlich die https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick reference] und das https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual] im Webbrowser.
 +
@@ -417,15 +419,17 @@ Mit den folgenden Schritten nehmen Sie mithilfe von Visual Studio Code die Ände
 .Screenshot VSCode mit AsciiDoc
 image::screenshot_vscode_git.png[Screenshot VSCode mit Git-Integration, width=600]
 
-. Aktivieren Sie über die Sidebar die Versionsverwaltungsansicht kbd:[Ctrl+Shift+G] ("View > SCM")
+. Aktivieren Sie über die Sidebar die Versionsverwaltungsansicht kbd:[Ctrl+Shift+G] ("View > Source Control")
 . Im Bereich *CHANGES* sehen Sie alle _neuen_ *U* (unbeobachtet), _geänderten_ *M* (modifiziert) und _gelöschten_ *D* (gelöscht) Dateien gegenüber ihrer aktuellen Repository-Version. Über das icon:plus[] Symbol (_git add_) bei den einzelnen Dateien oder im Bereich CHANGES können Sie einzelne oder alle Änderungen in den *INDEX* (Bereich *STAGED CHANGES*) aufnehmen.
 . Im Bereich *STAGED CHANGES* sehen Sie alle im *INDEX* vorgemerkten geänderten Dateien. Über das icon:minus[] Symbol (_git rm --cached_, _git reset_) können diese wieder aus dem Index entfernt werden.
 . Geben Sie in der *Textbox* (_Message ..._) einen kurzen Text über die Änderungen die Sie an Ihrem Projekt vorgenommen haben an.
-. Über das icon:check[] Symbol (_git commit_) können Sie jetzt alle im INDEX vorgemerkten Änderungen mit der angegebenen Commit-Message als neue Version in Ihr *lokales* Repository aufnehmen.
-. Senden Sie jetzt den Stand Ihres *lokalen* Repositories zu Ihrem entfernten (_remote_) Repository auf GitHub. Dies erfolgt über "... > Pull, Push > Push / Push to...".
+. Mit kbd:[Enter] oder über das icon:check[] Symbol (_git commit_) können Sie jetzt alle im INDEX vorgemerkten Änderungen mit der angegebenen Commit-Message als neue Version in Ihr *lokales* Repository aufnehmen.
+. Senden Sie jetzt den Stand Ihres *lokalen* Repositories zu Ihrem entfernten (_remote_) Repository auf GitHub. Dies erfolgt über "... > Pull, Push > Push".
++
+Alternativ über den kbd:[Sync Changes] Button, welcher eine Kombination aus Pull & Push ist.
 . Schauen Sie sich im Webbrowser auf GitHub Ihre eben gemachten Änderungen in Ihrem Repository an.
 
-TIP: Klicken Sie in der Versionsverwaltungsansicht (SCM _SourceControlManagement_) auf den jeweiligen Dateinamen (im Bereich CHANGES, STAGED CHANGES), öffnet sich ein neuer Tab mit einer Gegenüberstellung (_diff_) Ihrer Bearbeitung zur letzten Version.
+TIP: Klicken Sie in der Versionsverwaltungsansicht (Source Control) auf den jeweiligen Dateinamen (im Bereich CHANGES, STAGED CHANGES), öffnet sich ein neuer Tab mit einer Gegenüberstellung (_diff_) Ihrer Bearbeitung zur letzten Version.
 
 
 include::sitemap.inc.adoc[]

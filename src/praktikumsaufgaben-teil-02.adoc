@@ -139,7 +139,12 @@ int main(int argc, char* argv[])
 }
 ----
 +
-Fügen Sie im Dokumenten-Kopf das Attribut `:source-highlighter: rouge` hinzu, um beim Generieren Quellcode mit Syntax-Highlighting zu erhalten.
+[NOTE]
+====
+Fügen Sie im Dokumenten-Kopf das Attribut `:source-highlighter: highlight.js` hinzu, um in der Vorschau und beim Generieren Quellcode mit Syntax-Highlighting zu erhalten.
+
+(Bei Verwendung der lokal instalierten Tools: `:source-highlighter: rouge`.)
+====
 
 . Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
 
@@ -285,14 +290,32 @@ include::../requirements/system-wide_requirements.adoc[tag=nfaf1] <1>
 
 // https://asciidoctor.org/docs/user-manual/#processing-your-content
 
+==== Visual Studio Code - Asciidoc Extension
+
+. Command Palette über Hauptmenü: "View > Command Palette..." öffnen.
+* icon:windows[] Windows und icon:linux[] Linux: kbd:[Shift+Ctrl+P]
+* icon:apple[] macOS: kbd:[Shift+Cmd+P]
+
+. Folgende Befehle eingeben:
++
+.HTML
+`AsciiDoc: Save HTML Document`
++
+.PDF
+`AsciiDoc: Export Document as PDF`
+
+==== Terminal mit lokal installierten Asciidoctor
+
 Für die Generierung verwenden Sie im Terminal (PowerShell, Terminal in Visual Studio Code: "Menü > View > Terminal") den Befehle `asciidoctor` bzw. `asciidoctor-pdf`.
 
 .HTML
+[source,console]
 ----
 $ asciidoctor Beispieldokumentation.adoc
 ----
 
 .PDF
+[source,console]
 ----
 $ asciidoctor-pdf Beispieldokumentation.adoc
 ($ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc)
@@ -347,12 +370,14 @@ IMPORTANT: Studenten des Modules I925 (Studiengang Wirtschaftsingenieurwesen) ha
 
 . Loggen Sie sich per SSH oder über einen SSH-Client (Windows: bspw. https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html[Putty]) auf den Linux-Server *ilux150* ein:
 +
+[source,console]
 ----
 $ ssh s00000@ilux150.informatik.htw-dresden.de
 ----
 
 . Passen Sie, falls noch nicht geschehen, ihre Git-Konfig _.gitconfig_ an und setzen Ihren Namen und E-Mail. (Siehe <<praktikumsaufgaben-teil-01.adoc#section_git_config, Teil 1 - Git-Konfiguration per Git-Kommando>>):
 +
+[source,console]
 ----
 $ git config --global user.name "Vorname Nachname"
 $ git config --global user.email s00000@informatik.htw-dresden.de
@@ -360,18 +385,21 @@ $ git config --global user.email s00000@informatik.htw-dresden.de
 
 . Navigieren Sie zu dem Verzeichnis, in dem Sie eine Kopie Ihres Repositories *clonen* wollen.
 +
+[source,console]
 ----
 $ cd path/to/se1-praktikum
 ----
 
 . Clonen Sie Ihr Repository *htwd-se-example-project*:
 +
+[source,console]
 ----
 $ git clone https://github.com/<username>/htwd-se-example-project.git
 ----
 
 . Wechseln Sie in das eben erstellte Verzeichnis *htwd-se-example-project*:
 +
+[source,console]
 ----
 $ cd htwd-se-example-project
 ----
@@ -379,11 +407,13 @@ $ cd htwd-se-example-project
 . Generieren Sie die benötigten Dokumente:
 +
 .HTML
+[source,console]
 ----
 $ asciidoctor Beispieldokumentation.adoc
 ----
 +
 .PDF
+[source,console]
 ----
 $ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
 ----
@@ -392,18 +422,21 @@ $ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
 
 . Loggen Sie sich per SSH oder über einen SSH-Client (Windows: bspw. https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html[Putty]) auf den Linux-Server *ilux150* ein:
 +
+[source,console]
 ----
 $ ssh s00000@ilux150.informatik.htw-dresden.de
 ----
 
 . Navigieren Sie zu Ihrem Projektverzeichnis *htwd-se-example-project*:
 +
+[source,console]
 ----
 $ cd path/to/se1-praktikum/htwd-se-example-project
 ----
 
 . Aktualisieren Sie Ihr Repository auf den aktuellen Stand von GitHub:
 +
+[source,console]
 ----
 $ git pull
 ----
@@ -411,11 +444,13 @@ $ git pull
 . Generieren Sie die benötigten Dokumente:
 +
 .HTML
+[source,console]
 ----
 $ asciidoctor Beispieldokumentation.adoc
 ----
 +
 .PDF
+[source,console]
 ----
 $ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
 ----
@@ -427,14 +462,17 @@ NOTE: Arbeiten Sie in den Windows-Laboren auf Ihrem `U:\`-Studentenlaufwerke (SA
 
 ==== Aufgabe 2.1 - HTML/PDF-Generierung
 
-1. Generieren Sie über das Terminal (oder das in Visual Studio Code integrierte Terminal) die HTML- und PDF-Version des AsciiDoc-Dokumentes _Beispieldokumentation.adoc_:
+. Generieren Sie mit der AsciiDoc Erweiterung in Visual Studio Code die HTML- und PDF-Version des AsciiDoc-Dokumentes _Beispieldokumentation.adoc_.
+
+. Generieren Sie mit den lokal installierten Asciidoctor Tools über das Terminal (oder das in Visual Studio Code integrierte Terminal) die HTML- und PDF-Version des AsciiDoc-Dokumentes _Beispieldokumentation.adoc_:
 +
+[source,console]
 ----
 $ cd docs
 $ asciidoctor Beispieldokumentation.adoc
 $ asciidoctor-pdf Beispieldokumentation.adoc
 ----
-2. Schauen Sie sich die Ergebnisse an.
+. Schauen Sie sich die Ergebnisse an.
 
 
 ==== Aufgabe 2.2 - Datei .gitignore
@@ -446,12 +484,14 @@ Um zu verhindern, dass generierbare Dateien, wie bspw. html- und pdf-Dateien, in
 1. Legen Sie im Projektverzeichnis (Workspace) die Datei `.gitignore` mit folgendem Inhalt an:
 +
 ..gitignore
+[source,gitignore]
 ----
 *.html
 *.pdf
 ----
 +
 ..gitignore (komplexeres Beispiel)
+[source,gitignore]
 ----
 # ignore unwanted files <1>
 *~
