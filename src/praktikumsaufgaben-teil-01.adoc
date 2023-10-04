@@ -372,7 +372,7 @@ Variante 2::
 ////
 
 . Passen Sie in Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc" folgende Einstellungen an:
-** Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert), für eine neutrale Vorschau
+** Asciidoc > Preview: *Use Editor Style*: icon:square-o[] (deaktiviert), für eine neutrale Vorschau
 //** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert), für die Verwendung der lokal installierten Asciidoctor Tools
 
 . Übernehmen Sie das folgende AsciiDoc-Beispiel und passen Sie den Autor, die Version und das Datum an. Öffnen sie zusätzlich die https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick reference] und das https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual] im Webbrowser.
