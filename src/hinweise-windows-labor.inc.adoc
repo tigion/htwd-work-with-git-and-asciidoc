@@ -9,6 +9,7 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 . Git-Konfiguration `C:\Users\<username>\.gitconfig` wiederherstellen oder anpassen:
 +
 .per Editor in der _.gitconfig_
+[source,ini]
 ----
 [user]
 	name = Vorname Nachname
@@ -20,6 +21,7 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 ----
 +
 .oder per PowerShell und Git-Kommandos
+[source,console]
 ----
 > git config --global user.name "Vorname Nachname"
 > git config --global user.email s00000@informatik.htw-dresden.de
@@ -28,12 +30,12 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 ----
 //. Visual Studio Code: Installieren der Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] vom _asciidoctor_ Projekt.
 . Visual Studio Code: Anpassen der AsciiDoc-Einstellungen:
-** Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert)
-** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert)
-** ggf. Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+** Asciidoc > Preview: *Use Editor Style*: icon:square-o[] (deaktiviert)
+** Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 . icon:github[] GitHub Login mit gespeichertem oder neuem Personal Access Token über die PowerShell bekanntgeben:
 +
 .Repository vorhanden
+[source,console]
 ----
 > U:
 > cd path/to/repository/<repo-name>/
@@ -42,6 +44,7 @@ Authentifizierung ...
 ----
 +
 .Repository nicht vorhanden (Home-/SAMBA-Laufwerk)
+[source,console]
 ----
 > U:
 > cd path/to/repository/
@@ -50,6 +53,7 @@ Authentifizierung ...
 ----
 +
 .Repository nicht vorhanden (TEMP-Laufwerk)
+[source,console]
 ----
 > T:
 > git clone https://github.com/.../<repo-name>

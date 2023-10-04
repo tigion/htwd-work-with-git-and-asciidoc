@@ -57,7 +57,9 @@ image::{imageFile}[title="{imageTitle}", alt="{imageTitle}, "width="{imageWidth}
 
 Werden Diagramme über die *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation) im Dokument verwendet, muss für eine passende Vorschau folgende Einstellung angepasst werden:
 
-* Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+. Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > Asciidoc" in Visual Studio Code setzen:
++
+* Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 
 ==== Git Konfiguration
 
@@ -86,10 +88,9 @@ Hinweise zur Installation von *asciidoctor-diagram* und *Graphviz* und der Einri
 ======
 Gibt es bei der Einrichtung von Asciidoctor und der Diagramm Erweiterung auf dem heimischen Rechner Probleme, kann für die Bearbeitung der Aufgaben die Vorschau in Visual Studio Code temporär wie folgt angepasst werden:
 
-. Folgend Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc" in Visual Studio Code setzen:
+. Folgend Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > Asciidoc" in Visual Studio Code setzen:
 +
-* Asciidoc: *Use_asciidoctor_js*: icon:check-square-o[] (aktiviert)
-* Asciidoc: *Use_kroki*: icon:check-square-o[] (aktiviert)
+* Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 . Visual Studio Code ggf. neustarten!
 ======
 ====
@@ -104,6 +105,7 @@ Der folgende Abschnitt erklärt, wie im Asciidoctor-Dokument die PlantUML Notati
 
 Das Asciidoctor-Dokument benötigt folgende zusätzliche Attribute, wobei die Werte beispielhaft gewählt sind:
 
+[source,asciidoc]
 ----
 :imagesdir: images <1>
 :diagramsdir: diagrams <2>
@@ -153,6 +155,7 @@ Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit Plan
 ==== PlantUML Notation
 
 .PlantUML Notation Minimalbeispiel:
+[source,plantuml]
 ----
 @startuml <1> <2>
 Bob -> Alice : Guten Tag! <3>
@@ -170,6 +173,7 @@ NOTE: Der Dateiname bei `@startuml filename` wird in Asciidoctor nicht beachtet 
 In Asciidoctor werden Diagramme über einen Block eingebunden, welcher die Attribute und die textliche Beschreibung (PlantUML Notation) der zu generierenden Grafik enthält.
 
 .Asciidoctor Syntax-Beispiel:
+[source,plantuml]
 ----
 .Klassendiagramm mit PlantUML <1>
 [plantuml, "{diagramsdir}/syntax-example1", svg] <2> <3>
@@ -216,12 +220,14 @@ Die textlichen Diagrammbeschreibungen können, für eine bessere Wartbarkeit und
 ._syntax-example.puml_
 [%collapsible]
 ====
+[source,plantuml]
 ----
 include::{plantumlsdir}/syntax-example.puml[]
 ----
 ====
 
 .Syntax-Beispiel: Include
+[source,asciidoc]
 ----
 .Klassendiagramm mit PlantUML
 [plantuml, "{diagramsdir}/syntax-example2", svg]
@@ -231,6 +237,7 @@ include::{plantumlsdir}/syntax-example.puml[]
 ----
 
 .Syntax-Beispiel: Block Macro mit Attributen
+[source,asciidoc]
 ----
 :diagramTitle: Klassendiagramm mit PlantUML
 :diagramFile: syntax-example2
@@ -244,6 +251,7 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 IMPORTANT: Die Variante als Block Macro funktioniert nur mit einer lokal installierten Asciidoctor Version bzw. wenn diese für die Vorschau in Visual Studio Code verwendet wird.
 
 .Syntax-Beispiel: Block Macro
+[source,asciidoc]
 ----
 [#diagram_example] <1>
 plantuml::{plantumlsdir}/diagram-example.puml[format=svg, alt="Diagrammbeispiel", title="Diagrammbeispiel", target="{diagramsdir}/diagram-example"] <2>
@@ -258,6 +266,7 @@ plantuml::{plantumlsdir}/diagram-example.puml[format=svg, alt="Diagrammbeispiel"
 * (optional) `id=` ... ID für Verweise
 
 .Variante mit Attributen:
+[source,asciidoc]
 ----
 :diagramTitle: Klassendiagramm mit PlantUML
 :diagramFile: syntax-example2
@@ -281,15 +290,19 @@ Visual Studio Code bietet Erweiterungen für die Unterstützung von PlantUML-Dat
 Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden.
 
 .HTML
+[source,console]
 ----
 % asciidoctor -r asciidoctor-diagram plantuml_test.adoc
 ----
 
 .PDF - v1
+[source,console]
 ----
 % asciidoctor-pdf -r asciidoctor-diagram plantuml_test.adoc
 ----
+
 .PDF - v2
+[source,console]
 ----
 % asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf plantuml_test.adoc
 ----
