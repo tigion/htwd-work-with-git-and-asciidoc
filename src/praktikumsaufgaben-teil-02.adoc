@@ -141,9 +141,12 @@ int main(int argc, char* argv[])
 +
 [NOTE]
 ====
-Fügen Sie im Dokumenten-Kopf das Attribut `:source-highlighter: highlight.js` hinzu, um in der Vorschau und beim Generieren Quellcode mit Syntax-Highlighting zu erhalten.
-
-(Bei Verwendung der lokal instalierten Tools: `:source-highlighter: rouge`.)
+Fügen Sie im Dokumenten-Kopf das Attribut `:source-highlighter: highlight.js` hinzu, um in der Vorschau und beim HTML-Generieren Quellcode mit Syntax-Highlighting zu erhalten.
+====
++
+[WARNING]
+====
+Die PDF-Generierung unterstützt kein Syntax-Highlighting mit `highlight.js`. Hier muss eine lokal instalierte Variante, bspw. `rouge` verwendet werden: `:source-highlighter: rouge`.
 ====
 
 . Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
