@@ -4,9 +4,9 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :toclevels: 4
 :icons: font
 // local HTML generation
-//:source-highlighter: rouge
+:source-highlighter: rouge
 // preview with asciidoctor.js (also VSCode Extension)
-:source-highlighter: highlight.js
+//:source-highlighter: highlight.js
 :xrefstyle: full
 :experimental:
 :!example-caption:
@@ -19,7 +19,7 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 // --- HTML ---
 :nofooter:
 //:docinfo: shared-head
-//:docinfo: shared
+:docinfo: shared
 :sectanchors:
 :favicon:
 :!webfonts:
