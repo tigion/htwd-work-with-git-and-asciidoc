@@ -20,9 +20,11 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :table-caption: Tabelle
 :!example-caption:
 :xrefstyle: full
-//:source-highlighter: highlightjs
+// highlight: local HTML generation
 :source-highlighter: rouge
 :rouge-style: github
+// highlight: preview with asciidoctor.js (also VSCode Extension)
+//:source-highlighter: highlight.js
 //:last-update-label!:
 //:last-update-label: Asciidoctor {asciidoctor-version} | Zuletzt geändert am
 // --- folders ---
