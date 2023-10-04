@@ -1,9 +1,12 @@
 = Arbeiten mit Git und AsciiDoc: pass:q[<br>]Installation & Konfiguration
 Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :toc:
-:toclevels: 3
+:toclevels: 4
 :icons: font
-:source-highlighter: rouge
+// local HTML generation
+//:source-highlighter: rouge
+// preview with asciidoctor.js (also VSCode Extension)
+:source-highlighter: highlight.js
 :xrefstyle: full
 :experimental:
 :!example-caption:
@@ -12,11 +15,11 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :figure-caption: Abbildung
 :imagesdir: images
 :sectnums:
-//:sectnumlevels: 2
+:sectnumlevels: 3
 // --- HTML ---
 :nofooter:
 //:docinfo: shared-head
-:docinfo: shared
+//:docinfo: shared
 :sectanchors:
 :favicon:
 :!webfonts:
@@ -35,7 +38,7 @@ Das Dokument beschreibt die Installation & Konfiguration der für das link:../[P
 
 Test im Terminalfootnote:[Ein *Terminal* ermöglicht die Eingabe von Kommandos (https://de.wikipedia.org/wiki/Kommandozeile[CLI]) und ist unter Windows bspw. die PowerShell oder CMD] ob https://git-scm.com/[Git] schon installiert ist bzw. erfolgreich installiert wurde:
 
-[source,sh]
+[source,console]
 ----
 $ git --version
 git version 2.32.0 (Apple Git-132)
@@ -48,11 +51,31 @@ Laden und installieren Sie sich Git von der offiziellen Projektseite: https://gi
 In der Regel ist Git standartdmäßig vorhanden, so dass hier keine weitere Installation notwendig ist. Alternativ den Hinweisen auf  https://git-scm.com/downloads[git-scm.com/downloads] folgen.
 
 
+=== Visual Studio Code
+
+====
+*Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. - https://code.visualstudio.com/docs
+====
+
+==== icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS
+Laden und installieren Sie sich https://code.visualstudio.com/[Visual Studio Code] von der offiziellen Projektseite: https://code.visualstudio.com/Download[code.visualstudio.com/download].
+
+
 === Asciidoctor
 
 ====
 *Asciidoctor* is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems. - https://asciidoctor.org/[Asciidoctor]
 ====
+
+==== Asciidoctor mit Visual Studio Code
+
+Für die Unterstützung von AsciiDoc-Dokumenten (Syntax Highlighting, Live-Vorschau, PDF-Generierung ...) wird eine Erweiterung (Extension) in Visual Studio Code benötigt.
+
+. Starten Sie Visual Studio Code
+. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht ("View > Extensions") und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
+
+
+==== Asciidoctor lokal installiert
 
 Für die Installation von https://asciidoctor.org/[Asciidoctor] wird https://www.ruby-lang.org/de/[Ruby] und die zugehörigen RubyGemsfootnote:[*RubyGems* (Gems) ist das Paketsystem für die Programmiersprache Ruby (https://de.wikipedia.org/wiki/RubyGems[Quelle])] benötigt. Für die Erweiterung Asciidoctor Diagram wird zusätzlich https://openjdk.java.net/[Java (OpenJDK)] und https://graphviz.org/[Graphviz] benötigt.
 
@@ -74,19 +97,19 @@ NOTE: Wird die Diagrammunterstützung von Asciidoctor nicht benötigt, muss *jav
 | text-hyphen | Erweitert Asciidoctor-PDF um die Möglichkeit von Silbentrennung bei der Erstellung von PDF-Dokumenten. Asciidoctor Dokumentenattribute: `:lang: DE` und `:hyphens:`
 |===
 
-==== Test der Installation
+===== Test der Installation
 
 Tests im Terminal, ob Ruby, Java, Asciidoctor, Graphviz und benötigte RubyGems schon installiert sind bzw. erfolgreich installiert wurden. Die Versionen können je nach Betriebssystem oder alter der Anleitung abweichen.
 
 .Ruby
-[source,sh]
+[source,console]
 ----
 $ ruby -v
 ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]
 ----
 
 .Java
-[source,sh]
+[source,console]
 ----
 $ java --version
 openjdk 17.0.2 2022-01-18
@@ -95,27 +118,30 @@ OpenJDK 64-Bit Server VM (build 17.0.2+8-86, mixed mode, sharing)
 ----
 
 .Asciidoctor
-[source,sh]
+[source,console]
 ----
 $ asciidoctor -v
 Asciidoctor 2.0.17 [https://asciidoctor.org]
 Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+----
 
-# Asciidoctor-PDF Version (falls extra vorhanden)
+.Asciidoctor-PDF (falls extra vorhanden)
+[source,console]
+----
 $ asciidoctor-pdf -v
 Asciidoctor PDF 1.6.2 using Asciidoctor 2.0.17 [https://asciidoctor.org]
 Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
 ----
 
 .Graphviz Dot
-[source,sh]
+[source,console]
 ----
 $ dot -V
 dot - graphviz version 3.0.0 (20220226.1711)
 ----
 
 .RubyGems
-[source,sh]
+[source,console]
 ----
 $ gem list | grep rouge
 rouge (3.28.0)
@@ -132,7 +158,7 @@ $ gem list | grep text-hyphen
 text-hyphen (1.4.1)
 ----
 
-==== icon:windows[] Windows
+===== icon:windows[] Windows
 
 1. *Ruby* über den https://rubyinstaller.org/[RubyInstaller], bspw. `Ruby 3.x (x64)`, installieren. Eine minimale Installation ohne Devkit und ohne MSYS2 development toolchain reicht.
 +
@@ -142,13 +168,12 @@ Alternativ kann über das https://docs.microsoft.com/de-de/windows/wsl/[WSL] (Wi
 
 2. *Asciidoctor* und benötigte Tools per RubyGems über das Terminal installieren:
 +
-[source,sh]
+[source,console]
 ----
 $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
-# optional
 $ gem install text-hyphen
 ----
 
@@ -191,23 +216,22 @@ image::screenshot_windows-10_vs-code.png[700]
 
 NOTE: Beim wiederholten Generieren nach erfolgreicher Installation kann es sein, dass immer noch die alten fehlerhaften Diagrammbilder angezeigt werden. Hier hilft es die alten Diagrammbilder vorher zu löschen. In Praktikum 4 wären das der Ordner *.asciidoctor* und der Ordner images/*diagrams*.
 
-==== icon:linux[] Linux
+===== icon:linux[] Linux
 1. Ruby per Paketverwaltungssystem installieren, bspw. unter Ubuntu mit:
 +
-[source,sh]
+[source,console]
 ----
 $ sudo apt-get install ruby
 ----
 
 2. Asciidoctor und benötigte Tools per RubyGems über das Terminal installieren:
 +
-[source,sh]
+[source,console]
 ----
 $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
-# optional
 $ gem install text-hyphen
 ----
 
@@ -215,18 +239,18 @@ $ gem install text-hyphen
 
 4. Für die lokale Generierung der Diagramme wird noch Graphviz benötigt und kann über die Packetquellen (Alternativ entsprechende https://graphviz.org/download/[Downloadseite]) installiert werden:
 +
-[source,sh]
+[source,console]
 ----
 $ sudo apt-get install graphviz
 ----
 
-==== icon:apple[] macOS
+===== icon:apple[] macOS
 
 . https://brew.sh/index_de[Homebrew] nach zugehöriger Anleitung installieren.
 
 . Ruby per Homebrew über das Terminal installieren (alternative https://mac.install.guide/ruby/13.html[Anleitung]):
 +
-[source,sh]
+[source,console]
 ----
 % brew install ruby
 ----
@@ -240,21 +264,21 @@ Zusätzlich muss noch die Umgebungsvariable `PATH` für die mit Homebrew install
 . Im Terminal die verwendete Shell und Architektur des Macs identifizieren:
 +
 .Shell
-[source,sh]
+[source,console]
 ----
 % echo $SHELL
 /bin/zsh
 ----
 +
 .Architektur
-[source,sh]
+[source,console]
 ----
 % uname -m
 arm64 oder x86_64
 ----
 . Die Konfigurationsdatei der verwendeten Shell _.zshrc_ (_.bashrc_) zum Bearbeiten öffnen:
 +
-[source,sh]
+[source,console]
 ----
 % open -e ~/.zshrc
 #oder
@@ -299,7 +323,7 @@ gem_path="$(gem environment gemdir)/bin" && export PATH="$gem_path:$PATH"
 ////
 . Asciidoctor per Homebrew über das Terminal installieren:
 +
-[source,sh]
+[source,console]
 ----
 % brew install asciidoctor
 ----
@@ -309,22 +333,28 @@ gem_path="$(gem environment gemdir)/bin" && export PATH="$gem_path:$PATH"
 
 . Asciidoctor Tools per RubyGems über das Terminal installieren:
 +
-[source,sh]
+[source,console]
 ----
 $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
-# optional
 $ gem install text-hyphen
 ----
 
-. Java https://openjdk.java.net/[OpenJDK] über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?os=macos&package=jdk[Azul Zulu] in passender Architektur laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
+. Java https://openjdk.java.net/[OpenJDK] über das Terminal installieren:
++
+[source,console]
+----
+$ brew install openjdk
+----
++
+Alternativ über https://adoptium.net/[Adoptium] oder https://www.azul.com/downloads/?os=macos&package=jdk[Azul Zulu] in passender Architektur laden und installieren. Es ist egal ob die JDK oder JDK (LTS) Version genommen wird.
 +
 .Hinweise: OpenJDK Download Variante
 [%collapsible]
 ====
-[source,sh]
+[source,console]
 ----
 $ cd ~/Downloads
 $ tar -xf openjdk-17.0.2_macos-aarch64_bin.tar.gz
@@ -334,63 +364,68 @@ $ sudo mv ~/Downloads/jdk-17.0.2.jdk /Library/Java/JavaVirtualMachines
 
 . Für die lokale Generierung der Diagramme wird noch Graphviz benötigt:
 +
-[source,sh]
+[source,console]
 ----
 $ brew install graphviz
 ----
 
 
-=== Asciidoctor per icon:ship[] Docker
+==== Asciidoctor mit icon:ship[] Docker
 
 NOTE: Voraussetzung für die Verwendung dieser Variante ist eine vorhandene https://docs.docker.com/get-docker/[Installation von Docker].
 
-==== Variante: Interaktive Shell
+===== Variante: Interaktive Shell
 
 In dieser Variante wird das Generieren der Dokumente über einen Asciidoctor Docker Container gelöst. Die Vorschau des Dokumentes in VS Code erfolgt über die Asciidoctor Erweiterung (JavaScript).
 
 . In das lokale Projektverzeichnis `my-asciidoctor-project` wechseln und Docker Container mit interaktiver Shell im Terminal (bspw. von VS Code) starten:
 +
-```sh
+[source,console]
+----
 % cd my-asciidoctor-project/
 % docker run -it -v "$(pwd):/documents/" asciidoctor/docker-asciidoctor <1> <2>
-```
+----
 +
 <1> Im Docker Container ist das Projektverzeichnis im Verzeichnis `/documents` gemountet.
 <2> Der angegebene Asciidoctor Docker Container https://github.com/asciidoctor/docker-asciidoctor[asciidoctor/docker-asciidoctor] ist vom Asciidoctor Projekt und enthält alle relevanten Tools.
 +
 Alternativ direkt mit Pfad zum Projektverzeichnis starten:
 +
-```sh
+[source,console]
+----
 % docker run -it -v "/path/to/my-asciidoctor-project/:/documents/" asciidoctor/docker-asciidoctor
-```
+----
 
 . Prüfen, ob lokaler Projektinhalt im Docker Container im `/documents` Verzeichnis verfügbar ist:
 +
-```sh
+[source,console]
+----
 bash-5.1# pwd
 /documents
 bash-5.1# ls
 document.adoc ...
-```
+----
 
 . Dokument mit Asciidoctor-Befehl im Docker Container als HTML/PDF erstellen:
 +
-```sh
+[source,console]
+----
 bash-5.1# asciidoctor document.adoc
 bash-5.1# asciidoctor-pdf document.adoc
 bash-5.1# asciidoctor -r asciidoctor-diagram document.adoc
 bash-5.1# asciidoctor-pdf -r asciidoctor-diagram document.adoc
-```
+----
 +
 Das Ergebnis liegt anschließend im Projektverzeichnis.
 
 . Docker Container in der interaktiver Shell mit `exit` beenden:
 +
-```sh
+[source,console]
+----
 bash-5.1# exit
-```
+----
 
-==== Variante: Dev Container in Visual Studio Code
+===== Variante: Dev Container in Visual Studio Code
 
 In dieser Variante wird das Projektverzeichnis innerhalb von Visual Studio Code in einem zugehörigen Dev Container gestartet. Das Generieren und die Vorschau geschieht über den Asciidoctor Docker Container.
 
@@ -445,36 +480,13 @@ Die Vorschau und das Terminal in VS Code nutzen jetzt den Asciidoctor Docker Con
 
 . Beenden mit Rechtsklick auf Dev Container: Asciidoctor (links unten) …`Close Remote Connection` oder  `Reopen folder localy`
 
-=== Visual Studio Code
-
-====
-*Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. - https://code.visualstudio.com/docs
-====
-
-==== icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS
-Laden und installieren Sie sich https://code.visualstudio.com/[Visual Studio Code] von der offiziellen Projektseite: https://code.visualstudio.com/Download[code.visualstudio.com/download].
-
-==== AsciiDoc Extension
-
-Für eine bessere Unterstützung von AsciiDoc-Dokumenten (Syntax Highlighting, Live-Vorschau, ...) wird noch eine Erweiterung (Extension) in Visual Studio Code benötigt.
-
-1. Starten Sie Visual Studio Code
-2. Gehen Sie in Visual Studio Code in die *Extensions* Ansicht ("View > Extensions") und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
-
-==== Extensions (optional)
-
-Weitere hilfreiche Erweiterungen wären:
-
-* https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces[Trailing Spaces] ... highlight trailing spaces and delete them in a flash
-* https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles[Markdown Preview Github Styling] ... changes VS Code's built-in markdown preview to match Github's styling
-* https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML] ... rich PlantUML support for Visual Studio Code
-
 == Konfiguration
 
 === Git-Identität
 
 Legen Sie Ihre lokale Git-Identität in der globalen Git-Konfiguration fest:
 
+[source,console]
 ----
 $ git config --global user.name "Vorname Nachname"
 $ git config --global user.email s00000@informatik.htw-dresden.de
@@ -482,6 +494,7 @@ $ git config --global user.email s00000@informatik.htw-dresden.de
 
 Ausgewählte Inhalte bzw. alles kann mit folgenden Git-Kommandos angezeigt werden:
 
+[source,console]
 ----
 $ git config --global user.name
 Vorname Nachname
@@ -499,6 +512,7 @@ Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (an
 
 Befehle wie oben, nur ohne `--global` und innerhalb ihres Repository-Verzeichnisses ausgeführt:
 
+[source,console]
 ----
 $ git config user.name "Vorname Nachname"
 $ git config user.email s00000@informatik.htw-dresden.de
@@ -507,6 +521,7 @@ $ git config user.email s00000@informatik.htw-dresden.de
 Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_conditional_includes[Conditional includes] zu verwenden. Hier kann man bspw. Git-Konfigurationen abhängig von der Verzeichnisstruktur setzen:
 
 ..gitconfig (global)
+[source,ini]
 ----
 [user]
     name = Vorname Nachname
@@ -516,6 +531,7 @@ Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_co
 ----
 
 ..gitconfig_studium
+[source,ini]
 ----
 [user]
     name = Vorname Nachname
@@ -542,6 +558,7 @@ Bei der Frage nach der Authentication Methode entsprechend 2 für Personal acces
 .Ausgabe: icon:windows[] Windows - PowerShell
 [%collapsible]
 ====
+[source,console]
 ----
 > git clone https://github.com/<account>/htwd-se-example-project.git
 Cloning into 'htwd-se-example-project'...
@@ -562,6 +579,7 @@ Receiving objects: 100% (10/10), done.
 .Ausgabe: icon:linux[] Linux und icon:apple[] macOS - Terminal
 [%collapsible]
 ====
+[source,console]
 ----
 % git clone https://github.com/<account>/htwd-se-example-project.git
 Klone nach 'htwd-se-example-project' ...
@@ -579,26 +597,42 @@ Receiving objects: 100% (10/10), done.
 
 ==== Anpassung der AsciiDoc Extension
 
-Die Einstellungen finden Sie unter: Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > asciidoc".
+Die Einstellungen finden Sie unter: Visual Studio Code über "Preferences (oder Zahnradsymbol)> Settings > Extensions > AsciiDoc".
 
-.Vorschau: Verwendung des Asciidoctor-Themas (weißer Hintergrund)
-Für eine neutrale Vorschau des AsciiDoc Dokumentes passen Sie bitte folgende Einstellung an:
+===== Vorschau und Generierung mit AsciiDoc Extension
 
-* Asciidoc > *Preview: Use Editor Style*: icon:square-o[] (deaktiviert)
+.Vorschau mit Asciidoctor-Thema (weißer Hintergrund)
+* Asciidoc > Preview: *Use Editor Style*: icon:square-o[] (deaktiviert)
 
-.Vorschau: Verwendung der lokal installierten Asciidoctor Version
+.PDF-Generierung
+* Asciidoc > PDF: *Engine*: `asciidoctor-pdf`
+
+.Unterstützung von Diagrammen (PlantUML)
+* Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
+
+===== Verwendung der lokal installierten Asciidoctor Version
+
 Sind die Asciidoctor Tools lokal installiert, kann die Erweiterung statt der integrierten JavaScript-Variante direkt die Asciidoctor-Kommandos verwenden. Dazu sind folgende Einstellungen anzupassen:
 
-//* Asciidoc: Asciidoctor_command: `asciidoctor`
-//* Asciidoc: Asciidoctorpdf_command: `asciidoctor-pdf`
-// alternativ?: asciidoctor -r asciidoctor-pdf
-* Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert)
-//* Asciidoc: *Use_asciidoctorpdf*: icon:check-square-o[] (aktiviert)
+[NOTE]
+====
+Seit Version https://github.com/asciidoctor/asciidoctor-vscode/releases/tag/v3.1.0[3.1] der Asciidoctor Erweiterung ist die Asciidoctor CLI Unterstützung entfernt worden. Somit wird nur noch die integrierte und nicht mehr die lokal installierte Version für die Vorschau und Generierung innerhalb von Visual Studio Code verwendet.
 
-.Vorschau: Verwendung der asciidoctor-diagram Erweiterung
-Werden Diagramme über die *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation) im Dokument verwendet, muss für eine passende Vorschau folgende Einstellung angepasst werden:
+Einzig für die PDF-Generierung ist es noch möglich die loakl installierte Version zu Konfigurieren.
+====
 
-* Asciidoc: *Asciidoctor_command*: `asciidoctor -r asciidoctor-diagram`
+.PDF-Generierung
+* Asciidoc > PDF: *Asciidoctor PDF Command Path*: `asciidoctor-pdf`
+* Asciidoc > PDF: *Asciidoctor PDF Command Args*: `-r,asciidoctor-diagram`
+
+==== Hilfreiche Erweiterungen (optional)
+
+Weitere hilfreiche Erweiterungen für Visual Studio Code wären:
+
+* https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces[Trailing Spaces] ... highlight trailing spaces and delete them in a flash
+* https://marketplace.visualstudio.com/items?itemName=bierner.markdown-preview-github-styles[Markdown Preview Github Styling] ... changes VS Code's built-in markdown preview to match Github's styling
+* https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML] ... rich PlantUML support for Visual Studio Code
+* https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph[Git Graph] ... View a Git Graph of your repository, and perform Git actions from the graph
 
 ==== Bugs & Bugfixes
 
