@@ -364,16 +364,16 @@ $ git config --global user.email s00000@informatik.htw-dresden.de
 $ cd path/to/se1-praktikum
 ----
 
-. Clonen Sie Ihr Repository *htw-se-example-project*:
+. Clonen Sie Ihr Repository *htwd-se-example-project*:
 +
 ----
-$ git clone https://github.com/<username>/htw-se-example-project.git
+$ git clone https://github.com/<username>/htwd-se-example-project.git
 ----
 
-. Wechseln Sie in das eben erstellte Verzeichnis *htw-se-example-project*:
+. Wechseln Sie in das eben erstellte Verzeichnis *htwd-se-example-project*:
 +
 ----
-$ cd htw-se-example-project
+$ cd htwd-se-example-project
 ----
 
 . Generieren Sie die benötigten Dokumente:
@@ -396,10 +396,10 @@ $ asciidoctor -r asciidoctor-pdf -b pdf Beispieldokumentation.adoc
 $ ssh s00000@ilux150.informatik.htw-dresden.de
 ----
 
-. Navigieren Sie zu Ihrem Projektverzeichnis *htw-se-example-project*:
+. Navigieren Sie zu Ihrem Projektverzeichnis *htwd-se-example-project*:
 +
 ----
-$ cd path/to/se1-praktikum/htw-se-example-project
+$ cd path/to/se1-praktikum/htwd-se-example-project
 ----
 
 . Aktualisieren Sie Ihr Repository auf den aktuellen Stand von GitHub:

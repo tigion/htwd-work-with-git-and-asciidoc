@@ -10,7 +10,7 @@ Ziel: Organisation von Aufgaben und Prozessen im Team mit Hilfe von *Issues* und
 - *AsciiDoc*: _includes_, _callouts_, _Q&A (Glossar)_, ...
 ////
 
-Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Repository *htw-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htw-se-example-project*.
+Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Repository *htwd-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htwd-se-example-project*.
 
 include::hinweise-windows-labor.inc.adoc[]
 
@@ -63,7 +63,7 @@ Beispiele:
 
 ==== Aufgabe 1.1 - Issues anlegen, kommentieren
 
-Jeder im Team des Teamprojektes *htw-se-example-teamproject* denkt sich eine kleine machbare Änderung oder Erweiterung für die Dokumentation in AsciiDoc aus.
+Jeder im Team des Teamprojektes *htwd-se-example-teamproject* denkt sich eine kleine machbare Änderung oder Erweiterung für die Dokumentation in AsciiDoc aus.
 
 .Aufgabe - icon:users[] Person A, B, C
 1. Legen Sie jeweils zwei neue *Issue* in Ihrem Teamprojekt an. Denken Sie sich hierfür eine kleine, sinnvolle und umsetzbare Erweiterung für Ihre Dokumentation (AsciiDoc) im Projekt aus. Vergeben Sie einen Titel, eine Beschreibung und ein Label `asciidoc`.

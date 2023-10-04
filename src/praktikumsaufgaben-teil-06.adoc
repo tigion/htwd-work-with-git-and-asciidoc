@@ -22,7 +22,7 @@ Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
 
 === Hinweise zur Bearbeitung
 
-Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htw-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
+Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htwd-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
 
 ====
 Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Ressourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.

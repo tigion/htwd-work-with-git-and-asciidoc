@@ -543,8 +543,8 @@ Bei der Frage nach der Authentication Methode entsprechend 2 für Personal acces
 [%collapsible]
 ====
 ----
-> git clone https://github.com/<account>/htw-se-example-project.git
-Cloning into 'htw-se-example-project'...
+> git clone https://github.com/<account>/htwd-se-example-project.git
+Cloning into 'htwd-se-example-project'...
 Select an authentication method for 'https://github.com/':
   1. Web browser (default)
   2. Personal access token
@@ -563,8 +563,8 @@ Receiving objects: 100% (10/10), done.
 [%collapsible]
 ====
 ----
-% git clone https://github.com/<account>/htw-se-example-project.git
-Klone nach 'htw-se-example-project' ...
+% git clone https://github.com/<account>/htwd-se-example-project.git
+Klone nach 'htwd-se-example-project' ...
 Username for 'https://github.com': <account>
 Password for 'https://<account>@github.com':
 remote: Enumerating objects: 10, done.

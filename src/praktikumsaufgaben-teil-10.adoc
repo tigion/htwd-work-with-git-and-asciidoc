@@ -232,7 +232,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 1 - Quickstart
 
-Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htw-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an. Die Aufgabe orientiert sich am Einführungsbeispiel: https://docs.github.com/en/actions/quickstart[Quickstart for GitHub Actions] von GitHub.
+Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htwd-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an. Die Aufgabe orientiert sich am Einführungsbeispiel: https://docs.github.com/en/actions/quickstart[Quickstart for GitHub Actions] von GitHub.
 
 . Erstellen Sie in Ihrem _lokalen_-Repository das Verzeichnis `.github/workflows/`.
 . Legen Sie in diesem die Workflow-Datei `github-actions-demo.yaml` an.

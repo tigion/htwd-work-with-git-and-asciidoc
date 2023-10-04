@@ -37,21 +37,21 @@ include::hinweise-windows-labor.inc.adoc[]
 ==== Aufgabe 1.1 - Repository erstellen
 
 .icon:user[] Person A
-Erstellen Sie in Ihrem GitHub-Account ein neues *_privates_* Repository *htw-se-example-teamproject* mit folgenden Einstellungen:
+Erstellen Sie in Ihrem GitHub-Account ein neues *_privates_* Repository *htwd-se-example-teamproject* mit folgenden Einstellungen:
 
-  * Repository name: `htw-se-example-teamproject`
+  * Repository name: `htwd-se-example-teamproject`
   * Description: `Beispielteamprojekt für die Praktikumsaufgaben zum Thema Git und AsciiDoc`
   * Initialize this repository with a README: `Ja`
 
 ==== Aufgabe 1.2 - Mitglieder hinzufügen
 
 .icon:user[] Person A
-Fügen Sie Ihrem Repository *htw-se-example-teamproject* über die Einstellungen "Settings > Manage access > Collaborators > Invite a collaborator" ihre Teammitglieder über den Account-Namen oder die E-Mail hinzu.
+Fügen Sie Ihrem Repository *htwd-se-example-teamproject* über die Einstellungen "Settings > Manage access > Collaborators > Invite a collaborator" ihre Teammitglieder über den Account-Namen oder die E-Mail hinzu.
 
 NOTE: Alle Mitlgieder haben Schreibrechte und können gleichberechtigt Änderungen am Repository vornehmen. Siehe auch https://help.github.com/en/articles/permission-levels-for-a-user-account-repository[Permission levels for a user account repository].
 
 .icon:users[] Person B, C
-Schauen Sie in Ihr Mail-Postfach und nehmen Sie die Einladung zum *htw-se-example-teamproject* an. Öffnen Sie anschließend das Team-Repository auf GitHub von Person A.
+Schauen Sie in Ihr Mail-Postfach und nehmen Sie die Einladung zum *htwd-se-example-teamproject* an. Öffnen Sie anschließend das Team-Repository auf GitHub von Person A.
 
 NOTE: Damit der Einladungslink funktioniert, müssen Sie im Webbrowser  schon bei GitHub angemeldet sein.
 
@@ -63,7 +63,7 @@ Prüfen Sie mit `git config --list` Ihre lokale Git-Konfiguration, ob Ihr Name u
 ==== Aufgabe 1.4 - Repository Clonen
 
 .icon:users[] Person A, B, C
-Clonen Sie Ihr gemeinsames Repository *htw-se-example-teamproject* von Person A mit Ihrem jeweiligen GitHub Account an einen geeigneten Platz als lokalen Workspace auf ihren Rechner.
+Clonen Sie Ihr gemeinsames Repository *htwd-se-example-teamproject* von Person A mit Ihrem jeweiligen GitHub Account an einen geeigneten Platz als lokalen Workspace auf ihren Rechner.
 
 
 {section-separator}
@@ -141,7 +141,7 @@ Weitere Varianten::
 ==== Aufgabe 2.1 - vorgegebene Reihenfolge
 
 .icon:user[] Person A
-1. Erstellen Sie im lokalen Workspaces Ihres *htw-se-example-teamproject* Repositories ein Verzeichnis *docs* und legen Sie in diesem eine neue Datei *_Teamdokumentation.adoc_* mit folgendem Inhalt in Visual Studio Code an:
+1. Erstellen Sie im lokalen Workspaces Ihres *htwd-se-example-teamproject* Repositories ein Verzeichnis *docs* und legen Sie in diesem eine neue Datei *_Teamdokumentation.adoc_* mit folgendem Inhalt in Visual Studio Code an:
 +
 .Teamdokumentation.adoc
 [source,asciidoc]
@@ -185,7 +185,7 @@ Aktualisieren (_git pull_) Sie *alle im Team* Ihr lokales Repository, damit Sie 
 
 .Aktuelle Projektstruktur:
 ----
-htw-se-example-teamproject
+htwd-se-example-teamproject
 ├── docs
 │   ├── Software.adoc
 │   ├── Teamdokumentation.adoc

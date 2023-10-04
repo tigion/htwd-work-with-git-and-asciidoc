@@ -27,7 +27,7 @@ TIP: Ist dem GitHub-Account die HTW-E-Mail-Adresse hinzugefügt oder dieser dire
 
 1. Erstellen Sie ein *_privates_* Repository mit folgenden Einstellungen:
 
-  * Repository name: `htw-se-example-project`
+  * Repository name: `htwd-se-example-project`
   * Description: `Beispielprojekt für die Praktikumsaufgaben zum Thema Git und AsciiDoc`
   * Initialize this repository with a README: `Ja`
 
@@ -210,11 +210,11 @@ WARNING: Kommt es unter Windows in der Git Bash bei der Kommunikation mit Ihrem 
 
 ==== Aufgabe 2.3 - Repository Clonen
 
-https://help.github.com/en/articles/cloning-a-repository[Clonen] Sie Ihr Repository *htw-se-example-project* an einen geeigneten Platz lokal auf ihren Rechner.
+https://help.github.com/en/articles/cloning-a-repository[Clonen] Sie Ihr Repository *htwd-se-example-project* an einen geeigneten Platz lokal auf ihren Rechner.
 
 .Repository-URL
 ----
-https://github.com/<account>/htw-se-example-project.git
+https://github.com/<account>/htwd-se-example-project.git
 ----
 Zu finden auf GitHub in Ihrem Repository beim Klick auf den grünen *Code* Button im Bereich HTTPS.
 
@@ -286,13 +286,13 @@ Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal
 . Führen Sie darin folgendes Kommando aus und verwenden Sie, bei der Nachfrage zur Authentication-Methode Nummer *2* für den Personal access token von GitHub:
 +
 ----
-git clone https://github.com/<account>/htw-se-example-project.git
+git clone https://github.com/<account>/htwd-se-example-project.git
 ----
 +
 .Ausgabe icon:windows[] Windows - PowerShell:
 ----
-> git clone https://github.com/<account>/htw-se-example-project.git
-Cloning into 'htw-se-example-project'...
+> git clone https://github.com/<account>/htwd-se-example-project.git
+Cloning into 'htwd-se-example-project'...
 Select an authentication method for 'https://github.com/':
   1. Web browser (default)
   2. Personal access token
@@ -308,8 +308,8 @@ Receiving objects: 100% (10/10), done.
 +
 .Ausgabe icon:linux[] Linux und icon:apple[] macOS - Terminal:
 ----
-% git clone https://github.com/<account>/htw-se-example-project.git
-Klone nach 'htw-se-example-project' ...
+% git clone https://github.com/<account>/htwd-se-example-project.git
+Klone nach 'htwd-se-example-project' ...
 Username for 'https://github.com': <account>
 Password for 'https://<account>@github.com':
 remote: Enumerating objects: 10, done.
@@ -329,7 +329,7 @@ Eine weitere Variante wäre die Kommunikation mit GitHub per *_ssh_* statt _http
 
 .Variante - Terminal per SSH (SSH-Key bei GitHub hinterlegt):
 ----
-$ git clone git@github.com:<account>/htw-se-example-project.git
+$ git clone git@github.com:<account>/htwd-se-example-project.git
 ----
 Die Verwendung von ssh ist nur in den Linux-Laboren empfohlen, da unter Windows die Einstellungen in den Nutzerprofilen nicht gespeichert werden.
 =====
