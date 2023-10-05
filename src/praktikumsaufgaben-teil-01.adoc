@@ -52,26 +52,16 @@ AsciiDoc im Fach Software Engineering I.
 
 * https://help.github.com/en/articles/basic-writing-and-formatting-syntax[GitHub Markdown - Basic writing and formatting syntax]
 
-==== Aufgabe 1.4 - Access Token anlegen
+[#aufgabe_access_token]
+==== (Aufgabe 1.4 - Access Token anlegen)
 
-Mit den *Tokens* (Personal access tokens) können Anwendungen gezielt eingeschränkte Zugriffsmöglichkeiten gegeben oder entzogen werden, ohne das Accountpasswort preiszugeben.
+Als Alternative zum Login mit dem GitHub Account, kann auch ein *Personal Access Token* verwendet werden. Mit den *Tokens* (Personal access tokens) können, ähnlich wie bei  *GitHub OAuth*, Anwendungen gezielt eingeschränkte Zugriffsmöglichkeiten gegeben oder entzogen werden, ohne das Accountpasswort preiszugeben.
 
-====
-Seit dem 13. August 2021 akzeptiert GitHub für die Authentifizierung von Git-Operationen über HTTPS nur noch *Personal access tokens* statt des Account Passwortes. (https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/[Quelle])
 
-.Hinweise: Fehlermeldung
+.Hinweise zum Anlegen einen Personal Access Token (Classic)
 [%collapsible]
-=====
-// https://stackoverflow.com/questions/68775869/support-for-password-authentication-was-removed-please-use-a-personal-access-to
-
-.Eine Verwendung des Passwortes über HTTPS führt zu folgendem Fehler:
-----
-remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
-remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
-----
-=====
 ====
-
+=====
 Anleitung für das Anlegen von Access Token: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token[Creating a personal access token]
 
 . Legen Sie auf GitHub über "Settings > Developer settings > Personal access tokens" einen neuen Token bspw. `Praktikum SE I` mit einer Gültigkeit für dieses Semester und nur dem Scope *repo* und *workflow* an.
@@ -84,6 +74,25 @@ In den Laboren (Windows) werden ihre Profile nicht gespeichert, was zum Verlust 
 * Möglichkeit 2: Sie lassen sich zu jedem Praktikumsbeginn den vorhandenen Token über kbd:[Regenerate token] neu generieren.
 
 
+[NOTE]
+======
+Seit dem 13. August 2021 akzeptiert GitHub für die Authentifizierung von Git-Operationen über HTTPS nur noch *GitHub OAuth* oder *Personal access tokens* statt des Account Passwortes. (https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/[Quelle])
+
+.Hinweise: Fehlermeldung
+[%collapsible]
+=======
+// https://stackoverflow.com/questions/68775869/support-for-password-authentication-was-removed-please-use-a-personal-access-to
+
+.Eine Verwendung des Passwortes über HTTPS führt zu folgendem Fehler:
+----
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+----
+=======
+======
+=====
+====
+
 {section-separator}
 
 === 2. Git
@@ -91,7 +100,9 @@ In den Laboren (Windows) werden ihre Profile nicht gespeichert, was zum Verlust 
 [#section_git_config]
 ==== Aufgabe 2.1 - Konfiguration
 
-Für die Verwendung von Git müssen Sie Ihren Name, Ihre E-Mail und eventuell einen Proxy festlegen. Die angegebene E-Mail dient zur Identifizierung ihrer Änderungen am Repository und zur Zuordnung ihres GitHub Accounts. Der Proxy ist notwendig, damit Sie aus dem geschützten HTW-Netz (Labore, VPN, WLAN) sich mit dem Internet verbinden können.
+Für die Verwendung von Git müssen Sie Ihren Name, Ihre E-Mail und eventuell einen Proxy festlegen.
+
+Die angegebene E-Mail dient zur Identifizierung ihrer Änderungen am Repository und zur Zuordnung ihres GitHub Accounts. Der Proxy ist notwendig, damit Sie aus dem geschützten HTW-Netz (Labore, VPN, WLAN) sich mit dem Internet verbinden können.
 
 Die globale Konfiguration von Git wird auf Ihrem Rechner im Benutzerverzeichnis, siehe <<table_git-config_speicherort>>, in der Datei `.gitconfig` abgelegt. Sie gilt global für alle Ihre Git-Repositories.
 
@@ -104,15 +115,21 @@ Die globale Konfiguration von Git wird auf Ihrem Rechner im Benutzerverzeichnis,
 | Windows | `C:\Users\<username>\.gitconfig`
 |===
 
-TIP: Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (andere E-Mail für Privat, Studium, Arbeit, ...), können Sie auch eine spezifische Konfiguration je Repository anlegen. Diese befindet sich im jeweiligen Git-Arbeitsverzeichnis (Workspace) in der Datei _.git/config_. Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_conditional_includes[Conditional includes] zu verwenden.
+[TIP]
+====
+Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (andere E-Mail für Privat, Studium, Arbeit, ...), können Sie auch spezifische Konfigurationen je Repository verwenden.
+
+- Siehe: https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/faq/index.html#_was_ist_bei_mehreren_git_identit%C3%A4ten_zu_beachten[FAQ: Was ist bei mehreren Git-Identitäten zu beachten?]
+====
 
 . _Nur für privaten Rechner notwendig_: Starten Sie Visual Studio Code und öffnen Sie über kbd:[Ctrl+Shift+G] ("View > SCM") den Bereich des Source Controle Managements, welcher für die Versionsverwaltung zuständig ist. Taucht hier ein Meldung ähnlich wie: "_A valid git installation was not detected ... Please install git ..._" auf, schauen sie bitte unter <<Vorbereitung privater Rechner>> nach, ob sie Git installiert haben.
 
 . Öffnen Sie Ihren Dateimanager und schauen Sie nach, ob es schon eine _.gitconfig_ Datei gibt (Siehe <<table_git-config_speicherort>>).
 
-. Öffnen Sie in Visual Studio Code über "File > Open..." die schon vorhandene Datei _.gitconfig_ oder legen legen Sie eine neue Datei über "File > New File" an. Passen Sie den Inhalt wie folgt an:
+. Öffnen Sie in Visual Studio Code über "File > Open..." die schon vorhandene Datei _.gitconfig_ oder legen Sie eine neue Datei über "File > New File" an. Passen Sie den Inhalt wie folgt an:
 +
 .Inhalt der .gitconfig - #HTW Laborrechner#
+[source,ini]
 ----
 [user]
 	name = Vorname Nachname
@@ -133,6 +150,7 @@ Git verweigert, seit Version 2.35.2, aus Sicherheitsgründen (Security Fix https
 
 .Für alle betreffenden Repositories erlauben:
 Mit `git config --global --add safe.directory *` oder direkt über die _.gitconfig_ muss folgendes hinzugefügt werden:
+[source,ini]
 ----
 [safe]
   directory = * <1>
@@ -156,13 +174,14 @@ To add an exception for this directory, call:
 ====
 +
 .Inhalt der .gitconfig - #privater Rechner#
+[source,ini]
 ----
 [user]
 	name = Vorname Nachname
 	email = s00000@htw-dresden.de
 ----
 +
-Für die E-Mail verwenden Sie bitte eine ihrer HTW Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche ebenfalls in Ihrem GitHub-Account verwendet wird.
+Für die E-Mail verwenden Sie bitte eine ihrer HTW Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche in Ihrem GitHub-Account verwendet wird.
 
 . Speichern Sie die gemachten Änderungen über "File > Save" bzw. kbd:[strg+s] oder kbd:[cmd+s].
 +
@@ -171,20 +190,23 @@ _Ist die Datei neu_: Speichern Sie die *neue Datei* über "File > Save As..." un
 . Zum Testen der Konfiguration öffnen Sie in Visual Studio Code über kbd:[Ctrl+Shift+´] ("View > Terminal") das integrierte Terminal oder ein beliebiges anderes Terminal (Windows: PowerShell) und geben folgende Git-Kommandos ein:
 +
 .Anzeige des festgelegten Namens:
+[source, console]
 ----
-% git config --global user.name
+$ git config --global user.name
 Vorname Nachname
 ----
 +
 .Anzeige der festgelegten E-Mail:
+[source, console]
 ----
-% git config --global user.email
+$ git config --global user.email
 s00000@htw-dresden.de
 ----
 +
 .Auflistung der kompletten Git-Konfiguration:
+[source, console]
 ----
-% git config --list
+$ git config --list
 ...
 user.name=Vorname Nachname
 user.email=s00000@htw-dresden.de
@@ -195,11 +217,13 @@ user.email=s00000@htw-dresden.de
 ====
 =====
 Die Git-Konfiguration kann ebenfalls direkt mit den Git-Kommandos `git config [--global] ...` angelegt/bearbeitet, mit `git config --list` angezeigt und Einstellungen mit `git config [--global] --unset ...` entfernt werden.
+[source, console]
 ----
 $ git config --global user.name "Vorname Nachname"
 $ git config --global user.email s00000@informatik.htw-dresden.de
 ----
 Für die Labore der HTW zusätzlich noch ein:
+[source, console]
 ----
 $ git config --global --add safe.directory *
 $ git config --global http.proxy http://www-cache.htw-dresden.de:3128
@@ -212,7 +236,7 @@ WARNING: Kommt es unter Windows in der Git Bash bei der Kommunikation mit Ihrem 
 
 https://help.github.com/en/articles/cloning-a-repository[Clonen] Sie Ihr Repository *htwd-se-example-project* an einen geeigneten Platz lokal auf ihren Rechner.
 
-.Repository-URL
+.Repository-URL:
 ----
 https://github.com/<account>/htwd-se-example-project.git
 ----
@@ -266,7 +290,7 @@ To add an exception for this directory, call:
 
 ===== Variante - Visual Studio Code (HTTPS):
 . In Visual Studio Code kann über folgende Varianten ein Git-Rpository geclont werden:
-** "View > SCM" -> Button kbd:[Clone Repository]
+** "View > Source Control" -> Button kbd:[Clone Repository]
 ** "View > Command Palette..." -> `Git: Clone`
 ** "Get Started"-Seite -> Start: _Clone Git Repository..._
 ** "View > Terminal" -> `cd path/to/folder`  -> `git clone ...`
@@ -274,7 +298,9 @@ To add an exception for this directory, call:
 Falls in VS Code schon ein Repository geöffnet ist, kann dies auch in "View > SCM" über die drei Punkte "*...*" im oberen Bereich mit dem Menüeintrag *Clone* erfolgen.
 . Im oberen mittleren Bereich geht jetzt ein Eingabefenster auf, in welches Sie Ihre Repository-URL kopieren und Enter drücken.
 . Wählen Sie noch einen Zielordner, in welchem das Repository als Verzeichnis gespeichert werden soll.
-. Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login und der *Access Token* abgefragt oder Visual Studio Code nutzt seine *Access to GitHub* Erweiterung.
+. Es erfolgt die Abfrage der Authentifizierung mit GitHub. Hier gibt es jetzt je nach Installation verschiedene Varianten. Entweder wird der Login per *GitHub OAuth* und der *Access Token* abgefragt oder Visual Studio Code nutzt seine *Access to GitHub* Erweiterung.
++
+Verwenden Sie: *GitHub OAuth* (oder den in <<aufgabe_access_token,Aufgabe 1.4>> zuvor angelegten *Access Token*)
 
 Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal erneut den Login. Deswegen ist in den Windows-Laboren die Option mit `git config --global credential.helper=manager` schon in der Git-Konfiguration gesetzt. Damit bleibt Ihr Login für die aktuelle Sitzung gespeichert. Alternativ können Sie auch einen Timeout mit `git config --global credential.helper 'cache -timeout=5400'` einstellen, so würde der Login 60 Minuten gespeichert bleiben.
 
@@ -285,11 +311,14 @@ Die Kommunikation ihres Repositories per *_https_* mit GitHub verlangt jedes Mal
 . Öffnen Sie ein Terminal (Windows: PowerShell)
 . Führen Sie darin folgendes Kommando aus und verwenden Sie, bei der Nachfrage zur Authentication-Methode Nummer *2* für den Personal access token von GitHub:
 +
+.Clone-Befehl:
+[source,console]
 ----
 git clone https://github.com/<account>/htwd-se-example-project.git
 ----
 +
 .Ausgabe icon:windows[] Windows - PowerShell:
+[source,console]
 ----
 > git clone https://github.com/<account>/htwd-se-example-project.git
 Cloning into 'htwd-se-example-project'...
@@ -307,8 +336,9 @@ Receiving objects: 100% (10/10), done.
 ----
 +
 .Ausgabe icon:linux[] Linux und icon:apple[] macOS - Terminal:
+[source,console]
 ----
-% git clone https://github.com/<account>/htwd-se-example-project.git
+$ git clone https://github.com/<account>/htwd-se-example-project.git
 Klone nach 'htwd-se-example-project' ...
 Username for 'https://github.com': <account>
 Password for 'https://<account>@github.com':
@@ -328,6 +358,7 @@ Receiving objects: 100% (10/10), done.
 Eine weitere Variante wäre die Kommunikation mit GitHub per *_ssh_* statt _https_ unter Nutzung eines SSH-Keys. Informationen zur Verwendung findet man unter: https://help.github.com/en/articles/connecting-to-github-with-ssh[Connecting to GitHub with SSH].
 
 .Variante - Terminal per SSH (SSH-Key bei GitHub hinterlegt):
+[source,console]
 ----
 $ git clone git@github.com:<account>/htwd-se-example-project.git
 ----
@@ -375,7 +406,9 @@ Variante 2::
 ** Asciidoc > Preview: *Use Editor Style*: icon:square-o[] (deaktiviert), für eine neutrale Vorschau
 //** Asciidoc: *Use_asciidoctor_js*: icon:square-o[] (deaktiviert), für die Verwendung der lokal installierten Asciidoctor Tools
 
-. Übernehmen Sie das folgende AsciiDoc-Beispiel und passen Sie den Autor, die Version und das Datum an. Öffnen sie zusätzlich die https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick reference] und das https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual] im Webbrowser.
+. Übernehmen Sie in die Datei _Beispieldokumentation.adoc_ das folgende AsciiDoc-Beispiel und passen Sie den Autor an Ihren Namen und das Datum an das heutige an.
++
+Infos zur Syntax: https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Quick reference] und https://asciidoctor.org/docs/user-manual/[Asciidoctor User Manual]
 +
 .Beispieldokumentation.adoc
 [source,asciidoc]
