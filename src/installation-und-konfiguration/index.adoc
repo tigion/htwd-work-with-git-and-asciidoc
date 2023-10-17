@@ -67,7 +67,10 @@ Laden und installieren Sie sich https://code.visualstudio.com/[Visual Studio Cod
 *Asciidoctor* is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems. - https://asciidoctor.org/[Asciidoctor]
 ====
 
-==== Asciidoctor mit Visual Studio Code
+Folgend werden drei Varianten gezeigt, wie Asciidoctor installiert werden kann. 
+Die erste Variante ist für den Anfang die einfachste, da hier nur Visual Studio Code mit der Asciidoctor Erweiterung benötgt wird.
+
+==== Variante 1: Asciidoctor mit Visual Studio Code
 
 Für die Unterstützung von AsciiDoc-Dokumenten (Syntax Highlighting, Live-Vorschau, PDF-Generierung ...) wird eine Erweiterung (Extension) in Visual Studio Code benötigt.
 
@@ -75,7 +78,7 @@ Für die Unterstützung von AsciiDoc-Dokumenten (Syntax Highlighting, Live-Vorsc
 . Gehen Sie in Visual Studio Code in die *Extensions* Ansicht ("View > Extensions") und suchen Sie nach `AsciiDoc`. Installieren Sie die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
 
 
-==== Asciidoctor lokal installiert
+==== Variante 2: Asciidoctor lokal installiert
 
 Für die Installation von https://asciidoctor.org/[Asciidoctor] wird https://www.ruby-lang.org/de/[Ruby] und die zugehörigen RubyGemsfootnote:[*RubyGems* (Gems) ist das Paketsystem für die Programmiersprache Ruby (https://de.wikipedia.org/wiki/RubyGems[Quelle])] benötigt. Für die Erweiterung Asciidoctor Diagram wird zusätzlich https://openjdk.java.net/[Java (OpenJDK)] und https://graphviz.org/[Graphviz] benötigt.
 
@@ -370,7 +373,7 @@ $ brew install graphviz
 ----
 
 
-==== Asciidoctor mit icon:ship[] Docker
+==== Variante 3: Asciidoctor mit icon:ship[] Docker
 
 NOTE: Voraussetzung für die Verwendung dieser Variante ist eine vorhandene https://docs.docker.com/get-docker/[Installation von Docker].
 
