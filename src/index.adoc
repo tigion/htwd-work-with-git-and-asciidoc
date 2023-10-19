@@ -93,9 +93,10 @@ NOTE: *Git* is a free and open source distributed version control system designe
 //** https://www.gitkraken.com/git-client[GitKraken] - Git GUI for Windows, Mac and Linux
 //** https://git-fork.com/[Fork] - Git client for Mac and Windows
 
-- Lernumgebungen
+- Lernumgebungen:
 ** https://ohmygit.org/[Oh My Git!] - An open source game about learning Git!
-** https://github.com/jlord/git-it-electron[Git-it] is a (Mac, Win, Linux) Desktop App for Learning Git and GitHub
+** https://github.com/jlord/git-it-electron[Git-it] - https://learngitbranching.js.org/?locale=de_DEis a (Mac, Win, Linux) Desktop App for Learning Git and GitHub
+** https://learngitbranching.js.org/?locale=de_DE[Willkommen bei Learn Git Branching!]
 
 === GitHub
 
