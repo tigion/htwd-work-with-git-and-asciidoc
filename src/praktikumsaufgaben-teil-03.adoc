@@ -196,7 +196,7 @@ htwd-se-example-teamproject
 ==== Aufgabe 2.2 - freie Teamarbeit
 Bearbeiten Sie im Team die folgenden Aufgaben und nehmen Sie die gemachten Änderungen jeweils in Ihr lokales und Ihr entferntes Teamrepository auf GitHub auf. Es ist keine bestimmt Reihenfolge vorgegeben, nur was wer tun soll. Diskutieren Sie Ihr Vorgehen und auftretende Problemen. Probieren Sie etwas und versuchen Sie aufgetretene _merge_-Konflikte zu lösen.
 
-NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `; ` geschrieben. Besteht ein Autorenname aus mehr als drei Teilen, müssen die Vor- und Nachnamen mit `_` jeweils zu einer Gruppe zusammengefasst werden.
+NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `;` + Leerzeichen geschrieben. Besteht ein Autorenname aus mehr als drei Teilen, müssen die Vor- und Nachnamen mit `_` jeweils zu einer Gruppe zusammengefasst werden.
 
 .Aufgaben - icon:user[] Person A
 - Binden Sie in der Datei *_Teamdokumentation.adoc_* an geeigneter Stelle die Dateien _Teammitglieder.adoc_ und _Software.adoc_ über https://asciidoctor.org/docs/user-manual/#include-directive[includes] ein.
