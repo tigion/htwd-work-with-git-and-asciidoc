@@ -446,7 +446,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 3.1 - Üben
 
-. Legen Sie in Ihrem privaten pository eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
+. Legen Sie in Ihrem privaten Repository `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
 ** User Story 1: `*Dokumentation wie Code behandeln* - Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.`
 
 . Definieren sie drei *Work Items* als Issues mit dem Label `work item`, wovon sich *zwei* auf die vorher angelegte User Story beziehen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
