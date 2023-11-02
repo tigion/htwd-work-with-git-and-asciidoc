@@ -352,6 +352,10 @@ image::{imageFile}["{imageTitle}", width=500, link="{imagesdir}/{imageFile}"]
 +
 Als Rolle kann entweder `Admin`, `Write` oder `Read` ausgewählt werden.
 
+.Projekt in Repository *verlinken*:
+. im (Team-)Repository in den Reiter *Projects* wechseln
+. über den Button kbd:[Link a project] das zuvor angelegte Projekt auswählen
+
 .*Iterationen* hinzufügen:
 * Iterationen können mit regelmäßigen, veränderlichen Zeiten und Pausen angelegt werden. Eine nachträgliche Anpassung ist ebenfalls möglich. +
 Siehe: https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[Hinweise zum Anlegen und Verwenden von Iteration Fields]
@@ -364,7 +368,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 .Issues als *Work Items* aufnehmen:
 ** Table view: Zeile mit kbd:[+]-Button
 ** Board view: kbd:[+ Add item]-Button (Spalte Todo)
-*** per kbd:[+] -> *Add item from repository* -> Repository wählen -> *Issues* auswählen -> kbd:[Add selected items]
+*** per kbd:[+] -> *Add item from repository* -> *Repository* wählen -> *Issues* auswählen -> kbd:[Add selected items]
 ** per Suche (Add item) -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus dem gewählten Repository auswählen
 
 .**Complexity**/**Velocity** im Projekt zu den Work Items (Issues) erfassen:
