@@ -387,6 +387,11 @@ Der Inhalt und das Aussehen der Views können über den kleinen kbd:[▼] neben 
 ** *Current & Next Iteration*: Table view, Filter: `iteration:>=@current`, Gruppierung: Iteration, Sortierung: Status
 ** *Backlog*: Table view, Filer: `no:iteration`
 
+.*Workflows* anpassen:
+. Im Projekt oben rechts auf kbd:[...] klicken
+. Den Menüpunkt *Workflows* auswählen
+. Hier kann (noch etwas eingeschränkt) das automatische Verhalten der Issues mit dem wechsel des zugehörigen Status angepasst werden.
+
 =====
 ====
 
@@ -450,13 +455,37 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 3.1 - Üben
 
-. Legen Sie in Ihrem privaten Repository `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
-** User Story 1: `*Dokumentation wie Code behandeln* - Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.`
+. Erstellen Sie in Ihrem privaten *Repository* `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
++
+.User Stories
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
 
-. Definieren sie drei *Work Items* als Issues mit dem Label `work item`, wovon sich *zwei* auf die vorher angelegte User Story beziehen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
-** Work Item 1: `*Dateien der Dokumentation erstellen* - Erstellen der Dateien Dokumentation.adoc, Software.inc.adoc und Mitglieder.inc.adoc im AsciiDoc-Format im Ordner docs.`
-** Work Item 2: `*Ausgelagerte Dateiinhalte einbinden* - Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.`
-** Work Item 3: `*Datei .gitignore anlegen* - Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.`
+| 1
+| *Dokumentation wie Code behandeln*
+| Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.
+|===
+
+. Erstellen Sie drei *Work Items* als neue Issues mit dem Label `work item`, wovon sich die *zwei* ersten auf die vorher angelegte User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
++
+.Work Items
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
+
+| 1
+| *Dateien der Dokumentation erstellen*
+| Erstellen der Dateien Dokumentation.adoc, Software.inc.adoc und Mitglieder.inc.adoc im AsciiDoc-Format im Ordner docs.
+
+| 2
+| *Ausgelagerte Dateiinhalte einbinden*
+| Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.
+
+| 3
+| *Datei .gitignore anlegen*
+| Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.
+|===
 
 . Erstellen Sie ein neues Projekt *Projektplanung: Beispiel*.
 
@@ -470,8 +499,23 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ** *Overview*: Table view, Gruppierung: Iteration
 ** *Current Iteration*: Board view, Filter: `iteration:@current`
 
-. Schließen Sie ein *Work Item* (Issue) per Commit oder in der Issue-Anicht und schauen Sie sich die Änderung im Projekt bzw. den Sichten an.
-//und dem *Phasen*-Meilenstein an.
+. Erstellen Sie im *Projekt* (Sicht: Overview) ein *Work Item* als neue Issue mit dem Label `work item` und nehmen Sie es anschließend in Ihre aktuelle *Iteration* auf:
++
+.Work Items
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
+
+| 4
+| *Termin mit Auftraggeber vereinbaren*
+a|
+Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
+
+* erstes Meeting mit dem Auftraggeber
+* Vorstellung des Teams
+|===
+
+. Schließen Sie ein *Work Item* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
 
 ////
 ==== Aufgabe 3.2 - Diskussion
