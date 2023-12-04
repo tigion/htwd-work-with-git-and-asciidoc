@@ -55,45 +55,28 @@ image::{imageFile}[title="{imageTitle}", alt="{imageTitle}, "width="{imageWidth}
 
 ==== Visual Studio Code
 
-Werden Diagramme über die *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation) im Dokument verwendet, muss für eine passende Vorschau folgende Einstellung angepasst werden:
+Für die Verwendung der Diagramme mit der *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation), muss für die Vorschau und Generierung folgende Einstellung angepasst werden:
 
-. Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > Asciidoc" in Visual Studio Code setzen:
+. Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > AsciiDoc" in Visual Studio Code setzen:
 +
-* Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
+* AsciiDoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 
 ==== Git Konfiguration
 
-Asciidoctor legt für die generierten Grafiken einen zugehörigen Bilder-Cache im Repository an. Dieser befindet sich im Verzeichnis der jeweiligen  _adoc_-Datei(en) unter _.asciidoctor/diagram/_.
+Es empfiehlt sich, die generierten Grafiken nicht ins Repository aufnehmen, da diese jederzeit neu generiert werden können.
 
-Dieser Bilder-Cache wird nicht im Repository benötigt, so dass er über die _.gitignore_ ausgeschlossen werden sollte. Nehmen Sie dazu das Verzeichnis `.asciidoctor/` in die _.gitignore_ auf.
-
-Möchte man zusätzlich die generierten Grafiken nicht ins Repository aufnehmen, da sie jederzeit neu generiert werden können, kann der dafür vorgegebene Ordner bspw. `images/diagrams/` (Siehe <<Asciidoctor und PlantUML>>) ebenfalls mit in die _.gitignore_ aufgenommen werden.
+Nutzt man die lokal installierte Asciidoctor-Version, wird für die generierten Grafiken ein zugehöriger Bilder-Cache angelegt. Dieser befindet sich im Verzeichnis der jeweiligen  _adoc_-Datei(en) unter _.asciidoctor/diagram/_ und sollte auch vom Repository ausgeschlossen werden.
 
 ..gitignore
 ----
 *.html
 *.pdf
-.asciidoctor/
-images/diagrams/
+images/diagrams/ <1>
+.asciidoctor/ <2>
 ----
+<1> Ausschluss des Ordners `images/diagrams/` (Siehe <<Asciidoctor und PlantUML>>) vom Repository
+<2> Ausschluss des Bilder-Caches `.asciidoctor/` vom Repository (Nur für lokal installiertes Asciidoctor notwendig)
 
-==== Hinweise privater Rechner
-
-Mit der Erweiterung https://asciidoctor.org/docs/asciidoctor-diagram/#diagram-attributes[Asciidoctor Diagram] und https://graphviz.gitlab.io/[Graphviz] unterstützt die lokal installierte Asciidoctor Version die textuelle Notation der Grafiken. Graphviz übernimmt dabei das eigentliche rendern der Bilddateien.
-
-====
-Hinweise zur Installation von *asciidoctor-diagram* und *Graphviz* und der Einrichtung von *Visual Studio Code* für icon:windows[] Windows, icon:linux[] Linux und icon:apple[] macOS finden Sie unter link:installation-und-konfiguration/[Installation & Konfiguration].
-
-[IMPORTANT]
-======
-Gibt es bei der Einrichtung von Asciidoctor und der Diagramm Erweiterung auf dem heimischen Rechner Probleme, kann für die Bearbeitung der Aufgaben die Vorschau in Visual Studio Code temporär wie folgt angepasst werden:
-
-. Folgend Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > Asciidoc" in Visual Studio Code setzen:
-+
-* Asciidoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
-. Visual Studio Code ggf. neustarten!
-======
-====
 
 {section-separator}
 
