@@ -270,7 +270,15 @@ Visual Studio Code bietet Erweiterungen für die Unterstützung von PlantUML-Dat
 
 ==== Generierung PDF/HTML
 
-Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden.
+In Visual Studio Code und der Asciidoc Extensions mit Hilfe der Command Palette über Hauptmenü: "View > Command Palette...":
+
+.HTML
+`AsciiDoc: Save HTML Document`
+
+.PDF
+`AsciiDoc: Export Document as PDF`
+
+Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden:
 
 .HTML
 [source,console]
@@ -410,7 +418,15 @@ plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendung
 ////
 
 
-==== Aufgabe 2 - Klassendiagramm
+==== Aufgabe 2 - Anwendungsfalldiagramm für Cocktailversand
+
+Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwendungsfalldiagramm für den Cocktailversand. Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
+
+. Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
+. Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
+. Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
+
+==== Aufgabe 3 - Klassendiagramm
 
 Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
 
@@ -489,7 +505,7 @@ include::{plantumlsdir}/example_class-diagram.puml[]
 :diagramFile: example_class-diagram
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
-==== Aufgabe 3 - Aktivitätsdiagramm
+==== Aufgabe 4 - Aktivitätsdiagramm
 
 Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
 
@@ -537,7 +553,7 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 ====
 
 [#c4-model-diagrams]
-==== Aufgabe 4 - C4 Model Diagramme
+==== Aufgabe 5 - C4 Model Diagramme
 
 PlantUML kann neben UML auch Diagramme basierend auf dem https://c4model.com/[C4 Model] erzeugen. Dies wären, sortiert nach zunehmenden Detailgrad, die https://c4model.com/#SystemContextDiagram[Kontext-], https://c4model.com/#ContainerDiagram[Kontainer-] und https://c4model.com/#ComponentDiagram[Komponentendiagramme]. Es gibt noch die https://c4model.com/img/glyphicons-basic-351-link.svg[Codediagramme], diese können bspw. mit den aus der UML bekannten Klassendiagrammen dargestellt werden.
 
