@@ -185,6 +185,7 @@ Die erfolgreich generierte Grafik <<diagram_syntax-example1>> sieht wie folgt au
 
 :diagramTitle: Klassendiagramm mit PlantUML
 :diagramFile: syntax-example
+[#diagram_syntax-example1]
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 ////
@@ -425,6 +426,10 @@ Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwend
 . Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
 . Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
 . Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
+
+=== Weitere Diagrammarten
+
+Wechseln Sie hierzu wieder in Ihr Vorführungsprojekt und ergänzen Sie die folgenden Diagramme.
 
 ==== Aufgabe 3 - Klassendiagramm
 
