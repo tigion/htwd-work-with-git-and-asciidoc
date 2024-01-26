@@ -93,6 +93,44 @@ Korrigiere falschen Teamnamen (Issue #6)
 ----
 . Schauen Sie sich die Issues (Open & Closed) und die dazu entstandenen Kommentare und Verweise durch die Referenzen an.
 
+==== Aufgabe 1.3 - Aufgabenlisten in Issues
+
+In den Issue-Beschreibungen können auch Aufgabenlisten angelegt werden. Dies können Teilschritte einer Issue sein oder eine Art Check-Liste, ob bspw. alle genannten Teammitglieder diese erfüllt haben. Bei Bedarf können Teilaufgaben auch in neue Issues umgewandelt werden.
+
+Siehe auch: https://docs.github.com/de/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists[Informationen zu Aufgabenlisten]
+
+.Hinweise: Beispiele für Aufgabenlisten in Issues
+[%collapsible]
+====
+=====
+.Beispiel für Teilaufgaben:
+[code, markdown]
+----
+Use-Case UC01 bearbeiten
+
+- [ ] Kurzbeschreibung, Akteure und Vorbedingung erfassen
+- [ ] Standardablauf ausarbeiten
+- [ ] Szenario mit konkreten Daten zum Standardablauf ausarbeiten
+- [ ] ...
+----
+
+.Beispiel für eine Check-Liste:
+[code, markdown]
+----
+Macht euch mit Aufgabenlisten vertraut.
+
+- [ ] Person A
+- [ ] Person B
+- [ ] Person C
+----
+=====
+====
+
+.Aufgabe - icon:users[] Person A, B, C
+. Erstellen Sie jeweils eine neue *Issue* und verwenden Sie in der Beschreibung eine *Aufgabenliste*.
+. Wandeln Sie eine der *Teilaufgaben* in der Aufgabenliste in eine neue *Issue* um.
+. Schauen Sie sich die eben erstellten Issues an. 
+
 
 {section-separator}
 
