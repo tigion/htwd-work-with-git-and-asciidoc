@@ -307,6 +307,13 @@ include::../requirements/system-wide_requirements.adoc[tag=nfaf1] <1>
 .PDF
 `AsciiDoc: Export Document as PDF`
 
+[WARNING]
+====
+Für das Generieren der PDF mit der Asciidoc Extension wird `asciidoctor-pdf` lokal installiert benötigt.
+
+In der Belegarbeit reicht die Asciidoc Extension für die Bearbeitung und Vorschau der Dokumente in Visual Studio Code. Das Erstellen von PDFs kann in den Laboren oder auf der ilux150 erfolgen, da hier die benötigten Tools installiert sind.
+====
+
 ==== Terminal mit lokal installierten Asciidoctor
 
 Für die Generierung verwenden Sie im Terminal (PowerShell, Terminal in Visual Studio Code: "Menü > View > Terminal") den Befehle `asciidoctor` bzw. `asciidoctor-pdf`.
