@@ -216,7 +216,7 @@ NOTE: Die Verwendung von `revert` erhält, gegenüber `reset`, die Versionskette
 [#warning1]
 IMPORTANT: Das Ändern (`commit --amend`) und das Zusammenfassen (`rebase -i`) von Versionen zu einer neuen Version verändert die Commit-ID(s) und die Versionshistorie, ähnlich wie bei `reset`, des Repository. Es ist nur für *lokale*, *private* Repository und noch *nicht veröffentlichte* Versionen empfohlen, um unterschiedliche Versionsketten mit anderen Nutzern zu vermeiden.
 
-Falls der oder die ursprünglichen Commits schon an ein _remote_-Repository gepusht wurde, muss der überschriebene Commit noch einmal mit `git push --force` gepusht werden. (obere <<#warning1,Warnung>> beachten!)
+Falls der oder die ursprünglichen Commits schon an ein _remote_-Repository gepusht wurde, muss der überschriebene Commit noch einmal mit `git push --force` oder besser https://git-scm.com/docs/git-push#Documentation/git-push.txt---no-force-with-lease[`git push --force-with-lease`] gepusht werden. (obere <<#warning1,Warnung>> beachten!)
 
 .Hinweise: Force-Push mit VS Code
 [%collapsible]
