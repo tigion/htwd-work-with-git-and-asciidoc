@@ -276,9 +276,9 @@ Die Vorgabe enthält einen Workflow namens *GitHub Actions Demo*, welcher durch 
 
 In dieser Aufgabe wollen wir ein kleines Projekt automatisiert mit Unit-Tests in einem Workflow testen lassen. Es gibt eine Varianten in *Java* (Maven) und eine in *Python* (Unittest).
 
-Dafür verwenden wir das bereitgestellte https://github.com/tigion/htw-se-practical-github-actions-exercise[htw-se-practical-github-actions-exercise] Repository. Sie können dies gern mit Ihren Klassen aus dem Praktikum zum Thema *UnitTest mit Java und Python* erweitern bzw. anpassen.
+Dafür verwenden wir das bereitgestellte https://github.com/tigion/htwd-se-practical-github-actions-exercise[htwd-se-practical-github-actions-exercise] Repository. Sie können dies gern mit Ihren Klassen aus dem Praktikum zum Thema *UnitTest mit Java und Python* erweitern bzw. anpassen.
 
-. Erstellen Sie sich vom Repository https://github.com/tigion/htw-se-practical-github-actions-exercise[htw-se-practical-github-actions-exercise] einen Fork in Ihren GitHub Account und clonen ihn anschließend lokal auf Ihren Rechner.
+. Erstellen Sie sich vom Repository https://github.com/tigion/htwd-se-practical-github-actions-exercise[htwd-se-practical-github-actions-exercise] einen Fork in Ihren GitHub Account und clonen ihn anschließend lokal auf Ihren Rechner.
 . Legen Sie sich im Verzeichnis `.github/workflows/` entweder eine neue Workflow-Datei `maven-test.yaml` oder `python-test.yaml` an.
 . Übernehmen Sie entsprechend folgenden Inhalt:
 +
