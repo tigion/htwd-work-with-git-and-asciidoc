@@ -308,13 +308,13 @@ jobs:
     steps:
     # step 1 - clone project
     - name: Checkout the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # step 2 - provide java
-    - name: Set up JDK 16
-      uses: actions/setup-java@v2
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
       with:
-        java-version: '16'
+        java-version: '21'
         distribution: 'adopt'
 
     # step 3 - run tests
@@ -350,11 +350,11 @@ jobs:
     steps:
     # step 1 - clone project
     - name: Checkout the repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # step 2 - provide python
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.x'
 
