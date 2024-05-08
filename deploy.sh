@@ -4,7 +4,7 @@
 if ! cd "$(dirname "$0")"; then exit; fi
 
 # check TODO
-buildFolder="build";
+buildFolder="build"
 
 # check options
 # build
@@ -17,7 +17,7 @@ host="ilux150"
 targetFolder="~/upload_arbeiten-mit-git-und-asciidoc"
 gitBranch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$gitBranch" = "next" ]; then
-  targetFolder="${targetFolder}_next";
+  targetFolder="${targetFolder}_next"
 fi
 echo "Upload to Server:"
 if [ "$(uname -s)" = "Darwin" ]; then

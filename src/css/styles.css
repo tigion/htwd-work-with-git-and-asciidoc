@@ -4,7 +4,7 @@
   padding: 28px;
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-  width: 100%
+  width: 100%;
 }
 #htwd a {
   color: inherit;
@@ -41,10 +41,10 @@
   height: 29px;
   margin: 0 0 0 28px;
   border-radius: 20px;
-  opacity: .25;
+  opacity: 0.25;
 }
 #htwd .htwd-cz a:hover img {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 /* Asciidoctor */
