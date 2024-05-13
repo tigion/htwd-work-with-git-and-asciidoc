@@ -72,20 +72,28 @@ Clonen Sie Ihr gemeinsames Repository *htwd-se-example-teamproject* von Person A
 
 Beim Bearbeiten Ihres Projektes im Team kann es an verschiedenen Stellen zu Konflikten kommen. Dies betrifft unterschiedliche Versionsstände Ihrer Teammitglieder gegenüber dem entfernten Repository auf GitHub und Ihres lokalen Repositories. Die Konflikte bzw. Unterschiede lassen sich entweder *automatisch* zusammenführen (_merge_) oder erfordern ein *manuelles* Eingreifen.
 
-.Schritte zum Lösen eines push-Error Konfliktes
-image::grafik_git_push_error.png["Schritte zum Lösen eines push-Error Konfliktes", width=1024, link="images/grafik_git_push_error.png"]
+.Schritte zum Lösen eines push-Error Konfliktes mit `git pull`
+image::grafik_git_push_error.png["Schritte zum Lösen eines push-Error Konfliktes mit `git pull`", width=1024, link="images/grafik_git_push_error.png"]
+
+.Schritte zum Lösen eines push-Error Konfliktes mit `git pull --rebase`
+image::grafik_git_push_error2.png["Schritte zum Lösen eines push-Error Konfliktes mit `git pull --rebase`", width=1024, link="images/grafik_git_push_error2.png"]
 
 .Hinweis: push-Error Konflikte lösen
 [%collapsible]
 ====
 =====
-Beim Senden (*push*) der Änderungen des lokalen Repositories zum Remote-Repository kann es zu einem Konflikt bzw. Fehler kommen, wenn das Remote-Repository in der Zwischenzeit neuere Versionen (_commits_) erhalten hat.
+Beim Senden *push* (`git push`) der Änderungen des lokalen Repositories zum Remote-Repository kann es zu einem Konflikt bzw. Fehler kommen, wenn das Remote-Repository in der Zwischenzeit neuere Versionen (_commits_) erhalten hat.
 
-In diesem Falle ist es notwendig sich die aktuell Version vom Remote-Repository über ein *pull* zu laden, was zwei Möglichkeiten eröffnet:
+In diesem Falle ist es notwendig sich die aktuell Version vom Remote-Repository über ein *pull* (`git pull` oder `git pull --rebase`) zu laden, was zwei Möglichkeiten eröffnet:
 
 Änderung an unterschiedlicher Stelle::
-. Git kann Ihre lokalen Änderungen *automatisch* mit der neueren Version vom Remote-Repository zusammenführen (*merge*). Es wird automatisch ein neuer *Commit* vorbereitet (Message eingeben).
-. Anschließend können Sie mit einem wiederholten *push* die neu zusammengeführte Version an das Remote-Repository senden.
+* Variante `git pull`:
+.. Git kann Ihre lokalen Änderungen *automatisch* mit der neueren Version vom Remote-Repository zusammenführen (*merge*). Es wird automatisch ein neuer *Commit* vorbereitet (Message eingeben).
+.. Anschließend können Sie mit einem wiederholten *push* die neu zusammengeführte Version an das Remote-Repository senden.
+* Variante `git pull --rebase`:
+.. Git passt die Basis (*rebase*) Ihrer lokalen Änderung an die neueste Version des Remote-Repositories an. Bei einem Konflikt kann mit `git rebase --abort` der Vorgang abgebrochen und dieser manuell mit `git pull` gelöst werden.
+.. Anschließend können Sie mit einem wiederholten *push* die neu zusammengeführte Version an das Remote-Repository senden.
+
 
 Änderung an gleicher Stelle bzw. Überschneidung::
 Git kann Ihre lokalen Änderung *nicht automatisch* mit der neueren Version vom Remote-Repository zusammenführen (*mergen*). Die betreffenden Dateien beinhalten an den sich überschneidenden Zeilen beide Varianten. Oben die lokale und unten die entfernte Variante. Dies wird wie folgt markiert:
