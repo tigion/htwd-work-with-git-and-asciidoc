@@ -81,7 +81,7 @@ jobs: <3>
     steps: <8>
       # step 1 - action <9>
       - name: Checkout the repository <10>
-        uses: actions/checkout@v2 <11>
+        uses: actions/checkout@v4 <11>
 
       # step 2 - single line shell command
       - name: Check file
@@ -104,7 +104,7 @@ jobs: <3>
 <8> ... `steps:` Bereich für alle Schritte zu einem Job.
 <9> ... `#` Kommentar
 <10> ... `- name: <step_name>` Legt den Namen eines Steps fest.
-<11> ... `uses: <action>` Eine spezielle Action `actions/checkout@v2`, welche den Inhalt des Repositories in den Runner läd, so dass nachfolgende Actions damit arbeiten können.
+<11> ... `uses: <action>` Eine spezielle Action `actions/checkout@v4`, welche den Inhalt des Repositories in den Runner läd, so dass nachfolgende Actions damit arbeiten können.
 <12> ... `run: <shell_command>` Führt statt einer vorgegebenen Action einen *einzeiliges* Shell-Kommando aus.
 <13> ... `run: |` Führt ein *mehrzeiliges* Shell-Kommando aus.
 
@@ -112,17 +112,13 @@ jobs: <3>
 
 .Beispiel eines komplexeren Events
 [#example_event]
-Folgend ein Beispiel für ein Event, welches auf *Push* und *Pull-Requests* für den Branch *main* und eine bestimmte Datei _data/colors.json_ reagiert:
+Folgend ein Beispiel für ein Event, welches auf *Push* für den Branch *main* und eine bestimmte Datei _data/colors.json_ reagiert:
 
 [source, yaml]
 ----
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'data/colors.json'
-  pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'data/colors.json'
 ----
@@ -244,6 +240,7 @@ Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htwd-se-example-project`-Repos
 [source,yaml]
 ----
 name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -253,14 +250,13 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
 ----
 ====
 +
@@ -278,7 +274,7 @@ In dieser Aufgabe wollen wir ein kleines Projekt automatisiert mit Unit-Tests in
 
 Dafür verwenden wir das bereitgestellte https://github.com/tigion/htwd-se-practical-github-actions-exercise[htwd-se-practical-github-actions-exercise] Repository. Sie können dies gern mit Ihren Klassen aus dem Praktikum zum Thema *UnitTest mit Java und Python* erweitern bzw. anpassen.
 
-. Erstellen Sie sich vom Repository https://github.com/tigion/htwd-se-practical-github-actions-exercise[htwd-se-practical-github-actions-exercise] einen Fork in Ihren GitHub Account und clonen ihn anschließend lokal auf Ihren Rechner.
+. Erstellen Sie sich vom Repository-Template https://github.com/tigion/htwd-se-practical-github-actions-exercise[htwd-se-practical-github-actions-exercise] ein Repository in Ihrem GitHub Account und clonen es anschließend lokal auf Ihren Rechner.
 . Legen Sie sich im Verzeichnis `.github/workflows/` entweder eine neue Workflow-Datei `maven-test.yaml` oder `python-test.yaml` an.
 . Übernehmen Sie entsprechend folgenden Inhalt:
 +
@@ -294,11 +290,11 @@ name: Unit tests with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'example-java/**'
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'example-java/**'
 
@@ -336,11 +332,11 @@ name: Unit tests with Python
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'example-python/**'
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths:
       - 'example-python/**'
 
@@ -367,7 +363,7 @@ jobs:
 ====
 +
 ****
-Die Workflows werden jeweils durch *Push*- und *Pull-Request*-Events im *master*-Branch auf ihr jeweiliges Verzeichnis `example-java` bzw. `example-python` ausgelöst. Im Job *test* werden im Runner unter Ubuntu Linux drei Steps der Reihe nach ausgeführt:
+Die Workflows werden jeweils durch *Push*- und *Pull-Request*-Events im *main*-Branch auf ihr jeweiliges Verzeichnis `example-java` bzw. `example-python` ausgelöst. Im Job *test* werden im Runner unter Ubuntu Linux drei Steps der Reihe nach ausgeführt:
 
 . Projekt clonen
 . Umgebung bereitstellen
