@@ -72,6 +72,8 @@ Clonen Sie Ihr gemeinsames Repository *htwd-se-example-teamproject* von Person A
 
 Beim Bearbeiten Ihres Projektes im Team kann es an verschiedenen Stellen zu Konflikten kommen. Dies betrifft unterschiedliche Versionsstände Ihrer Teammitglieder gegenüber dem entfernten Repository auf GitHub und Ihres lokalen Repositories. Die Konflikte bzw. Unterschiede lassen sich entweder *automatisch* zusammenführen (_merge_) oder erfordern ein *manuelles* Eingreifen.
 
+NOTE: Mit `git merge --abort` lässt sich bei einem Konflikt der aktuelle Merge-Vorgang abbrechen und in den vorherigen Zustand zurückkehren. So kann der Konflikt zu einem späteren Zeitpunkt gelöst werden oder weitere Änderungen vorgenommen werden.
+
 .Schritte zum Lösen eines push-Error Konfliktes mit `git pull`
 image::grafik_git_push_error.png["Schritte zum Lösen eines push-Error Konfliktes mit `git pull`", width=1024, link="images/grafik_git_push_error.png"]
 
