@@ -121,7 +121,6 @@ NOTE: *AsciiDoc* is a text document format for writing notes, documentation, art
 
 * Editoren:
 ** https://code.visualstudio.com[Visual Studio Code] + Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
-** https://atom.io[Atom] + Erweiterung https://atom.io/packages/asciidoc-preview[AsciiDoc Preview] (side-by-side live preview)
 ** https://asciidoclive.com/[AsciiDocLIVE] ist ein freier online AsciiDoc Editor mit HTML-Export
 
 === Visual Studio Code
