@@ -19,9 +19,9 @@ Die zusammengefassten Hinweise zu der Installation für icon:windows[] Windows, 
 
 1. Loggen Sie sich auf der Webseite https://github.com/[github.com] ein. Sollten Sie noch keinen Account haben, kann er über https://github.com/join erstellt werden.
 +
-Sie haben die Wahl, ob Sie einen neuen Account für ihre HTW-E-Mail-Adresse erstellen oder sie ihrem bestehenden Account ihre HTW-E-Mail-Adresse über "Settings > Emails" hinzufügen.
+Sie haben die Wahl, ob Sie einen neuen Account für ihre HTWD E-Mail-Adresse erstellen oder sie ihrem bestehenden Account ihre HTWD E-Mail-Adresse über "Settings > Emails" hinzufügen.
 
-TIP: Ist dem GitHub-Account die HTW-E-Mail-Adresse hinzugefügt oder dieser direkt damit angelegt worden, können über das https://education.github.com/students[GitHub Education] Programm weitere Features von GitHub freigeschaltet und an weiteren Bonusprogrammen teilgenommen werden.
+TIP: Ist dem GitHub-Account die HTWD E-Mail-Adresse hinzugefügt oder dieser direkt damit angelegt worden, können über das https://education.github.com/students[GitHub Education] Programm weitere Features von GitHub freigeschaltet und an weiteren Bonusprogrammen teilgenommen werden.
 
 ==== Aufgabe 1.2 - Repository Anlegen
 
@@ -102,7 +102,7 @@ remote: Please see https://github.blog/2020-12-15-token-authentication-requireme
 
 Für die Verwendung von Git müssen Sie Ihren Name, Ihre E-Mail und eventuell einen Proxy festlegen.
 
-Die angegebene E-Mail dient zur Identifizierung ihrer Änderungen am Repository und zur Zuordnung ihres GitHub Accounts. Der Proxy ist notwendig, damit Sie aus dem geschützten HTW-Netz (Labore, VPN, WLAN) sich mit dem Internet verbinden können.
+Die angegebene E-Mail dient zur Identifizierung ihrer Änderungen am Repository und zur Zuordnung ihres GitHub Accounts. Der Proxy ist notwendig, damit Sie aus dem geschützten HTWD-Netz (Labore, VPN, WLAN) sich mit dem Internet verbinden können.
 
 Die globale Konfiguration von Git wird auf Ihrem Rechner im Benutzerverzeichnis, siehe <<table_git-config_speicherort>>, in der Datei `.gitconfig` abgelegt. Sie gilt global für alle Ihre Git-Repositories.
 
@@ -128,7 +128,7 @@ Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (an
 
 . Öffnen Sie in Visual Studio Code über "File > Open..." die schon vorhandene Datei _.gitconfig_ oder legen Sie eine neue Datei über "File > New File" an. Passen Sie den Inhalt wie folgt an:
 +
-.Inhalt der .gitconfig - #HTW Laborrechner#
+.Inhalt der .gitconfig - #HTWD Laborrechner#
 [source,ini]
 ----
 [user]
@@ -140,7 +140,7 @@ Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (an
 	proxy = http://www-cache.htw-dresden.de:3128
 ----
 <1> Erlaubt es Git, Repositories auf (Netz-)Laufwerken mit unterschiedlichen Eigentümer-Einstellungen trotz `fatal: unsafe repository`-Sicherheitsmeldung zu nutzen. +
-Dies in den Windows-Laboren der HTW der Fall, wenn sie auf ihrem Studenten-Laufwerk (`U:`) arbeiten.
+Dies in den Windows-Laboren der HTWD der Fall, wenn sie auf ihrem Studenten-Laufwerk (`U:`) arbeiten.
 +
 .Hinweise: Git-Meldung: `fatal: unsafe repository`
 [%collapsible]
@@ -181,7 +181,7 @@ To add an exception for this directory, call:
 	email = s00000@htw-dresden.de
 ----
 +
-Für die E-Mail verwenden Sie bitte eine ihrer HTW Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche in Ihrem GitHub-Account verwendet wird.
+Für die E-Mail verwenden Sie bitte eine ihrer HTWD Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche in Ihrem GitHub-Account verwendet wird.
 
 . Speichern Sie die gemachten Änderungen über "File > Save" bzw. kbd:[strg+s] oder kbd:[cmd+s].
 +
@@ -222,7 +222,7 @@ Die Git-Konfiguration kann ebenfalls direkt mit den Git-Kommandos `git config [-
 $ git config --global user.name "Vorname Nachname"
 $ git config --global user.email s00000@informatik.htw-dresden.de
 ----
-Für die Labore der HTW zusätzlich noch ein:
+Für die Labore der HTWD zusätzlich noch ein:
 [source, console]
 ----
 $ git config --global --add safe.directory *
@@ -384,7 +384,7 @@ NOTE: Unter *Windows* muss in Visual Studio Code beim Speichern der Dateityp: `+
 . Gehen Sie in Visual Studio Code in die *Extensions* Ansicht und suchen Sie nach `AsciiDoc`. Installieren Sie, falls noch nicht vorhanden, die Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] von _asciidoctor_.
 +
 ////
-.Hinweis bei Problemen in den HTW Windows-Laboren mit der Installation der Asciidoc-Erweiterung
+.Hinweis bei Problemen in den HTWD Windows-Laboren mit der Installation der Asciidoc-Erweiterung
 [%collapsible]
 ====
 =====

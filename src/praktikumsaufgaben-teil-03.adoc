@@ -13,7 +13,7 @@ Ziel: Kennenlernen der Zusammenarbeit im Team mit Hilfe von *Git* an einem gemei
 Für die Bearbeitung der Aufgaben bilden Sie bitte Teams aus drei Personen. Entscheiden Sie, wer aus Ihrem Team der Verantwortliche für das Git-Repository ist.
 
 ====
-.Hinweise für ein nicht an der HTW in Präsenz stattfindendes Praktikum
+.Hinweise für ein nicht an der HTWD in Präsenz stattfindendes Praktikum
 
 * Bilden Sie mit Ihren Kommilitonen Teams aus 2 bis 3 Personen.
 * Sind Sie nur zu zweit, teilen Sie sich in die Aufgaben für Person C rein.
