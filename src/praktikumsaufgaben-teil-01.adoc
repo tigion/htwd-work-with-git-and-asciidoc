@@ -110,8 +110,8 @@ Die globale Konfiguration von Git wird auf Ihrem Rechner im Benutzerverzeichnis,
 .Speicherort der globalen Git-Konfiguration
 [cols="1,3", width="60%"]
 |===
-| Linux   | `~/.gitconfig`
-| macOS   | `~/.gitconfig`
+| Linux   | `~/.gitconfig` (`~/.config/git/config`)
+| macOS   | `~/.gitconfig` (`~/.config/git/config`)
 | Windows | `C:\Users\<username>\.gitconfig`
 |===
 
