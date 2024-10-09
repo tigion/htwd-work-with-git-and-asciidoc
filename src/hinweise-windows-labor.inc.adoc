@@ -12,13 +12,13 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 [source,ini]
 ----
 [user]
-	name = Vorname Nachname
-	email = s00000@htw-dresden.de
+  name = Vorname Nachname
+  email = s00000@htw-dresden.de
 [safe]
-    directory = *
-[http]
-	proxy = http://www-cache.htw-dresden.de:3128
+  directory = *
 ----
+//[http]
+//  proxy = http://www-cache.htw-dresden.de:3128
 +
 .oder per PowerShell und Git-Kommandos
 [source,console]
@@ -26,8 +26,8 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 > git config --global user.name "Vorname Nachname"
 > git config --global user.email s00000@informatik.htw-dresden.de
 > git config --global --add safe.directory *
-> git config --global http.proxy http://www-cache.htw-dresden.de:3128
 ----
+//> git config --global http.proxy http://www-cache.htw-dresden.de:3128
 //. Visual Studio Code: Installieren der Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] vom _asciidoctor_ Projekt.
 . Visual Studio Code: Anpassen der AsciiDoc-Einstellungen:
 ** Asciidoc > Preview: *Use Editor Style*: icon:square-o[] (deaktiviert)
