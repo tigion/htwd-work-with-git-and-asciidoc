@@ -67,7 +67,7 @@ Laden und installieren Sie sich https://code.visualstudio.com/[Visual Studio Cod
 *Asciidoctor* is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems. - https://asciidoctor.org/[Asciidoctor]
 ====
 
-Folgend werden drei Varianten gezeigt, wie Asciidoctor installiert werden kann. 
+Folgend werden drei Varianten gezeigt, wie Asciidoctor installiert werden kann.
 Die erste Variante ist für den Anfang die einfachste, da hier nur Visual Studio Code mit der Asciidoctor Erweiterung benötgt wird.
 
 ==== Variante 1: Asciidoctor mit Visual Studio Code
@@ -538,7 +538,7 @@ Alternativ gibt es auch die Möglichkeit https://git-scm.com/docs/git-config#_co
 ----
 [user]
     name = Vorname Nachname
-    email = s00000@htw-dresden.de
+    email = s00000@stud.htw-dresden.de
 ----
 =====
 ====

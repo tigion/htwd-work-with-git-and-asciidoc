@@ -13,7 +13,7 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 ----
 [user]
   name = Vorname Nachname
-  email = s00000@htw-dresden.de
+  email = s00000@stud.htw-dresden.de
 [safe]
   directory = *
 ----
@@ -24,7 +24,7 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 [source,console]
 ----
 > git config --global user.name "Vorname Nachname"
-> git config --global user.email s00000@informatik.htw-dresden.de
+> git config --global user.email s00000@stud.htw-dresden.de
 > git config --global --add safe.directory *
 ----
 //> git config --global http.proxy http://www-cache.htw-dresden.de:3128

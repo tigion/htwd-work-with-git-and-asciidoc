@@ -128,20 +128,30 @@ Arbeiten Sie auf Ihrem (privaten) Rechner mit verschiedenen Git-Identitäten (an
 
 . Öffnen Sie in Visual Studio Code über "File > Open..." die schon vorhandene Datei _.gitconfig_ oder legen Sie eine neue Datei über "File > New File" an. Passen Sie den Inhalt wie folgt an:
 +
+--
 .Inhalt der .gitconfig - #HTWD Laborrechner#
 [source,ini]
 ----
 [user]
   name = Vorname Nachname
-  email = s00000@htw-dresden.de
+  email = s00000@stud.htw-dresden.de <1>
 [safe]
-  directory = * <1>
+  directory = * <2>
 #[http]
 #  proxy = http://www-cache.htw-dresden.de:3128
 ----
-<1> Erlaubt es Git, Repositories auf (Netz-)Laufwerken mit unterschiedlichen Eigentümer-Einstellungen trotz `fatal: unsafe repository`-Sicherheitsmeldung zu nutzen. +
+<1> Für die E-Mail verwenden Sie bitte eine ihrer HTWD Adressen mit `s00000@stud.htw-dresden.de`, `vorname.nachname@stud.htw-dresden.de` oder `s00000@informatik.htw-dresden.de` welche in Ihrem GitHub-Account verwendet wird.
+<2> Erlaubt es Git, Repositories auf (Netz-)Laufwerken mit unterschiedlichen Eigentümer-Einstellungen trotz `fatal: unsafe repository`-Sicherheitsmeldung zu nutzen. +
 Dies in den Windows-Laboren der HTWD der Fall, wenn sie auf ihrem Studenten-Laufwerk (`U:`) arbeiten.
-+
+
+.Inhalt der .gitconfig - #privater Rechner#
+[source,ini]
+----
+[user]
+  name = Vorname Nachname
+  email = s00000@stud.htw-dresden.de
+----
+
 .Hinweise: Git-Meldung: `fatal: unsafe repository`
 [%collapsible]
 ====
@@ -172,16 +182,8 @@ To add an exception for this directory, call:
 . im Terminal `git status` noch einmal ausführen
 =====
 ====
-+
-.Inhalt der .gitconfig - #privater Rechner#
-[source,ini]
-----
-[user]
-  name = Vorname Nachname
-  email = s00000@htw-dresden.de
-----
-+
-Für die E-Mail verwenden Sie bitte eine ihrer HTWD Adressen mit `s00000@informatik.htw-dresden.de`, `s00000@htw-dresden.de` oder `vorname.nachname@htw-dresden.de`, welche in Ihrem GitHub-Account verwendet wird.
+
+--
 
 . Speichern Sie die gemachten Änderungen über "File > Save" bzw. kbd:[strg+s] oder kbd:[cmd+s].
 +
@@ -200,7 +202,7 @@ Vorname Nachname
 [source, console]
 ----
 $ git config --global user.email
-s00000@htw-dresden.de
+s00000@stud.htw-dresden.de
 ----
 +
 .Auflistung der kompletten Git-Konfiguration:
@@ -209,7 +211,7 @@ s00000@htw-dresden.de
 $ git config --list
 ...
 user.name=Vorname Nachname
-user.email=s00000@htw-dresden.de
+user.email=s00000@stud.htw-dresden.de
 ----
 
 .Hinweise: Alternative Git-Konfiguration per Git-Kommando
