@@ -516,7 +516,7 @@ docs/*.pdf
 ----
 <1> mit `#` erhält man eine Kommentarzeile
 <2> Dies ist ein spezielles Verzeichnis, welches Asciidoctor beim Generieren (inkl. Vorschau) anlegt und temporäre Daten zwischenspeichert.
-<3> ignoriert `\*.html` und `*.pdf` Dateien nur im *docs*-Verzechnis
+<3> ignoriert `\*.html` und `*.pdf` Dateien nur im *docs*-Verzeichnis
 
 2. Nehmen Sie die Datei `.gitignore` als neue Version in Ihr lokales Git-Repository und Ihr Remote-Repository auf GitHub auf.
 
