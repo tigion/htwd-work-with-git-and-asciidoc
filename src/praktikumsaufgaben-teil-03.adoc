@@ -148,6 +148,35 @@ Weitere Varianten::
 =====
 ====
 
+.Hinweis: Fehler bei fehlender `git config pull` Einstellung für Merge, Rebase oder FF
+[%collapsible]
+====
+=====
+Ist kein Standardverhalten für den Umgang mit neuen Version und lokalen Versionen bei einem `pull` angegeben, muss dies noch zusätzlich in die *.gitconfig* mit aufgenommen werden.
+
+.Fehlermeldung:
+----
+Hinweis: Sie haben abweichende Branches und müssen angeben, wie mit diesen
+Hinweis: umgegangen werden soll.
+Hinweis: Sie können dies tun, indem Sie einen der folgenden Befehle vor dem
+Hinweis: nächsten Pull ausführen:
+Hinweis:
+Hinweis:   git config pull.rebase false  # Merge <1>
+Hinweis:   git config pull.rebase true   # Rebase <2>
+Hinweis:   git config pull.ff only       # ausschließlich Vorspulen <3>
+Hinweis:
+Hinweis: Sie können statt "git config" auch "git config --global" nutzen, um
+Hinweis: einen Standard für alle Repositories festzulegen. Sie können auch die
+Hinweis: Option --rebase, --no-rebase oder --ff-only auf der Kommandozeile nutzen,
+Hinweis: um das konfigurierte Standardverhalten pro Aufruf zu überschreiben.
+Schwerwiegend: Es muss angegeben werden, wie mit abweichenden Branches umgegangen werden sollen.
+----
+<1> ... Es wird eine neue Version erzeugt, welche das vereinte Ergebnis der lokalen und gepullten Versionen enthält.
+<2> ... Es wird die Basis der lokalen Versionen auf die neu gepullte Versionen aktualisiert.
+<3> ... Es wird keine neue Version erzeugt, sondern nur die neuen Versionen geladen. Es tritt ein Fehler auf, wenn es lokale Versionen gibt und es muss händisch ein Merge oder Rebase durchgeführt werden.
+=====
+====
+
 ==== Aufgabe 2.1 - vorgegebene Reihenfolge
 
 .icon:user[] Person A
