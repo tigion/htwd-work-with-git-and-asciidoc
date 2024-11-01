@@ -129,7 +129,7 @@ Macht euch mit Aufgabenlisten vertraut.
 .Aufgabe - icon:users[] Person A, B, C
 . Erstellen Sie jeweils eine neue *Issue* und verwenden Sie in der Beschreibung eine *Aufgabenliste*.
 . Wandeln Sie eine der *Teilaufgaben* in der Aufgabenliste in eine neue *Issue* um.
-. Schauen Sie sich die eben erstellten Issues an. 
+. Schauen Sie sich die eben erstellten Issues an.
 
 
 {section-separator}
@@ -554,6 +554,26 @@ Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
 |===
 
 . Schließen Sie ein *Work Item* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
+
+==== Aufgabe 3.2 - Risk-Board #TODO#
+
+WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
+
+. neue Sicht (+ New View) als `Table`: *Risiken*
+** Filter: `label:risk` (nur Issues mit Label `risk` anzeigen)
+** Felder *Assignees* und *Status* ausblenden
+** neues Feld (+ New Field)
+*** Field name: *Risiko*
+*** Field type: *Single select* (Options: `Neu`, `Analyse`, `Bewertung`, `Bewältigung`)
+** neues Feld
+*** Field name: *Risikostufe*
+*** Field type: *Single select* (Options: `gering`, `mittel`, `hoch`)
+
+. neue Sicht als `Board`: *Risk-Board*
+** Column By: *Risiko*
+** Filter: `label:risk` (nur Issues mit Label `risk` anzeigen)
+
+. In den Aufgaben- und Iterationssichten mit dem Filterzusatz `-label:risk` Issues mit risk-Label ausblenden.
 
 ////
 ==== Aufgabe 3.2 - Diskussion
