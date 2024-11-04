@@ -1,315 +1,404 @@
 include::header.inc.adoc[]
 
-Ziel: Kennenlernen weiterer Diagrammarten der textbasierten Diagrammgenerierung mit *AsciiDoc*
+Ziel: Vertiefung der Zusammenarbeit im Team mit Hilfe von *Code-Reviews* als Möglichkeit der Pull-/Merge-Requests von *Git* und *GitHub*
 
-== Praktikumsaufgaben Teil 9 - Diagramme 2
+== Praktikumsaufgaben Teil 8 - Zusammenarbeit 3
 
-In diesem Aufgabenteil schauen wir uns weiter Diagramme an, welche mit PlantUML in Asciidoctor-Dokumenten verwendet werden können.
-
-[NOTE]
-====
-* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
-* Hinweise zur Einrichtung und Verwendung von PlantUML in Asciidoctor und Visual Studio Code finden Sie unter <<praktikumsaufgaben-teil-05.adoc#c4-model-diagrams, Praktikumsaufgaben Teil 5 - Diagramme 1>> vom letzten Semester.
-====
+In diesem Aufgabenteil werden Pull-/Merge-Requests als Variante eines Code-Reviews, das Filtern von Issues und das Organisieren von Issues angelehnt am OpenUP betrachtet.
 
 include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 
-=== PlantUML Notation
+=== 1. Code-Review (Pull-/Merge-Request)
 
-==== Aufgabe 1 - C4 Dynamic Diagramm
+//.Geek&Poke - Dev Cycle (Friday Evening Edition)
+image::geek-and-poke_dev-cycle-friday-evening-edition.jpg[Geek&Poke: Dev Cycle (Friday Evening Edition), width=200, role="right", link="http://geek-and-poke.com/geekandpoke/2014/2/23/dev-cycle-friday-evening-edition"]
 
-Für die Verwendung und Hinweise von C4-Modell Diagrammen siehe: <<praktikumsaufgaben-teil-05.adoc#c4-model-diagrams, Teil 5 - Diagramme 1 - C4 Model Diagramme>>.
+Für qualitativ guten Code sind *Code-Reviews* unabdingbar. Plattformen wie icon:github[] Github (oder bspw. icon:gitlab[] GitLab) bieten dafür die Möglichkeit von Pull-/Merge-Requests.
 
-Schauen Sie sich die Syntax auf https://github.com/plantuml-stdlib/C4-PlantUML#supported-diagram-types[C4-PlantUML - Supported Diagram Types] und https://github.com/plantuml-stdlib/C4-PlantUML/blob/master/samples/C4CoreDiagrams.md#dynamic-diagram[Dynamic Diagram Sample] an und erstellen Sie, angelehnt an Ihr Projekt oder das Beispiel, ein C4 Dynamic Diagramm.
+Code-Review::
+    Ist die gezielte Überprüfung des Quellcodes auf Fehler, Schwachstellen, die Einhaltung von Richtlinien und die Vollständigkeit/Lauffähigkeit mit dem Ziel, die Softwarequalität zu sichern. Code-Reviews sind eine Möglichkeit der Qualitätssicherung in der Softwareentwicklung.
 
-._example_c4-dynamic-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_c4-dynamic-diagram.puml[]
-----
-====
+Pull-/Merge-Request::
+    Ist die Anfrage auf eine Überprüfung, Diskussion bzw. Genehmigung zum *mergen* eines Branches (bspw. _feature_-Branch) in einen anderen Branch (bspw. _main_-Branch).
+    (In GitHub wird es Pull-Request und in GitLab Merge-Request genannt.)
 
-:diagramTitle: C4 Dynamic Diagramm mit PlantUML
-:diagramFile: example_c4-dynamic-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+:imageTitle: Pull Request Workflow
+:imageFile: grafik_git_pull-request.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=650, link="{imagesdir}/{imageFile}"]
+<1> _feature_-Branch erstellen und bearbeiten
+<2> Pull-Request anfordern
+<3> Code-Review mit Diskussion und ergänzenden Commits
+<4> Merge des Pull-Requests in den _main_-Branch
 
-==== Aufgabe 2 - C4 Deployment Diagramm
-
-Für die Verwendung und Hinweise von C4-Modell Diagrammen siehe: <<praktikumsaufgaben-teil-05.adoc#, Teil 5 - Diagramme 1 - C4 Model Diagramme>>.
-
-Schauen Sie sich die Syntax auf https://github.com/plantuml-stdlib/C4-PlantUML#supported-diagram-types[C4-PlantUML - Supported Diagram Types] und https://github.com/plantuml-stdlib/C4-PlantUML/blob/master/samples/C4CoreDiagrams.md#deployment-diagram[Deployment Diagram Sample] an und erstellen Sie, angelehnt an Ihr Projekt oder das Beispiel, ein C4 Deployment Diagramm.
-
-._example_c4-deployment-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_c4-deployment-diagram.puml[]
-----
-====
-
-:diagramTitle: C4 Deployment Diagramm mit PlantUML
-:diagramFile: example_c4-deployment-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-==== Aufgabe 3 - Komponentendiagramm
-
-Schauen Sie sich die https://plantuml.com/de/component-diagram[Syntax für ein Komponentendiagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein Komponentendiagramm.
-
-.Hinweise: Komponentendiagramm in PlantUML
+.Ein beispielhaftes Anwenden von Pull-Requests mit GitHub
 [%collapsible]
 ====
 =====
-.Komponente
-----
-component Komponente1 <1>
-[Komponente 2] as co2
-----
-<1> Komponenten werden über das Schlüsselwort `component` definiert oder in eckigen Klammern `[...]` eingeschlossen.
-
-.Schnittstellen
-----
-interface Interface1 <1>
-() Interface2
-() "Special Interface 3" as if1
-----
-<1> Interface werden über das Schlüsselwort `interface` oder mit `()` angegeben.
-
-.Beziehungen
-----
-[co2] ..> if1 : use <1>
-----
-<1> gestrichelte use-Beziehung zwischen Komponente 2 und dem Interface 1
-
-.Notizen
-----
-note left of Komponente1 : Text of note <1>
-note right of co2 <2>
-  A note can also
-  be on several lines
-end note
-----
-<1> Notizen können in Abhängigkeit der Richtung über `note left|right|top|bottom of` für Elemente vergeben werden.
-<2> Mehrzeilige Notizen sind ebenfalls möglich.
-
-.Gruppierung
-----
-cloud "Cloud" { <1>
-  [Opal]
-}
-node "Webserver" { <2>
-  database "Database" {
-    [MySQL]
-  }
-  [Apache]
-  [Web APP]
-}
-[Web APP] -> [Apache] <3>
-[Opal] <- [Web APP]
-----
-<1> Gruppierung der Komponente Opal als `cloud`. Andere Kontainer wären: `package`, `node`, `folder`, `frame` und `database`.
-<2> Verschachtelte Gruppierung
-<3> Angabe der Beziehung zwischen zwei Komponenten
-=====
-====
-
-._example_component-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_component-diagram.puml[]
-----
-====
-
-:diagramTitle: Komponentendiagramm mit PlantUML
-:diagramFile: example_component-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-==== Aufgabe 4 - Paketdiagramm
-
-Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm (Abschnitt Package)] an und erstellen Sie, angelehnt an Ihr Projekt, ein Paketdiagramm.
-
-.Hinweise: Paketdiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Pakete
-----
-package Paket1 {} <1>
-package Paket2 #ffc {} <2>
-package Paket3 { <3>
-  package Paket3.1 {}
-  class Klasse1
-}
-----
-<1> Pakete werden mit dem Schlüsselwort `package` angelegt.
-<2> Mit einer hexadezimalen Angabe kann die Hintergrundfarbe des Pakete angegeben werden.
-<3> Pakete können Pakete und Klassen enthalten.
-
-.Beziehungen
-----
-Paket1 <- Paket2 : import <1>
-Paket2 .. Paket3
-----
-<1> Beziehungen zwischen Paketen oder den enthaltenen Klassen werden wie bisher angegeben.
-=====
-====
-
-._example_package-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_package-diagram.puml[]
-----
-====
-
-:diagramTitle: Paketdiagramm mit PlantUML
-:diagramFile: example_package-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-==== Aufgabe 5 - Sequenzdiagramm
-
-Schauen Sie sich die https://plantuml.com/de/sequence-diagram[Syntax für ein Sequenzdiagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein Sequenzdiagramm.
-
-.Hinweise: Sequenzdiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Teilnehmer (Participants)
-- `participant` (default), `actor`, `boundary`, `control`, `entity`, `database`, `collections`
-
-----
-actor User as actor1 #LightGray <1> <2>
-participant "UI Class" as class1 <3>
-----
-<1> Teilnehmer können direkt `+User -> class1+` oder mit ihrem Alias `+actor1 -> class1+` verwendet werden.
-<2> Mit `#f00` oder `#LightGray` kann eine Hintergrundfarbe definiert werden.
-<3> Teilnehmernamen mit Leerzeichen werden in `"` eingefasst.
-
-.Beziehungen
-----
-ator1 -> class1: Request <1>
-class1 -> class1: Do <2>
-||| <3>
-class2 --> actor1: Send
-----
-<1> Beziehungen zwischen Teilnehmern werden mit `+->+` (durchgezogen) oder `+-->+` (gestrichelt) angegeben. Die verschiedenen Pfeilarten entnehmen Sie bitte der offiziellen Dokumentation unter https://plantuml.com/de/sequence-diagram#efeda651e89e596c[Pfeilarten].
-<2> Teilnehmer können Beziehungen auch auf sich selbst haben.
-<3> Extra Abstände können mit `|||` oder mit einer Angabe in Pixeln `||45||` eingefügt werden.
-=====
-====
-
-._example_sequence-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_sequence-diagram.puml[]
-----
-====
-
-:diagramTitle: Sequenzdiagramm mit PlantUML
-:diagramFile: example_sequence-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-
-==== Aufgabe 6 - Entity Relationship Diagramm (optional)
-
-Schauen Sie sich die https://plantuml.com/de/ie-diagram[Syntax für ein ER-Diagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein entsprechendes Entity-Relationship-Diagramm (ERD) bzw. Entity-Relationship-Modell (ERM).
-
-PlantUML nutzt hierfür eine Erweiterung der Notation der Klassendiagramme.
-
-.Hinweise: Entity Relationship Diagramm in PlantUML
-[%collapsible]
-====
-=====
-.Entities
-----
-entity Entity1 <1>
-entity Entity2 { <2>
-  * **id** : char(5) <3>
-  --
-  * name : varchar(255)
-  note : varchar(255)
-}
-----
-<1> Entities werden mit dem Schlüsselwort `entity` angelegt.
-<2> Entity mit Platz für Attribute
-<3> Attribute:
-* `*` ... kennzeichnet verpflichtende Attribute (NOT NULL)
-* In `**` eingefasster Text wird fett dargestellt. Geeignet, um Primär Schlüssel hervorzuheben bzw. ordnet man sie im oberen Bereich, getrennt durch `--`, an.
-* Dem Attributnamen folgt mit `:` der Datentyp.
-
-.Beziehungen mit Kardinalitäten
-----
-Entity1 ||--o{ Entity2 <1>
-----
-<1> Beziehung zwischen zwei Entitäten mit zugehöriger Kardinalität. Anzeige erfolgt als https://de.wikipedia.org/wiki/Martin-Notation[Krähenfussnotation]. +
-{empty} +
+.icon:user[] Person A
+[start=1]
+. *Lokal*: Lokale Änderungen im _feature-XYZ_-Branch aufnehmen und veröffentlichen:
 +
-.Notation Kardinalitäten
-[cols="1,3,2", width=70%]
-|===
-| `\|o--`  | keins oder eins  | `0..1`, `c`
-| `\|\|--` | eins             | `1`
-| `}o--`   | keins, eins oder viele | `0..*`, `cm`
-| `}\|--`  | eins oder viele  | `1..*`, `m`
-|===
+----
+$ git branch
+* main
+$ git switch -c feature-XYZ
+$ git branch
+* feature-XYZ
+  main
+$ git push -u origin feature-XYZ
+$   vi feature-XYZ.txt → git add . → git commit -m "..."
+$   vi feature-XYZ.txt → git add . → git commit -m "..."
+$ git push
+----
 
-.Diagrammattribute (am Diagrammanfang)
+. *GitHub*: Pull-Request anlegen:
+[arabic]
+.. In der "Code"-Ansicht in den kbd:[Branch: *feature-XYZ*] wechseln
+.. kbd:[*New pull request*] auswählen: kbd:[base: *main*] <- kbd:[compare: *feature-XYZ*]
+.. Title, Kommentar und (optional) Reviewers, Assignees hinzufügen
+.. kbd:[*Create pull request*] ausführen
+
+---
+.icon:user[] Person B
+[start=3]
+. *Code-Review* durchführen:
+[arabic]
+.. Änderungen auf GitHub oder Lokal untersuchen:
+*** Variante *GitHub*: Im Reiter "Commits" sich die Änderungen und Unterschiede anschauen.
+*** Variante *Lokal*:
+**** Die Änderungen aus dem Pull-Request mit dem zugehörigen _feature-XYZ_-Branch in das lokale Repository aufnehmen und untersuchen und testen:
++
 ----
-hide circle <1>
-skinparam linetype ortho <2>
+$ git fetch
+$ git switch feature-XYZ
 ----
-<1> Blendet das (E) im Entity-Kopf aus.
-<2> Verhindert schräge Linien, um eine unschöne Darstellungen der Krähenfuss-Notaion zu unterbinden.
++
+Alternative Variante unter Angabe des entsprechenden Remote-Repositories, wenn mehrere verwendet werden:
++
+----
+$ git fetch origin
+$ git switch -c feature-XYZ origin/feature-XYZ
+----
+**** Zusätzlich kann der _main_-Branch in den _feature-XYZ_-Branch gemerged werden, um die Lauffähigkeit bzw. den konfliktfreien Merge mit der aktuellen stabilen Version (_main_-Branch) zu testen:
++
+----
+$ git switch feature-XYZ
+$ git merge main
+----
+
+.. Auf GitHub im Reiter "Conversation" sich ergebene Anmerkungen und Nachbesserungen per Kommentar kommunizieren/diskutieren.
+
+---
+.icon:user[] Person A
+[start=4]
+. *GitHub*: Sich über neue Kommentare im Pull-Request informieren.
+. *Lokal*: Gewünschte Nachbesserungen lokal im _feature-XYZ_-Branch durchführen und veröffentlichen. Der Pull-Request wird automatisch aktualisiert:
++
+----
+$ git switch feature-XYZ
+$   vi feature-XYZ.txt → git add . → git commit -m "..."
+$ git push
+----
+
+---
+.icon:user[] Person B
+[start=6]
+. *Code-Review* durchführen und in *GitHub* Merge erlauben:
+[arabic]
+.. Änderungen wiederholt auf GitHub oder Lokal untersuchen (Siehe 3.).
+*** *Lokal*: Neue zwischenzeitliche Änderungen im Pull-Request laden:
++
+----
+$ git switch feature-XYZ
+$ git pull
+...
+----
+.. Wenn okay, im Reiter "Conversation" kbd:[*Merge pull request*] starten.
+.. Commit-Nachricht und erweiterte Beschreibung angeben und mit kbd:[Confirm merge] den Merge veranlassen.
+
+---
+.icon:user[] Person A
+[start=7]
+. Der nicht mehr benötigte _feature-XYZ_-Branch kann jetzt auf GitHub und Lokal gelöscht werden.:
+** *GitHub*: Im abgeschlossenen Pull-Request über kbd:[Delete branch] oder im Reiter "Code" -> branch -> Papierkorbsymbol
+** *Lokal*: Im lokalen Workspace mit:
++
+----
+$ git switch main
+$ git pull
+$ git branch -d feature-XYZ
+----
 =====
 ====
 
-._example_erm-diagram_v1.puml_
+.Links zur Verwendung von Pull-Requests mit GitHub
 [%collapsible]
 ====
-[source,puml]
-----
-include::{plantumlsdir}/example_erm-diagram_v1.puml[]
-----
+=====
+* https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests[GitHub - About pull requests]
+** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request[Creating a pull request]
+** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review[Requesting a pull request review]
+** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request[Reviewing proposed changes in a pull request]
+** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally[Checking out pull requests locally]
+=====
 ====
 
-:diagramTitle: Entity Relationship Diagramm mit PlantUML (Chen-Notation)
-:diagramFile: example_erm-diagram_v1
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+{section-separator}
 
-._example_erm-diagram_v2.puml_
+==== Aufgabe 1.1 - Pull-Request durchführen
+
+Bearbeiten Sie in Ihrem Team-Repository eine Änderung in einem extra Branch. Veröffentlichen Sie diesen, legen einen Pull-Request an und weisen Sie diesem ein Teammitglied zur Begutachtung (Code-Review) und anschließendem Merge zu.
+
+1. Legen Sie in Ihrem *Team-Repository* einen neuen _feature-sXXXXX_-Branch mit ihrer *S-Nummer* oder *GitHub-Login* an und nehmen Sie ein paar beispielhafte Änderungen als neue Versionen (Commits) auf.
+2. Veröffentlichen Sie Ihren _feature-sXXXXX_-Branch mit den erstellten Versionen in das zugehörige _remote_-Repository.
+3. Eröffnen Sie auf GitHub einen Pull-Request, um den _feature-sXXXXX_-Branch in den _main_-Branch mergen zu lassen.
+4. Weisen Sie Ihrem eben veröffentlichten Pull-Request ein Teammitglied zur Begutachtung (Code-Review) zu.
+5. Schauen Sie sich die Änderungen eines Ihnen zugewiesenen Pull-Requests auf GitHub an, hinterlassen einen Kommentar und wenn okay, veranlassen Sie GitHub den Merge vorzunehmen.
+6. Ist Ihr Pull-Request in Ihrem Team-Repository erfolgreich von einem anderen Teammitglied gemerged wurden, entfernen Sie den _feature-sXXXXX_-Branch im _remote_-Repository und in Ihrem lokalen Repository.
+
+NOTE: Wenn kein Teammitglied vorhanden ist, können Sie in Teilaufgabe 5. sich den Pull-Request auch selber zuweisen und bearbeiten.
+
+{section-separator}
+
+=== 2. Fork (Pull-/Merge-Request)
+
+Mit Hilfe eines Forks kann einem öffentlichen Repository eine Änderung als Pull-/Merge-Request, ähnlich einer Code-Review, vorgeschlagen werden.
+
+:imageTitle: Mehrere von Forks genehmigte Pull Requests
+:imageFile: screenshot_vscode_git-graph_pull-requests.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+Fork::
+Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repository können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
+Am häufigsten werden Forks verwendet, um entweder Änderungen am Projekt eines anderen vorzuschlagen oder um das Projekt eines anderen als Ausgangspunkt für Ihre eigene Idee zu verwenden.
+
+.Hinweise: Erzeugen eines Fork mit zugehörigem Pull-Request
 [%collapsible]
 ====
-[source,puml]
+=====
+Es gibt zwei Möglichkeiten einen Fork zu erzeugen, um Ihren Änderungsvorschlag als Pull-Request im originalen Repository zu hinterlassen.
+
+.Variante 1 - Bearbeitung lokal
+. Erstellen Sie auf GitHub von einem öffentlichen Repository über den entsprechenden Button kbd:[Fork] einen Fork.
++
+:imageTitle: Fork-Button auf GitHub
+:imageFile: screenshot_github_fork-button.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+. Clonen Sie das in Ihrem Account als Kopie entstandene Repository auf Ihren lokalen Rechner.
+. (optional) Erstellen Sie lokal einen neuen Branch, bspw. _patch-fix-XYZ_, wechseln in diesen.
+. Nehmen die gewünschte Änderung bzw. Korrektur vor.
+. Nehmen Sie Ihre Änderungen als neue Version auf und pushen diese (samt zugehörigem _patch-fix-XYZ_-Branch) in Ihr _remote_-Repository auf GitHub.
+. Erstellen Sie einen Pull-Request für Ihre Änderung:
+.. Im Reiter **Code** sehen Sie jetzt, dass Ihr Repo um mindestens einen neueren Commit voraus ist. Klicken Sie hier auf **Contribute** und anschließend auf kbd:[Open pull request].
++
+:imageTitle: Pull-Request erstellen - Schritt 1
+:imageFile: screenshot_github_pull-request_1.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+.. Jetzt sehen Sie, auf welche beide Repositories und Branches sich der Pull-Request beziehen soll. Erstellen Sie ihn mit dem kbd:[Create pull request]-Button.
++
+:imageTitle: Pull-Request erstellen - Schritt 2
+:imageFile: screenshot_github_pull-request_2.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+.. Vergeben Sie eine Beschreibung für Ihren Änderungsvorschlages. Als Standard wird die (letzte) Commit-Message übernommen. Zusätzliche Details können in dem Kommentarfeld hinterlassen werden.
++
+:imageTitle: Pull-Request erstellen - Schritt 3
+:imageFile: screenshot_github_pull-request_3.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
++
+Mit dem Button kbd:[Create pull request] wird jetzt Ihre Änderung als Pull-Request vorgeschlagen und kann vom originalen Repository-Besitzer bearbeitet werden.
+
+.Variante 2 - Bearbeitung auf GitHub
+. Kleinere Änderungen, wie bspw. Schreibfehler, können in der Quelldatei direkt auf GitHub über die Editieren-Funktion bearbeitet werden.
++
+:imageTitle: Editieren direkt in GitHub
+:imageFile: screenshot_github_edit-in-fork.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+. GitHub stellt fest, dass Sie keine Schreibrechte für das Repository haben und legt für Sie einen Fork mit zugehörigem Patch-Branch und Pull-Request an.
++
 ----
-include::{plantumlsdir}/example_erm-diagram_v2.puml[]
+You’re making changes in a project you don’t have write access to. We’ve created a fork of this project for you to commit your proposed changes to. Submitting a change will write it to a new branch in your fork, so you can send a pull request.
 ----
+. Nach dem Editieren der Datei und der Vergabe einer kurzen Beschreibung, kann mit dem Button kbd:[Propose Changes] die Änderung als Pull-Request vorgeschlagen werden.
++
+:imageTitle: Änderungen Vorschlagen nach Bearbeitung direkt auf GitHub
+:imageFile: screenshot_github_propose-changes.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
 ====
 
-:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Krähenfuss-Notaion)
-:diagramFile: example_erm-diagram_v2
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-._example_rm-diagram.puml_
+.Hinweise: Finden, Bearbeitungsstand und Nachbessern eines Pull-Requests
 [%collapsible]
 ====
-[source,puml]
-----
-include::{plantumlsdir}/example_rm-diagram.puml[]
-----
+=====
+.Finden
+Ihre erstellten Pull-Requests findet Sie in der oberen Leiste neben der Suche mit einem Klick auf **Pull requests**:
+
+:imageTitle: Pull-Requests auf GitHub finden
+:imageFile: screenshot_github_pull-request_4.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+.Bearbeitungsstand
+Klicken Sie in den Suchergebnissen auf den Kommentartitel des betreffenden Pull-Request und man kann mögliche Kommentare und Reaktionen sehen.
+
+.Nachbessern
+Wird der Pull-Request (über Kommentare) beanstandet, korrigieren Sie dies und laden es als neue Version in Ihr geforktes Repository. Der neue Commit taucht automatisch im Pull-Request auf, so dass der Repo-Eigentümer es erneut anschauen und übernehmen kann.
+=====
 ====
 
-:diagramTitle: Relationenmodell Diagramm (RM) mit PlantUML (Krähenfuss-Notaion)
-:diagramFile: example_rm-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+.Hinweise: Aktualisieren eines Fork
+[%collapsible]
+====
+=====
+Sind im Quellrepository, von dem sie geforkt haben, (zwischenzeitlich) neue Versionen entstanden, muss Ihr Fork erst auf den neuesten Stand aktualisiert werden. Erst *danach* können Sie _neue_ oder _merge-konfliktfrei_ Pull-Requests für Ihre vorgeschlagenen Änderungen erstellen.
+
+.Variante: Fork löschen und neu forken
+. nach abgeschlossenem Pull-Request löschen
+. für neue Änderungsvorschläge das Quellrepository erneut forken
+
+.Variante: GitHub - Fetch upstream ohne Merge-Konflikt
+Mit *Fetch upstream* gefolgt von einem kbd:[Fetch and merge] kann der Fork auf die aktuelle Version des Quellrepository aktualisiert werden.
+
+:imageTitle: Fork aktualisieren
+:imageFile: screenshot_github_fork_keep_up-to-date.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+.Variante: GitHub - Fetch upstream mit Merge-Konflikt #TODO#
+. Falls noch nicht vorhanden den Fork lokal clonen:
++
+----
+$ git clone ...
+----
+. Den durch GitHub erstellten Pull-Request _tigion-main_-Branch lokal bereitstellen:
++
+----
+$ git checkout -b tigion-main main
+$ git pull https://github.com/tigion/htw-playground-fork-colors.git main
+----
+. In den eigenen _main_-Branch wechseln und den _tigion-main_-Branch hinein mergen:
++
+----
+$ git switch main
+$ git merge --no-ff tigion-main
+----
+. Die auftretenden merge-Konflikte lösen.
+. Den _main_-Branch zu GitHub pushen:
++
+----
+$ git push origin main
+----
+
+.Variante: GitHub - Pull-Request und Rebase im eigenen Fork #TODO#
+. Mit *Fetch upstream* gefolgt von einem kbd:[Compare]
+. switching the base | compare across forks and switch manually
+. kbd:[Create pull request]
+. wechsle kbd:[Merge pull request] -> kbd:[Rebase und merge]
+. kbd:[Confirm rebase and merge]
+
+.Variante: Lokal - upstream-Remote und Rebase im lokalen Repository #TODO#
+. add remote as "upstream":
++
+`+% git remote add upstream https://github.com/user/public-repo.git+`
+. fetch branches of remote into remote-tracking branches:
++
+`% git fetch upstream`
+. switch to your main-branch:
++
+`% git switch main`
+. Rewrite your main branch:
++
+`% git rebase upstream/main`
+=====
+====
+
+.Hinweise: Lokaler Code-Review eines Fork Pull-Requests
+[%collapsible]
+====
+=====
+Möchte man einen Pull-Request aus einem externen Fork lokal testen, kann man dies wie folgt tun:
+
+. Als erstes sucht man sich auf GitHub über den Reiter *Pull Requests* die *ID* des betreffenden Pull-Requests heraus. Lautet die ID `#11` ist die Nummer `**11**` relevant, welche ich folgend beispielhaft verwende.
+. Jetzt erzeugen wir auf Grundlage der Referenz zur Pull-Request ID-Nummer einen neuen Branch. Ich nenne den neuen Branch `pr-11`.
++
+[source,sh]
+----
+% git branch
+* main
+% git fetch origin pull/11/head:pr-11
+% git branch
+* main
+  pr-11
+----
+. Wir wechseln in den neuen _pr-11_-Branch und können den Inhalt des Pull-Requests jetzt lokal testen und untersuchen.
++
+[source,sh]
+----
+% git switch pr-11
+% git branch
+  main
+* pr-11
+----
+. Sind wir fertig, können wir den _pr-11_-Branch, der *nur* zum Testen des Pull-Requests diente, wieder löschen und anschließend den Pull-Request auf GitHub weiter bearbeiten.
++
+[source,sh]
+----
+% git switch main
+% git branch -D pr-11
+----
+
+////
+[source,sh]
+----
+% git branch -a
+% git fetch origin pull/11/head:pr-11
+% git branch -a
+% git switch pr-11
+...
+% git switch main
+% git branch -D pr-11
+% git branch -a
+----
+////
+
+- https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally[GitHub: Checking out pull requests locally]
+=====
+====
+
+NOTE: Ist der Pull-Request vom Repository-Eigentümer erfolgreich übernommen bzw. abgelehnt worden, kann das geforkte Repository bei keiner weiteren Verwendung aus dem eigenen Account über GitHub und lokal gelöscht werden.
+
+{section-separator}
+
+==== Aufgabe 2.1 - Fork mit Pull-Request
+
+In dieser Aufgabe wollen wir eine Änderung an einem öffentlichen (public) Repository auf GitHub vornehmen bzw. vorschlagen, in welchem wir keine Bearbeitungsrechte haben. Dazu benötigen wir einen *Fork* des betreffenden Repositories.
+
+====
+Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htw-playground-fork-colors/[Fork Colors] darstellt.
+====
+
+. Legen Sie auf GitHub über den kbd:[Fork]-Button einen **Fork** vom https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] Projekt an.
+. **Clonen** Sie die in Ihrem Account entstandene Kopie lokal auf Ihren Rechner.
+. (optional) Erstellen Sie einen extra Branch für diese Änderung und wechseln Sie in diesen.
+. Nehmen Sie lokal **eine** Änderung laut https://github.com/tigion/htw-playground-fork-colors#readme[*README*] entsprechend *Ihres Platzes im Praktikum* (siehe `_comment`-Attribute) in der Datei */data/colors.json* vor.
++
+IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Merge-Konflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
+. Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repository auf GitHub.
+. Erzeugen Sie jetzt einen **Pull-Request** auf das ursprüngliche Repository.
+. Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
+. (optional) Jetzt können Sie den Fork auf GitHub und lokal löschen.
+
+
 
 
 include::sitemap.inc.adoc[]

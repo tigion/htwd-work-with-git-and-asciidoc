@@ -1,404 +1,460 @@
 include::header.inc.adoc[]
 
-Ziel: Vertiefung der Zusammenarbeit im Team mit Hilfe von *Code-Reviews* als Möglichkeit der Pull-/Merge-Requests von *Git* und *GitHub*
+Ziel: Vertiefung der Anwendung von *Branches* in *Git*
 
-== Praktikumsaufgaben Teil 8 - Zusammenarbeit 3
+== Praktikumsaufgaben Teil 7 - Branches
 
-In diesem Aufgabenteil werden Pull-/Merge-Requests als Variante eines Code-Reviews, das Filtern von Issues und das Organisieren von Issues angelehnt am OpenUP betrachtet.
+In den folgenden Aufgaben wird das Branching von Git genauer betrachtet.
+
+:imageTitle: Git-Versionsblütenzweige
+:imageFile: grafik_git_version_blossom_branch_text.jpg
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
+
+- Branches (Zweige) erstellen, vereinen und entfernen
+
+
+{section-separator}
+
+=== Hinweise zur Bearbeitung
+
+Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htwd-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
+
+====
+Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Ressourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
+
+.Linkliste zu hilfreichen Webseiten und Videos
+[%collapsible]
+=====
+- icon:book[] https://git-scm.com/book/de/[The entire Pro Git book]
+- icon:book[] https://www.git-tower.com/learn/git/ebook/en/command-line/introduction[Learn Version Control with Git]
+- icon:globe[] https://gist.github.com/digitaljhelms/4287848[Branching concept variant]
+- icon:globe[] https://www.atlassian.com/de/git/tutorials/using-branches[Working with branches]
+- icon:film[] YouTube-search: https://www.youtube.com/results?search_query=git+tutorial[git tutorial], https://www.youtube.com/results?search_query=git+branch[git branch]
+- icon:link[] https://code.visualstudio.com/docs/editor/versioncontrol#_git-support[Using Version Control in VS Code - Git support]
+=====
+
+* Für Visual Studio Code gibt es die hilfreiche Erweiterung *Git Graph*, welche eine grafische Darstellung von Branches und Versionsketten erlaubt.
+====
+
+In den Aufgaben gibt es ebenfalls [underline]#aufklappbare Hinweise#. Diese beinhalten die benötigten git-Kommandos mit erklärenden Anmerkungen.
+
+Je nach verwendetem git-Client oder IDE sind die Kommandos über entsprechenden Menüpunkte und Schaltflächen zu erreichen. Es ist Ihnen freigestellt, ob Sie einen grafischen Client/IDE oder das Terminal verwenden.
+
+Terminal in Visual Studio Code icon:linux[] icon:apple[] icon:windows[]::
+  Über das Hauptmenü: "View > Terminal" kann innerhalb von VS Code ein Terminal geöffnet werde.
+Terminal unter icon:windows[] Windows::
+  PowerShell, git-Bash, Eingabeaufforderung (cmd), ...
+Terminal unter icon:linux[] Linux, icon:apple[] macOS::
+  XTerm, Konsole, Terminal.app, ...
 
 include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 
-=== 1. Code-Review (Pull-/Merge-Request)
+=== 1. Branches verwenden
 
-//.Geek&Poke - Dev Cycle (Friday Evening Edition)
-image::geek-and-poke_dev-cycle-friday-evening-edition.jpg[Geek&Poke: Dev Cycle (Friday Evening Edition), width=200, role="right", link="http://geek-and-poke.com/geekandpoke/2014/2/23/dev-cycle-friday-evening-edition"]
+Mit *Branches* (Verzweigungen) bietet Git die Möglichkeit, ausgehend vom Hauptzweig, Versionen auf unterschiedlichen Zweigen zu erstellen. Diese Versionen können mit anderen Branches zusammengeführt (`merge`), verworfen oder bewusst getrennt gehalten werden.
 
-Für qualitativ guten Code sind *Code-Reviews* unabdingbar. Plattformen wie icon:github[] Github (oder bspw. icon:gitlab[] GitLab) bieten dafür die Möglichkeit von Pull-/Merge-Requests.
+.Beispielhaftes Branching
+image::grafik_git_branching.png[Beispielhaftes Branching,width=495]
 
-Code-Review::
-    Ist die gezielte Überprüfung des Quellcodes auf Fehler, Schwachstellen, die Einhaltung von Richtlinien und die Vollständigkeit/Lauffähigkeit mit dem Ziel, die Softwarequalität zu sichern. Code-Reviews sind eine Möglichkeit der Qualitätssicherung in der Softwareentwicklung.
+Mit Hilfe von Branching kann bspw. ein neues Feature oder ein Bugfix in einem extra Branch entwickelt und getestet werden, ohne den Hauptzweig zu beeinflussen. Nach Fertigstellung werden die Änderungen in den stabilen Hauptzweig aufgenommen.
 
-Pull-/Merge-Request::
-    Ist die Anfrage auf eine Überprüfung, Diskussion bzw. Genehmigung zum *mergen* eines Branches (bspw. _feature_-Branch) in einen anderen Branch (bspw. _main_-Branch).
-    (In GitHub wird es Pull-Request und in GitLab Merge-Request genannt.)
-
-:imageTitle: Pull Request Workflow
-:imageFile: grafik_git_pull-request.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=650, link="{imagesdir}/{imageFile}"]
-<1> _feature_-Branch erstellen und bearbeiten
-<2> Pull-Request anfordern
-<3> Code-Review mit Diskussion und ergänzenden Commits
-<4> Merge des Pull-Requests in den _main_-Branch
-
-.Ein beispielhaftes Anwenden von Pull-Requests mit GitHub
+.Hinweise: `merge`
 [%collapsible]
 ====
 =====
-.icon:user[] Person A
-[start=1]
-. *Lokal*: Lokale Änderungen im _feature-XYZ_-Branch aufnehmen und veröffentlichen:
-+
-----
-$ git branch
-* main
-$ git switch -c feature-XYZ
-$ git branch
-* feature-XYZ
-  main
-$ git push -u origin feature-XYZ
-$   vi feature-XYZ.txt → git add . → git commit -m "..."
-$   vi feature-XYZ.txt → git add . → git commit -m "..."
-$ git push
-----
+*Merge*
 
-. *GitHub*: Pull-Request anlegen:
-[arabic]
-.. In der "Code"-Ansicht in den kbd:[Branch: *feature-XYZ*] wechseln
-.. kbd:[*New pull request*] auswählen: kbd:[base: *main*] <- kbd:[compare: *feature-XYZ*]
-.. Title, Kommentar und (optional) Reviewers, Assignees hinzufügen
-.. kbd:[*Create pull request*] ausführen
+Wird der Versionsstand eines Branches in einen anderen Branch aufgenommen (`merge`) geschieht dies entweder mit der *fast-forward* oder *recursive* (3-Wege-Merge) Strategie.
 
----
-.icon:user[] Person B
-[start=3]
-. *Code-Review* durchführen:
-[arabic]
-.. Änderungen auf GitHub oder Lokal untersuchen:
-*** Variante *GitHub*: Im Reiter "Commits" sich die Änderungen und Unterschiede anschauen.
-*** Variante *Lokal*:
-**** Die Änderungen aus dem Pull-Request mit dem zugehörigen _feature-XYZ_-Branch in das lokale Repository aufnehmen und untersuchen und testen:
+_fast-forward_::
 +
-----
-$ git fetch
-$ git switch feature-XYZ
-----
+image::grafik_git_merge_fast-forward.png[...,width=549]
 +
-Alternative Variante unter Angabe des entsprechenden Remote-Repositories, wenn mehrere verwendet werden:
+.Beispiel: Git-Kommandos
+[%collapsible]
+======
+----
+$ git switch -c feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git switch main
+$ git merge feature
+----
+////
+----
+$ git branch feature
+$ git checkout feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git checkout main
+$ git merge feature
+----
+////
+======
 +
-----
-$ git fetch origin
-$ git switch -c feature-XYZ origin/feature-XYZ
-----
-**** Zusätzlich kann der _main_-Branch in den _feature-XYZ_-Branch gemerged werden, um die Lauffähigkeit bzw. den konfliktfreien Merge mit der aktuellen stabilen Version (_main_-Branch) zu testen:
+Basiert der zu mergende Branch (_feature_-Branch) auf dem letzten Stand des aktuellen Branches (_main_-Branch), liegen die letzten Versionen der beiden Branches in einer direkten Nachfolge. Somit wird durch ein *fast-forward* der Zeiger des aktuellen Branches (_main_-Branch) auf die letzte Version des zu mergenden Branches (_feature_-Branch) bewegt. +
+Möchte man keinen _fast-forward_-Merge, sondern immer einen neuen _merge_-Commit haben, kann dies mit `--no-ff` erzwungen werden.
+
+_recursive_ (3-Wege-Merge, _merge_-Commit)::
 +
+image::grafik_git_merge_recursive.png[...,width=602]
++
+.Beispiel: Git-Kommandos
+[%collapsible]
+======
 ----
-$ git switch feature-XYZ
+$ git switch -c feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git switch main
+$   vi main.txt → git add . → git commit -m "..."
+$ git merge feature
+----
+////
+----
+$ git branch feature
+$ git checkout feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git checkout main
+$   vi main.txt → git add . → git commit -m "..."
+$ git merge feature
+----
+////
+======
++
+Gibt es im aktuellen Branch (_main_-Branch) Versionen, die nach der Abspaltung des zu mergenden Branches (_feature_-Branch) erstellt worden sind, wird beim Merge im aktuellen Branch (_main_-Branch) eine neue Version (_merge_-Commit) erstellt. Diese enthält das vereinte Ergebnis aus den letzten Versionen der zu mergenden Branches.
+=====
+====
+
+.Hinweise: `rebase`
+[%collapsible]
+====
+=====
+*rebase*
+
+image::grafik_git_rebase.png[...,width=549]
+
+Mit einem Rebase wird die Basis, auf der die Versionen in einem Branch basieren, auf eine neuere Version aktualisiert.
+
+.Beispiel: Git-Kommandos
+[%collapsible]
+======
+----
+$ git switch -c feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git switch main
+$   vi main.txt → git add . → git commit -m "..."
+$ git switch feature
+$ git rebase main
+----
+////
+----
+$ git branch feature
+$ git checkout feature
+$   vi feature.txt → git add . → git commit -m "..."
+$   vi feature.txt → git add . → git commit -m "..."
+$ git checkout main
+$   vi main.txt → git add . → git commit -m "..."
+$ git checkout feature
+$ git rebase main
+----
+////
+======
+
+Wird zusätzlich noch die Option `-i` verwendet, können die neu erstellt Commits zusätzlich verändert und zusammengefasst werden. (Siehe: <<praktikumsaufgaben-teil-07.adoc#aufgabe2-2, Aufgabe 2.2>>)
+
+IMPORTANT: Ein Rebase erzeugt immer neue Versionen (Commits-IDs, Commit-Inhalte) was in Verbindung mit öffentlichen und geteilten Team-Repositories zu Problemen führen kann.
+
+* Rebase ist hilfreich, wenn bspw. im _main_-Branch eine neue Version (_bugfix_-Commit) hinzukommt, welche für die weitere Bearbeitung im _feature_-Branch ebenfalls relevant ist.
+* Ebenfalls kann es hilfreich sein, wenn man eine flache Historie im Repository haben möchte, so dass bei einem Merge statt eines _merge_-Commits ein _fast-forward_-Merge durchgeführt werden kann.
++
+#TODO# Grafik (Tafelbild): Merge-Commits vs Fast Forward Merges
+=====
+====
+
+.Hinweise: Aktualisierung eines Branches
+[%collapsible]
+====
+=====
+Der _feature_-Branch kann während seiner Bearbeitung wie folgt auf zwischenzeitlich neuere Versionen im _main_-Branch aktualisiert werden.
+
+.Variante 1: rebase _feature_-Branch auf _main_-Branch
+----
+$ git switch feature
+$ git rebase main
+----
+////
+----
+$ git checkout feature
+$ git rebase main
+----
+////
+
+.Variante 2: merge _main_-Branch auf _feature_-Branch
+----
+$ git switch feature
 $ git merge main
 ----
-
-.. Auf GitHub im Reiter "Conversation" sich ergebene Anmerkungen und Nachbesserungen per Kommentar kommunizieren/diskutieren.
-
----
-.icon:user[] Person A
-[start=4]
-. *GitHub*: Sich über neue Kommentare im Pull-Request informieren.
-. *Lokal*: Gewünschte Nachbesserungen lokal im _feature-XYZ_-Branch durchführen und veröffentlichen. Der Pull-Request wird automatisch aktualisiert:
-+
-----
-$ git switch feature-XYZ
-$   vi feature-XYZ.txt → git add . → git commit -m "..."
-$ git push
-----
-
----
-.icon:user[] Person B
-[start=6]
-. *Code-Review* durchführen und in *GitHub* Merge erlauben:
-[arabic]
-.. Änderungen wiederholt auf GitHub oder Lokal untersuchen (Siehe 3.).
-*** *Lokal*: Neue zwischenzeitliche Änderungen im Pull-Request laden:
-+
-----
-$ git switch feature-XYZ
-$ git pull
-...
-----
-.. Wenn okay, im Reiter "Conversation" kbd:[*Merge pull request*] starten.
-.. Commit-Nachricht und erweiterte Beschreibung angeben und mit kbd:[Confirm merge] den Merge veranlassen.
-
----
-.icon:user[] Person A
-[start=7]
-. Der nicht mehr benötigte _feature-XYZ_-Branch kann jetzt auf GitHub und Lokal gelöscht werden.:
-** *GitHub*: Im abgeschlossenen Pull-Request über kbd:[Delete branch] oder im Reiter "Code" -> branch -> Papierkorbsymbol
-** *Lokal*: Im lokalen Workspace mit:
-+
-----
-$ git switch main
-$ git pull
-$ git branch -d feature-XYZ
-----
-=====
-====
-
-.Links zur Verwendung von Pull-Requests mit GitHub
-[%collapsible]
-====
-=====
-* https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests[GitHub - About pull requests]
-** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request[Creating a pull request]
-** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review[Requesting a pull request review]
-** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/reviewing-proposed-changes-in-a-pull-request[Reviewing proposed changes in a pull request]
-** https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally[Checking out pull requests locally]
-=====
-====
-
-{section-separator}
-
-==== Aufgabe 1.1 - Pull-Request durchführen
-
-Bearbeiten Sie in Ihrem Team-Repository eine Änderung in einem extra Branch. Veröffentlichen Sie diesen, legen einen Pull-Request an und weisen Sie diesem ein Teammitglied zur Begutachtung (Code-Review) und anschließendem Merge zu.
-
-1. Legen Sie in Ihrem *Team-Repository* einen neuen _feature-sXXXXX_-Branch mit ihrer *S-Nummer* oder *GitHub-Login* an und nehmen Sie ein paar beispielhafte Änderungen als neue Versionen (Commits) auf.
-2. Veröffentlichen Sie Ihren _feature-sXXXXX_-Branch mit den erstellten Versionen in das zugehörige _remote_-Repository.
-3. Eröffnen Sie auf GitHub einen Pull-Request, um den _feature-sXXXXX_-Branch in den _main_-Branch mergen zu lassen.
-4. Weisen Sie Ihrem eben veröffentlichten Pull-Request ein Teammitglied zur Begutachtung (Code-Review) zu.
-5. Schauen Sie sich die Änderungen eines Ihnen zugewiesenen Pull-Requests auf GitHub an, hinterlassen einen Kommentar und wenn okay, veranlassen Sie GitHub den Merge vorzunehmen.
-6. Ist Ihr Pull-Request in Ihrem Team-Repository erfolgreich von einem anderen Teammitglied gemerged wurden, entfernen Sie den _feature-sXXXXX_-Branch im _remote_-Repository und in Ihrem lokalen Repository.
-
-NOTE: Wenn kein Teammitglied vorhanden ist, können Sie in Teilaufgabe 5. sich den Pull-Request auch selber zuweisen und bearbeiten.
-
-{section-separator}
-
-=== 2. Fork (Pull-/Merge-Request)
-
-Mit Hilfe eines Forks kann einem öffentlichen Repository eine Änderung als Pull-/Merge-Request, ähnlich einer Code-Review, vorgeschlagen werden.
-
-:imageTitle: Mehrere von Forks genehmigte Pull Requests
-:imageFile: screenshot_vscode_git-graph_pull-requests.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-Fork::
-Eine Fork ist eine Kopie eines existierenden (öffentlichen) Repositories unter Ihrem eigenen Account. In diesem Repository können Sie frei mit Änderungen experimentieren, ohne das ursprüngliche Projekt zu beeinflussen. +
-Am häufigsten werden Forks verwendet, um entweder Änderungen am Projekt eines anderen vorzuschlagen oder um das Projekt eines anderen als Ausgangspunkt für Ihre eigene Idee zu verwenden.
-
-.Hinweise: Erzeugen eines Fork mit zugehörigem Pull-Request
-[%collapsible]
-====
-=====
-Es gibt zwei Möglichkeiten einen Fork zu erzeugen, um Ihren Änderungsvorschlag als Pull-Request im originalen Repository zu hinterlassen.
-
-.Variante 1 - Bearbeitung lokal
-. Erstellen Sie auf GitHub von einem öffentlichen Repository über den entsprechenden Button kbd:[Fork] einen Fork.
-+
-:imageTitle: Fork-Button auf GitHub
-:imageFile: screenshot_github_fork-button.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-. Clonen Sie das in Ihrem Account als Kopie entstandene Repository auf Ihren lokalen Rechner.
-. (optional) Erstellen Sie lokal einen neuen Branch, bspw. _patch-fix-XYZ_, wechseln in diesen.
-. Nehmen die gewünschte Änderung bzw. Korrektur vor.
-. Nehmen Sie Ihre Änderungen als neue Version auf und pushen diese (samt zugehörigem _patch-fix-XYZ_-Branch) in Ihr _remote_-Repository auf GitHub.
-. Erstellen Sie einen Pull-Request für Ihre Änderung:
-.. Im Reiter **Code** sehen Sie jetzt, dass Ihr Repo um mindestens einen neueren Commit voraus ist. Klicken Sie hier auf **Contribute** und anschließend auf kbd:[Open pull request].
-+
-:imageTitle: Pull-Request erstellen - Schritt 1
-:imageFile: screenshot_github_pull-request_1.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-.. Jetzt sehen Sie, auf welche beide Repositories und Branches sich der Pull-Request beziehen soll. Erstellen Sie ihn mit dem kbd:[Create pull request]-Button.
-+
-:imageTitle: Pull-Request erstellen - Schritt 2
-:imageFile: screenshot_github_pull-request_2.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-.. Vergeben Sie eine Beschreibung für Ihren Änderungsvorschlages. Als Standard wird die (letzte) Commit-Message übernommen. Zusätzliche Details können in dem Kommentarfeld hinterlassen werden.
-+
-:imageTitle: Pull-Request erstellen - Schritt 3
-:imageFile: screenshot_github_pull-request_3.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-+
-Mit dem Button kbd:[Create pull request] wird jetzt Ihre Änderung als Pull-Request vorgeschlagen und kann vom originalen Repository-Besitzer bearbeitet werden.
-
-.Variante 2 - Bearbeitung auf GitHub
-. Kleinere Änderungen, wie bspw. Schreibfehler, können in der Quelldatei direkt auf GitHub über die Editieren-Funktion bearbeitet werden.
-+
-:imageTitle: Editieren direkt in GitHub
-:imageFile: screenshot_github_edit-in-fork.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-. GitHub stellt fest, dass Sie keine Schreibrechte für das Repository haben und legt für Sie einen Fork mit zugehörigem Patch-Branch und Pull-Request an.
-+
-----
-You’re making changes in a project you don’t have write access to. We’ve created a fork of this project for you to commit your proposed changes to. Submitting a change will write it to a new branch in your fork, so you can send a pull request.
-----
-. Nach dem Editieren der Datei und der Vergabe einer kurzen Beschreibung, kann mit dem Button kbd:[Propose Changes] die Änderung als Pull-Request vorgeschlagen werden.
-+
-:imageTitle: Änderungen Vorschlagen nach Bearbeitung direkt auf GitHub
-:imageFile: screenshot_github_propose-changes.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-=====
-====
-
-.Hinweise: Finden, Bearbeitungsstand und Nachbessern eines Pull-Requests
-[%collapsible]
-====
-=====
-.Finden
-Ihre erstellten Pull-Requests findet Sie in der oberen Leiste neben der Suche mit einem Klick auf **Pull requests**:
-
-:imageTitle: Pull-Requests auf GitHub finden
-:imageFile: screenshot_github_pull-request_4.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-.Bearbeitungsstand
-Klicken Sie in den Suchergebnissen auf den Kommentartitel des betreffenden Pull-Request und man kann mögliche Kommentare und Reaktionen sehen.
-
-.Nachbessern
-Wird der Pull-Request (über Kommentare) beanstandet, korrigieren Sie dies und laden es als neue Version in Ihr geforktes Repository. Der neue Commit taucht automatisch im Pull-Request auf, so dass der Repo-Eigentümer es erneut anschauen und übernehmen kann.
-=====
-====
-
-.Hinweise: Aktualisieren eines Fork
-[%collapsible]
-====
-=====
-Sind im Quellrepository, von dem sie geforkt haben, (zwischenzeitlich) neue Versionen entstanden, muss Ihr Fork erst auf den neuesten Stand aktualisiert werden. Erst *danach* können Sie _neue_ oder _merge-konfliktfrei_ Pull-Requests für Ihre vorgeschlagenen Änderungen erstellen.
-
-.Variante: Fork löschen und neu forken
-. nach abgeschlossenem Pull-Request löschen
-. für neue Änderungsvorschläge das Quellrepository erneut forken
-
-.Variante: GitHub - Fetch upstream ohne Merge-Konflikt
-Mit *Fetch upstream* gefolgt von einem kbd:[Fetch and merge] kann der Fork auf die aktuelle Version des Quellrepository aktualisiert werden.
-
-:imageTitle: Fork aktualisieren
-:imageFile: screenshot_github_fork_keep_up-to-date.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
-
-.Variante: GitHub - Fetch upstream mit Merge-Konflikt #TODO#
-. Falls noch nicht vorhanden den Fork lokal clonen:
-+
-----
-$ git clone ...
-----
-. Den durch GitHub erstellten Pull-Request _tigion-main_-Branch lokal bereitstellen:
-+
-----
-$ git checkout -b tigion-main main
-$ git pull https://github.com/tigion/htw-playground-fork-colors.git main
-----
-. In den eigenen _main_-Branch wechseln und den _tigion-main_-Branch hinein mergen:
-+
-----
-$ git switch main
-$ git merge --no-ff tigion-main
-----
-. Die auftretenden merge-Konflikte lösen.
-. Den _main_-Branch zu GitHub pushen:
-+
-----
-$ git push origin main
-----
-
-.Variante: GitHub - Pull-Request und Rebase im eigenen Fork #TODO#
-. Mit *Fetch upstream* gefolgt von einem kbd:[Compare]
-. switching the base | compare across forks and switch manually
-. kbd:[Create pull request]
-. wechsle kbd:[Merge pull request] -> kbd:[Rebase und merge]
-. kbd:[Confirm rebase and merge]
-
-.Variante: Lokal - upstream-Remote und Rebase im lokalen Repository #TODO#
-. add remote as "upstream":
-+
-`+% git remote add upstream https://github.com/user/public-repo.git+`
-. fetch branches of remote into remote-tracking branches:
-+
-`% git fetch upstream`
-. switch to your main-branch:
-+
-`% git switch main`
-. Rewrite your main branch:
-+
-`% git rebase upstream/main`
-=====
-====
-
-.Hinweise: Lokaler Code-Review eines Fork Pull-Requests
-[%collapsible]
-====
-=====
-Möchte man einen Pull-Request aus einem externen Fork lokal testen, kann man dies wie folgt tun:
-
-. Als erstes sucht man sich auf GitHub über den Reiter *Pull Requests* die *ID* des betreffenden Pull-Requests heraus. Lautet die ID `#11` ist die Nummer `**11**` relevant, welche ich folgend beispielhaft verwende.
-. Jetzt erzeugen wir auf Grundlage der Referenz zur Pull-Request ID-Nummer einen neuen Branch. Ich nenne den neuen Branch `pr-11`.
-+
-[source,sh]
-----
-% git branch
-* main
-% git fetch origin pull/11/head:pr-11
-% git branch
-* main
-  pr-11
-----
-. Wir wechseln in den neuen _pr-11_-Branch und können den Inhalt des Pull-Requests jetzt lokal testen und untersuchen.
-+
-[source,sh]
-----
-% git switch pr-11
-% git branch
-  main
-* pr-11
-----
-. Sind wir fertig, können wir den _pr-11_-Branch, der *nur* zum Testen des Pull-Requests diente, wieder löschen und anschließend den Pull-Request auf GitHub weiter bearbeiten.
-+
-[source,sh]
-----
-% git switch main
-% git branch -D pr-11
-----
-
 ////
-[source,sh]
 ----
-% git branch -a
-% git fetch origin pull/11/head:pr-11
-% git branch -a
-% git switch pr-11
-...
-% git switch main
-% git branch -D pr-11
-% git branch -a
+$ git checkout feature
+$ git merge main
 ----
 ////
 
-- https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/checking-out-pull-requests-locally[GitHub: Checking out pull requests locally]
+* Für die Aktualisierung eines in der Version länger zurückliegenden oder mit einem alten Feature abgeschlossenen _feature_-Branches ist die Variante 2 mit einem Merge empfohlen.
+* Ein Rebase des _feature_-Branches kann auch sinnvoll sein, um zwischenzeitliche neuere Versionen im _main_-Branch vor einem Merge in diesen im _feature_-Branch erst zu testen bzw. mögliche Konflikte zu lösen. Andernfalls fallen die Konflikte erst beim Merge in den _main_-Branch auf.
 =====
 ====
 
-NOTE: Ist der Pull-Request vom Repository-Eigentümer erfolgreich übernommen bzw. abgelehnt worden, kann das geforkte Repository bei keiner weiteren Verwendung aus dem eigenen Account über GitHub und lokal gelöscht werden.
-
-{section-separator}
-
-==== Aufgabe 2.1 - Fork mit Pull-Request
-
-In dieser Aufgabe wollen wir eine Änderung an einem öffentlichen (public) Repository auf GitHub vornehmen bzw. vorschlagen, in welchem wir keine Bearbeitungsrechte haben. Dazu benötigen wir einen *Fork* des betreffenden Repositories.
-
+.Hinweise: Aussagekräftige Branch-Namen
+[%collapsible]
 ====
-Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htw-playground-fork-colors/[Fork Colors] darstellt.
-====
+=====
+Verwendet man mehrere Branches im Repository, ist es sinnvoll *aussagekräftige Namen* zu verwenden und im Team entsprechende *Namenskonventionen* festzulegen.
 
-. Legen Sie auf GitHub über den kbd:[Fork]-Button einen **Fork** vom https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] Projekt an.
-. **Clonen** Sie die in Ihrem Account entstandene Kopie lokal auf Ihren Rechner.
-. (optional) Erstellen Sie einen extra Branch für diese Änderung und wechseln Sie in diesen.
-. Nehmen Sie lokal **eine** Änderung laut https://github.com/tigion/htw-playground-fork-colors#readme[*README*] entsprechend *Ihres Platzes im Praktikum* (siehe `_comment`-Attribute) in der Datei */data/colors.json* vor.
+.Namen mit Trennzeichen:
+Namen könnten mit einem Wort für die Art des Branches beginnen gefolgt von spezifischen Informationen. Trennzeichen für eine bessere Lesbarkeit könnten `-` und `_` sein.
+
+- Art: `hotfix-`, `fix-`, `bugfix-`, `feature-`, `update-`, `test-`, etc.
+- Info: `feature-pdf-generation`, `bugfix-issue-12`, `update-js-framework`, etc.
+
+.Namen mit hierarchischer Struktur:
+Eine weitere Variante wäre mit Hilfe von `/` (forward slash) hierarchische Branch-Namen zu verwenden. So könnten bspw. mit `+git branch --list 'feature/*'+` oder `+git show-branch 'feature/*'+` alle vorhandenen bzw. Commits zu den _feature_-Branches aufgelistet werden.
+
+- Bspw.: `feature/pdf-generation`, `bugfix/issue-12`, `bugfix/issue-15`, etc.
+- Einige Clients bilden die Branches dann auch als navigierbare Struktur ab:
 +
-IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Merge-Konflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
-. Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repository auf GitHub.
-. Erzeugen Sie jetzt einen **Pull-Request** auf das ursprüngliche Repository.
-. Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
-. (optional) Jetzt können Sie den Fork auf GitHub und lokal löschen.
+----
+├── bugfix
+│   ├── issue-12
+│   └── issue-15
+├── feature
+│   ├── pdf-generation
+│   └── xyz
+└── main
+----
+
+WARNING: Branch-Namen dürfen nicht mit einem `/` enden.
+=====
+====
+
+.Beispiel: Verwendung von Branches mit `merge` und `rebase`
+[%collapsible]
+====
+=====
+Das Repository befindet sich im _main_-Branch. Für ein neues Feature und einen zwischenzeitlichen Bugfix werden ein _feature_-Branch und ein _bugfix_-Branch angelegt. Fertig bearbeitet werden die beiden neuen Branches in den _main_-Branch aufgenommen und anschließend entfernt.
+----
+$ git switch -c feature <1>
+$ vi feature.txt → git add . → git commit -m "Add ..." <2>
+$ vi feature.txt → git add . → git commit -m "Change ..."
+$ git switch main <3>
+$ git switch -c bugfix <4>
+$ vi main.txt → git add . → git commit -m "Bugfix ..."
+$ vi main.txt → git add . → git commit -m "Bugfix ..."
+$ git rebase -i <5>
+$ git switch main <6>
+$ git merge bugfix → git branch -d bugfix <7>
+$ git switch feature <8>
+$ vi feature.txt → git add . → git commit -m "Change ..."
+$ git switch main <9>
+$ git merge --no-ff feature → git branch -d feature <10>
+----
+<1> _feature_-Branch vom _main_-Branch erstellen und hin wechseln.
+<2> Feature bearbeiten und als neuen Commit in den aktuellen Branch aufnehmen. +
+    Die Option `-a` lässt `git commit ...` vorher geänderte und gelöschte Dateien mit aufnehmen.
+<3> in den _main_-Branch wechseln
+<4> _bugfix_-Branch vom _main_-Branch erstellen und hin wechseln
+<5> _bugfix_-Commits mit rebasing zu einem neuen Commit zusammenfassen
+<6> in den _main_-Branch wechseln
+<7> _bugfix_-Branch in den _main_-Branch mergen (optional mit `--no-ff`) und anschließend löschen
+<8> in den _feature_-Branch wechseln
+<9> in den _main_-Branch wechseln
+<10> _feature_-Branch in den _main_-Branch mergen und anschließend löschen
+=====
+====
+
+.Hilfreiche Branching Kommandos
+[cols="2,3"]
+|===
+| Kommando | Beschreibung
+
+| `git branch`                    | lokale Branches auflisten +
+`-r` remote Branches, `-a` local und remote Branches
+| `git show-branch`               | Branches mit ihren Commits auflisten +
+`-r` remote Branches, `-a` local und remote Branches
+| `git branch <new-branch>`           | Branch anlegen
+| `git switch <branch> +
+git checkout <branch>` | Branch wechseln
+| `git switch -`                  | Zum vorherigen Branch wechseln
+| `git switch -c <new-branch> +
+git checkout -b <new-branch>`     | Branch anlegen und wechseln. Kurzform für `git branch <new-branch>` gefolgt von einem `git switch <new-branch>` oder `git checkout <new-branch>`.
+| `git branch -d <branch>`        | Branch löschen (`-d` _merged_, `-D` _unmerged_)
+| `git merge <branch>`            | Versionen aus <branch> in den aktuellen Branch aufnehmen.
+| `git merge --no-ff <branch>`    | Kein _fast forward_ merge, sondern immer neuer merge-Commit
+| `git rebase <branch>`           | Versionen aus dem aktuellen Branch auf die aktuelle Version von <branch> aktualisieren. Mit der Option `-i` können Commits angepasst und zusammengefasst werden.
+| `git diff <branch1>..<branch2>` | Unterschiede zwischen `<branch1>` und `<branch2>` anzeigen
+|===
+
+////
+merge beispiel mit zwei branches
+
+1. git branch feature
+2. git checkout feature
+    - vi feature2.txt, git add ., git commit -m "..."
+    - vi feature2.txt, git add ., git commit -m "..."
+3. git checkout main
+4. git branch bugfix
+5. git checkout bugfix
+    - vi ..bugfix.., git add ., git commit -m "..."
+6. git checkout main
+7. git merge bugfix (Fast-forward)
+8. git branch -d bugfix
+9. git checkout feature
+    - vi feature2.txt, git add ., git commit -m "..."
+10. git checkout main
+11. git merge feature (Merge made by the 'recursive' strategy.)
+12. git branch -d feature
+
+merge
+
+1. git branch feature
+2. git checkout feature
+    - vi feature2.txt, git add ., git commit -m "..."
+    - vi feature2.txt, git add ., git commit -m "..."
+3. git checkout main
+4. git merge feature
+5. git branch -d feature
+
+rebase + merge
+
+1. git branch feature
+2. git checkout feature
+    - vi feature2.txt, git add ., git commit -m "..."
+    - vi feature2.txt, git add ., git commit -m "..."
+3. git rebase main
+4. git checkout main
+5. git merge feature
+6. git branch -d feature
+
+feature Branch aktualisieren
+
+v1: rebase feature auf main
+
+1. git rebase main
+
+v2: merge main in feature
+
+1. git merge main
+
+rebase -i + merge
+
+1. git branch feature
+2. git checkout feature
+    - vi feature2.txt, git add ., git commit -m "..."
+    - vi feature2.txt, git add ., git commit -m "..."
+3. git rebase -i main (r, f)
+4. git checkout main
+5. git merge feature
+6. git branch -d feature
+////
+
+[#aufgabe_1-1]
+==== Aufgabe 1.1 - Branches (_local_)
+
+. Legen Sie in Ihrem Repository ein neues Asciidoctor-Dokument _temp.adoc_ mit folgendem Inhalt an:
++
+.Vorlage: temp.adoc
+[source,asciidoc]
+----
+= Title
+
+== Beschreibung
+
+<insert_bugfix_here>
+
+== Feature 1
+
+<insert_feature_here>
+
+== Feature 2
+
+<insert_feature_here>
+
+----
+
+. Nehmen Sie das eben angelegte Dokument in den _main_-Branch als neue Version auf und pushen Sie es in Ihr _remote_-Repository.
+
+. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _feature_-Branch an und wechseln Sie in diesen. Fügen Sie in den Abschnitte *Feature 1* neuen Text, verteilt auf *zwei* Commits, ein.
+
+. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _bugfix_-Branch an und wechseln Sie in diesen. Korrigieren Sie, verteilt auf *zwei* Commits, die beiden Bugfixes im Abschnitt *Beschreibung*. Führen Sie anschließend ein interaktives Rebasing aus, um die beiden Bugfix-Änderungen in einem Commit zu vereinen. Jetzt übernehmen (mergen) Sie die Änderungen vom _bugfix_-Branch in den _main_-Branch und entfernen den _bugfix_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
+
+. Wechseln Sie in den _feature_-Branch und fügen in den Abschnitte *Feature 1* weiteren Text als neuen Commit ein. Nehmen Sie anschließend die Änderungen aus dem _feature_-Branch in den _main_-Branch auf und entfernen den _feature_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
 
 
+==== Aufgabe 1.2 - Branches (_remote_)
+Lokale Branches können auf einem _remote_-Repository bereitgestellt werden, so dass diese öffentlich bzw. von Teammitglieder mit genutzt werden können.
+
+1. Legen Sie in Ihrem Repository einen neuen lokalen _feature-x_-Branch an und wechseln Sie in diesen.
+2. Nehmen Sie in den _feature-x_-Branch ein paar Commits auf.
+3. Veröffentlichen Sie Ihren lokalen _feature-x_-Branch auf Ihrem _remote_-Repository.
+4. Übernehmen (mergen) Sie im lokalen Repository die Änderungen vom _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
+5. Entfernen Sie jetzt den _feature-x_-Branch auf Ihrem _remote_-Repository.
+
+.Hinweise: _remote_-Branches
+[%collapsible]
+====
+=====
+.Neuen _local_-Branch in das _remote_-Repository aufnehmen:
+----
+$ git push -u origin <new_local_branch> <1>
+----
+<1> Nimmt einen neuen lokalen Branch `<new_local_branch>` in das _remote_-Repository (origin) auf und verbindet den lokalen mit diesem.
+
+.Neuen _remote_-Branch in das lokale Repository aufnehmen:
+----
+$ git pull <1> <2>
+$ git switch <new_remote_branch> <3>
+----
+<1> lokalen Stand vom _remote_-Repository aktualisieren
+<2> Alternativ geht auch ein `git fetch`, wenn man nur neue Branches und Versionen laden möchte, ohne diese schon mit dem Arbeitsverzeichnis zu mergen.
+<3> In den neuen _remote_-Branch wechseln. Da er lokal nicht vorhanden ist, wird automatisch ein gleichnamiger _lokaler_ Branch angelegt und mit dem _remote_-Branch verbunden.
+
+._local_-Branch und _remote_-Branch synchronisieren:
+----
+$ git pull <1>
+$ git pull origin <branch> <2>
+
+$ git push --all <3>
+$ git push <4>
+$ git push origin <branch> <5>
+----
+<1> Lade alle Änderung von remote Branches, welche mit lokalen verbunden sind.
+<2> Lade nur `<branch>` Änderungen vom _remote_-Repository `origin`.
+<3> Sende alle Änderungen von _local_-Branches, welche mit _remote_-Branches verbunden sind.
+<4> Sende alle Änderungen vom aktuellen _local_-Branch, wenn er mit einem _remote_-Branch verbunden ist.
+<5> Sende alle Änderungen vom _local_-Branch `<branch>`, wenn er mit einem _remote_-Branch auf dem _remote_-Repository `origin` verbunden ist.
+
+._remote_-Branch löschen:
+----
+git push <remote-repo> --delete <remote-branch> <1>
+----
+<1> Löscht den <remote-branch> auf dem <remote-repo>. In der Regel lautet der <remote-repo> Name _origin_.
+
+.Veraltete Referenzen entfernen:
+Sind die Branches remote und lokal gelöscht, aber ein `git branch -a` listet noch veraltete Referenzen zu _remote_-Branches auf, können Sie wie folgt entfernt werden:
+----
+% git remote prune origin
+----
+=====
+====
 
 
 include::sitemap.inc.adoc[]

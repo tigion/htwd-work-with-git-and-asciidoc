@@ -1,19 +1,21 @@
 include::header.inc.adoc[]
 
-Ziel: Vertiefung der Anwendung von *Branches* in *Git*
+Ziel: Vertiefung der Anwendung von *Versionen* in *Git*
 
-== Praktikumsaufgaben Teil 7 - Branches
+== Praktikumsaufgaben Teil 6 - Versionen
 
-In den folgenden Aufgaben wird das Branching von Git genauer betrachtet.
+In den folgenden Aufgaben wird die Änderungs-/Versionsverwaltung von Git genauer betrachtet.
 
-:imageTitle: Git-Versionsblütenzweige
-:imageFile: grafik_git_version_blossom_branch_text.jpg
+:imageTitle: Git-Versionskette
+:imageFile: grafik_git_versions_chain.png
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
 
-- Branches (Zweige) erstellen, vereinen und entfernen
+- ältere Versionsstände untersuchen
+- Änderungen verwerfen und (temporär) wegspeichern
+- Versionen (Commits) ändern, zusammenzufassen und löschen
 
 
 {section-separator}
@@ -30,13 +32,9 @@ Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-
 =====
 - icon:book[] https://git-scm.com/book/de/[The entire Pro Git book]
 - icon:book[] https://www.git-tower.com/learn/git/ebook/en/command-line/introduction[Learn Version Control with Git]
-- icon:globe[] https://gist.github.com/digitaljhelms/4287848[Branching concept variant]
-- icon:globe[] https://www.atlassian.com/de/git/tutorials/using-branches[Working with branches]
-- icon:film[] YouTube-search: https://www.youtube.com/results?search_query=git+tutorial[git tutorial], https://www.youtube.com/results?search_query=git+branch[git branch]
+- icon:film[] YouTube-search: https://www.youtube.com/results?search_query=git+tutorial[git tutorial]
 - icon:link[] https://code.visualstudio.com/docs/editor/versioncontrol#_git-support[Using Version Control in VS Code - Git support]
 =====
-
-* Für Visual Studio Code gibt es die hilfreiche Erweiterung *Git Graph*, welche eine grafische Darstellung von Branches und Versionsketten erlaubt.
 ====
 
 In den Aufgaben gibt es ebenfalls [underline]#aufklappbare Hinweise#. Diese beinhalten die benötigten git-Kommandos mit erklärenden Anmerkungen.
@@ -54,405 +52,256 @@ include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 
-=== 1. Branches verwenden
+=== 1. Änderungen und Versionen verwalten
 
-Mit *Branches* (Verzweigungen) bietet Git die Möglichkeit, ausgehend vom Hauptzweig, Versionen auf unterschiedlichen Zweigen zu erstellen. Diese Versionen können mit anderen Branches zusammengeführt (`merge`), verworfen oder bewusst getrennt gehalten werden.
+Die folgenden Aufgaben behandeln Möglichkeiten zum Umgang mit *Änderungen* und *Versionen* (Commits) im lokalen Arbeitsverzeichnis.
 
-.Beispielhaftes Branching
-image::grafik_git_branching.png[Beispielhaftes Branching,width=495]
+- *Änderung* ... (noch) nicht versionierte Änderung im lokalen Arbeitsverzeichnis
+- *Version* ... versionierte Änderung (Commit) im lokalen Arbeitsverzeichnis
 
-Mit Hilfe von Branching kann bspw. ein neues Feature oder ein Bugfix in einem extra Branch entwickelt und getestet werden, ohne den Hauptzweig zu beeinflussen. Nach Fertigstellung werden die Änderungen in den stabilen Hauptzweig aufgenommen.
+==== Aufgabe 1.1 - Versionen untersuchen
 
-.Hinweise: `merge`
+Untersuchen Sie in Ihrem lokalen Repository einen älteren Projektstand (Version) indem Sie sich die Unterschiede (`diff`) zwischen Versionen oder neueren Änderungen anzeigen lassen und direkt zu früheren Versionen in Ihrem Projekt springen (`checkout`). Kehren Sie anschließend zum aktuellen Stand zurück.
+
+.Hinweise: `diff`
 [%collapsible]
 ====
 =====
-*Merge*
+----
+$ git diff <1>
+$ git diff <file> <2>
 
-Wird der Versionsstand eines Branches in einen anderen Branch aufgenommen (`merge`) geschieht dies entweder mit der *fast-forward* oder *recursive* (3-Wege-Merge) Strategie.
+$ git diff --cached <3>
 
-_fast-forward_::
-+
-image::grafik_git_merge_fast-forward.png[...,width=549]
-+
-.Beispiel: Git-Kommandos
-[%collapsible]
-======
+$ git diff <commit-id> <4>
+$ git diff <commit-id> HEAD <5>
+$ git diff <commit-id-1> <commit-id-2> <6>
 ----
-$ git switch -c feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git switch main
-$ git merge feature
-----
-////
-----
-$ git branch feature
-$ git checkout feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git checkout main
-$ git merge feature
-----
-////
-======
-+
-Basiert der zu mergende Branch (_feature_-Branch) auf dem letzten Stand des aktuellen Branches (_main_-Branch), liegen die letzten Versionen der beiden Branches in einer direkten Nachfolge. Somit wird durch ein *fast-forward* der Zeiger des aktuellen Branches (_main_-Branch) auf die letzte Version des zu mergenden Branches (_feature_-Branch) bewegt. +
-Möchte man keinen _fast-forward_-Merge, sondern immer einen neuen _merge_-Commit haben, kann dies mit `--no-ff` erzwungen werden.
-
-_recursive_ (3-Wege-Merge, _merge_-Commit)::
-+
-image::grafik_git_merge_recursive.png[...,width=602]
-+
-.Beispiel: Git-Kommandos
-[%collapsible]
-======
-----
-$ git switch -c feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git switch main
-$   vi main.txt → git add . → git commit -m "..."
-$ git merge feature
-----
-////
-----
-$ git branch feature
-$ git checkout feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git checkout main
-$   vi main.txt → git add . → git commit -m "..."
-$ git merge feature
-----
-////
-======
-+
-Gibt es im aktuellen Branch (_main_-Branch) Versionen, die nach der Abspaltung des zu mergenden Branches (_feature_-Branch) erstellt worden sind, wird beim Merge im aktuellen Branch (_main_-Branch) eine neue Version (_merge_-Commit) erstellt. Diese enthält das vereinte Ergebnis aus den letzten Versionen der zu mergenden Branches.
+<1> zeigt Unterschied der letzten Version (_HEAD_) zum lokalen Arbeitsstand
+<2> mit der zusätzlichen Angabe `<file>` kann gezielt eine Datei oder ein Verzeichnis verglichen werden
+<3> mit `--cached` werden die vorgemerkten Änderungen gegenüber `HEAD` oder einer angegebenen Version verglichen
+<4> zeigt Unterschied der Version `<commit-id>` zum lokalen Arbeitsstand
+<5> zeigt Unterschied der Version `<commit-id>` zur letzten Version `HEAD`
+<6> zeigt Unterschied von Version `<commit-id-1>` (älter) zur Version `<commit-id-2>` (neuer)
 =====
 ====
 
-.Hinweise: `rebase`
+.Hinweise: `checkout`
 [%collapsible]
 ====
 =====
-*rebase*
-
-image::grafik_git_rebase.png[...,width=549]
-
-Mit einem Rebase wird die Basis, auf der die Versionen in einem Branch basieren, auf eine neuere Version aktualisiert.
-
-.Beispiel: Git-Kommandos
-[%collapsible]
-======
+image::grafik_git_checkout.png["...",width=251]
 ----
-$ git switch -c feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git switch main
-$   vi main.txt → git add . → git commit -m "..."
-$ git switch feature
-$ git rebase main
-----
-////
-----
-$ git branch feature
-$ git checkout feature
-$   vi feature.txt → git add . → git commit -m "..."
-$   vi feature.txt → git add . → git commit -m "..."
-$ git checkout main
-$   vi main.txt → git add . → git commit -m "..."
-$ git checkout feature
-$ git rebase main
-----
-////
-======
-
-Wird zusätzlich noch die Option `-i` verwendet, können die neu erstellt Commits zusätzlich verändert und zusammengefasst werden. (Siehe: <<praktikumsaufgaben-teil-06.adoc#aufgabe2-2, Aufgabe 2.2>>)
-
-IMPORTANT: Ein Rebase erzeugt immer neue Versionen (Commits-IDs, Commit-Inhalte) was in Verbindung mit öffentlichen und geteilten Team-Repositories zu Problemen führen kann.
-
-* Rebase ist hilfreich, wenn bspw. im _main_-Branch eine neue Version (_bugfix_-Commit) hinzukommt, welche für die weitere Bearbeitung im _feature_-Branch ebenfalls relevant ist.
-* Ebenfalls kann es hilfreich sein, wenn man eine flache Historie im Repository haben möchte, so dass bei einem Merge statt eines _merge_-Commits ein _fast-forward_-Merge durchgeführt werden kann.
-+
-#TODO# Grafik (Tafelbild): Merge-Commits vs Fast Forward Merges
-=====
-====
-
-.Hinweise: Aktualisierung eines Branches
-[%collapsible]
-====
-=====
-Der _feature_-Branch kann während seiner Bearbeitung wie folgt auf zwischenzeitlich neuere Versionen im _main_-Branch aktualisiert werden.
-
-.Variante 1: rebase _feature_-Branch auf _main_-Branch
-----
-$ git switch feature
-$ git rebase main
-----
-////
-----
-$ git checkout feature
-$ git rebase main
-----
-////
-
-.Variante 2: merge _main_-Branch auf _feature_-Branch
-----
-$ git switch feature
-$ git merge main
-----
-////
-----
-$ git checkout feature
-$ git merge main
-----
-////
-
-* Für die Aktualisierung eines in der Version länger zurückliegenden oder mit einem alten Feature abgeschlossenen _feature_-Branches ist die Variante 2 mit einem Merge empfohlen.
-* Ein Rebase des _feature_-Branches kann auch sinnvoll sein, um zwischenzeitliche neuere Versionen im _main_-Branch vor einem Merge in diesen im _feature_-Branch erst zu testen bzw. mögliche Konflikte zu lösen. Andernfalls fallen die Konflikte erst beim Merge in den _main_-Branch auf.
-=====
-====
-
-.Hinweise: Aussagekräftige Branch-Namen
-[%collapsible]
-====
-=====
-Verwendet man mehrere Branches im Repository, ist es sinnvoll *aussagekräftige Namen* zu verwenden und im Team entsprechende *Namenskonventionen* festzulegen.
-
-.Namen mit Trennzeichen:
-Namen könnten mit einem Wort für die Art des Branches beginnen gefolgt von spezifischen Informationen. Trennzeichen für eine bessere Lesbarkeit könnten `-` und `_` sein.
-
-- Art: `hotfix-`, `fix-`, `bugfix-`, `feature-`, `update-`, `test-`, etc.
-- Info: `feature-pdf-generation`, `bugfix-issue-12`, `update-js-framework`, etc.
-
-.Namen mit hierarchischer Struktur:
-Eine weitere Variante wäre mit Hilfe von `/` (forward slash) hierarchische Branch-Namen zu verwenden. So könnten bspw. mit `+git branch --list 'feature/*'+` oder `+git show-branch 'feature/*'+` alle vorhandenen bzw. Commits zu den _feature_-Branches aufgelistet werden.
-
-- Bspw.: `feature/pdf-generation`, `bugfix/issue-12`, `bugfix/issue-15`, etc.
-- Einige Clients bilden die Branches dann auch als navigierbare Struktur ab:
-+
-----
-├── bugfix
-│   ├── issue-12
-│   └── issue-15
-├── feature
-│   ├── pdf-generation
-│   └── xyz
-└── main
-----
-
-WARNING: Branch-Namen dürfen nicht mit einem `/` enden.
-=====
-====
-
-.Beispiel: Verwendung von Branches mit `merge` und `rebase`
-[%collapsible]
-====
-=====
-Das Repository befindet sich im _main_-Branch. Für ein neues Feature und einen zwischenzeitlichen Bugfix werden ein _feature_-Branch und ein _bugfix_-Branch angelegt. Fertig bearbeitet werden die beiden neuen Branches in den _main_-Branch aufgenommen und anschließend entfernt.
-----
-$ git switch -c feature <1>
-$ vi feature.txt → git add . → git commit -m "Add ..." <2>
-$ vi feature.txt → git add . → git commit -m "Change ..."
+$ git log --oneline <1>
+$ git checkout <old_commit_id> <2>
 $ git switch main <3>
-$ git switch -c bugfix <4>
-$ vi main.txt → git add . → git commit -m "Bugfix ..."
-$ vi main.txt → git add . → git commit -m "Bugfix ..."
-$ git rebase -i <5>
-$ git switch main <6>
-$ git merge bugfix → git branch -d bugfix <7>
-$ git switch feature <8>
-$ vi feature.txt → git add . → git commit -m "Change ..."
-$ git switch main <9>
-$ git merge --no-ff feature → git branch -d feature <10>
 ----
-<1> _feature_-Branch vom _main_-Branch erstellen und hin wechseln.
-<2> Feature bearbeiten und als neuen Commit in den aktuellen Branch aufnehmen. +
-    Die Option `-a` lässt `git commit ...` vorher geänderte und gelöschte Dateien mit aufnehmen.
-<3> in den _main_-Branch wechseln
-<4> _bugfix_-Branch vom _main_-Branch erstellen und hin wechseln
-<5> _bugfix_-Commits mit rebasing zu einem neuen Commit zusammenfassen
-<6> in den _main_-Branch wechseln
-<7> _bugfix_-Branch in den _main_-Branch mergen (optional mit `--no-ff`) und anschließend löschen
-<8> in den _feature_-Branch wechseln
-<9> in den _main_-Branch wechseln
-<10> _feature_-Branch in den _main_-Branch mergen und anschließend löschen
+<1> Versionshistorie (commits) anzeigen, die Option `--oneline` erlaubt eine Anzeige mit weniger Details auf einer Zeile pro Commit
+<2> vergangenen Projektstand laden
+<3> Neuere Alternativ zu `git checkout <branch>`. Zu aktuellem Projektstand (_main_-Branch) zurückkehren. Zwischenzeitliche Commits auf den vergangenen Projektstand werden verworfen.
+
+NOTE: In der unteren Statusleiste (links) in VS Code oder über das git-Kommando `git branch` sieht man den aktuellen Branch, bspw. _main_. Seit Oktober 2020 verwenden alle auf GitHub neu erstellten Repository `main` anstelle von `master` als Standard-Branch (https://github.com/github/renaming[Quelle]).
 =====
 ====
 
-.Hilfreiche Branching Kommandos
-[cols="2,3"]
-|===
-| Kommando | Beschreibung
+==== Aufgabe 1.2 - Änderung wegspeichern
+Nehmen Sie in Ihrem Repository eine lokale Änderung vor und speichern Sie diese temporär mit `stash` weg. Schauen Sie sich Ihren lokalen Arbeitsstand an. Stellen Sie anschließend Ihre weggespeicherte Änderung wieder her und nehmen Sie diese als neue Version auf.
 
-| `git branch`                    | lokale Branches auflisten +
-`-r` remote Branches, `-a` local und remote Branches
-| `git show-branch`               | Branches mit ihren Commits auflisten +
-`-r` remote Branches, `-a` local und remote Branches
-| `git branch <new-branch>`           | Branch anlegen
-| `git switch <branch> +
-git checkout <branch>` | Branch wechseln
-| `git switch -`                  | Zum vorherigen Branch wechseln
-| `git switch -c <new-branch> +
-git checkout -b <new-branch>`     | Branch anlegen und wechseln. Kurzform für `git branch <new-branch>` gefolgt von einem `git switch <new-branch>` oder `git checkout <new-branch>`.
-| `git branch -d <branch>`        | Branch löschen (`-d` _merged_, `-D` _unmerged_)
-| `git merge <branch>`            | Versionen aus <branch> in den aktuellen Branch aufnehmen.
-| `git merge --no-ff <branch>`    | Kein _fast forward_ merge, sondern immer neuer merge-Commit
-| `git rebase <branch>`           | Versionen aus dem aktuellen Branch auf die aktuelle Version von <branch> aktualisieren. Mit der Option `-i` können Commits angepasst und zusammengefasst werden.
-| `git diff <branch1>..<branch2>` | Unterschiede zwischen `<branch1>` und `<branch2>` anzeigen
-|===
-
-////
-merge beispiel mit zwei branches
-
-1. git branch feature
-2. git checkout feature
-    - vi feature2.txt, git add ., git commit -m "..."
-    - vi feature2.txt, git add ., git commit -m "..."
-3. git checkout main
-4. git branch bugfix
-5. git checkout bugfix
-    - vi ..bugfix.., git add ., git commit -m "..."
-6. git checkout main
-7. git merge bugfix (Fast-forward)
-8. git branch -d bugfix
-9. git checkout feature
-    - vi feature2.txt, git add ., git commit -m "..."
-10. git checkout main
-11. git merge feature (Merge made by the 'recursive' strategy.)
-12. git branch -d feature
-
-merge
-
-1. git branch feature
-2. git checkout feature
-    - vi feature2.txt, git add ., git commit -m "..."
-    - vi feature2.txt, git add ., git commit -m "..."
-3. git checkout main
-4. git merge feature
-5. git branch -d feature
-
-rebase + merge
-
-1. git branch feature
-2. git checkout feature
-    - vi feature2.txt, git add ., git commit -m "..."
-    - vi feature2.txt, git add ., git commit -m "..."
-3. git rebase main
-4. git checkout main
-5. git merge feature
-6. git branch -d feature
-
-feature Branch aktualisieren
-
-v1: rebase feature auf main
-
-1. git rebase main
-
-v2: merge main in feature
-
-1. git merge main
-
-rebase -i + merge
-
-1. git branch feature
-2. git checkout feature
-    - vi feature2.txt, git add ., git commit -m "..."
-    - vi feature2.txt, git add ., git commit -m "..."
-3. git rebase -i main (r, f)
-4. git checkout main
-5. git merge feature
-6. git branch -d feature
-////
-
-[#aufgabe_1-1]
-==== Aufgabe 1.1 - Branches (_local_)
-
-. Legen Sie in Ihrem Repository ein neues Asciidoctor-Dokument _temp.adoc_ mit folgendem Inhalt an:
-+
-.Vorlage: temp.adoc
-[source,asciidoc]
-----
-= Title
-
-== Beschreibung
-
-<insert_bugfix_here>
-
-== Feature 1
-
-<insert_feature_here>
-
-== Feature 2
-
-<insert_feature_here>
-
-----
-
-. Nehmen Sie das eben angelegte Dokument in den _main_-Branch als neue Version auf und pushen Sie es in Ihr _remote_-Repository.
-
-. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _feature_-Branch an und wechseln Sie in diesen. Fügen Sie in den Abschnitte *Feature 1* neuen Text, verteilt auf *zwei* Commits, ein.
-
-. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _bugfix_-Branch an und wechseln Sie in diesen. Korrigieren Sie, verteilt auf *zwei* Commits, die beiden Bugfixes im Abschnitt *Beschreibung*. Führen Sie anschließend ein interaktives Rebasing aus, um die beiden Bugfix-Änderungen in einem Commit zu vereinen. Jetzt übernehmen (mergen) Sie die Änderungen vom _bugfix_-Branch in den _main_-Branch und entfernen den _bugfix_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
-
-. Wechseln Sie in den _feature_-Branch und fügen in den Abschnitte *Feature 1* weiteren Text als neuen Commit ein. Nehmen Sie anschließend die Änderungen aus dem _feature_-Branch in den _main_-Branch auf und entfernen den _feature_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
-
-
-==== Aufgabe 1.2 - Branches (_remote_)
-Lokale Branches können auf einem _remote_-Repository bereitgestellt werden, so dass diese öffentlich bzw. von Teammitglieder mit genutzt werden können.
-
-1. Legen Sie in Ihrem Repository einen neuen lokalen _feature-x_-Branch an und wechseln Sie in diesen.
-2. Nehmen Sie in den _feature-x_-Branch ein paar Commits auf.
-3. Veröffentlichen Sie Ihren lokalen _feature-x_-Branch auf Ihrem _remote_-Repository.
-4. Übernehmen (mergen) Sie im lokalen Repository die Änderungen vom _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
-5. Entfernen Sie jetzt den _feature-x_-Branch auf Ihrem _remote_-Repository.
-
-.Hinweise: _remote_-Branches
+.Hinweise: `stash`
 [%collapsible]
 ====
 =====
-.Neuen _local_-Branch in das _remote_-Repository aufnehmen:
+image::grafik_git_stash.png["...",width=625]
 ----
-$ git push -u origin <new_local_branch> <1>
-----
-<1> Nimmt einen neuen lokalen Branch `<new_local_branch>` in das _remote_-Repository (origin) auf und verbindet den lokalen mit diesem.
+$ git stash <1> <2>
+$ git stash save "Arbeitsstand X"
+$ git stash -u
+$ git stash -S
+$ git stash -k
 
-.Neuen _remote_-Branch in das lokale Repository aufnehmen:
-----
-$ git pull <1> <2>
-$ git switch <new_remote_branch> <3>
-----
-<1> lokalen Stand vom _remote_-Repository aktualisieren
-<2> Alternativ geht auch ein `git fetch`, wenn man nur neue Branches und Versionen laden möchte, ohne diese schon mit dem Arbeitsverzeichnis zu mergen.
-<3> In den neuen _remote_-Branch wechseln. Da er lokal nicht vorhanden ist, wird automatisch ein gleichnamiger _lokaler_ Branch angelegt und mit dem _remote_-Branch verbunden.
+$ git stash pop <3>
+$ git stash apply <4>
+$ git stash drop <5>
 
-._local_-Branch und _remote_-Branch synchronisieren:
-----
-$ git pull <1>
-$ git pull origin <branch> <2>
+$ git stash list <6>
+stash@{0}: WIP on main: ...
+stash@{1}: WIP on main: ...
+stash@{2}: On main: Arbeitsstand X
 
-$ git push --all <3>
-$ git push <4>
-$ git push origin <branch> <5>
+$ git stash show <7>
+$ git stash show -p <8>
 ----
-<1> Lade alle Änderung von remote Branches, welche mit lokalen verbunden sind.
-<2> Lade nur `<branch>` Änderungen vom _remote_-Repository `origin`.
-<3> Sende alle Änderungen von _local_-Branches, welche mit _remote_-Branches verbunden sind.
-<4> Sende alle Änderungen vom aktuellen _local_-Branch, wenn er mit einem _remote_-Branch verbunden ist.
-<5> Sende alle Änderungen vom _local_-Branch `<branch>`, wenn er mit einem _remote_-Branch auf dem _remote_-Repository `origin` verbunden ist.
+<1> Änderungen an unter Versionskontrolle stehenden Dateien und im INDEX (staged) befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
+<2> Varianten:
++
+* `save "..."` ... benennt den erzeugten Stash für eine bessere Unterscheidung
+* `-u` ... speichert zusätzlich *untracked* neue bzw. noch nicht unter Versionskontrolle stehende Dateien weg
+* `-S` ... nur *staged* im INDEX befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
+* `-k` ... nur *unstaged* nicht im INDEX befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
+<3> `pop` ... stellt die weggespeicherte Änderung wieder her und entfernt den zugehörigen _Stash_
+<4> `apply` ... stellt die weggespeicherte Änderung wieder her und behält den zugehörigen _Stash_ (nützlich, wenn die Änderung noch an anderer Stelle (bspw. anderer _Branch_) gebraucht wird)
+<5> `drop` ... entfernt den Stash mit den enthaltenen Änderungen
+<6> `list` ... Liste der vorhandenen _Stashes_
+<7> `show` ... zeigt Kurzform der Änderungen im _Stash_ gegenüber der aktuellen Version
+<8> `show -p` ... zeigt auch inhaltliche Änderungen (Patch-Form)
 
-._remote_-Branch löschen:
-----
-git push <remote-repo> --delete <remote-branch> <1>
-----
-<1> Löscht den <remote-branch> auf dem <remote-repo>. In der Regel lautet der <remote-repo> Name _origin_.
+NOTE: Hat man mehrere Stashs, wird bei `pop`, `apply` und `drop` der zuletzt angelegte genommen. Man kann auch den gewünschten Stash mit bspw. `git stash pop stash@{1}` angegeben. Der neueste ist `stash@{0}` (default), der nächst ältere `stash@{1}` und so weiter.
+=====
+====
 
-.Veraltete Referenzen entfernen:
-Sind die Branches remote und lokal gelöscht, aber ein `git branch -a` listet noch veraltete Referenzen zu _remote_-Branches auf, können Sie wie folgt entfernt werden:
+==== Aufgabe 1.3 - Änderung verwerfen
+
+Nehmen Sie in Ihrem Repository eine lokale Änderung vor und verwerfen Sie diese anschließend, ohne eine neue Version zu erstellen.
+
+.Hinweise: `checkout`, `restore`, `reset`, `clean`
+[%collapsible]
+====
+=====
+image::grafik_git_checkout-reset-clean.png["...",width=381]
 ----
-% git remote prune origin
+$ git checkout -- <file(s)> <1>
+$ git restore -- <file(s)> <2>
+$ git reset --hard <3>
+$ git clean -df <4>
 ----
+<1> Setzt lokale Änderungen einer oder mehrerer unter Versionskontrolle stehender Dateien auf die letzte Version zurück. Ein `.` statt `<file(s)>` nimmt alle lokalen Änderungen.
+<2> Neuere alternative Variante gegenüber `checkout`.
+<3> Alternative Möglichkeit zu `git checkout .` bzw. `git restore .`. Ein `--hard` veranlasst bei einem `git reset` auch den Workspace, also die lokalen (geänderten) Dateien, zurückzusetzen.
+<4> Entfernt alle lokalen nicht unter Versionskontrolle stehenden Dateien. (https://git-scm.com/docs/git-clean[git-clean Dokumentation], `-n` Testlauf, `-i` interaktiv, `-d` beachte auch entsprechende Verzeichnisse, `-f` ignoriere Löschwarnung)
+=====
+====
+
+==== Aufgabe 1.4 - Version verwerfen
+
+1. Nehmen Sie in Ihrem Repository eine Änderung als neue lokale Version auf. Schauen Sie sich die Versionshistorie an und nehmen Sie die eben gemachte Version mit `reset` zurück.
++
+.Hinweise: `reset`
+[%collapsible]
+====
+=====
+image::grafik_git_reset.png["...",width=490]
+----
+$ git add .
+$ git commit -m "..."
+$ git log --oneline
+$ git reset --hard <commit_id> <1> <2>
+----
+<1> Setzt den aktuellen Stand des Repository auf die angegeben Version (Commit-ID) zurück. Mit der Option `--hard` wird auch das lokale Arbeitsverzeichnis zurückgesetzt.
+<2> Die Commit-ID kann relative `HEAD~1` oder absolut `a2a33s23` angegeben werden. Alle davon ausgehenden neueren Version werden verworfen.
+=====
+====
++
+IMPORTANT: Die Verwendung von `reset` ist nur für *lokale*, *private* und noch *nicht veröffentlichte* Versionen (Commits) geeignet. Denn das Verändern der Repository-Historie führt, im Gegensatz zu `revert`, zu Problemen mit anderen Nutzern, da die Versionskette nicht mehr synchron ist.
+
+2. Nehmen Sie in Ihrem Repository eine weitere Änderung als neue lokale Version auf. Schauen Sie sich die Versionshistorie an und nehmen Sie die eben gemachte Version mit `revert` zurück.
++
+.Hinweise: `revert`
+[%collapsible]
+====
+=====
+image::grafik_git_revert.png["...",width=593]
+----
+$ git add .
+$ git commit -m "..."
+$ git log --oneline
+$ git revert <commit_id> <1>
+----
+<1> Nimmt die Änderung der angegebenen Version zurück und erzeugt eine neue Version (ohne die Änderung der zurückgenommenen Version) im Repository. Die Versionshistorie bleibt inklusive der zurückgenommen Version erhalten.
+=====
+====
++
+NOTE: Die Verwendung von `revert` erhält, gegenüber `reset`, die Versionskette und ist konsistent zu *entfernten*, *öffentlichen* und *geteilten* Repositories.
+
+
+{section-separator}
+
+=== 2. Versionen ändern und zusammenfassen
+
+[#warning1]
+IMPORTANT: Das Ändern (`commit --amend`) und das Zusammenfassen (`rebase -i`) von Versionen zu einer neuen Version verändert die Commit-ID(s) und die Versionshistorie, ähnlich wie bei `reset`, des Repository. Es ist nur für *lokale*, *private* Repository und noch *nicht veröffentlichte* Versionen empfohlen, um unterschiedliche Versionsketten mit anderen Nutzern zu vermeiden.
+
+Falls der oder die ursprünglichen Commits schon an ein _remote_-Repository gepusht wurde, muss der überschriebene Commit noch einmal mit `git push --force` oder besser https://git-scm.com/docs/git-push#Documentation/git-push.txt---no-force-with-lease[`git push --force-with-lease`] gepusht werden. (obere <<#warning1,Warnung>> beachten!)
+
+.Hinweise: Force-Push mit VS Code
+[%collapsible]
+====
+=====
+In VS Code ist über das Git-Menü standardmäßig kein Force-Push möglich und man kann nur über das integrierte Terminal ein `git push --force` auszuführen.
+
+Über die Einstellungen von VS Code: "Settings > Extensions > Git" kann die Option *Allow Force Push* aktiviert werden. Danach sind im Git-Menü "... > Pull, Push > " entsprechende *Push (Force)* Einträge vorhanden.
+=====
+====
+
+==== Aufgabe 2.1 - letzte Version ändern
+
+1. Nehmen Sie in Ihrem Repository eine Änderung als neue lokale Version auf und schauen Sie sich die Versionshistorie an.
+
+2. Ändern Sie mit `commit --amend` die Commit-Message des eben erstellten letzten Commits. Alternativ nehmen Sie vorher eine lokale Änderung vor, welche mit in die Änderung des letzten Commits einfließen soll.
+
+.Hinweise: `commit --amend`
+[%collapsible]
+====
+=====
+image::grafik_git_commit_amend.png["...",width=393]
+----
+$ ...
+$ git add .
+$ git commit -m "... Message ..."
+$ git log --oneline
+$ ...
+$ git add . <1>
+$ git commit --amend -m "... (neue) Message ..." <2>
+$ git log --oneline
+----
+<1> optional: Aufnahme der vergessenen/zusätzlichen Änderungen.
+<2> Mit der Option `--amend` wird der letzten Commit mit dem aktuellen Commit überschrieben.
+Dies ist eine gute Möglichkeit, um Fehler in der Commit-Message zu korrigieren oder vergessene Änderungen oder Dateien aufzunehmen.
+=====
+====
+
+[#aufgabe2-2]
+==== Aufgabe 2.2 - Versionen zusammenfassen
+
+1. Nehmen Sie in Ihr Repository *drei* neue Versionen (Commits) auf.
+2. Fassen Sie mit `rebase -i` die letzten drei Commits zu einem neuen Commit zusammen.
+
+.Hinweise: `rebase -i`
+[%collapsible]
+====
+=====
+image::grafik_git_rebase-i.png["...",width=435]
+----
+$ git log --oneline
+00af044 (HEAD -> main) Fix typo in <object>
+0af0043 Update <object>
+af00042 Add new <object>
+f000041 Fixup #11 <object>
+...
+
+//$ git rebase -i f000041
+$ git rebase -i HEAD~3 <1>
+pick af00042 Add new <object>
+f    0af0043 Update <object> <2>
+f    00af044 Fix typo in <object> <2>
+
+$ git log --oneline
+f000045 (HEAD -> main) Add new <object>
+...
+----
+<1> Alle neueren Commits nach der angegebenen Commit-ID können jetzt einzeln bearbeitet (siehe Tabelle) werden. Der älteste Commit steht oben.
+<2> Die beiden Nachfolge-Commits (`00af044`, `0af0043`) werden mit `f` (fixup) statt `pick` markiert, um in den vorhergehenden Commit (`af00042`) aufgenommen zu werden.
+
+[cols="^1,3"]
+|===
+| Kommando      | Beschreibung
+
+| `p`, `pick`   | Commit verwenden
+| `r`, `reword` | Commit verwenden und Commit-Message ändern
+| `s`, `sqash`  | Commit und Commit-Message in vorherigen Commit aufnehmen
+| `f`, `fixup`  | Commit ohne Commit-Message in vorherigen Commit aufnehmen
+|===
+
+NOTE: Ist bei Ihnen im Terminal für Git der Editor vi(m) eingestellt, können Sie mit kbd:[i] in den Bearbeitungsmodus wechseln und nach der Änderung mit kbd:[esc] und der Eingabe von `:wq` speichern und den Editor schließen.
 =====
 ====
 

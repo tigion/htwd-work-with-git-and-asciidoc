@@ -1,654 +1,476 @@
 include::header.inc.adoc[]
 
-Ziel: Einrichtung und Anwendung der textbasierten Diagrammgenerierung mit *AsciiDoc*
+Ziel: Organisation von Aufgaben, Risiken und Prozessen im Team mit Hilfe von *Issues*, *Projects* und des *OpenUP* an einem gemeinsamen Repository auf *GitHub*
 
-== Praktikumsaufgaben Teil 5 - Diagramme 1
-
-In diesem Aufgabenteil betrachten wir die Möglichkeit der textbasierten Diagrammgenerierung mit Asciidoctor und der textuellen Notation http://plantuml.com/de/guide[PlantUML].
-
-:diagramTitle: Asciidoctor mit PlantUML
-:diagramFile: grafik_overview_asciidoctor-with-plantuml
-:diagramWidth: 800
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}", width={diagramWidth}, subs=attributes+]
-
-* https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]
-//* http://plantuml.com/de/guide[PlantUML PDF Guide]
-* https://plantuml.com/de/sitemap-language-specification[PlantUML - Language specification]
-* https://crashedmind.github.io/PlantUMLHitchhikersGuide/[The Hitchhiker’s Guide to PlantUML]
-* https://real-world-plantuml.com/[Seite mit verschiedene PlantUML Beispielen]
+== Praktikumsaufgaben Teil 5 - Zusammenarbeit 3
 
 ////
-****
-* VS Code + Asciidoctor-Erweiterung:
-** externe Generierung:
-*** v1: asciidoctor js + PlantUML-Server
-*** v2: lokales Asciidoctor + Asciidoctor-Diagram + PlantUML-Server
-** lokale Generierung:
-*** v3: lokales Asciidoctor + Asciidoctor-Diagram + graphviz
-****
+- *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_
+- *Git*: _pull_, _branches_, _merges_, _conflicts_, _tags_
+- *AsciiDoc*: _includes_, _callouts_, _Q&A (Glossar)_, ...
 ////
 
-[NOTE]
-====
-* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
-====
+Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Repository *htwd-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htwd-se-example-project*.
 
 include::hinweise-windows-labor.inc.adoc[]
 
-
 {section-separator}
 
-=== Vorbereitung
+=== 1. Issues im Kontext des OpenUP
 
-Für die Unterstützung der PlantUML Syntax und der Generierung von Diagrammen sind Anpassungen in Visual Studio Code, Asciidoctor und Git notwendig.
-
-:imageTitle: VS Code mit Diagrammvorschau
-:imageFile: screenshot_vscode_asciidoctor-diagram.png
-:imageWidth: 800
-image::{imageFile}[title="{imageTitle}", alt="{imageTitle}, "width="{imageWidth}", link="{imagesdir}/{imageFile}"]
-
-////
-* Je nach Leistungsfähigkeit des Rechners oder Netzwerkes, kann es bei der Aktualisierung der Grafiken zu Verzögerungen der Vorschau kommen.
-* Bei externen Servern für die Generierung den Datenschutz im Auge behalten.
-* Die lokal installierte Variante mit Graphviz unterstützt auch andere Diagramm-Typen als PlantUML.
-////
-
-==== Visual Studio Code
-
-Für die Verwendung der Diagramme mit der *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation), muss für die Vorschau und Generierung folgende Einstellung angepasst werden:
-
-. Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > AsciiDoc" in Visual Studio Code setzen:
-+
-* AsciiDoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
-
-==== Git Konfiguration
-
-Es empfiehlt sich, die generierten Grafiken nicht ins Repository aufnehmen, da diese jederzeit neu generiert werden können.
-
-Nutzt man die lokal installierte Asciidoctor-Version, wird für die generierten Grafiken ein zugehöriger Bilder-Cache angelegt. Dieser befindet sich im Verzeichnis der jeweiligen  _adoc_-Datei(en) unter _.asciidoctor/diagram/_ und sollte auch vom Repository ausgeschlossen werden.
-
-..gitignore
-----
-*.html
-*.pdf
-images/diagrams/ <1>
-.asciidoctor/ <2>
-----
-<1> Ausschluss des Ordners `images/diagrams/` (Siehe <<Asciidoctor und PlantUML>>) vom Repository
-<2> Ausschluss des Bilder-Caches `.asciidoctor/` vom Repository (Nur für lokal installiertes Asciidoctor notwendig)
+[#image_github_openup]
+:imageTitle: GitHub Issues im Kontext des OpenUP
+:imageFile: grafik_github_openup.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
 
 
-{section-separator}
+Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) sowie die Risiken (risks) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
 
-=== Asciidoctor und PlantUML
+"OpenUP is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. OpenUP embraces a pragmatic, agile philosophy that focuses on the collaborative nature of software development."
+-- https://www.informatik.htw-dresden.de/~anke/openup/index.htm[Quelle: OpenUP]
 
-Der folgende Abschnitt erklärt, wie im Asciidoctor-Dokument die PlantUML Notation angewendet wird, was es für nützliche Attribute gibt und wie das fertige Dokument inkl. der Diagramme generiert wird.
+Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
 
-====  Attribute
-
-Das Asciidoctor-Dokument benötigt folgende zusätzliche Attribute, wobei die Werte beispielhaft gewählt sind:
-
-[source,asciidoc]
-----
-:imagesdir: images <1>
-:diagramsdir: diagrams <2>
-:plantumlsdir: plantuml <3>
-----
-////
-//:plantuml-server-url: https://www.plantuml.com/plantuml <4>
-////
-
-<1> In der Regel schon vorhanden. Verzeichnis bzw. Standardpfad, in welchem die Bilder des Dokumentes liegen. (Siehe https://docs.asciidoctor.org/asciidoc/latest/macros/images-directory/[Set the Images Directory])
-<2> Verzeichnis, in welchem die generierten Diagramme gespeichert werden. Es wird später dem Dateinamen der Diagramme mitgegeben, so dass sich die generierten Diagramme unterhalb des `+{imagesdir}+`-Verzeichnisses in ihrem eigenen Verzeichnis befinden.
-<3> Verzeichnis, in welchem die PlantUML Quelldateien liegen. Für die Variante, wenn die PlantUML Diagramme in extra Dateien ausgelagert werden.
-////
-<4> Optional: Die Angabe eines PlantUML-Server für die Generierung der Diagramme wird bei lokal installiertem Graphviz nicht benötigt. In diesem Beispiel auskommentiert.
-////
-
-Standardmäßig werden die generierten Grafiken im vorgegebenen Bildverzeichnis `+{imagesdir}+` gespeichert. Möchte man die Diagramme getrennt halten und unbeabsichtigtes Überschreiben anderer Bilder verhindern, empfiehlt es sich für die generierten Diagramme im Namen ein [.underline]#extra# Verzeichnis `+{diagramsdir}/diagram-name+` anzugeben. Dadurch werden die Diagramme in ihrem eigenen Verzeichnis unterhalb des `+{imagesdir}+`-Verzeichnisses gespeichert.
-
-.Beispiel einer Projektstruktur:
-----
-documentation-x
-├── images <1>
-│   ├── diagrams <2>
-│   │   ├── diagram1.jpg
-│   │   └── ...
-│   ├── image1.jpg
-│   └── ...
-├── ...
-├── plantuml <3>
-│   ├── class-diagram.puml
-│   └── ...
-├── ...
-├── document1.adoc
-├── document2.adoc
-└── ...
-----
-<1> `+{imagesdir}+`
-<2> `+{diagramsdir}+`
-<3> `+{plantumlsdir}+`
-
-==== Praktikumsbeispiel
-
-Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
-
-* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
-
-==== PlantUML Notation
-
-.PlantUML Notation Minimalbeispiel:
-[source,plantuml]
-----
-@startuml <1> <2>
-Bob -> Alice : Guten Tag! <3>
-@enduml <1>
-----
-<1> Ein PlantUML Diagramm beginnt mit dem Schlüsselwort `@startuml` und endet mit dem Schlüsselwort `@enduml`. (Kann in Asciidoctor bzw. bei nur einem Diagrammabschnitt auch weggelassen werden.)
-<2> Standardmäßig hat das generierte Diagramm den gleichen Namen wie die Quelldatei (_example.puml_ -> _example.svg_). Die Dateiendung ist von der Art der zu generierenden Datei abhängig (bspw. _.svg_, _.png_). +
-Gibt man mit `@startuml filename` einen Namen an, kann ein alternativer Dateiname festgelegt werden (_example.puml_ -> _filename.svg_).
-<3> Bereich für die Diagrammbeschreibung
-
-NOTE: Der Dateiname bei `@startuml filename` wird in Asciidoctor nicht beachtet bzw. über die Einbindungssyntax festgelegt.
-
-==== Diagramm eingebettet
-
-In Asciidoctor werden Diagramme über einen Block eingebunden, welcher die Attribute und die textliche Beschreibung (PlantUML Notation) der zu generierenden Grafik enthält.
-
-.Asciidoctor Syntax-Beispiel:
-[source,plantuml]
-----
-.Klassendiagramm mit PlantUML <1>
-[plantuml, "{diagramsdir}/syntax-example1", svg] <2> <3>
-....
-class Graphic <4>
-interface Shape <<Interface>> {
-  draw()
-}
-class Circle
-class Triangle
-class Square
-
-Graphic -> Shape
-Shape <|.. Circle
-Shape <|.. Triangle
-Shape <|.. Square
-....
-----
-<1> Titel der Grafik (Bildunterschrift)
-<2> Attribute für die Generierung mit der Asciidoctor-Diagramm Erweiterung
-<3> Attribute: Diagramm-Type (Textsyntax), generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`), Bildformat (png, svg)
-<4> textliche Beschreibung (PlantUML Notation) des entsprechenden Diagramm-Types
-
-
-Die erfolgreich generierte Grafik <<diagram_syntax-example1>> sieht wie folgt aus:
-
-:diagramTitle: Klassendiagramm mit PlantUML
-:diagramFile: syntax-example
-[#diagram_syntax-example1]
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-////
-.Klassendiagramm mit PlantUML
-[#diagram_syntax-example1]
-[plantuml, "{diagramsdir}/syntax-example1", svg]
-....
-include::{plantumlsdir}/syntax-example.puml[]
-....
-////
-
-==== Diagramm in extra Datei
-
-Die textlichen Diagrammbeschreibungen können, für eine bessere Wartbarkeit und Übersichtlichkeit im Asciidoctor-Dokument, mit Hilfe von `include::` in extra PlantUML-Dateien `*.puml` ausgelagert werden.
-
-._syntax-example.puml_
-[%collapsible]
 ====
-[source,plantuml]
-----
-include::{plantumlsdir}/syntax-example.puml[]
-----
+.Abbildungsvariante OpenUP in GitHub
+[cols="1,1,2"]
+|===
+| OpenUP      | GitHub    | Hinweise
+
+| Phase       | Milestone
+a|
+* Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
+
+| #*Iteration*#   | #*Project*#
+a|
+* Einteilung der Work Items in Iteration [1..n]
+* extra Spalte (Field, iteration)
+
+| User Story  | Issue
+a|
+* Kurze Beschreibung einer Anforderung
+* Noch kein konkretes Work Item
+
+| #*Work Item*#   | #*Issue*#
+a|
+* Konkrete Aufgabe/Task
+* Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
+
+.2+| #Work Item State#
+| Issue
+a|
+* offen, geschlossen, Label
+| Project
+a|
+* Status (Table view) / Spalten (Board View): Todo, In Progress, Done, ...
+
+| #Complexity#
+| Project
+a|
+* extra Spalte (Field, numeric)
+
+.2+| Note
+| Issue
+a|
+* Label
+| Project Note
+a|
+* Karte im Projekt vom Type Notiz
+
+.2+| Role
+| Label
+a|
+* Analyst, Developer, Project Manager, ...
+| Assignee
+a|
+* Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
+|===
+
+Mit einem *GitHub Project* und verschiedenen Sichten (Views) ist der Projektfortschritt mit seinen Iterationen und WorkItems (Issues) für alle Teammitglieder immer ersichtlich. Folgend ein Beispiel:
+
+:imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
+:imageFile: screenshot_github_projects_view_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+*Dabei ist zu beachten:*
+
+//- Es können beliebig viele Issues, Projekte und Meilensteine in GitHub erstellt werden.
+//- Ein Issue kann mehreren Projekten, aber nur einem Meilenstein zugeordnet werden.
+//- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
+- Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
+- Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
+- Issues können in Projekten zwischen den Zuständen mit Drag&Drop (Table View) oder durch bestimmte Schlüsselwörter (automatisiert, Status-Spalte) bewegt werden.
+
+////
+*Einschränkungen:*
+
+- GitHub bietet aktuell noch keine Möglichkeit Projekte einem Meilensteinen zuzuordnen. Die im Projekt enthaltenen Issues müssen von Hand, einzeln oder per Mehrfachauswahl, dem entsprechenden Meilenstein zugeordnet werden.
+////
+
 ====
 
-.Syntax-Beispiel: Include
-[source,asciidoc]
-----
-.Klassendiagramm mit PlantUML
-[plantuml, "{diagramsdir}/syntax-example2", svg]
-....
-\include::{plantumlsdir}/syntax-example2.puml[]
-....
-----
-
-.Syntax-Beispiel: Block Macro mit Attributen
-[source,asciidoc]
-----
-:diagramTitle: Klassendiagramm mit PlantUML
-:diagramFile: syntax-example2
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-----
-
-.Hinweise: Block Macro Variante
+.Hinweise zu Issues und Work Items
 [%collapsible]
 ====
 =====
-IMPORTANT: Die Variante als Block Macro funktioniert nur mit einer lokal installierten Asciidoctor Version bzw. wenn diese für die Vorschau in Visual Studio Code verwendet wird.
+Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
 
-.Syntax-Beispiel: Block Macro
-[source,asciidoc]
-----
-[#diagram_example] <1>
-plantuml::{plantumlsdir}/diagram-example.puml[format=svg, alt="Diagrammbeispiel", title="Diagrammbeispiel", target="{diagramsdir}/diagram-example"] <2>
-----
-<1> optionale ID für Verweise (`+<<#ID>>+`) oder als `id=` Attribute
-<2> Block Macro mit Diagramm-Type (Textsyntax) und Attribute für die Generierung mit der Asciidotor-Diagramm Erweiterung
-* `plantuml::\{plantumlsdir\}/diagram-example.puml` ... PlantUML Datei im extra PlantUML Ordner
-* `format` ... Bildformat
-* `alt` ... Alternativer Name
-* `title` ... Titel der Grafik (Bildunterschrift, ebenfalls relevant für Verweise)
-* `target` ... generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`)
-* (optional) `id=` ... ID für Verweise
+* Priorisierung von Work Items (Issues) nach Wichtigkeit (bspw. hoch, mittel, niedrig):
+** *hoch*: Work Items werden in die aktuelle Iteration aufgenommen
+** *mittel*: Work Items werden in die aktuelle oder nächste Iteration aufgenommen
+** *niedrig*: Work Items sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
+** *Zeit* und *Ressourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Work Items auf die aktuelle bzw. folgenden Iterationen erfolgt.
+* Es ist sinnvoll den Issues (Work Items) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
+* Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Work Item X* in Ihrem Repository bitte passendere verwenden.
+* Labels, die sich an den Rollen des OpenUP orientieren, helfen sie entsprechend zu filtern.
+* Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories, Projekten und Meilensteinen.
 
-.Variante mit Attributen:
-[source,asciidoc]
-----
-:diagramTitle: Klassendiagramm mit PlantUML
-:diagramFile: syntax-example2
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-----
+:imageTitle: Übersicht der Issues
+:imageFile: screenshot_github_issues_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 =====
 ====
+
+.Hinweise zu User Stories und Issue-Referenzen
+[%collapsible]
+====
+=====
+Verwendet man im Kommentar einer Issue die ID einer anderen Issue, taucht bei dieser ein entsprechender Verweis auf.
+
+Im folgenden Beispiel ist in den Issues #15, #16, #17 und #18 die ID der gezeigten Issue #2 erwähnt worden. Diese enthält jetzt Verweise auf die genannten Issues.
+
+:imageTitle: Referenzen eines User Story (Issue) zu seinen Work Items (Issues)
+:imageFile: screenshot_github_issue_reference.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=380]
+
+Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkreten Work Items (Issues #15, #16, #17 und #18) zu referenzieren.
+=====
+====
+
+.Hinweise zu Projekten (Projects) und Planung von Iterationen in GitHub
+[%collapsible]
+====
+=====
+Die neuen *GitHub Projects* ermöglichen es innerhalb eines Projektes, die komplette Projektplanung mit allen Iterationen und zugehörigen Repositories abzubilden.
+
+* Planung, Zustände und Übersicht über die vergangenen, aktuelle und zukünftige Iterationen
+* Erfassung einer Complexity zu den Work Items (Issue) in den Iterationen
+* Verwaltung von Projektmitgliedern
+* Verwendung von Work Items (Issues) aus verschiedenen Repositories
+* Erstellung unterschiedlicher Sichten mit verschiedenen Schwerpunkten auf das Projekt
+* Erstellung von Diagrammen zum Zustand des Projektes
 
 [NOTE]
+======
+Die GitHub Projects sind in dieser Form noch relativ neu, so dass die Aufgaben noch nicht in allen Aspekten komplett angepasst sind.
+Ausführliche Informationen findet man unter folgenden Links:
+
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[Planning and tracking with Projects]
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[About iteration fields - Create iterations to plan upcoming work]
+======
+
+Folgend zwei Beispiele für eine Übersicht über alle Iterationen und eine fokussierte Sicht auf die aktuelle Iteration:
+
+:imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
+:imageFile: screenshot_github_projects_view_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+:imageTitle: GitHub Projects - Beispiel: Aktuelle Iteration (Board view)
+:imageFile: screenshot_github_projects_view_current_iteration.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+Damit so ein Projekt im Team genutzt werden kann, legt der Repository-Eigentümer das neue Projekt an und läd die anderen Teammitglieder, wie auch zum Repository, dazu ein.
+
+.Ein neues *Projekt* anlegen:
+. Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
+** Select a template: *Table* oder *Board* -> kbd:[Create]
++
+:imageTitle: GitHub Projekt anlegen - Template wählen
+:imageFile: screenshot_github_project_select_a_template.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=500, link="{imagesdir}/{imageFile}"]
+. Nach dem Anlegen, kann mit einem Klick auf den Titel *@account untitled project* der Namen des Projektes in bspw. *Projektplan: Thema I1* geändert werden.
+
+.*Teammitglieder* zum Projekt einladen
+. im Projekt oben rechts auf kbd:[...] klicken
+. den Menüpunkt *Settings* -> *Manage access* auswählen.
+. über *Invite collaborators* können jetzt die Teammitglieder gesucht und hinzugefügt werden
++
+Als Rolle kann entweder `Admin`, `Write` oder `Read` ausgewählt werden.
+
+.Projekt in Repository *verlinken*:
+. im (Team-)Repository in den Reiter *Projects* wechseln
+. über den Button kbd:[Link a project] das zuvor angelegte Projekt auswählen
+
+.*Iterationen* hinzufügen:
+* Iterationen können mit regelmäßigen, veränderlichen Zeiten und Pausen angelegt werden. Eine nachträgliche Anpassung ist ebenfalls möglich. +
+Siehe: https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[Hinweise zum Anlegen und Verwenden von Iteration Fields]
++
+:imageTitle: GitHub Projects - Iteration Setings
+:imageFile: screenshot_github_projects_field_iteration.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+.Issues als *Work Items* aufnehmen:
+** Table view: Zeile mit kbd:[+]-Button
+** Board view: kbd:[+ Add item]-Button (Spalte Todo)
+*** per kbd:[+] -> *Add item from repository* -> *Repository* wählen -> *Issues* auswählen -> kbd:[Add selected items]
+** per Suche (Add item) -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus dem gewählten Repository auswählen
+
+.**Complexity**/**Velocity** im Projekt zu den Work Items (Issues) erfassen:
+. Ein neues Feld über das kbd:[+] im Tabellenkopf (Table View) hinzufügen
+. kbd:[+ New field] wählen
+** Fieldname: *Complexity*
+** Field type: *Number*
+. Jetzt können den Work Items entsprechende Werte zugewiesen werden. Nach diesen kann jetzt gruppiert, gefiltert und über Insights in Diagrammen genutzt werden.
+
+.Weitere *Views* hinzufügen:
+. Mit dem Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden. +
+Der Inhalt und das Aussehen der Views können über den kleinen kbd:[▼] neben dem View-Namen angepasst werden. Anpassungsmöglichkeiten wären: gruppieren, sortieren, filtern, extra Spalten und weiteres.
+. Vorschläge für hilfreiche Views:
+** *Overview*: Table view, Gruppierung: Iteration
+** *Current Iteration*: Board view, Filter: `iteration:@current`
+** *Current & Next Iteration*: Table view, Filter: `iteration:>=@current`, Gruppierung: Iteration, Sortierung: Status
+** *Backlog*: Table view, Filer: `no:iteration`
+
+.*Workflows* anpassen:
+. Im Projekt oben rechts auf kbd:[...] klicken
+. Den Menüpunkt *Workflows* auswählen
+. Hier kann (noch etwas eingeschränkt) das automatische Verhalten der Issues mit dem wechsel des zugehörigen Status angepasst werden.
+
+=====
 ====
-Visual Studio Code bietet Erweiterungen für die Unterstützung von PlantUML-Dateien (*.puml) für die Vorschau und Generierung an, bspw. die Erweiterung https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML].
 
-* "Code > View > Command Palette..."
-** `PlantUML: Preview Current Diagramm`
-** `PlantUML: Export Current Diagramm`
+////
+.#icon:warning[] outdated icon:warning[]# Hinweise zu Projekten (Projects) in GitHub
+[%collapsible]
+====
+=====
+NOTE: Aktivieren der Fortschrittsbalkenansicht über: https://docs.github.com/en/issues/organizing-your-work-with-project-boards/tracking-work-with-project-boards/tracking-progress-on-your-project-board[Tracking progress on your project board]
+
+* Neue Projekte werden in der  Projektübersicht (Reiter *Projects*) über den Button kbd:[*New project*] abgelegt:
+** Project board name: bspw. *Iteration 1* angeben
+** Template auswählen: kbd:[Template: *Automated kanban*]
+
+:imageTitle: Projektübersicht
+:imageFile: screenshot_github_projects_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+* Im Projekt können Sie jetzt:
+** Spalten (Columns) anlegen, bearbeiten oder entfernen
+** Karten (Cards) in die Spalten aufnehmen bzw. erstellen
+*** Cards sind Notes, Issues, Pull-Requests
+** Notes können in ein Issue umgewandelt werden
+** Über *+ Add cards* können vorhandene noch nicht zugeordnete Issues per Drag&Drop in die gewünschte Spalte gezogen werden.
+** Beim *Automated kanban* werden geschlossene Issues automatisch in die Spalten _Done_ verschoben.
+** Karten (Issues) können bearbeitet und ebenfalls per Drag&Drop zwischen den Spalten verschoben werden.
+
+:imageTitle: Detailansicht eines Projektes
+:imageFile: screenshot_github_project.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
+====
+////
+
+.Hinweise zu Meilensteinen (Milestone) in GitHub
+[%collapsible]
+====
+=====
+* Neue Meilensteine werden in der Issue-Ansicht (Reiter *Issues*) -> *Milestones* über den Button kbd:[*New milestone*] abgelegt:
++
+image::grafik_github_open_milestones.png["Detailansicht eines Projektes", width=725]
+** Title: bspw. *Inception Phase*
+** Due date (optional): geplantes Ende
+** Description (optional): Beschreibung
+
+:imageTitle: Übersicht der Meilensteine
+:imageFile: screenshot_github_milestones_overview.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+* In der Meilensteinübersicht bzw. Detailansicht können wahlweise die offenen oder geschlossenen Meilensteine bzw. enthaltenen Issues angezeigt werden.
+
+:imageTitle: Detailansicht eines Meilensteins
+:imageFile: screenshot_github_milestone.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+=====
 ====
 
+==== Aufgabe 1.1 - Projektplanung
 
-==== Generierung PDF/HTML
+. Erstellen Sie in Ihrem privaten *Repository* `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
++
+.User Stories
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
 
-In Visual Studio Code und der Asciidoc Extensions mit Hilfe der Command Palette über Hauptmenü: "View > Command Palette...":
+| 1
+| *Dokumentation wie Code behandeln*
+| Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.
+|===
 
-.HTML
-`AsciiDoc: Save HTML Document`
+. Erstellen Sie drei *Work Items* als neue Issues mit dem Label `work item`, wovon sich die *zwei* ersten auf die vorher angelegte User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
++
+.Work Items
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
 
-.PDF
-`AsciiDoc: Export Document as PDF`
+| 1
+| *Dateien der Dokumentation erstellen*
+| Erstellen der Dateien Dokumentation.adoc, Software.inc.adoc und Mitglieder.inc.adoc im AsciiDoc-Format im Ordner docs.
 
-Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden:
+| 2
+| *Ausgelagerte Dateiinhalte einbinden*
+| Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.
 
-.HTML
-[source,console]
-----
-% asciidoctor -r asciidoctor-diagram plantuml_test.adoc
-----
+| 3
+| *Datei .gitignore anlegen*
+| Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.
+|===
 
-.PDF - v1
-[source,console]
-----
-% asciidoctor-pdf -r asciidoctor-diagram plantuml_test.adoc
-----
+. Erstellen Sie ein neues Projekt *HTWD Beispielprojekt*.
 
-.PDF - v2
-[source,console]
-----
-% asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf plantuml_test.adoc
-----
+. Nehmen Sie Ihre eben erstellten Work Items (nicht die User Story) in das Projekt auf.
+
+. Erstellen Sie ein neues Feld *Complexity* (numeric) und ein neues Feld *Iteration* mit einem wöchentlichen Zyklus.
+. Vergeben Sie jedem *Work Item* einen *Complexity Score*.
+. Weisen Sie *zwei* Work Items der *aktuellen Iteration* zu.
+
+. Richten Sie sich zwei Sichten: *Overview* und *Current Iteration* ein.
+** *Overview*: Table view, Gruppierung: Iteration
+** *Current Iteration*: Board view, Filter: `iteration:@current`
+
+. Erstellen Sie im *Projekt* (Sicht: Overview) ein *Work Item* als neue Issue mit dem Label `work item` und nehmen Sie es anschließend in Ihre aktuelle *Iteration* auf:
++
+.Work Items
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
+
+| 4
+| *Termin mit Auftraggeber vereinbaren*
+a|
+Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
+
+* erstes Meeting mit dem Auftraggeber
+* Vorstellung des Teams
+|===
+
+. Schließen Sie ein *Work Item* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
+
+{section-separator}
+
+=== 2. Risikomanagement
+
+// TODO: Aufgabe nach den ersten Durchgängen noch abrunden
+// - Templates für Risk Issues (Beschreibung, Bewältigungsstrategie, etc.)
+WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
+
+Zur Verwaltung der Projektrisiken verwenden wir ebenfalls *Issues* und *Projects* von GitHub.
+
+====
+.Abbildungsvariante OpenUP in GitHub
+[cols="1,1,2"]
+|===
+| OpenUP      | GitHub    | Hinweise
+
+.2+| #*Risk*#
+| #*Issue*#
+a|
+* Konkretes Risiko mit Label `risk` oder `risiko`
+* Beschreibung des Risikos
+* Bewältigungsstrategie
+| #*Project*#
+a|
+* Sicht Liste der Risiken)
+* Felder für Risikostatus und Risikostufe
+* Sicht Risk-Board
+|===
+
+:imageTitle: GitHub Projects - Sicht Risikoliste
+:imageFile: screenshot_github_projects_view_risks.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+
+:imageTitle: GitHub Projects - Sicht Risk-Board
+:imageFile: screenshot_github_projects_view_risk-board.png
+.{imageTitle}
+image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+====
+
+==== Aufgabe 2.1 - Risk list
+
+. Erstellen Sie in Ihrem Projekt eine neue Sicht (+ New View) *Risks* oder *Risiken* mit folgenden Eigenschaften:
+** Layout: `Table`
+** Filter: `label:risk` (nur Issues mit Label `risk` anzeigen)
+** Feld *Status* ausblenden (*Assignees* kann bleiben, um die Verantwortlichkeit zu zeigen)
+** neues Feld (+ New Field) *Risk status* oder *Risikostatus*
+*** Field type: *Single select* (Options: `Neu`, `Analyse`, `Bewertung`, `Bewältigung`)
+** neues Feld *Risk level* oder *Risikostufe*
+*** Field type: *Single select* (Options: `gering`, `mittel`, `hoch`)
+
+. Fügen Sie in der Sicht *Risks* über das untere kbd:[+]  und kbd:[Create new Issue] *vier* neue Risiken für Ihr Repository `htwd-se-example-project` mit dem Label `risk` hinzu.
+** bspw.: `Auftraggeber nicht erreichbar`, `Nicht alle Teammitglieder können in Python programmieren`, `Technische Probleme mit Docker auf dem Server`, ...
+. Vergeben Sie für die eben angelegten Risiken (Issues) entsprechende *Risk status* und *Risk level* Werte.
+
+==== Aufgabe 2.2 - Risk-Board
+
+. Erstellen Sie eine weitere Sicht *Risk-Board* mit folgenden Eigenschaften:
+** Layout: `Board`
+** Column By: *Risiko*
+** Filter: `label:risk` (nur Issues mit Label `risk` anzeigen)
+
+==== Aufgabe 2.3
+
+. Blenden Sie in den Sichten, in denen keine Risiken erscheinen sollen, mit dem Filterzusatz `-label:risk` Issues mit dem Label `risk` aus.
+** bspw.: Overview, Current Iteration, Current & Next Iteration, Backlog
 
 
 {section-separator}
 
-=== PlantUML Notation im Detail
+=== 3. Issue Templates (optional)
 
-In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die PlantUML Notation näher anschauen und erarbeiten.
+// TODO: Templates für Issues (User Story, Work Item, Risk, etc.)
+WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
 
-==== Hinweise und Tipps
+Mit Hilfe von https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates[Issue-Templates] können Vorgaben (wie Labels) und Strukturen für verschiedene Issues-Arten (User Stories, Work Items, Risiken, usw.) definiert werden.
+Diese Vorlage kann dann beim Erstellen einer Issue ausgewählt werden.
 
-Neben den in den Aufgaben verlinkten Syntax-Hinweisen findet man auch die entsprechenden Abschnitte im https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]. Ebenfalls bereitgestellt sind jeweils die PlantUML-Quelltexte der verwendeten Beispieldiagramme.
+- Repository-Einstellungen -> Issues -> kbd:[Set up templates]
 
-Hilfreich für das Layout bzw. zur Positionierung von Elementen ist auch ein Blick in den entsprechenden Guide zu https://crashedmind.github.io/PlantUMLHitchhikersGuide/layout/layout.html[The Hitchhiker’s Guide to PlantUML - Layout].
-
-.Hinweise und Tipps zur Anwendung der PlantUML Notation
-[%collapsible]
-====
-=====
-* In der Regel definiert man erste die Elemente (Type, Bezeichnung) und nachfolgend die Beziehungen zwischen ihnen. Elemente in Kontainern/Paketen, werden am Anfang des entsprechenden Kontainers definiert.
-* Lange Bezeichnungen mit Leerzeichen werden in Anführungszeichen bzw. den Eingrenzungszeichen des jeweiligen Elementes gesetzt und können mit `\n` Zeilenumbrüche enthalten.
-* Den Elementen kann über das Schlüsselwort `as` Alias-Namen vergeben werden, welche anstelle der Bezeichnung beim Definieren der Beziehungen verwendet werden.
-* Pro Zeile wird immer ein Elemente definiert.
-* Beziehungen können immer nur für zwei beteiligte Elemente pro Zeile angegeben werden. (Bspw. `A -- B` und `B -- C` statt `A -- B -- C`)
-* Die Hintergrundfarbe von Elemente kann durch Angabe eine Hexadezimalwertes festgelegt werden: `class MyClass #f00` (Siehe auch https://plantuml.com/de/color[Colors])
-** Weitere Möglichkeiten bieten https://plantuml.com/de/skinparam[Skinparam Befehl] und https://plantuml.com/de/style-evolution[Style (or CSS like style)]
-** Mit `skinparam shadowing false` können bspw. Schatten deaktiviert werden.
-* Stereotypen werden nach der Elementbezeichnung angegeben. Bsp.: `+class MyClass <<MyStereotype>>+`
-* Kommentare werden einzeilig mit `'` eingeleitet und mehrzeilig in `/' ... '/` eingeschlossen.
-* Standardmäßig werden Diagramme von oben nach unten aufgebaut. Je nach Diagramm kann auch ein Aufbau von links nach rechts besser aussehen.
-** `top to bottom direction` (Standard)
-** `left to right direction`
-* Diagramme können über die Webseite https://www.plantuml.com/plantuml/ direkt generiert und getestet werden.
-* Mit `together {...}` werden Elemente gruppiert bzw. zusammengehalten. (Siehe https://plantuml.com/de/class-diagram#c08f8d9927fcb626[Hilfe beim Layout])
-* Wird das Attribut `subs="attributes+"` bei der Einbindung in Asciidoctor verwendet, können innerhalb des PlantUML-Diagramms Variablen vom Asciidoctor-Dokument verwendet werden.
-+
+.Beispiel für Template content eines Risiko Issue-Templates
+[source,md]
 ----
-:variable1: Human
-:variable2: Hallo
-:variable3: World
+## Risikobeschreibung
+<!-- Please describe the risk in detail. -->
 
-[plantuml, format="svg", subs="attributes+"]
-....
-actor {variable1}
-note right of {variable1} : {variable2}
-usecase {variable3}
-....
+## Bewältigungsstrategie
+<!-- Please describe the mitigation strategy. -->
 ----
-=====
-====
-
-==== Aufgabe 1 - Anwendungsfalldiagramm
-
-Schauen Sie sich die https://plantuml.com/de/use-case-diagram[Syntax für ein Anwendungsfalldiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Anwendungsfalldiagramm.
-
-.Hinweise: Anwendungsfalldiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Akteure (Actor)
-----
-actor Akteur1 <1>
-:Akteur 2:
-actor "Akteur4 mit langem\nNamen" as ac2
-----
-<1> Akteure werden über das Schlüsselwort `actor` oder in Doppelpunkte `:...:` eingeschlossen.
-
-.Anwendungsfälle (Use Case)
-----
-usecase Anwendungsfall1 <1>
-usecase "Anwendungsfall 1" as uc01
-(Anwendungsfall 2) as uc02
-(UC03\nAnwendungsfall 3) as uc03
-
-usecase uc04 as "Langer Text <2>
-mit neuer Zeile
---
-und Trennlinie"
-----
-<1> Anwendungsfälle werden über das Schlüsselwort `usecase` oder in Klammern `(...)` eingeschlossen.
-<2> Bei Inhalt mit mehreren Zeilen, muss erst der Alias und dann der mehrzeilige Inhalt angegeben werden.
-
-.Beziehungen
-----
-Akteur1 -- (Anwendungsfall1) <1>
-ac2 -- uc02
-uc02 <. uc03 : include <2> <3>
-----
-<1> Beziehungen werden mit `--` (senkrecht), `-` (waagerecht) und gestrichelt mit `..` (senkrecht), `.` (waagerecht) angegeben.
-<2> Für Pfeilrichtungen an den entsprechenden Seiten ein `<` bzw. `>` anfügen.
-<3> Mit `:` wird der Beziehung eine Beschreibung angegeben.
-=====
-====
-
-._example_usecase-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_usecase-diagram.puml[]
-----
-====
-
-:diagramTitle: Anwendungsfalldiagramm für eine beispielhafte eRoller App
-:diagramFile: example_usecase-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 ////
-.Anwendungsfalldiagramm für eine beispielhafte eRoller App
-[#diagram_example_usecase-diagram]
-[plantuml, "{diagramsdir}/example_usecase-diagram", svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel"]
-....
-include::{plantumlsdir}/example_usecase-diagram.puml[]
-....
+{section-separator}
+
+=== Hinweise für den Beleg
+
+Für den Schwerpunkt der *Work Item*- und **Iterations**verwaltung mit GitHub Issues/Projects sind durch die Fachaustausche in SE II einige ergänzende und alternative Tools von Studenten empholen worden:
+
+* GitHub Erweiterungen:
+** https://help.zenhub.com/support/solutions/articles/43000010778-what-is-zenhub-an-intro-to-zenhub-in-github[ZenHub], ...
+* separate Aufgabenverwaltungen:
+** https://www.atlassian.com/de/software/jira[Jira], https://www.meistertask.com/[MeisterTask], https://trello.com/[Trello], ...
 ////
 
-////
-[#diagram_example_usecase-diagram]
-plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel", title="Anwendungsfalldiagramm vom Praktikumsbeispiel \"Cocktailversand\"", target="{diagramsdir}/q1_usecase-diagram"]
-////
-
-
-==== Aufgabe 2 - Anwendungsfalldiagramm für Cocktailversand
-
-Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwendungsfalldiagramm für den Cocktailversand. Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
-
-. Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
-. Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
-. Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
-
-=== Weitere Diagrammarten
-
-Wechseln Sie hierzu wieder in Ihr Vorführungsprojekt und ergänzen Sie die folgenden Diagramme.
-
-==== Aufgabe 3 - Klassendiagramm
-
-Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
-
-.Hinweise: Klassendiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Klassen
-----
-class Klasse1 <1>
-class Klasse2 { <2>
-  String var1
-  double var2
-  void methode1()
-  bool methode2(int x)
-}
-interface Interface1 <3>
-interface Interface1 {
-  void methode1()
-}
-----
-<1> Klassen werden mit dem Schlüsselwort `class` angelegt.
-<2> Klassen können Angaben zu den Typen und Methoden haben.
-<3> Interface Klassen werden mit dem Schlüsselwort `interface` angelegt. Abstrakte Klassen mit `abstract` bzw. `abstract class`.
-
-.Sichtbarkeiten
-----
-class Dummy { <1>
-  -field1
-  #field2
-  ~method1()
-  +method2()
-}
-----
-<1> Mit `-` (private), `#` (protected), `~` (package private) und `+` (public) werden Sichtbarkeiten festgelegt.
-
-.Abstrakt/Statisch
-----
-class Dummy { <1>
-  {static} String id
-  {abstract} void methods()
-}
-----
-<1> Modifikatoren für `{static}` (statisch) oder `{abstract}` abstrakt.
-
-.Beziehungen
-----
-Klasse1 <-- Klasse2 <1> <2> <3>
-Klasse3 <|-- Klasse4
-Klasse5 *-- Klasse6
-Klasse7 o-- Klasse8
-----
-<1> Assoziation `+<--+`, Generalisierung `<|--`, Realisierung `<|..`, Komposition `*--`, Aggregation `o--`
-<2> `--` durchgezogene Linie, `..` gestrichelte Linie
-<3> `-`/`.` vertikal, `--`/`..` horizontal, `---`/`...` horizontal lang
-
-.Multiplizitäten
-----
-Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
-----
-<1> `"1"` und `"many"` legen die Kardinalität fest.
-<2> in der Beschreibung `:` kann mit `< text` oder `text >` eine Richtung angegeben werden.
-=====
-====
-
-._example_class-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_class-diagram.puml[]
-----
-====
-
-:diagramTitle: Klassendiagramm mit PlantUML
-:diagramFile: example_class-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-==== Aufgabe 4 - Aktivitätsdiagramm
-
-Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
-
-.Hinweise: Aktivitätsdiagramm in PlantUML #TODO#
-[%collapsible]
-====
-=====
-Die Hinweise zur Erstellung von Aktivitätsdiagramm entnehmen Sie bitte, auf Grund der Veränderungen durch die *Beta* und *Legacy* Variante, direkt der offiziellen Dokumentation:
-
-- https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm (Beta)]
-- https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)]
-=====
-====
-
-._example_activity-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_activity-diagram.puml[]
-----
-====
-
-:diagramTitle: Aktivitätsdiagramm mit PlantUML (beta)
-:diagramFile: example_activity-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-.Hinweise: Bisherige Aktivitätsdiagramm (Legacy) Variante
-[%collapsible]
-====
-Unter https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)] findet man die bisherige Variante.
-
-._example_activity-diagram_legacy.puml_
-[%collapsible]
-=====
-[source,puml]
-----
-include::{plantumlsdir}/example_activity-diagram_legacy.puml[]
-----
-=====
-
-:diagramTitle: Aktivitätsdiagramm mit PlantUML (legacy)
-:diagramFile: example_activity-diagram_legacy
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-====
-
-[#c4-model-diagrams]
-==== Aufgabe 5 - C4 Model Diagramme
-
-PlantUML kann neben UML auch Diagramme basierend auf dem https://c4model.com/[C4 Model] erzeugen. Dies wären, sortiert nach zunehmenden Detailgrad, die https://c4model.com/#SystemContextDiagram[Kontext-], https://c4model.com/#ContainerDiagram[Kontainer-] und https://c4model.com/#ComponentDiagram[Komponentendiagramme]. Es gibt noch die https://c4model.com/img/glyphicons-basic-351-link.svg[Codediagramme], diese können bspw. mit den aus der UML bekannten Klassendiagrammen dargestellt werden.
-
-* https://c4model.com/[The C4 model for visualising software architecture]
-* https://youtu.be/x2-rSnhpw0g[Visualising software architecture with the C4 model - Simon Brown, Agile on the Beach 2019]
-* [1] https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[The Hitchhiker’s Guide to PlantUML - C4 PlantUML]
-* [2] https://github.com/RicardoNiepel/C4-PlantUML[GitHub - C4-PlantUML]
-
-Schauen Sie sich auf https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[+[1]+] und https://github.com/RicardoNiepel/C4-PlantUML[+[2]+] die Syntax für die C4 Model Diagramme an und erstellen Sie, angelehnt an das Beispiel, ein C4 Model Diagramm.
-
-.Hinweise: C4 Model Diagramme in PlantUML
-[%collapsible]
-====
-=====
-
-.Layout-Optionen
-```
-LAYOUT_TOP_DOWN or LAYOUT_LEFT_RIGHT <1>
-LAYOUT_WITH_LEGEND <2>
-LAYOUT_AS_SKETCH <3>
-```
-<1> Diagrammausrichtung
-<2> Legende anzeigen
-<3> Darstellungsstil skizzenhaft
-
-.Diagrammtitel
-* Diagrammtitel werden mit `titel` vergeben:
-+
-----
-title Dies ist ein Diagrammtitel
-----
-
-.Diagrammtypen und deren C4-Model Elemente
-* *System Context & System Landscape diagrams*
-** Import: `!include <c4/C4_Context.puml>`
-** C4-Model Elemente:
-*** `Person`, `Person_Ext`
-*** `System`, `System_Ext`
-*** `SystemDb`, `SystemDb_Ext`
-** C4 Model Kontainer:
-*** `Boundary`, `System_Boundary`, `Enterprise_Boundary`
-* *Container diagram*
-** Import: `!include <c4/C4_Container.puml>`
-** Zusätzliche C4-Model Elemente (Knoten):
-*** `Container`, `ContainerDb`
-** Zusätzliche C4-Model Elemente (Kontainer):
-*** `Container_Boundary`
-* *Component diagram*
-** Import: `!include <c4/C4_Component.puml>`
-** Zusätzliche C4-Model Elemente (Knoten):
-*** `Component`, `ComponentDb`
-
-.Elemente (Knoten)
-* Für jedes Element wird ein Alias, der Name und eine Beschreibung vergeben:
-+
-----
-Person(alias, Name, "Beschreibung")
-----
-
-.Beziehungen (Kanten)
-* Beziehungen werden über `Rel(...)` beschrieben und können zwischen Elementen und Kontainern bestehen:
-+
-----
-Rel(alias_person1, alias_container1, "Beschreibung")
-Rel(alias_element1, alias_element2, "Beschreibung", "Text in [...]")
-----
-* Über `Rel_R`, `Rel_L`, `Rel_D`, `Rel_U`, `Rel_Back`, `Rel_Neighbor` und `Rel_Back_Neighbor` kann die Pfeilrichtung und Ausrichtung des in Beziehung stehenden Elementes beeinflusst werden.
-
-.Kontainer (Bereiche)
-* Elemente kann man in Bereiche bündeln:
-+
-----
-Boundary(alias, "Name") {
-  ...
-}
-----
-=====
-====
-
-._example_c4-model-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_c4-model-diagram.puml[]
-----
-====
-
-:diagramTitle: C4 Model Diagramm mit PlantUML
-:diagramFile: example_c4-model-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 include::sitemap.inc.adoc[]

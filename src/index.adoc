@@ -37,30 +37,34 @@ Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden 
 .Praktikumsaufgaben Teil 4 - Zusammenarbeit 2
 - Zusammenarbeit im Team mit *GitHub* (_Issues_, _Labels_, _Projects_, _Milestones_, ...)
 - Issues mit Filtern im Überblick behalten
-- Issues im Kontext des OpenUP
 
-.Praktikumsaufgaben Teil 5 - Asciidoctor und Diagramme 1
+.Praktikumsaufgaben Teil 5 - Zusammenarbeit 3
+- Issues und Projects im Kontext des *OpenUP*
+- *Risikomanagement* (Risks, Risk-board)
+- Issue-Templates
+
+.Praktikumsaufgaben Teil 6 - Asciidoctor und Diagramme 1
 - Textbasierte Diagrammgenerierung mit *PlantUML*
 - Struktur und Verwendung in Asciidoctor
 - _Anwendungsfall-, Klassen-, Aktivitäts- und C4 Model Diagramm_
 
 === Software Engineering II
 
-.Praktikumsaufgaben Teil 6 - Versionen
+.Praktikumsaufgaben Teil 7 - Versionen
 - Änderungs- und Versionsverwaltung (_diff_, _checkout_, _restore_, _stash_, _reset_, _revert_, _amend_, _rebase_)
 
-.Praktikumsaufgaben Teil 7 - Branches
+.Praktikumsaufgaben Teil 8 - Branches
 - Branching (_branch_, _switch_, _checkout_, _rebase_, _merge_, _local-/remote-Branch_)
 
-.Praktikumsaufgaben Teil 8 - Zusammenarbeit 3
+.Praktikumsaufgaben Teil 9 - Zusammenarbeit 4
 - Code-Review (Pull-/Merge-Request), Fork
 
-.Praktikumsaufgaben Teil 9 - Asciidoctor und Diagramme 2
+.Praktikumsaufgaben Teil 10 - Asciidoctor und Diagramme 2
 - Weitere Diagrammtypen
 - _C4 Dynamic und Deployment Diagramm_
 - _Komponenten-, Paket-, Sequenz- und ER-/RM-Diagramm_
 
-.Praktikumsaufgaben Teil 10 - GitHub Actions
+.Praktikumsaufgaben Teil 11 - GitHub Actions
 - CIs und Workflows mit GitHub Actions
 
 == Hinweise & Einschränkungen

@@ -1,309 +1,654 @@
 include::header.inc.adoc[]
 
-Ziel: Vertiefung der Anwendung von *Versionen* in *Git*
+Ziel: Einrichtung und Anwendung der textbasierten Diagrammgenerierung mit *AsciiDoc*
 
-== Praktikumsaufgaben Teil 6 - Versionen
+== Praktikumsaufgaben Teil 5 - Diagramme 1
 
-In den folgenden Aufgaben wird die Änderungs-/Versionsverwaltung von Git genauer betrachtet.
+In diesem Aufgabenteil betrachten wir die Möglichkeit der textbasierten Diagrammgenerierung mit Asciidoctor und der textuellen Notation http://plantuml.com/de/guide[PlantUML].
 
-:imageTitle: Git-Versionskette
-:imageFile: grafik_git_versions_chain.png
-.{imageTitle}
-image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
+:diagramTitle: Asciidoctor mit PlantUML
+:diagramFile: grafik_overview_asciidoctor-with-plantuml
+:diagramWidth: 800
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}", width={diagramWidth}, subs=attributes+]
 
-Es werden hilfreiche Konzepte zu folgenden Themen erarbeitet:
+* https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]
+//* http://plantuml.com/de/guide[PlantUML PDF Guide]
+* https://plantuml.com/de/sitemap-language-specification[PlantUML - Language specification]
+* https://crashedmind.github.io/PlantUMLHitchhikersGuide/[The Hitchhiker’s Guide to PlantUML]
+* https://real-world-plantuml.com/[Seite mit verschiedene PlantUML Beispielen]
 
-- ältere Versionsstände untersuchen
-- Änderungen verwerfen und (temporär) wegspeichern
-- Versionen (Commits) ändern, zusammenzufassen und löschen
+////
+****
+* VS Code + Asciidoctor-Erweiterung:
+** externe Generierung:
+*** v1: asciidoctor js + PlantUML-Server
+*** v2: lokales Asciidoctor + Asciidoctor-Diagram + PlantUML-Server
+** lokale Generierung:
+*** v3: lokales Asciidoctor + Asciidoctor-Diagram + graphviz
+****
+////
 
-
-{section-separator}
-
-=== Hinweise zur Bearbeitung
-
-Bearbeiten Sie die Aufgaben in Ihrem vorhandenem `htwd-se-example-project`-Repository oder legen Sie sich dafür ein neues Repository auf GitHub an (Siehe hierzu <<praktikumsaufgaben-teil-01#,Praktikumsaufgaben Teil 1 - Grundlagen>>). Falls noch nicht geschehen, clonen Sie es als lokales Arbeitsverzeichnis auf Ihren Rechner und bearbeiten Sie in diesem die Aufgaben. Wenn nicht anders angegeben, entscheiden Sie selbst, was für eine (beispielhafte) Änderung zur Lösung der entsprechenden Aufgabe Sie an Ihrem Repository vornehmen.
-
+[NOTE]
 ====
-Nutzen Sie die Möglichkeiten sich auf Webseiten wie der offiziellen http://git-scm.com/documentation[Git Dokumentation] oder anderen Ressourcen über die verwendeten git-Kommandos und -Konzepte zu informieren.
-
-.Linkliste zu hilfreichen Webseiten und Videos
-[%collapsible]
-=====
-- icon:book[] https://git-scm.com/book/de/[The entire Pro Git book]
-- icon:book[] https://www.git-tower.com/learn/git/ebook/en/command-line/introduction[Learn Version Control with Git]
-- icon:film[] YouTube-search: https://www.youtube.com/results?search_query=git+tutorial[git tutorial]
-- icon:link[] https://code.visualstudio.com/docs/editor/versioncontrol#_git-support[Using Version Control in VS Code - Git support]
-=====
+* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
 ====
-
-In den Aufgaben gibt es ebenfalls [underline]#aufklappbare Hinweise#. Diese beinhalten die benötigten git-Kommandos mit erklärenden Anmerkungen.
-
-Je nach verwendetem git-Client oder IDE sind die Kommandos über entsprechenden Menüpunkte und Schaltflächen zu erreichen. Es ist Ihnen freigestellt, ob Sie einen grafischen Client/IDE oder das Terminal verwenden.
-
-Terminal in Visual Studio Code icon:linux[] icon:apple[] icon:windows[]::
-  Über das Hauptmenü: "View > Terminal" kann innerhalb von VS Code ein Terminal geöffnet werde.
-Terminal unter icon:windows[] Windows::
-  PowerShell, git-Bash, Eingabeaufforderung (cmd), ...
-Terminal unter icon:linux[] Linux, icon:apple[] macOS::
-  XTerm, Konsole, Terminal.app, ...
 
 include::hinweise-windows-labor.inc.adoc[]
 
+
 {section-separator}
 
-=== 1. Änderungen und Versionen verwalten
+=== Vorbereitung
 
-Die folgenden Aufgaben behandeln Möglichkeiten zum Umgang mit *Änderungen* und *Versionen* (Commits) im lokalen Arbeitsverzeichnis.
+Für die Unterstützung der PlantUML Syntax und der Generierung von Diagrammen sind Anpassungen in Visual Studio Code, Asciidoctor und Git notwendig.
 
-- *Änderung* ... (noch) nicht versionierte Änderung im lokalen Arbeitsverzeichnis
-- *Version* ... versionierte Änderung (Commit) im lokalen Arbeitsverzeichnis
+:imageTitle: VS Code mit Diagrammvorschau
+:imageFile: screenshot_vscode_asciidoctor-diagram.png
+:imageWidth: 800
+image::{imageFile}[title="{imageTitle}", alt="{imageTitle}, "width="{imageWidth}", link="{imagesdir}/{imageFile}"]
 
-==== Aufgabe 1.1 - Versionen untersuchen
+////
+* Je nach Leistungsfähigkeit des Rechners oder Netzwerkes, kann es bei der Aktualisierung der Grafiken zu Verzögerungen der Vorschau kommen.
+* Bei externen Servern für die Generierung den Datenschutz im Auge behalten.
+* Die lokal installierte Variante mit Graphviz unterstützt auch andere Diagramm-Typen als PlantUML.
+////
 
-Untersuchen Sie in Ihrem lokalen Repository einen älteren Projektstand (Version) indem Sie sich die Unterschiede (`diff`) zwischen Versionen oder neueren Änderungen anzeigen lassen und direkt zu früheren Versionen in Ihrem Projekt springen (`checkout`). Kehren Sie anschließend zum aktuellen Stand zurück.
+==== Visual Studio Code
 
-.Hinweise: `diff`
-[%collapsible]
-====
-=====
-----
-$ git diff <1>
-$ git diff <file> <2>
+Für die Verwendung der Diagramme mit der *asciidoctor-diagram* Erweiterung (bspw. per PlantUML Notation), muss für die Vorschau und Generierung folgende Einstellung angepasst werden:
 
-$ git diff --cached <3>
-
-$ git diff <commit-id> <4>
-$ git diff <commit-id> HEAD <5>
-$ git diff <commit-id-1> <commit-id-2> <6>
-----
-<1> zeigt Unterschied der letzten Version (_HEAD_) zum lokalen Arbeitsstand
-<2> mit der zusätzlichen Angabe `<file>` kann gezielt eine Datei oder ein Verzeichnis verglichen werden
-<3> mit `--cached` werden die vorgemerkten Änderungen gegenüber `HEAD` oder einer angegebenen Version verglichen
-<4> zeigt Unterschied der Version `<commit-id>` zum lokalen Arbeitsstand
-<5> zeigt Unterschied der Version `<commit-id>` zur letzten Version `HEAD`
-<6> zeigt Unterschied von Version `<commit-id-1>` (älter) zur Version `<commit-id-2>` (neuer)
-=====
-====
-
-.Hinweise: `checkout`
-[%collapsible]
-====
-=====
-image::grafik_git_checkout.png["...",width=251]
-----
-$ git log --oneline <1>
-$ git checkout <old_commit_id> <2>
-$ git switch main <3>
-----
-<1> Versionshistorie (commits) anzeigen, die Option `--oneline` erlaubt eine Anzeige mit weniger Details auf einer Zeile pro Commit
-<2> vergangenen Projektstand laden
-<3> Neuere Alternativ zu `git checkout <branch>`. Zu aktuellem Projektstand (_main_-Branch) zurückkehren. Zwischenzeitliche Commits auf den vergangenen Projektstand werden verworfen.
-
-NOTE: In der unteren Statusleiste (links) in VS Code oder über das git-Kommando `git branch` sieht man den aktuellen Branch, bspw. _main_. Seit Oktober 2020 verwenden alle auf GitHub neu erstellten Repository `main` anstelle von `master` als Standard-Branch (https://github.com/github/renaming[Quelle]).
-=====
-====
-
-==== Aufgabe 1.2 - Änderung wegspeichern
-Nehmen Sie in Ihrem Repository eine lokale Änderung vor und speichern Sie diese temporär mit `stash` weg. Schauen Sie sich Ihren lokalen Arbeitsstand an. Stellen Sie anschließend Ihre weggespeicherte Änderung wieder her und nehmen Sie diese als neue Version auf.
-
-.Hinweise: `stash`
-[%collapsible]
-====
-=====
-image::grafik_git_stash.png["...",width=625]
-----
-$ git stash <1> <2>
-$ git stash save "Arbeitsstand X"
-$ git stash -u
-$ git stash -S
-$ git stash -k
-
-$ git stash pop <3>
-$ git stash apply <4>
-$ git stash drop <5>
-
-$ git stash list <6>
-stash@{0}: WIP on main: ...
-stash@{1}: WIP on main: ...
-stash@{2}: On main: Arbeitsstand X
-
-$ git stash show <7>
-$ git stash show -p <8>
-----
-<1> Änderungen an unter Versionskontrolle stehenden Dateien und im INDEX (staged) befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
-<2> Varianten:
+. Einstellungen: "Preferences (oder Zahnradsymbol)> Settings > Extensions > AsciiDoc" in Visual Studio Code setzen:
 +
-* `save "..."` ... benennt den erzeugten Stash für eine bessere Unterscheidung
-* `-u` ... speichert zusätzlich *untracked* neue bzw. noch nicht unter Versionskontrolle stehende Dateien weg
-* `-S` ... nur *staged* im INDEX befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
-* `-k` ... nur *unstaged* nicht im INDEX befindliche Änderungen werden aus dem Arbeitsverzeichnis temporär weggespeichert
-<3> `pop` ... stellt die weggespeicherte Änderung wieder her und entfernt den zugehörigen _Stash_
-<4> `apply` ... stellt die weggespeicherte Änderung wieder her und behält den zugehörigen _Stash_ (nützlich, wenn die Änderung noch an anderer Stelle (bspw. anderer _Branch_) gebraucht wird)
-<5> `drop` ... entfernt den Stash mit den enthaltenen Änderungen
-<6> `list` ... Liste der vorhandenen _Stashes_
-<7> `show` ... zeigt Kurzform der Änderungen im _Stash_ gegenüber der aktuellen Version
-<8> `show -p` ... zeigt auch inhaltliche Änderungen (Patch-Form)
+* AsciiDoc > Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 
-NOTE: Hat man mehrere Stashs, wird bei `pop`, `apply` und `drop` der zuletzt angelegte genommen. Man kann auch den gewünschten Stash mit bspw. `git stash pop stash@{1}` angegeben. Der neueste ist `stash@{0}` (default), der nächst ältere `stash@{1}` und so weiter.
-=====
-====
+==== Git Konfiguration
 
-==== Aufgabe 1.3 - Änderung verwerfen
+Es empfiehlt sich, die generierten Grafiken nicht ins Repository aufnehmen, da diese jederzeit neu generiert werden können.
 
-Nehmen Sie in Ihrem Repository eine lokale Änderung vor und verwerfen Sie diese anschließend, ohne eine neue Version zu erstellen.
+Nutzt man die lokal installierte Asciidoctor-Version, wird für die generierten Grafiken ein zugehöriger Bilder-Cache angelegt. Dieser befindet sich im Verzeichnis der jeweiligen  _adoc_-Datei(en) unter _.asciidoctor/diagram/_ und sollte auch vom Repository ausgeschlossen werden.
 
-.Hinweise: `checkout`, `restore`, `reset`, `clean`
-[%collapsible]
-====
-=====
-image::grafik_git_checkout-reset-clean.png["...",width=381]
+..gitignore
 ----
-$ git checkout -- <file(s)> <1>
-$ git restore -- <file(s)> <2>
-$ git reset --hard <3>
-$ git clean -df <4>
+*.html
+*.pdf
+images/diagrams/ <1>
+.asciidoctor/ <2>
 ----
-<1> Setzt lokale Änderungen einer oder mehrerer unter Versionskontrolle stehender Dateien auf die letzte Version zurück. Ein `.` statt `<file(s)>` nimmt alle lokalen Änderungen.
-<2> Neuere alternative Variante gegenüber `checkout`.
-<3> Alternative Möglichkeit zu `git checkout .` bzw. `git restore .`. Ein `--hard` veranlasst bei einem `git reset` auch den Workspace, also die lokalen (geänderten) Dateien, zurückzusetzen.
-<4> Entfernt alle lokalen nicht unter Versionskontrolle stehenden Dateien. (https://git-scm.com/docs/git-clean[git-clean Dokumentation], `-n` Testlauf, `-i` interaktiv, `-d` beachte auch entsprechende Verzeichnisse, `-f` ignoriere Löschwarnung)
-=====
-====
-
-==== Aufgabe 1.4 - Version verwerfen
-
-1. Nehmen Sie in Ihrem Repository eine Änderung als neue lokale Version auf. Schauen Sie sich die Versionshistorie an und nehmen Sie die eben gemachte Version mit `reset` zurück.
-+
-.Hinweise: `reset`
-[%collapsible]
-====
-=====
-image::grafik_git_reset.png["...",width=490]
-----
-$ git add .
-$ git commit -m "..."
-$ git log --oneline
-$ git reset --hard <commit_id> <1> <2>
-----
-<1> Setzt den aktuellen Stand des Repository auf die angegeben Version (Commit-ID) zurück. Mit der Option `--hard` wird auch das lokale Arbeitsverzeichnis zurückgesetzt.
-<2> Die Commit-ID kann relative `HEAD~1` oder absolut `a2a33s23` angegeben werden. Alle davon ausgehenden neueren Version werden verworfen.
-=====
-====
-+
-IMPORTANT: Die Verwendung von `reset` ist nur für *lokale*, *private* und noch *nicht veröffentlichte* Versionen (Commits) geeignet. Denn das Verändern der Repository-Historie führt, im Gegensatz zu `revert`, zu Problemen mit anderen Nutzern, da die Versionskette nicht mehr synchron ist.
-
-2. Nehmen Sie in Ihrem Repository eine weitere Änderung als neue lokale Version auf. Schauen Sie sich die Versionshistorie an und nehmen Sie die eben gemachte Version mit `revert` zurück.
-+
-.Hinweise: `revert`
-[%collapsible]
-====
-=====
-image::grafik_git_revert.png["...",width=593]
-----
-$ git add .
-$ git commit -m "..."
-$ git log --oneline
-$ git revert <commit_id> <1>
-----
-<1> Nimmt die Änderung der angegebenen Version zurück und erzeugt eine neue Version (ohne die Änderung der zurückgenommenen Version) im Repository. Die Versionshistorie bleibt inklusive der zurückgenommen Version erhalten.
-=====
-====
-+
-NOTE: Die Verwendung von `revert` erhält, gegenüber `reset`, die Versionskette und ist konsistent zu *entfernten*, *öffentlichen* und *geteilten* Repositories.
+<1> Ausschluss des Ordners `images/diagrams/` (Siehe <<Asciidoctor und PlantUML>>) vom Repository
+<2> Ausschluss des Bilder-Caches `.asciidoctor/` vom Repository (Nur für lokal installiertes Asciidoctor notwendig)
 
 
 {section-separator}
 
-=== 2. Versionen ändern und zusammenfassen
+=== Asciidoctor und PlantUML
 
-[#warning1]
-IMPORTANT: Das Ändern (`commit --amend`) und das Zusammenfassen (`rebase -i`) von Versionen zu einer neuen Version verändert die Commit-ID(s) und die Versionshistorie, ähnlich wie bei `reset`, des Repository. Es ist nur für *lokale*, *private* Repository und noch *nicht veröffentlichte* Versionen empfohlen, um unterschiedliche Versionsketten mit anderen Nutzern zu vermeiden.
+Der folgende Abschnitt erklärt, wie im Asciidoctor-Dokument die PlantUML Notation angewendet wird, was es für nützliche Attribute gibt und wie das fertige Dokument inkl. der Diagramme generiert wird.
 
-Falls der oder die ursprünglichen Commits schon an ein _remote_-Repository gepusht wurde, muss der überschriebene Commit noch einmal mit `git push --force` oder besser https://git-scm.com/docs/git-push#Documentation/git-push.txt---no-force-with-lease[`git push --force-with-lease`] gepusht werden. (obere <<#warning1,Warnung>> beachten!)
+====  Attribute
 
-.Hinweise: Force-Push mit VS Code
+Das Asciidoctor-Dokument benötigt folgende zusätzliche Attribute, wobei die Werte beispielhaft gewählt sind:
+
+[source,asciidoc]
+----
+:imagesdir: images <1>
+:diagramsdir: diagrams <2>
+:plantumlsdir: plantuml <3>
+----
+////
+//:plantuml-server-url: https://www.plantuml.com/plantuml <4>
+////
+
+<1> In der Regel schon vorhanden. Verzeichnis bzw. Standardpfad, in welchem die Bilder des Dokumentes liegen. (Siehe https://docs.asciidoctor.org/asciidoc/latest/macros/images-directory/[Set the Images Directory])
+<2> Verzeichnis, in welchem die generierten Diagramme gespeichert werden. Es wird später dem Dateinamen der Diagramme mitgegeben, so dass sich die generierten Diagramme unterhalb des `+{imagesdir}+`-Verzeichnisses in ihrem eigenen Verzeichnis befinden.
+<3> Verzeichnis, in welchem die PlantUML Quelldateien liegen. Für die Variante, wenn die PlantUML Diagramme in extra Dateien ausgelagert werden.
+////
+<4> Optional: Die Angabe eines PlantUML-Server für die Generierung der Diagramme wird bei lokal installiertem Graphviz nicht benötigt. In diesem Beispiel auskommentiert.
+////
+
+Standardmäßig werden die generierten Grafiken im vorgegebenen Bildverzeichnis `+{imagesdir}+` gespeichert. Möchte man die Diagramme getrennt halten und unbeabsichtigtes Überschreiben anderer Bilder verhindern, empfiehlt es sich für die generierten Diagramme im Namen ein [.underline]#extra# Verzeichnis `+{diagramsdir}/diagram-name+` anzugeben. Dadurch werden die Diagramme in ihrem eigenen Verzeichnis unterhalb des `+{imagesdir}+`-Verzeichnisses gespeichert.
+
+.Beispiel einer Projektstruktur:
+----
+documentation-x
+├── images <1>
+│   ├── diagrams <2>
+│   │   ├── diagram1.jpg
+│   │   └── ...
+│   ├── image1.jpg
+│   └── ...
+├── ...
+├── plantuml <3>
+│   ├── class-diagram.puml
+│   └── ...
+├── ...
+├── document1.adoc
+├── document2.adoc
+└── ...
+----
+<1> `+{imagesdir}+`
+<2> `+{diagramsdir}+`
+<3> `+{plantumlsdir}+`
+
+==== Praktikumsbeispiel
+
+Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
+
+* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
+
+==== PlantUML Notation
+
+.PlantUML Notation Minimalbeispiel:
+[source,plantuml]
+----
+@startuml <1> <2>
+Bob -> Alice : Guten Tag! <3>
+@enduml <1>
+----
+<1> Ein PlantUML Diagramm beginnt mit dem Schlüsselwort `@startuml` und endet mit dem Schlüsselwort `@enduml`. (Kann in Asciidoctor bzw. bei nur einem Diagrammabschnitt auch weggelassen werden.)
+<2> Standardmäßig hat das generierte Diagramm den gleichen Namen wie die Quelldatei (_example.puml_ -> _example.svg_). Die Dateiendung ist von der Art der zu generierenden Datei abhängig (bspw. _.svg_, _.png_). +
+Gibt man mit `@startuml filename` einen Namen an, kann ein alternativer Dateiname festgelegt werden (_example.puml_ -> _filename.svg_).
+<3> Bereich für die Diagrammbeschreibung
+
+NOTE: Der Dateiname bei `@startuml filename` wird in Asciidoctor nicht beachtet bzw. über die Einbindungssyntax festgelegt.
+
+==== Diagramm eingebettet
+
+In Asciidoctor werden Diagramme über einen Block eingebunden, welcher die Attribute und die textliche Beschreibung (PlantUML Notation) der zu generierenden Grafik enthält.
+
+.Asciidoctor Syntax-Beispiel:
+[source,plantuml]
+----
+.Klassendiagramm mit PlantUML <1>
+[plantuml, "{diagramsdir}/syntax-example1", svg] <2> <3>
+....
+class Graphic <4>
+interface Shape <<Interface>> {
+  draw()
+}
+class Circle
+class Triangle
+class Square
+
+Graphic -> Shape
+Shape <|.. Circle
+Shape <|.. Triangle
+Shape <|.. Square
+....
+----
+<1> Titel der Grafik (Bildunterschrift)
+<2> Attribute für die Generierung mit der Asciidoctor-Diagramm Erweiterung
+<3> Attribute: Diagramm-Type (Textsyntax), generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`), Bildformat (png, svg)
+<4> textliche Beschreibung (PlantUML Notation) des entsprechenden Diagramm-Types
+
+
+Die erfolgreich generierte Grafik <<diagram_syntax-example1>> sieht wie folgt aus:
+
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example
+[#diagram_syntax-example1]
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+////
+.Klassendiagramm mit PlantUML
+[#diagram_syntax-example1]
+[plantuml, "{diagramsdir}/syntax-example1", svg]
+....
+include::{plantumlsdir}/syntax-example.puml[]
+....
+////
+
+==== Diagramm in extra Datei
+
+Die textlichen Diagrammbeschreibungen können, für eine bessere Wartbarkeit und Übersichtlichkeit im Asciidoctor-Dokument, mit Hilfe von `include::` in extra PlantUML-Dateien `*.puml` ausgelagert werden.
+
+._syntax-example.puml_
+[%collapsible]
+====
+[source,plantuml]
+----
+include::{plantumlsdir}/syntax-example.puml[]
+----
+====
+
+.Syntax-Beispiel: Include
+[source,asciidoc]
+----
+.Klassendiagramm mit PlantUML
+[plantuml, "{diagramsdir}/syntax-example2", svg]
+....
+\include::{plantumlsdir}/syntax-example2.puml[]
+....
+----
+
+.Syntax-Beispiel: Block Macro mit Attributen
+[source,asciidoc]
+----
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+----
+
+.Hinweise: Block Macro Variante
 [%collapsible]
 ====
 =====
-In VS Code ist über das Git-Menü standardmäßig kein Force-Push möglich und man kann nur über das integrierte Terminal ein `git push --force` auszuführen.
+IMPORTANT: Die Variante als Block Macro funktioniert nur mit einer lokal installierten Asciidoctor Version bzw. wenn diese für die Vorschau in Visual Studio Code verwendet wird.
 
-Über die Einstellungen von VS Code: "Settings > Extensions > Git" kann die Option *Allow Force Push* aktiviert werden. Danach sind im Git-Menü "... > Pull, Push > " entsprechende *Push (Force)* Einträge vorhanden.
+.Syntax-Beispiel: Block Macro
+[source,asciidoc]
+----
+[#diagram_example] <1>
+plantuml::{plantumlsdir}/diagram-example.puml[format=svg, alt="Diagrammbeispiel", title="Diagrammbeispiel", target="{diagramsdir}/diagram-example"] <2>
+----
+<1> optionale ID für Verweise (`+<<#ID>>+`) oder als `id=` Attribute
+<2> Block Macro mit Diagramm-Type (Textsyntax) und Attribute für die Generierung mit der Asciidotor-Diagramm Erweiterung
+* `plantuml::\{plantumlsdir\}/diagram-example.puml` ... PlantUML Datei im extra PlantUML Ordner
+* `format` ... Bildformat
+* `alt` ... Alternativer Name
+* `title` ... Titel der Grafik (Bildunterschrift, ebenfalls relevant für Verweise)
+* `target` ... generierter Dateiname (inkl. Zielverzeichnis `+{diagramsdir}+`)
+* (optional) `id=` ... ID für Verweise
+
+.Variante mit Attributen:
+[source,asciidoc]
+----
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: syntax-example2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+----
 =====
 ====
 
-==== Aufgabe 2.1 - letzte Version ändern
+[NOTE]
+====
+Visual Studio Code bietet Erweiterungen für die Unterstützung von PlantUML-Dateien (*.puml) für die Vorschau und Generierung an, bspw. die Erweiterung https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML].
 
-1. Nehmen Sie in Ihrem Repository eine Änderung als neue lokale Version auf und schauen Sie sich die Versionshistorie an.
+* "Code > View > Command Palette..."
+** `PlantUML: Preview Current Diagramm`
+** `PlantUML: Export Current Diagramm`
+====
 
-2. Ändern Sie mit `commit --amend` die Commit-Message des eben erstellten letzten Commits. Alternativ nehmen Sie vorher eine lokale Änderung vor, welche mit in die Änderung des letzten Commits einfließen soll.
 
-.Hinweise: `commit --amend`
+==== Generierung PDF/HTML
+
+In Visual Studio Code und der Asciidoc Extensions mit Hilfe der Command Palette über Hauptmenü: "View > Command Palette...":
+
+.HTML
+`AsciiDoc: Save HTML Document`
+
+.PDF
+`AsciiDoc: Export Document as PDF`
+
+Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoctor-Diagram Erweiterung mit `-r` bzw. `--require` angegeben werden:
+
+.HTML
+[source,console]
+----
+% asciidoctor -r asciidoctor-diagram plantuml_test.adoc
+----
+
+.PDF - v1
+[source,console]
+----
+% asciidoctor-pdf -r asciidoctor-diagram plantuml_test.adoc
+----
+
+.PDF - v2
+[source,console]
+----
+% asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf plantuml_test.adoc
+----
+
+
+{section-separator}
+
+=== PlantUML Notation im Detail
+
+In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die PlantUML Notation näher anschauen und erarbeiten.
+
+==== Hinweise und Tipps
+
+Neben den in den Aufgaben verlinkten Syntax-Hinweisen findet man auch die entsprechenden Abschnitte im https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]. Ebenfalls bereitgestellt sind jeweils die PlantUML-Quelltexte der verwendeten Beispieldiagramme.
+
+Hilfreich für das Layout bzw. zur Positionierung von Elementen ist auch ein Blick in den entsprechenden Guide zu https://crashedmind.github.io/PlantUMLHitchhikersGuide/layout/layout.html[The Hitchhiker’s Guide to PlantUML - Layout].
+
+.Hinweise und Tipps zur Anwendung der PlantUML Notation
 [%collapsible]
 ====
 =====
-image::grafik_git_commit_amend.png["...",width=393]
+* In der Regel definiert man erste die Elemente (Type, Bezeichnung) und nachfolgend die Beziehungen zwischen ihnen. Elemente in Kontainern/Paketen, werden am Anfang des entsprechenden Kontainers definiert.
+* Lange Bezeichnungen mit Leerzeichen werden in Anführungszeichen bzw. den Eingrenzungszeichen des jeweiligen Elementes gesetzt und können mit `\n` Zeilenumbrüche enthalten.
+* Den Elementen kann über das Schlüsselwort `as` Alias-Namen vergeben werden, welche anstelle der Bezeichnung beim Definieren der Beziehungen verwendet werden.
+* Pro Zeile wird immer ein Elemente definiert.
+* Beziehungen können immer nur für zwei beteiligte Elemente pro Zeile angegeben werden. (Bspw. `A -- B` und `B -- C` statt `A -- B -- C`)
+* Die Hintergrundfarbe von Elemente kann durch Angabe eine Hexadezimalwertes festgelegt werden: `class MyClass #f00` (Siehe auch https://plantuml.com/de/color[Colors])
+** Weitere Möglichkeiten bieten https://plantuml.com/de/skinparam[Skinparam Befehl] und https://plantuml.com/de/style-evolution[Style (or CSS like style)]
+** Mit `skinparam shadowing false` können bspw. Schatten deaktiviert werden.
+* Stereotypen werden nach der Elementbezeichnung angegeben. Bsp.: `+class MyClass <<MyStereotype>>+`
+* Kommentare werden einzeilig mit `'` eingeleitet und mehrzeilig in `/' ... '/` eingeschlossen.
+* Standardmäßig werden Diagramme von oben nach unten aufgebaut. Je nach Diagramm kann auch ein Aufbau von links nach rechts besser aussehen.
+** `top to bottom direction` (Standard)
+** `left to right direction`
+* Diagramme können über die Webseite https://www.plantuml.com/plantuml/ direkt generiert und getestet werden.
+* Mit `together {...}` werden Elemente gruppiert bzw. zusammengehalten. (Siehe https://plantuml.com/de/class-diagram#c08f8d9927fcb626[Hilfe beim Layout])
+* Wird das Attribut `subs="attributes+"` bei der Einbindung in Asciidoctor verwendet, können innerhalb des PlantUML-Diagramms Variablen vom Asciidoctor-Dokument verwendet werden.
++
 ----
-$ ...
-$ git add .
-$ git commit -m "... Message ..."
-$ git log --oneline
-$ ...
-$ git add . <1>
-$ git commit --amend -m "... (neue) Message ..." <2>
-$ git log --oneline
+:variable1: Human
+:variable2: Hallo
+:variable3: World
+
+[plantuml, format="svg", subs="attributes+"]
+....
+actor {variable1}
+note right of {variable1} : {variable2}
+usecase {variable3}
+....
 ----
-<1> optional: Aufnahme der vergessenen/zusätzlichen Änderungen.
-<2> Mit der Option `--amend` wird der letzten Commit mit dem aktuellen Commit überschrieben.
-Dies ist eine gute Möglichkeit, um Fehler in der Commit-Message zu korrigieren oder vergessene Änderungen oder Dateien aufzunehmen.
 =====
 ====
 
-[#aufgabe2-2]
-==== Aufgabe 2.2 - Versionen zusammenfassen
+==== Aufgabe 1 - Anwendungsfalldiagramm
 
-1. Nehmen Sie in Ihr Repository *drei* neue Versionen (Commits) auf.
-2. Fassen Sie mit `rebase -i` die letzten drei Commits zu einem neuen Commit zusammen.
+Schauen Sie sich die https://plantuml.com/de/use-case-diagram[Syntax für ein Anwendungsfalldiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Anwendungsfalldiagramm.
 
-.Hinweise: `rebase -i`
+.Hinweise: Anwendungsfalldiagramm in PlantUML
 [%collapsible]
 ====
 =====
-image::grafik_git_rebase-i.png["...",width=435]
+.Akteure (Actor)
 ----
-$ git log --oneline
-00af044 (HEAD -> main) Fix typo in <object>
-0af0043 Update <object>
-af00042 Add new <object>
-f000041 Fixup #11 <object>
-...
-
-//$ git rebase -i f000041
-$ git rebase -i HEAD~3 <1>
-pick af00042 Add new <object>
-f    0af0043 Update <object> <2>
-f    00af044 Fix typo in <object> <2>
-
-$ git log --oneline
-f000045 (HEAD -> main) Add new <object>
-...
+actor Akteur1 <1>
+:Akteur 2:
+actor "Akteur4 mit langem\nNamen" as ac2
 ----
-<1> Alle neueren Commits nach der angegebenen Commit-ID können jetzt einzeln bearbeitet (siehe Tabelle) werden. Der älteste Commit steht oben.
-<2> Die beiden Nachfolge-Commits (`00af044`, `0af0043`) werden mit `f` (fixup) statt `pick` markiert, um in den vorhergehenden Commit (`af00042`) aufgenommen zu werden.
+<1> Akteure werden über das Schlüsselwort `actor` oder in Doppelpunkte `:...:` eingeschlossen.
 
-[cols="^1,3"]
-|===
-| Kommando      | Beschreibung
+.Anwendungsfälle (Use Case)
+----
+usecase Anwendungsfall1 <1>
+usecase "Anwendungsfall 1" as uc01
+(Anwendungsfall 2) as uc02
+(UC03\nAnwendungsfall 3) as uc03
 
-| `p`, `pick`   | Commit verwenden
-| `r`, `reword` | Commit verwenden und Commit-Message ändern
-| `s`, `sqash`  | Commit und Commit-Message in vorherigen Commit aufnehmen
-| `f`, `fixup`  | Commit ohne Commit-Message in vorherigen Commit aufnehmen
-|===
+usecase uc04 as "Langer Text <2>
+mit neuer Zeile
+--
+und Trennlinie"
+----
+<1> Anwendungsfälle werden über das Schlüsselwort `usecase` oder in Klammern `(...)` eingeschlossen.
+<2> Bei Inhalt mit mehreren Zeilen, muss erst der Alias und dann der mehrzeilige Inhalt angegeben werden.
 
-NOTE: Ist bei Ihnen im Terminal für Git der Editor vi(m) eingestellt, können Sie mit kbd:[i] in den Bearbeitungsmodus wechseln und nach der Änderung mit kbd:[esc] und der Eingabe von `:wq` speichern und den Editor schließen.
+.Beziehungen
+----
+Akteur1 -- (Anwendungsfall1) <1>
+ac2 -- uc02
+uc02 <. uc03 : include <2> <3>
+----
+<1> Beziehungen werden mit `--` (senkrecht), `-` (waagerecht) und gestrichelt mit `..` (senkrecht), `.` (waagerecht) angegeben.
+<2> Für Pfeilrichtungen an den entsprechenden Seiten ein `<` bzw. `>` anfügen.
+<3> Mit `:` wird der Beziehung eine Beschreibung angegeben.
 =====
 ====
 
+._example_usecase-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+----
+====
+
+:diagramTitle: Anwendungsfalldiagramm für eine beispielhafte eRoller App
+:diagramFile: example_usecase-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+////
+.Anwendungsfalldiagramm für eine beispielhafte eRoller App
+[#diagram_example_usecase-diagram]
+[plantuml, "{diagramsdir}/example_usecase-diagram", svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel"]
+....
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+....
+////
+
+////
+[#diagram_example_usecase-diagram]
+plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel", title="Anwendungsfalldiagramm vom Praktikumsbeispiel \"Cocktailversand\"", target="{diagramsdir}/q1_usecase-diagram"]
+////
+
+
+==== Aufgabe 2 - Anwendungsfalldiagramm für Cocktailversand
+
+Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwendungsfalldiagramm für den Cocktailversand. Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
+
+. Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
+. Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
+. Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
+
+=== Weitere Diagrammarten
+
+Wechseln Sie hierzu wieder in Ihr Vorführungsprojekt und ergänzen Sie die folgenden Diagramme.
+
+==== Aufgabe 3 - Klassendiagramm
+
+Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
+
+.Hinweise: Klassendiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Klassen
+----
+class Klasse1 <1>
+class Klasse2 { <2>
+  String var1
+  double var2
+  void methode1()
+  bool methode2(int x)
+}
+interface Interface1 <3>
+interface Interface1 {
+  void methode1()
+}
+----
+<1> Klassen werden mit dem Schlüsselwort `class` angelegt.
+<2> Klassen können Angaben zu den Typen und Methoden haben.
+<3> Interface Klassen werden mit dem Schlüsselwort `interface` angelegt. Abstrakte Klassen mit `abstract` bzw. `abstract class`.
+
+.Sichtbarkeiten
+----
+class Dummy { <1>
+  -field1
+  #field2
+  ~method1()
+  +method2()
+}
+----
+<1> Mit `-` (private), `#` (protected), `~` (package private) und `+` (public) werden Sichtbarkeiten festgelegt.
+
+.Abstrakt/Statisch
+----
+class Dummy { <1>
+  {static} String id
+  {abstract} void methods()
+}
+----
+<1> Modifikatoren für `{static}` (statisch) oder `{abstract}` abstrakt.
+
+.Beziehungen
+----
+Klasse1 <-- Klasse2 <1> <2> <3>
+Klasse3 <|-- Klasse4
+Klasse5 *-- Klasse6
+Klasse7 o-- Klasse8
+----
+<1> Assoziation `+<--+`, Generalisierung `<|--`, Realisierung `<|..`, Komposition `*--`, Aggregation `o--`
+<2> `--` durchgezogene Linie, `..` gestrichelte Linie
+<3> `-`/`.` vertikal, `--`/`..` horizontal, `---`/`...` horizontal lang
+
+.Multiplizitäten
+----
+Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
+----
+<1> `"1"` und `"many"` legen die Kardinalität fest.
+<2> in der Beschreibung `:` kann mit `< text` oder `text >` eine Richtung angegeben werden.
+=====
+====
+
+._example_class-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_class-diagram.puml[]
+----
+====
+
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: example_class-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe 4 - Aktivitätsdiagramm
+
+Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
+
+.Hinweise: Aktivitätsdiagramm in PlantUML #TODO#
+[%collapsible]
+====
+=====
+Die Hinweise zur Erstellung von Aktivitätsdiagramm entnehmen Sie bitte, auf Grund der Veränderungen durch die *Beta* und *Legacy* Variante, direkt der offiziellen Dokumentation:
+
+- https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm (Beta)]
+- https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)]
+=====
+====
+
+._example_activity-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram.puml[]
+----
+====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (beta)
+:diagramFile: example_activity-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+.Hinweise: Bisherige Aktivitätsdiagramm (Legacy) Variante
+[%collapsible]
+====
+Unter https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)] findet man die bisherige Variante.
+
+._example_activity-diagram_legacy.puml_
+[%collapsible]
+=====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram_legacy.puml[]
+----
+=====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (legacy)
+:diagramFile: example_activity-diagram_legacy
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+====
+
+[#c4-model-diagrams]
+==== Aufgabe 5 - C4 Model Diagramme
+
+PlantUML kann neben UML auch Diagramme basierend auf dem https://c4model.com/[C4 Model] erzeugen. Dies wären, sortiert nach zunehmenden Detailgrad, die https://c4model.com/#SystemContextDiagram[Kontext-], https://c4model.com/#ContainerDiagram[Kontainer-] und https://c4model.com/#ComponentDiagram[Komponentendiagramme]. Es gibt noch die https://c4model.com/img/glyphicons-basic-351-link.svg[Codediagramme], diese können bspw. mit den aus der UML bekannten Klassendiagrammen dargestellt werden.
+
+* https://c4model.com/[The C4 model for visualising software architecture]
+* https://youtu.be/x2-rSnhpw0g[Visualising software architecture with the C4 model - Simon Brown, Agile on the Beach 2019]
+* [1] https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[The Hitchhiker’s Guide to PlantUML - C4 PlantUML]
+* [2] https://github.com/RicardoNiepel/C4-PlantUML[GitHub - C4-PlantUML]
+
+Schauen Sie sich auf https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C4Stdlib.html#c4-plantuml[+[1]+] und https://github.com/RicardoNiepel/C4-PlantUML[+[2]+] die Syntax für die C4 Model Diagramme an und erstellen Sie, angelehnt an das Beispiel, ein C4 Model Diagramm.
+
+.Hinweise: C4 Model Diagramme in PlantUML
+[%collapsible]
+====
+=====
+
+.Layout-Optionen
+```
+LAYOUT_TOP_DOWN or LAYOUT_LEFT_RIGHT <1>
+LAYOUT_WITH_LEGEND <2>
+LAYOUT_AS_SKETCH <3>
+```
+<1> Diagrammausrichtung
+<2> Legende anzeigen
+<3> Darstellungsstil skizzenhaft
+
+.Diagrammtitel
+* Diagrammtitel werden mit `titel` vergeben:
++
+----
+title Dies ist ein Diagrammtitel
+----
+
+.Diagrammtypen und deren C4-Model Elemente
+* *System Context & System Landscape diagrams*
+** Import: `!include <c4/C4_Context.puml>`
+** C4-Model Elemente:
+*** `Person`, `Person_Ext`
+*** `System`, `System_Ext`
+*** `SystemDb`, `SystemDb_Ext`
+** C4 Model Kontainer:
+*** `Boundary`, `System_Boundary`, `Enterprise_Boundary`
+* *Container diagram*
+** Import: `!include <c4/C4_Container.puml>`
+** Zusätzliche C4-Model Elemente (Knoten):
+*** `Container`, `ContainerDb`
+** Zusätzliche C4-Model Elemente (Kontainer):
+*** `Container_Boundary`
+* *Component diagram*
+** Import: `!include <c4/C4_Component.puml>`
+** Zusätzliche C4-Model Elemente (Knoten):
+*** `Component`, `ComponentDb`
+
+.Elemente (Knoten)
+* Für jedes Element wird ein Alias, der Name und eine Beschreibung vergeben:
++
+----
+Person(alias, Name, "Beschreibung")
+----
+
+.Beziehungen (Kanten)
+* Beziehungen werden über `Rel(...)` beschrieben und können zwischen Elementen und Kontainern bestehen:
++
+----
+Rel(alias_person1, alias_container1, "Beschreibung")
+Rel(alias_element1, alias_element2, "Beschreibung", "Text in [...]")
+----
+* Über `Rel_R`, `Rel_L`, `Rel_D`, `Rel_U`, `Rel_Back`, `Rel_Neighbor` und `Rel_Back_Neighbor` kann die Pfeilrichtung und Ausrichtung des in Beziehung stehenden Elementes beeinflusst werden.
+
+.Kontainer (Bereiche)
+* Elemente kann man in Bereiche bündeln:
++
+----
+Boundary(alias, "Name") {
+  ...
+}
+----
+=====
+====
+
+._example_c4-model-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_c4-model-diagram.puml[]
+----
+====
+
+:diagramTitle: C4 Model Diagramm mit PlantUML
+:diagramFile: example_c4-model-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 include::sitemap.inc.adoc[]
