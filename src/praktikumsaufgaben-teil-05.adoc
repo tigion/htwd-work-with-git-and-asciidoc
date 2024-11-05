@@ -433,8 +433,8 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 2.3
 
-. Blenden Sie in den Sichten, in denen keine Risiken erscheinen sollen, mit dem Filterzusatz `-label:risk` Issues mit dem Label `risk` aus.
-** bspw.: Overview, Current Iteration, Current & Next Iteration, Backlog
+. Blenden Sie die Risiken in den anderen Sichten (Overview, Current Iteration) aus oder beschränken Sie die Anzeige auf Issues mit dem Label `work item`.
+** Filterzusatz: `-label:risk` oder `label:"work item"`
 
 
 {section-separator}
