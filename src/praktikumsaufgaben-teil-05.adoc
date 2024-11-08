@@ -307,7 +307,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 1.1 - Projektplanung
 
-. Erstellen Sie in Ihrem privaten *Repository* `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story` an. Bspw.:
+. Erstellen Sie in Ihrem privaten *Repository* `htwd-se-example-project` eine *User Story* als neue Issue mit dem Label `user story`. Bspw.:
 +
 .User Stories
 [cols="1,4,8"]
@@ -319,7 +319,13 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 | Als Entwickler möchte ich die Dokumentation wie Code behandeln, damit ich mich nicht in neue Tools einarbeiten muss.
 |===
 
-. Erstellen Sie drei *Work Items* als neue Issues mit dem Label `work item`, wovon sich die *zwei* ersten auf die vorher angelegte User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
+. Erstellen Sie ein neues Projekt *HTWD Beispielprojekt* mit einer ersten *Table* Sicht.
+
+. Richten Sie eine Sicht *Overview* (oder *Iterations*) ein.
+** Eigenschaften: Table view, Filter: `label:"work item"`, Gruppierung: Iteration
+
+
+. Erstellen Sie in der *Overview* Sicht vier *Work Items* als neue Issues mit dem Label `work item`, wovon sich die *zwei ersten* auf die vorhandene User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
 +
 .Work Items
 [cols="1,4,8"]
@@ -337,26 +343,6 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 | 3
 | *Datei .gitignore anlegen*
 | Einrichten des Git-Repositories zum Ignorieren von HTML- und PDF-Dateien.
-|===
-
-. Erstellen Sie ein neues Projekt *HTWD Beispielprojekt*.
-
-. Nehmen Sie Ihre eben erstellten Work Items (nicht die User Story) in das Projekt auf.
-
-. Erstellen Sie ein neues Feld *Complexity* (numeric) und ein neues Feld *Iteration* mit einem wöchentlichen Zyklus.
-. Vergeben Sie jedem *Work Item* einen *Complexity Score*.
-. Weisen Sie *zwei* Work Items der *aktuellen Iteration* zu.
-
-. Richten Sie sich zwei Sichten: *Overview* und *Current Iteration* ein.
-** *Overview*: Table view, Gruppierung: Iteration
-** *Current Iteration*: Board view, Filter: `iteration:@current`
-
-. Erstellen Sie im *Projekt* (Sicht: Overview) ein *Work Item* als neue Issue mit dem Label `work item` und nehmen Sie es anschließend in Ihre aktuelle *Iteration* auf:
-+
-.Work Items
-[cols="1,4,8"]
-|===
-| Nr. | Title | Description
 
 | 4
 | *Termin mit Auftraggeber vereinbaren*
@@ -366,6 +352,15 @@ Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
 * erstes Meeting mit dem Auftraggeber
 * Vorstellung des Teams
 |===
+
+. Erstellen Sie in der eben erstellen Sicht ein neues Feld *Complexity* (numeric) und ein neues Feld *Iteration* mit einem wöchentlichen Zyklus.
+. Vergeben Sie jedem *Work Item* einen *Complexity Score*.
+. Weisen Sie *zwei* Work Items der *aktuellen Iteration* zu.
+
+. Richten Sie eine Sicht *Current Iteration* ein.
+** Eigenschaften: Board view, Filter: `iteration:@current label:"work item"`
+
+. Richten Sie eine Sicht *User Stories* als Tabelle ein, welche nur die Issues mit dem Label `user story` anzeigt und nehmen Sie die vorhandene *User Story* in das Projekt auf.
 
 . Schließen Sie ein *Work Item* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
 
@@ -434,7 +429,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ==== Aufgabe 2.3
 
 . Blenden Sie die Risiken in den anderen Sichten (Overview, Current Iteration) aus oder beschränken Sie die Anzeige auf Issues mit dem Label `work item`.
-** Filterzusatz: `-label:risk` oder `label:"work item"`
+** Filterzusatz: `label:"work item"` oder `-label:risk`
 
 
 {section-separator}
