@@ -338,14 +338,14 @@ Hilfreich für das Layout bzw. zur Positionierung von Elementen ist auch ein Bli
 +
 ----
 :variable1: Human
-:variable2: Hallo
+:variable2: Hello
 :variable3: World
 
 [plantuml, format="svg", subs="attributes+"]
 ....
 actor {variable1}
+(\n{variable3}\n) #dff
 note right of {variable1} : {variable2}
-usecase {variable3}
 ....
 ----
 =====

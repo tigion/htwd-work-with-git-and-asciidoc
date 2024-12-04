@@ -26,9 +26,9 @@ rectangle diagram #fff [
 
 note as code #fff
   ""<color:lightgrey>01</color> actor Human""
-  ""<color:lightgrey>02</color> usecase World #dff""
-  ""<color:lightgrey>03</color>""
   ""<color:lightgrey>04</color> note right of Human: Hello""
+  ""<color:lightgrey>03</color>""
+  ""<color:lightgrey>02</color> (\nWorld\n) #dff""
 end note
 
 code ..> diagram: Asciidoctor
