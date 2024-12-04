@@ -306,7 +306,7 @@ In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die Pla
 
 Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
 
-* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
+* Vorführungsprojekt: https://github.com/tigion/htwd-se-practical-asciidoc-diagram-demo[htwd-se-practical-asciidoc-diagram-demo]
 ////
 
 ==== Hinweise und Tipps
@@ -353,13 +353,13 @@ usecase {variable3}
 
 ==== Aufgabe 1 - Erstes Diagramm
 
-. Erstellen Sie auf *GitHub* einen *Fork* des Vorführprojekts https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo] und *clonen* Ihr Repository in das Verzeichnis, in dem ihre Repositories aus dem Praktikum liegen.
+. Erstellen Sie auf *GitHub* einen *Fork* des Vorführprojekts https://github.com/tigion/htwd-se-practical-asciidoc-diagram-demo[htwd-se-practical-asciidoc-diagram-demo] und *clonen* Ihr Repository in das Verzeichnis, in dem ihre Repositories aus dem Praktikum liegen.
 
 . Öffnen Sie das Projekt/Repository in Visual Studio Code und passen Sie folgende Einstellung an:
 ** AsciiDoc -> Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 
 . Öffnen Sie in *Visual Studio Code* die Datei _demo-documentation.adoc_ und lassen Sie sich die Vorschau des Asciidoctor-Dokuments anzeigen.
-** Es sollten jetzt ein Testdiagramme und ein Infodiagramm wie in der https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo/blob/main/README.md[README.md] des Vorführprojekts angezeigt werden.
+** Es sollten jetzt ein Testdiagramme und ein Infodiagramm wie in der https://github.com/tigion/htwd-se-practical-asciidoc-diagram-demo/blob/main/README.md[README.md] des Vorführprojekts angezeigt werden.
 
 . Bearbeiten Sie die Datei _demo-documentation.adoc_ und ergänzen Sie obiges <<diagram_syntax-example_source,Beispiel eines Klassendiagramm>> als *eingebettetes* Diagramm.
 
