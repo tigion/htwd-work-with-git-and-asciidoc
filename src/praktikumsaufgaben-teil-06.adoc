@@ -129,12 +129,6 @@ documentation-x
 <2> `+{diagramsdir}+`
 <3> `+{plantumlsdir}+`
 
-==== Praktikumsbeispiel
-
-Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
-
-* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
-
 ==== PlantUML Notation
 
 .PlantUML Notation Minimalbeispiel:
@@ -156,6 +150,7 @@ NOTE: Der Dateiname bei `@startuml filename` wird in Asciidoctor nicht beachtet 
 In Asciidoctor werden Diagramme über einen Block eingebunden, welcher die Attribute und die textliche Beschreibung (PlantUML Notation) der zu generierenden Grafik enthält.
 
 .Asciidoctor Syntax-Beispiel:
+[#diagram_syntax-example_source]
 [source,plantuml]
 ----
 .Klassendiagramm mit PlantUML <1>
@@ -306,6 +301,14 @@ Für das Generieren im Terminal (CLI) muss zusätzlich die installierte Asciidoc
 
 In den folgenden Aufgaben, wollen wir uns an ausgewählten Diagrammtypen die PlantUML Notation näher anschauen und erarbeiten.
 
+////
+==== Praktikumsbeispiel
+
+Praktikumsbeispiel für die Demonstration der Verwendung von Diagrammen mit PlantUML in Asciidoctor.
+
+* Vorführungsprojekt: https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo]
+////
+
 ==== Hinweise und Tipps
 
 Neben den in den Aufgaben verlinkten Syntax-Hinweisen findet man auch die entsprechenden Abschnitte im https://plantuml.com/de/[PlantUML – Ein kurzer Überblick]. Ebenfalls bereitgestellt sind jeweils die PlantUML-Quelltexte der verwendeten Beispieldiagramme.
@@ -348,217 +351,33 @@ usecase {variable3}
 =====
 ====
 
-==== Aufgabe 1 - Anwendungsfalldiagramm
+==== Aufgabe 1 - Erstes Diagramm
 
-Schauen Sie sich die https://plantuml.com/de/use-case-diagram[Syntax für ein Anwendungsfalldiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Anwendungsfalldiagramm.
+. Erstellen Sie auf *GitHub* einen *Fork* des Vorführprojekts https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo[htw-se-practical-asciidoc-diagram-demo] und *clonen* Ihr Repository in das Verzeichnis, in dem ihre Repositories aus dem Praktikum liegen.
 
-.Hinweise: Anwendungsfalldiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Akteure (Actor)
-----
-actor Akteur1 <1>
-:Akteur 2:
-actor "Akteur4 mit langem\nNamen" as ac2
-----
-<1> Akteure werden über das Schlüsselwort `actor` oder in Doppelpunkte `:...:` eingeschlossen.
+. Öffnen Sie das Projekt/Repository in Visual Studio Code und passen Sie folgende Einstellung an:
+** AsciiDoc -> Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
 
-.Anwendungsfälle (Use Case)
-----
-usecase Anwendungsfall1 <1>
-usecase "Anwendungsfall 1" as uc01
-(Anwendungsfall 2) as uc02
-(UC03\nAnwendungsfall 3) as uc03
+. Öffnen Sie in *Visual Studio Code* die Datei _demo-documentation.adoc_ und lassen Sie sich die Vorschau des Asciidoctor-Dokuments anzeigen.
+** Es sollten jetzt ein Testdiagramme und ein Infodiagramm wie in der https://github.com/tigion/htw-se-practical-asciidoc-diagram-demo/blob/main/README.md[README.md] des Vorführprojekts angezeigt werden.
 
-usecase uc04 as "Langer Text <2>
-mit neuer Zeile
---
-und Trennlinie"
-----
-<1> Anwendungsfälle werden über das Schlüsselwort `usecase` oder in Klammern `(...)` eingeschlossen.
-<2> Bei Inhalt mit mehreren Zeilen, muss erst der Alias und dann der mehrzeilige Inhalt angegeben werden.
+. Bearbeiten Sie die Datei _demo-documentation.adoc_ und ergänzen Sie obiges <<diagram_syntax-example_source,Beispiel eines Klassendiagramm>> als *eingebettetes* Diagramm.
 
-.Beziehungen
-----
-Akteur1 -- (Anwendungsfall1) <1>
-ac2 -- uc02
-uc02 <. uc03 : include <2> <3>
-----
-<1> Beziehungen werden mit `--` (senkrecht), `-` (waagerecht) und gestrichelt mit `..` (senkrecht), `.` (waagerecht) angegeben.
-<2> Für Pfeilrichtungen an den entsprechenden Seiten ein `<` bzw. `>` anfügen.
-<3> Mit `:` wird der Beziehung eine Beschreibung angegeben.
-=====
-====
+. Installieren Sie (falls noch nicht vorhanden) die Erweiterung https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml[PlantUML] für Visual Studio Code.
++
+NOTE: Mit dieser Erweiterung können PlanUML-Dateien direkt in Visual Studio Code bearbeitet (Syntax highlight, ...), exportiert und in einer Live-Vorschau angezeigt werden.
 
-._example_usecase-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_usecase-diagram.puml[]
-----
-====
+. Bearbeiten Sie die Datei _demo-documentation.adoc_ und ergänzen Sie obiges <<diagram_syntax-example_source,Beispiel eines Klassendiagramm>> als *includiertes* Diagramm.
+** Erstellen Sie hierzu eine Datei _syntax-example2.puml_ im Verzeichnis _plantuml_.
+** Übernehmen den Inhalt des eingebetteten Diagrammes und aktivieren die PlantUML-Vorschau.
 
-:diagramTitle: Anwendungsfalldiagramm für eine beispielhafte eRoller App
-:diagramFile: example_usecase-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+. Überprüfen Sie das Ergebnis Ihrer _demo-documentation.adoc_ in der Vorschau des Asciidoctor-Dokuments.
 
-////
-.Anwendungsfalldiagramm für eine beispielhafte eRoller App
-[#diagram_example_usecase-diagram]
-[plantuml, "{diagramsdir}/example_usecase-diagram", svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel"]
-....
-include::{plantumlsdir}/example_usecase-diagram.puml[]
-....
-////
+. Generieren Sie mit dem `asciidoctor` Kommando (und Visual Studio Code) die HTML- und PDF-Version des Dokuments.
 
-////
-[#diagram_example_usecase-diagram]
-plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel", title="Anwendungsfalldiagramm vom Praktikumsbeispiel \"Cocktailversand\"", target="{diagramsdir}/q1_usecase-diagram"]
-////
-
-
-==== Aufgabe 2 - Anwendungsfalldiagramm für Cocktailversand
-
-Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwendungsfalldiagramm für den Cocktailversand. Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
-
-. Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
-. Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
-. Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
-
-=== Weitere Diagrammarten
-
-Wechseln Sie hierzu wieder in Ihr Vorführungsprojekt und ergänzen Sie die folgenden Diagramme.
-
-==== Aufgabe 3 - Klassendiagramm
-
-Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
-
-.Hinweise: Klassendiagramm in PlantUML
-[%collapsible]
-====
-=====
-.Klassen
-----
-class Klasse1 <1>
-class Klasse2 { <2>
-  String var1
-  double var2
-  void methode1()
-  bool methode2(int x)
-}
-interface Interface1 <3>
-interface Interface1 {
-  void methode1()
-}
-----
-<1> Klassen werden mit dem Schlüsselwort `class` angelegt.
-<2> Klassen können Angaben zu den Typen und Methoden haben.
-<3> Interface Klassen werden mit dem Schlüsselwort `interface` angelegt. Abstrakte Klassen mit `abstract` bzw. `abstract class`.
-
-.Sichtbarkeiten
-----
-class Dummy { <1>
-  -field1
-  #field2
-  ~method1()
-  +method2()
-}
-----
-<1> Mit `-` (private), `#` (protected), `~` (package private) und `+` (public) werden Sichtbarkeiten festgelegt.
-
-.Abstrakt/Statisch
-----
-class Dummy { <1>
-  {static} String id
-  {abstract} void methods()
-}
-----
-<1> Modifikatoren für `{static}` (statisch) oder `{abstract}` abstrakt.
-
-.Beziehungen
-----
-Klasse1 <-- Klasse2 <1> <2> <3>
-Klasse3 <|-- Klasse4
-Klasse5 *-- Klasse6
-Klasse7 o-- Klasse8
-----
-<1> Assoziation `+<--+`, Generalisierung `<|--`, Realisierung `<|..`, Komposition `*--`, Aggregation `o--`
-<2> `--` durchgezogene Linie, `..` gestrichelte Linie
-<3> `-`/`.` vertikal, `--`/`..` horizontal, `---`/`...` horizontal lang
-
-.Multiplizitäten
-----
-Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
-----
-<1> `"1"` und `"many"` legen die Kardinalität fest.
-<2> in der Beschreibung `:` kann mit `< text` oder `text >` eine Richtung angegeben werden.
-=====
-====
-
-._example_class-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_class-diagram.puml[]
-----
-====
-
-:diagramTitle: Klassendiagramm mit PlantUML
-:diagramFile: example_class-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-==== Aufgabe 4 - Aktivitätsdiagramm
-
-Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
-
-.Hinweise: Aktivitätsdiagramm in PlantUML #TODO#
-[%collapsible]
-====
-=====
-Die Hinweise zur Erstellung von Aktivitätsdiagramm entnehmen Sie bitte, auf Grund der Veränderungen durch die *Beta* und *Legacy* Variante, direkt der offiziellen Dokumentation:
-
-- https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm (Beta)]
-- https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)]
-=====
-====
-
-._example_activity-diagram.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_activity-diagram.puml[]
-----
-====
-
-:diagramTitle: Aktivitätsdiagramm mit PlantUML (beta)
-:diagramFile: example_activity-diagram
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
-.Hinweise: Bisherige Aktivitätsdiagramm (Legacy) Variante
-[%collapsible]
-====
-Unter https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)] findet man die bisherige Variante.
-
-._example_activity-diagram_legacy.puml_
-[%collapsible]
-=====
-[source,puml]
-----
-include::{plantumlsdir}/example_activity-diagram_legacy.puml[]
-----
-=====
-
-:diagramTitle: Aktivitätsdiagramm mit PlantUML (legacy)
-:diagramFile: example_activity-diagram_legacy
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-====
 
 [#c4-model-diagrams]
-==== Aufgabe 5 - C4 Model Diagramme
+==== Aufgabe 2 - C4 Model Diagramme
 
 PlantUML kann neben UML auch Diagramme basierend auf dem https://c4model.com/[C4 Model] erzeugen. Dies wären, sortiert nach zunehmenden Detailgrad, die https://c4model.com/#SystemContextDiagram[Kontext-], https://c4model.com/#ContainerDiagram[Kontainer-] und https://c4model.com/#ComponentDiagram[Komponentendiagramme]. Es gibt noch die https://c4model.com/img/glyphicons-basic-351-link.svg[Codediagramme], diese können bspw. mit den aus der UML bekannten Klassendiagrammen dargestellt werden.
 
@@ -650,5 +469,228 @@ include::{plantumlsdir}/example_c4-model-diagram.puml[]
 :diagramTitle: C4 Model Diagramm mit PlantUML
 :diagramFile: example_c4-model-diagram
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+
+==== Aufgabe 3 - C4 Model Systemkontextdiagramm für Cocktailversand
+
+Erstellen Sie als *C4 Model Diagramm* ein *Systemkontextdiagramm* (Level 1) für einen ersten möglichen Architekturentwurf für den Cocktailversand.
+Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
+
+. Legen Sie im Ordner *docs/architecture* parallel zum Ordner *images* einen neuen Ordner *plantuml* an.
+. Legen Sie im Ordner *plantuml* eine neue Datei *_c4-model-diagram.puml_* an.
+. Binden Sie die Datei *c4-model-diagram.puml* in die Datei _architecture_notebook.adoc_ an geeigneter Stelle per `include` ein.
+
+
+{section-separator}
+
+=== Weitere Diagrammarten
+
+Zum weiteren Üben oder Nachschlagen finden Sie hier einige weitere Diagrammarten, die Sie in Ihrem Vorführprojekt ergänzen können.
+
+==== Aufgabe - Klassendiagramm
+
+Schauen Sie sich die https://plantuml.com/de/class-diagram[Syntax für ein Klassendiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Klassendiagramm.
+
+.Hinweise: Klassendiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Klassen
+----
+class Klasse1 <1>
+class Klasse2 { <2>
+  String var1
+  double var2
+  void methode1()
+  bool methode2(int x)
+}
+interface Interface1 <3>
+interface Interface1 {
+  void methode1()
+}
+----
+<1> Klassen werden mit dem Schlüsselwort `class` angelegt.
+<2> Klassen können Angaben zu den Typen und Methoden haben.
+<3> Interface Klassen werden mit dem Schlüsselwort `interface` angelegt. Abstrakte Klassen mit `abstract` bzw. `abstract class`.
+
+.Sichtbarkeiten
+----
+class Dummy { <1>
+  -field1
+  #field2
+  ~method1()
+  +method2()
+}
+----
+<1> Mit `-` (private), `#` (protected), `~` (package private) und `+` (public) werden Sichtbarkeiten festgelegt.
+
+.Abstrakt/Statisch
+----
+class Dummy { <1>
+  {static} String id
+  {abstract} void methods()
+}
+----
+<1> Modifikatoren für `{static}` (statisch) oder `{abstract}` abstrakt.
+
+.Beziehungen
+----
+Klasse1 <-- Klasse2 <1> <2> <3>
+Klasse3 <|-- Klasse4
+Klasse5 *-- Klasse6
+Klasse7 o-- Klasse8
+----
+<1> Assoziation `+<--+`, Generalisierung `<|--`, Realisierung `<|..`, Komposition `*--`, Aggregation `o--`
+<2> `--` durchgezogene Linie, `..` gestrichelte Linie
+<3> `-`/`.` vertikal, `--`/`..` horizontal, `---`/`...` horizontal lang
+
+.Multiplizitäten
+----
+Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
+----
+<1> `"1"` und `"many"` legen die Kardinalität fest.
+<2> in der Beschreibung `:` kann mit `< text` oder `text >` eine Richtung angegeben werden.
+=====
+====
+
+._example_class-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_class-diagram.puml[]
+----
+====
+
+:diagramTitle: Klassendiagramm mit PlantUML
+:diagramFile: example_class-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+==== Aufgabe - Anwendungsfalldiagramm
+
+Schauen Sie sich die https://plantuml.com/de/use-case-diagram[Syntax für ein Anwendungsfalldiagramm] an und erstellen Sie, angelehnt an das Beispiel, ein Anwendungsfalldiagramm.
+
+.Hinweise: Anwendungsfalldiagramm in PlantUML
+[%collapsible]
+====
+=====
+.Akteure (Actor)
+----
+actor Akteur1 <1>
+:Akteur 2:
+actor "Akteur4 mit langem\nNamen" as ac2
+----
+<1> Akteure werden über das Schlüsselwort `actor` oder in Doppelpunkte `:...:` eingeschlossen.
+
+.Anwendungsfälle (Use Case)
+----
+usecase Anwendungsfall1 <1>
+usecase "Anwendungsfall 1" as uc01
+(Anwendungsfall 2) as uc02
+(UC03\nAnwendungsfall 3) as uc03
+
+usecase uc04 as "Langer Text <2>
+mit neuer Zeile
+--
+und Trennlinie"
+----
+<1> Anwendungsfälle werden über das Schlüsselwort `usecase` oder in Klammern `(...)` eingeschlossen.
+<2> Bei Inhalt mit mehreren Zeilen, muss erst der Alias und dann der mehrzeilige Inhalt angegeben werden.
+
+.Beziehungen
+----
+Akteur1 -- (Anwendungsfall1) <1>
+ac2 -- uc02
+uc02 <. uc03 : include <2> <3>
+----
+<1> Beziehungen werden mit `--` (senkrecht), `-` (waagerecht) und gestrichelt mit `..` (senkrecht), `.` (waagerecht) angegeben.
+<2> Für Pfeilrichtungen an den entsprechenden Seiten ein `<` bzw. `>` anfügen.
+<3> Mit `:` wird der Beziehung eine Beschreibung angegeben.
+=====
+====
+
+._example_usecase-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+----
+====
+
+:diagramTitle: Anwendungsfalldiagramm für eine beispielhafte eRoller App
+:diagramFile: example_usecase-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+////
+.Anwendungsfalldiagramm für eine beispielhafte eRoller App
+[#diagram_example_usecase-diagram]
+[plantuml, "{diagramsdir}/example_usecase-diagram", svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel"]
+....
+include::{plantumlsdir}/example_usecase-diagram.puml[]
+....
+////
+
+////
+[#diagram_example_usecase-diagram]
+plantuml::{plantumlsdir}/example_usecase-diagram.puml[format=svg, alt="Anwendungsfalldiagramm vom Praktikumsbeispiel", title="Anwendungsfalldiagramm vom Praktikumsbeispiel \"Cocktailversand\"", target="{diagramsdir}/q1_usecase-diagram"]
+////
+
+////
+==== Aufgabe 2 - Anwendungsfalldiagramm für Cocktailversand
+
+Nehmen Sie das Anwendungsfalldiagramm aus Aufgabe 1 und erstellen Sie ein Anwendungsfalldiagramm für den Cocktailversand. Öffnen Sie dazu parallel Ihr Cocktailversand Repository in Visual Studio Code:
+
+. Legen Sie im Ordner *docs/requirements* parallel zum Ordner *Images* einen neuen Ordner *plantuml* an.
+. Legen Sie im Ordner *plantuml* eine neue Datei *_use-case-diagram.puml_* an.
+. Binden Sie die Datei *use-case-diagram.puml* in die Datei use-case_model.adoc an geigneter Stelle per `include` ein.
+////
+
+==== Aufgabe - Aktivitätsdiagramm
+
+Schauen Sie sich die Syntax für ein https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm] (Beta) an und erstellen Sie, angelehnt an das Beispiel, ein Aktivitätsdiagramm.
+
+.Hinweise: Aktivitätsdiagramm in PlantUML #TODO#
+[%collapsible]
+====
+=====
+Die Hinweise zur Erstellung von Aktivitätsdiagramm entnehmen Sie bitte, auf Grund der Veränderungen durch die *Beta* und *Legacy* Variante, direkt der offiziellen Dokumentation:
+
+- https://plantuml.com/de/activity-diagram-beta[Aktivitätsdiagramm (Beta)]
+- https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)]
+=====
+====
+
+._example_activity-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram.puml[]
+----
+====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (beta)
+:diagramFile: example_activity-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+.Hinweise: Bisherige Aktivitätsdiagramm (Legacy) Variante
+[%collapsible]
+====
+Unter https://plantuml.com/de/activity-diagram-legacy[Aktivitätsdiagramm (Legacy)] findet man die bisherige Variante.
+
+._example_activity-diagram_legacy.puml_
+[%collapsible]
+=====
+[source,puml]
+----
+include::{plantumlsdir}/example_activity-diagram_legacy.puml[]
+----
+=====
+
+:diagramTitle: Aktivitätsdiagramm mit PlantUML (legacy)
+:diagramFile: example_activity-diagram_legacy
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+====
 
 include::sitemap.inc.adoc[]
