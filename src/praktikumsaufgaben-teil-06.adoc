@@ -553,6 +553,19 @@ Klasse1 "1" *-- "many" Klasse2 : Beschreibung > <1> <2>
 =====
 ====
 
+._example_domain-class-diagram.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_domain-class-diagram.puml[]
+----
+====
+
+:diagramTitle: Domänen-Klassendiagramm mit PlantUML
+:diagramFile: example_domain-class-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
 ._example_class-diagram.puml_
 [%collapsible]
 ====

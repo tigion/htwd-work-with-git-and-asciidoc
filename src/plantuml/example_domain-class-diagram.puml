@@ -1,0 +1,43 @@
+@startuml
+' left to right direction
+hide circle
+hide empty members
+
+' Abstand (horizontal)
+skinparam nodesep 100
+
+' Minimale Breite der Klassen
+<style>
+class {
+  MinimumWidth 100
+}
+</style>
+
+title "Domänenklassen"
+
+' Klassen vordefinieren
+class "Cocktail" as c1 {
+  ' Attribute
+  name
+}
+class "Standard" as c2
+class "Individual" as c3
+class "Zutat" as c4
+
+' Assoziation
+Kunde -- Adresse
+
+' Spezialisierung
+c1 <|-- c2
+c1 <|-- c3
+
+' Multiplizitäten
+c1 "0..*" -r-- "1..*" c4
+
+footer
+
+
+<font color=gray>Angaben nur beispielhaft!</font>
+endfooter
+
+@enduml
