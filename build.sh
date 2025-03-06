@@ -53,7 +53,7 @@ replace='\
   <li><a href="praktikumsaufgaben-teil-08.html">Teil 8 - Branches<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-09.html">Teil 9 - Zusammenarbeit 4<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-10.html">Teil 10 - Diagramme 2<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-10.html">Teil 11 - GitHub Actions<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-11.html">Teil 11 - GitHub Actions<\/a><\/li>\
   <\/li>\
 '
 
