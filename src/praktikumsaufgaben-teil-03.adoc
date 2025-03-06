@@ -260,7 +260,7 @@ NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `;` + Leerzeichen geschr
 
 === Ausblick
 
-Eine weitere Möglichkeiten für die Zusammenarbeit über GitHub sind *Pull requests*, welche wir uns im nächsten Semester (<<praktikumsaufgaben-teil-09.adoc#, Teil 8 - Zusammenarbeit 3>>) anschauen.
+Eine weitere Möglichkeiten für die Zusammenarbeit über GitHub sind *Pull requests*, welche wir uns im nächsten Semester (<<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Zusammenarbeit 4>>) anschauen.
 
 Pull requests::
 Anfrage mit Diskussion für das Mitarbeiten oder Aufnehmen (_merge_) einer ausgelagerten Bearbeitungen (extra _Branch_ oder _Fork_) in den Haupt-Branch.
