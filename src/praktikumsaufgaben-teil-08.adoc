@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Vertiefung der Anwendung von *Branches* in *Git*
 
-== Praktikumsaufgaben Teil 7 - Branches
+== Praktikumsaufgaben Teil 8 - Branches
 
 In den folgenden Aufgaben wird das Branching von Git genauer betrachtet.
 

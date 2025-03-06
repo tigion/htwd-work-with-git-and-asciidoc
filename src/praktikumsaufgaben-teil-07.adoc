@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Vertiefung der Anwendung von *Versionen* in *Git*
 
-== Praktikumsaufgaben Teil 6 - Versionen
+== Praktikumsaufgaben Teil 7 - Versionen
 
 In den folgenden Aufgaben wird die Änderungs-/Versionsverwaltung von Git genauer betrachtet.
 

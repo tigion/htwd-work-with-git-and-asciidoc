@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Kennenlernen weiterer Diagrammarten der textbasierten Diagrammgenerierung mit *AsciiDoc*
 
-== Praktikumsaufgaben Teil 9 - Diagramme 2
+== Praktikumsaufgaben Teil 10 - Diagramme 2
 
 In diesem Aufgabenteil schauen wir uns weiter Diagramme an, welche mit PlantUML in Asciidoctor-Dokumenten verwendet werden können.
 
