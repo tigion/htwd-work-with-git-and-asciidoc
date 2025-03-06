@@ -9,7 +9,7 @@ In diesem Aufgabenteil schauen wir uns weiter Diagramme an, welche mit PlantUML 
 [NOTE]
 ====
 * Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
-* Hinweise zur Einrichtung und Verwendung von PlantUML in Asciidoctor und Visual Studio Code finden Sie unter <<praktikumsaufgaben-teil-06.adoc#c4-model-diagrams, Praktikumsaufgaben Teil 6 - Diagramme 1>> vom letzten Semester.
+* Hinweise zur Einrichtung und Verwendung von PlantUML in Asciidoctor und Visual Studio Code finden Sie unter <<praktikumsaufgaben-teil-06.adoc#, Praktikumsaufgaben Teil 6 - Diagramme 1>> vom letzten Semester.
 ====
 
 include::hinweise-windows-labor.inc.adoc[]
