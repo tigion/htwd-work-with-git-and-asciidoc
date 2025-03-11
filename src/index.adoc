@@ -137,6 +137,7 @@ Eine Auflistung der im Praktikum eingesetzten Werkzeuge mit Links zu weiterführ
 ** https://asciidoctor.org/docs/asciidoc-writers-guide/[AsciiDoc Writer’s Guide]
 * Videos:
 ** icon:film[] https://www.youtube.com/watch?v=JWuUyLTihac[Asciidoctor Deep Dive] - Alexander Schwartz (29.03.2020)
+** icon:film[] https://www.youtube.com/watch?v=jiEz69wYLtM[Evolving real-world AsciiDoc into a specification and how it will help the ecosystem - OCX 2024] - Alexander Schwartz (18.11.2024)
 
 * Editoren:
 ** https://code.visualstudio.com[Visual Studio Code] + Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
