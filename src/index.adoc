@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 == Worum geht es
 
-Im Praktikum wollen wir uns den Themen *Versionsverwaltung*, *Docs-as-Code* und *Zusammenarbeit* nähern.
+Im Praktikum wollen wir uns mit den Themen *Versionsverwaltung*, *Docs-as-Code* und *Zusammenarbeit* beschäftigen.
 
 Die Aufgaben bieten eine Einführung in die Handhabung folgender Werkzeuge:
 
@@ -21,13 +21,15 @@ Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden 
 === Software Engineering I
 
 .Praktikumsaufgaben Teil 1 - Grundlagen
-- Umgang mit der Online-Plattform *GitHub* (_Login_, _Repository_)
-- Umgang mit dem Editor *Visual Studio Code* (_Extensions_, _Git_)
-- Umgang mit der Versionsverwaltung *Git* (_clone_, _add_, _commit_, _push_)
-- Kennenlernen der Syntax von *AsciiDoc* (_Syntax_, _Preview_)
+- Erste Schritte mit der Online-Plattform *GitHub* (_Login_, _Repository_)
+- Erste Schritte mit dem Editor *Visual Studio Code* (_Extensions_, _Git_)
+- Erste Schritte mit der Versionsverwaltung *Git* (_clone_, _add_, _commit_, _push_)
+- Erste Schritte mit der Syntax von *AsciiDoc* (_Syntax_, _Preview_)
 
 .Praktikumsaufgaben Teil 2 - AsciiDoc
-- Anwenden des Editors *Visual Studio Code* und der Syntax von *AsciiDoc*
+- Anwenden des Editors *Visual Studio Code*
+- Kennenlernen der Syntax von *AsciiDoc*
+- Umgang mit *Git* und der Erstellung von Versionen.
 - Anwenden des Zusammenspiels von *Visual Studio Code*, *Git* und *GitHub*
 
 .Praktikumsaufgaben Teil 3 - Zusammenarbeit 1
@@ -77,6 +79,8 @@ image::geek-and-poke_the_new_developer.jpg[Geek&Poke: The New Developer, width=2
 - *Windows-Labore*: Es werden keine Nutzerprofile gespeichert. Die Konfiguration von Git und das Anpassen der Werkzeuge (Erweiterungen, Einstellungen) muss nach jedem Anmelden neu vorgenommen werden.
 - *Eigener Rechner*: Unter link:installation-und-konfiguration/[Installation & Konfiguration] finden Sie Hinweise, wie Sie die benötigten Programme auf Ihrem Rechner einrichten.
 
+TIP: Nutzen Sie für die ersten beiden Praktika die Laborrechner, statt Ihres eigenen Rechners, um sich mit den eingesetzten Tools vertraut zu machen.
+
 IMPORTANT: Daten im Temp-Laufwerk `T:` unter Windows werden nach dem Abmelden gelöscht. Diese müssen vorher in Ihr Home-Laufwerk `U:` (`Z:`) verschoben oder anderweitig gesichert werden.
 
 == Eingesetzte Werkzeuge
@@ -85,10 +89,13 @@ Eine Auflistung der im Praktikum eingesetzten Werkzeuge mit Links zu weiterführ
 
 === Git
 
-NOTE: *Git* is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+[NOTE]
+--
+*Git* is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency. +
 - https://git-scm.com/
+--
 
-- http://git-scm.com/[Git - offizielle Webseite]
+- http://git-scm.com/[Git] - offizielle Webseite
 - http://git-scm.com/documentation[Git - Documentation Resource]
 - https://git-scm.com/book/[Pro GIT – Ebook von Scott Chacon und Ben Straub]
 
@@ -104,7 +111,11 @@ NOTE: *Git* is a free and open source distributed version control system designe
 
 === GitHub
 
-NOTE: *GitHub* is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside 40 million developers. - https://github.com/
+[NOTE]
+--
+*GitHub* is a development platform inspired by the way you work. From open source to business, you can host and review code, manage projects, and build software alongside 40 million developers. +
+- https://github.com/
+--
 
 - https://github.com/[GitHub - offizielle Webseite]
   * Der kostenfreie Account *Free* bietet mittlerweile unbegrenzte öffentliche und private Repositories mit jeweils unbegrenzter Mitgliederanzahl.
@@ -113,9 +124,13 @@ NOTE: *GitHub* is a development platform inspired by the way you work. From open
 
 === AsciiDoc
 
-NOTE: *AsciiDoc* is a text document format for writing notes, documentation, articles, books, ebooks, slideshows, web pages, man pages and blogs. AsciiDoc files can be translated to many formats including HTML, PDF, EPUB, man page. - http://asciidoc.org
+[NOTE]
+--
+*AsciiDoc* is a plain text markup language for writing technical content. It’s packed with semantic elements and equipped with features to modularize and reuse content. AsciiDoc content can be composed using a text editor, managed in a version control system, and published to multiple output formats. +
+- http://asciidoc.org
+--
 
-
+* https://asciidoc.org/[AsciiDoc] - offizielle Webseite
 * https://asciidoctor.org/[Asciidoctor] - is a fast, open source text processor and publishing toolchain for converting AsciiDoc content to HTML5, DocBook, PDF, and other formats. Asciidoctor is written in Ruby and runs on all major operating systems.
 ** https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Documentation]
 ** https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
@@ -125,11 +140,15 @@ NOTE: *AsciiDoc* is a text document format for writing notes, documentation, art
 
 * Editoren:
 ** https://code.visualstudio.com[Visual Studio Code] + Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
-** https://asciidoclive.com/[AsciiDocLIVE] ist ein freier online AsciiDoc Editor mit HTML-Export
+** [.line-through]#https://asciidoclive.com/[AsciiDocLIVE]# https://asciidocalive.vercel.app/[AsciiDoc Alive] ist ein freier online AsciiDoc Editor mit HTML-Export
 
 === Visual Studio Code
 
-NOTE: *Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. - https://code.visualstudio.com/docs
+[NOTE]
+--
+*Visual Studio Code* is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. +
+- https://code.visualstudio.com/docs
+--
 
 * https://code.visualstudio.com[Visual Studio Code]
 ** Erweiterung https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc] (side-by-side live preview)
