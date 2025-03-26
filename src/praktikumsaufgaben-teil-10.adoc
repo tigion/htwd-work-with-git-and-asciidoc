@@ -281,7 +281,7 @@ include::{plantumlsdir}/example_erm-diagram_v1.puml[]
 ----
 ====
 
-:diagramTitle: Entity Relationship Diagramm mit PlantUML (Chen-Notation)
+:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Krähenfuss-Notaion)
 :diagramFile: example_erm-diagram_v1
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
@@ -294,8 +294,21 @@ include::{plantumlsdir}/example_erm-diagram_v2.puml[]
 ----
 ====
 
-:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Krähenfuss-Notaion)
+:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (UML, Chen-Notation)
 :diagramFile: example_erm-diagram_v2
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+._example_erm-diagram_v3.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_erm-diagram_v3.puml[]
+----
+====
+
+:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Chen-Notation)
+:diagramFile: example_erm-diagram_v3
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 ._example_rm-diagram.puml_

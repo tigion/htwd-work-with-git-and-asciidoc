@@ -1,0 +1,50 @@
+@startchen
+' diagram direction
+left to right direction
+' space between nodes and ranks
+skinparam nodesep 10
+skinparam ranksep 10
+
+' use own colors
+<style>
+.entity { BackGroundColor #fcf3cf }
+.relationship { BackGroundColor #fadbd8 }
+.attribute { BackGroundColor #d5f5e3 }
+</style>
+
+entity Address <<entity>> {
+  id <<key>> <<attribute>>
+  street <<attribute>>
+  zipCode <<attribute>>
+  city <<attribute>>
+  country <<attribute>>
+  ... <<attribute>>
+}
+
+entity Student <<entity>> {
+  id <<key>> <<attribute>>
+  firstName <<attribute>>
+  lastName <<attribute>>
+  ... <<attribute>>
+}
+
+entity Subject <<entity>> {
+  id <<key>> <<attribute>>
+  name <<attribute>>
+  ... <<attribute>>
+}
+
+relationship has <<relationship>> {
+}
+
+relationship Mark <<relationship>> {
+  mark <<attribute>>
+  ... <<attribute>>
+}
+
+Address -(1,N)- has
+has -(1,1)- Student
+Student -(0,N)- Mark
+Mark -(0,N)- Subject
+
+@endchen
