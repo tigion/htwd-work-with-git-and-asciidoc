@@ -221,6 +221,8 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 
 ==== Aufgabe 6 - Entity Relationship Diagramm (optional)
 
+===== Variante: Erweiterung des Klassen Diagramms
+
 Schauen Sie sich die https://plantuml.com/de/ie-diagram[Syntax für ein ER-Diagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein entsprechendes Entity-Relationship-Diagramm (ERD) bzw. Entity-Relationship-Modell (ERM).
 
 PlantUML nutzt hierfür eine Erweiterung der Notation der Klassendiagramme.
@@ -298,19 +300,6 @@ include::{plantumlsdir}/example_erm-diagram_v2.puml[]
 :diagramFile: example_erm-diagram_v2
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
-._example_erm-diagram_v3.puml_
-[%collapsible]
-====
-[source,puml]
-----
-include::{plantumlsdir}/example_erm-diagram_v3.puml[]
-----
-====
-
-:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Chen-Notation)
-:diagramFile: example_erm-diagram_v3
-plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
-
 ._example_rm-diagram.puml_
 [%collapsible]
 ====
@@ -322,6 +311,85 @@ include::{plantumlsdir}/example_rm-diagram.puml[]
 
 :diagramTitle: Relationenmodell Diagramm (RM) mit PlantUML (Krähenfuss-Notaion)
 :diagramFile: example_rm-diagram
+plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
+
+===== Variante: Chen's notation
+
+Schauen Sie sich die https://plantuml.com/de/er-diagram[Syntax für ein ER-Diagramm] an und erstellen Sie, angelehnt an Ihr Projekt, ein entsprechendes Entity-Relationship-Diagramm (ERD).
+
+.Hinweise: Entity Relationship Diagramm in PlantUML
+[%collapsible]
+====
+=====
+.Entities
+----
+entity Entity1 { <1>
+}
+entity Entity2 { <2>
+  id <<key>> <3>
+  name : string <4>
+  note
+}
+entity "My Entity 3" as Entity3 { <5>
+}
+----
+<1> Entity ohne Attribute
+<2> Entity mit Attributen
+<3> `+<<key>>+` ... kennzeichnet ein Schlüsselattribut
+<4> `: string` ... Attribut mit Angabe des Datentyps
+<5> Entity mit Alias
+
+.Relationships
+----
+relationship Relationship1 { <1>
+}
+relationship Relationship2 { <2>
+  id <<key>> <3>
+  name
+}
+----
+<1> Relationship ohne Attribute
+<2> Attribute wie bei Entities
+
+.Beziehungen mit Kardinalitäten
+----
+Entity1 -- Entity2 <1>
+Entity1 -(0,N)- Relationship2 <2>
+----
+<1> Einfache Verbindung
+<2> Verbindung mit zugehöriger Kardinalität oder min/max Notation +
+{empty} +
++
+.Kardinalitäten
+[cols="1,3", width=70%]
+|===
+| `-1-`  | Angabe in Verbindung
+| `1`  | maximal eins
+| `N`  | maximal viele
+|===
++
+.min/max Notation
+[cols="1,3", width=70%]
+|===
+| `-(0,1)-`  | Angabe in Verbindung (min, max)
+| `0`  | keins
+| `1`  | eins
+| `N`  | viele oder mit genauer Anzahl
+|===
+=====
+====
+
+._example_erm-diagram_v3.puml_
+[%collapsible]
+====
+[source,puml]
+----
+include::{plantumlsdir}/example_erm-diagram_v3.puml[]
+----
+====
+
+:diagramTitle: Entity Relationship Diagramm (ERD) mit PlantUML (Chen-Notation)
+:diagramFile: example_erm-diagram_v3
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"]
 
 
