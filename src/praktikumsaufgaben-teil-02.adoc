@@ -165,9 +165,23 @@ image::screenshot_vscode_asciidoc.png[Screenshot VSCode mit AsciiDoc Vorschau, w
 
 . Speichern Sie und nehmen Sie Ihre Änderungen als neue Version in Ihr lokales Git-Repository und Ihr Repository auf GitHub auf.
 
-==== Aufgabe 1.5 - Verweise
+==== Aufgabe 1.5 - Verweise und Links
 
-. Fügen Sie eine Überschrift `=== Verweise` ein und schreiben Sie einen Text, welcher Verweise auf die in Ihrem Dokument enthaltene Überschrift: <<1. AsciiDoc Syntax kennenlernen>>, die Tabelle: <<table_textformation>>, den Quellcode: <<code_hello_world>> und das Bild: <<image_vscode_asciidoc>> enthält.
+. Fügen Sie eine Überschrift `=== Verweise und Links` ein und schreiben Sie eine Liste oder Text, welcher folgende Verweise und Links enthält:
++
+****
+Verweise auf:
+
+* Überschrift: Kennenlernen der Syntax
+* Tabelle: <<table_textformation>>
+* Quellcode: <<code_hello_world>>
+* Bild: <<image_vscode_asciidoc>>
+
+Links zu:
+
+* Praktikumsreihe https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/[Arbeiten mit Git und AsciiDoc]
+* https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[AsciiDoc Syntax Quick Reference]
+****
 +
 .Hinweise: Verweise und IDs
 [%collapsible]
