@@ -16,51 +16,57 @@ include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 
-=== 1. Issues im Kontext des OpenUP
+=== 1. Issues im Kontext der Projektarbeit #TODO#
 
 [#image_github_openup]
-:imageTitle: GitHub Issues im Kontext des OpenUP
+:imageTitle: GitHub Issues im Kontext der Projektarbeit
 :imageFile: grafik_github_openup.png
-.{imageTitle}
+.{imageTitle} #TODO#
 image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
 
 
 Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) sowie die Risiken (risks) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
 
-"OpenUP is a lean Unified Process that applies iterative and incremental approaches within a structured lifecycle. OpenUP embraces a pragmatic, agile philosophy that focuses on the collaborative nature of software development."
--- https://www.informatik.htw-dresden.de/~anke/openup/index.htm[Quelle: OpenUP]
-
-Folgend eine Variante der Abbildung des *OpenUP* mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
+Folgend eine Variante der Abbildung mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
 
 ====
-.Abbildungsvariante OpenUP in GitHub
+.Abbildungsvariante in GitHub #TODO#
 [cols="1,1,2"]
 |===
-| OpenUP      | GitHub    | Hinweise
-
-| Phase       | Milestone
-a|
-* Inception Phase, Elaboration Phase, Construction Phase, Transition Phase
+| -      | GitHub    | Hinweise
 
 | #*Iteration*#   | #*Project*#
 a|
-* Einteilung der Work Items in Iteration [1..n]
+* Einteilung der Tasks in Iteration [1..n]
 * extra Spalte (Field, iteration)
 
-| User Story  | Issue
+| #*User Story*#  | #*Issue*#
 a|
 * Kurze Beschreibung einer Anforderung
-* Noch kein konkretes Work Item
+* Noch kein konkreter Task
 
-| #*Work Item*#   | #*Issue*#
+| #*Task*#   | #*Issue*#
 a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
 
-.2+| #Work Item State#
+| Defects   | Issue
+a|
+* ...
+
+| Constraints   | Issue
+a|
+* ...
+
+| #*Risks*#   | #*Issue*#
+a|
+* ...
+
+.2+| #State#
 | Issue
 a|
 * offen, geschlossen, Label
+
 | Project
 a|
 * Status (Table view) / Spalten (Board View): Todo, In Progress, Done, ...
@@ -87,7 +93,7 @@ a|
 * Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
 |===
 
-Mit einem *GitHub Project* und verschiedenen Sichten (Views) ist der Projektfortschritt mit seinen Iterationen und WorkItems (Issues) für alle Teammitglieder immer ersichtlich. Folgend ein Beispiel:
+Mit einem *GitHub Project* und verschiedenen Sichten (Views) ist der Projektfortschritt mit seinen Iterationen und Tasks (Issues) für alle Teammitglieder immer ersichtlich. Folgend ein Beispiel:
 
 :imageTitle: GitHub Projects - Beispiel: Überblick über alle Iterationen (Table view)
 :imageFile: screenshot_github_projects_view_overview.png
@@ -96,9 +102,6 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 *Dabei ist zu beachten:*
 
-//- Es können beliebig viele Issues, Projekte und Meilensteine in GitHub erstellt werden.
-//- Ein Issue kann mehreren Projekten, aber nur einem Meilenstein zugeordnet werden.
-//- Fortschrittsbalken zeigen den Bearbeitungsstand der Issues in der Projekt- und Meilensteinübersicht an.
 - Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
 - Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
 - Issues können in Projekten zwischen den Zuständen mit Drag&Drop (Table View) oder durch bestimmte Schlüsselwörter (automatisiert, Status-Spalte) bewegt werden.
@@ -111,25 +114,25 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ====
 
-.Hinweise zu Issues und Work Items
+.Hinweise zu Issues und Tasks
 [%collapsible]
 ====
 =====
 Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
 
-* Priorisierung von Work Items (Issues) nach Wichtigkeit (bspw. hoch, mittel, niedrig):
-** *hoch*: Work Items werden in die aktuelle Iteration aufgenommen
-** *mittel*: Work Items werden in die aktuelle oder nächste Iteration aufgenommen
-** *niedrig*: Work Items sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
-** *Zeit* und *Ressourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Work Items auf die aktuelle bzw. folgenden Iterationen erfolgt.
-* Es ist sinnvoll den Issues (Work Items) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
-* Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Work Item X* in Ihrem Repository bitte passendere verwenden.
+* Priorisierung von Tasks (Issues) nach Wichtigkeit (bspw. hoch, mittel, niedrig):
+** *hoch*: Tasks werden in die aktuelle Iteration aufgenommen
+** *mittel*: Tasks werden in die aktuelle oder nächste Iteration aufgenommen
+** *niedrig*: Tasks sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
+** *Zeit* und *Ressourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Tasks auf die aktuelle bzw. folgenden Iterationen erfolgt.
+* Es ist sinnvoll den Issues (Tasks) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
+* Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Task X* in Ihrem Repository bitte passendere verwenden.
 * Labels, die sich an den Rollen des OpenUP orientieren, helfen sie entsprechend zu filtern.
 * Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories, Projekten und Meilensteinen.
 
 :imageTitle: Übersicht der Issues
 :imageFile: screenshot_github_issues_overview.png
-.{imageTitle}
+.{imageTitle} #TODO#
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 =====
 ====
@@ -142,12 +145,12 @@ Verwendet man im Kommentar einer Issue die ID einer anderen Issue, taucht bei di
 
 Im folgenden Beispiel ist in den Issues #15, #16, #17 und #18 die ID der gezeigten Issue #2 erwähnt worden. Diese enthält jetzt Verweise auf die genannten Issues.
 
-:imageTitle: Referenzen eines User Story (Issue) zu seinen Work Items (Issues)
+:imageTitle: Referenzen eines User Story (Issue) zu seinen Tasks (Issues)
 :imageFile: screenshot_github_issue_reference.png
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=380]
 
-Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkreten Work Items (Issues #15, #16, #17 und #18) zu referenzieren.
+Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkreten Tasks (Issues #15, #16, #17 und #18) zu referenzieren.
 =====
 ====
 
@@ -158,9 +161,9 @@ Dies ist eine Möglichkeit, die aus User Stories (issue #2) extrahierten konkret
 Die neuen *GitHub Projects* ermöglichen es innerhalb eines Projektes, die komplette Projektplanung mit allen Iterationen und zugehörigen Repositories abzubilden.
 
 * Planung, Zustände und Übersicht über die vergangenen, aktuelle und zukünftige Iterationen
-* Erfassung einer Complexity zu den Work Items (Issue) in den Iterationen
+* Erfassung einer Complexity zu den Tasks (Issue) in den Iterationen
 * Verwaltung von Projektmitgliedern
-* Verwendung von Work Items (Issues) aus verschiedenen Repositories
+* Verwendung von Tasks (Issues) aus verschiedenen Repositories
 * Erstellung unterschiedlicher Sichten mit verschiedenen Schwerpunkten auf das Projekt
 * Erstellung von Diagrammen zum Zustand des Projektes
 
@@ -217,18 +220,18 @@ Siehe: https://docs.github.com/en/issues/planning-and-tracking-with-projects/und
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
-.Issues als *Work Items* aufnehmen:
+.Issues als *Tasks* aufnehmen:
 ** Table view: Zeile mit kbd:[+]-Button
 ** Board view: kbd:[+ Add item]-Button (Spalte Todo)
 *** per kbd:[+] -> *Add item from repository* -> *Repository* wählen -> *Issues* auswählen -> kbd:[Add selected items]
 ** per Suche (Add item) -> Repository Namen eingeben und auswählen -> Issue direkt wählen oder per *Add multipleItems* gleich mehrere aus dem gewählten Repository auswählen
 
-.**Complexity**/**Velocity** im Projekt zu den Work Items (Issues) erfassen:
+.**Complexity**/**Velocity** im Projekt zu den Tasks (Issues) erfassen:
 . Ein neues Feld über das kbd:[+] im Tabellenkopf (Table View) hinzufügen
 . kbd:[+ New field] wählen
 ** Fieldname: *Complexity*
 ** Field type: *Number*
-. Jetzt können den Work Items entsprechende Werte zugewiesen werden. Nach diesen kann jetzt gruppiert, gefiltert und über Insights in Diagrammen genutzt werden.
+. Jetzt können den Tasks entsprechende Werte zugewiesen werden. Nach diesen kann jetzt gruppiert, gefiltert und über Insights in Diagrammen genutzt werden.
 
 .Weitere *Views* hinzufügen:
 . Mit dem Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden. +
@@ -280,6 +283,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ====
 ////
 
+////
 .Hinweise zu Meilensteinen (Milestone) in GitHub
 [%collapsible]
 ====
@@ -304,6 +308,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 =====
 ====
+////
 
 ==== Aufgabe 1.1 - Projektplanung
 
@@ -325,9 +330,9 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 ** Eigenschaften: Table view, Filter: `label:"work item"`, Gruppierung: Iteration
 
 
-. Erstellen Sie in der *Overview* Sicht vier *Work Items* als neue Issues mit dem Label `work item`, wovon sich die *zwei ersten* auf die vorhandene User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
+. Erstellen Sie in der *Overview* Sicht vier *Tasks* als neue Issues mit dem Label `task`, wovon sich die *zwei ersten* auf die vorhandene User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
 +
-.Work Items
+.Tasks
 [cols="1,4,8"]
 |===
 | Nr. | Title | Description
@@ -354,15 +359,15 @@ Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
 |===
 
 . Erstellen Sie in der eben erstellen Sicht ein neues Feld *Complexity* (numeric) und ein neues Feld *Iteration* mit einem wöchentlichen Zyklus.
-. Vergeben Sie jedem *Work Item* einen *Complexity Score*.
-. Weisen Sie *zwei* Work Items der *aktuellen Iteration* zu.
+. Vergeben Sie jedem *Task* einen *Complexity Score*.
+. Weisen Sie *zwei* Tasks der *aktuellen Iteration* zu.
 
 . Richten Sie eine Sicht *Current Iteration* ein.
-** Eigenschaften: Board view, Filter: `iteration:@current label:"work item"`
+** Eigenschaften: Board view, Filter: `iteration:@current label:"task"`
 
 . Richten Sie eine Sicht *User Stories* als Tabelle ein, welche nur die Issues mit dem Label `user story` anzeigt und nehmen Sie die vorhandene *User Story* in das Projekt auf.
 
-. Schließen Sie ein *Work Item* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
+. Schließen Sie ein *Task* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
 
 {section-separator}
 
@@ -375,10 +380,10 @@ WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im P
 Zur Verwaltung der Projektrisiken verwenden wir ebenfalls *Issues* und *Projects* von GitHub.
 
 ====
-.Abbildungsvariante OpenUP in GitHub
+.Abbildungsvariante in GitHub
 [cols="1,1,2"]
 |===
-| OpenUP      | GitHub    | Hinweise
+| -      | GitHub    | Hinweise
 
 .2+| #*Risk*#
 | #*Issue*#
@@ -436,10 +441,10 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 === 3. Issue Templates (optional)
 
-// TODO: Templates für Issues (User Story, Work Item, Risk, etc.)
+// TODO: Templates für Issues (User Story, Task, Risk, etc.)
 WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
 
-Mit Hilfe von https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates[Issue-Templates] können Vorgaben (wie Labels) und Strukturen für verschiedene Issues-Arten (User Stories, Work Items, Risiken, usw.) definiert werden.
+Mit Hilfe von https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates[Issue-Templates] können Vorgaben (wie Labels) und Strukturen für verschiedene Issues-Arten (User Stories, Tasks, Risiken, usw.) definiert werden.
 Diese Vorlage kann dann beim Erstellen einer Issue ausgewählt werden.
 
 - Repository-Einstellungen -> Issues -> kbd:[Set up templates]
@@ -459,7 +464,7 @@ Diese Vorlage kann dann beim Erstellen einer Issue ausgewählt werden.
 
 === Hinweise für den Beleg
 
-Für den Schwerpunkt der *Work Item*- und **Iterations**verwaltung mit GitHub Issues/Projects sind durch die Fachaustausche in SE II einige ergänzende und alternative Tools von Studenten empholen worden:
+Für den Schwerpunkt der *Task*- und **Iterations**verwaltung mit GitHub Issues/Projects sind durch die Fachaustausche in SE II einige ergänzende und alternative Tools von Studenten empholen worden:
 
 * GitHub Erweiterungen:
 ** https://help.zenhub.com/support/solutions/articles/43000010778-what-is-zenhub-an-intro-to-zenhub-in-github[ZenHub], ...
