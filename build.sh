@@ -43,15 +43,15 @@ replace='\
   <li><span style="color: #7a2518"><br \/><span class="icon"><i class="fa fa-sitemap"><\/i><\/span> Praktika - SE I<\/span><\/li>\
   <li><a href="praktikumsaufgaben-teil-01.html">Teil 1 - Grundlagen<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-02.html">Teil 2 - AsciiDoc<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-03.html">Teil 3 - Zusammenarbeit 1<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-04.html">Teil 4 - Zusammenarbeit 2<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-05.html">Teil 5 - Zusammenarbeit 3<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-03.html">Teil 3 - Teamarbeit: Merge-Konflikte<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-04.html">Teil 4 - Teamarbeit: Issues<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-05.html">Teil 5 - Teamarbeit: Projektplanung<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-06.html">Teil 6 - Diagramme 1<\/a><\/li>\
   <\/li>\
   <li><span style="color: #7a2518"><br \/><span class="icon"><i class="fa fa-sitemap"><\/i><\/span> Praktika - SE II<\/span><\/li>\
-  <li><a href="praktikumsaufgaben-teil-07.html">Teil 7 - Versionen<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-08.html">Teil 8 - Branches<\/a><\/li>\
-  <li><a href="praktikumsaufgaben-teil-09.html">Teil 9 - Zusammenarbeit 4<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-07.html">Teil 7 - Git: Versionen<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-08.html">Teil 8 - Git: Branches<\/a><\/li>\
+  <li><a href="praktikumsaufgaben-teil-09.html">Teil 9 - Teamarbeit: Code-Review<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-10.html">Teil 10 - Diagramme 2<\/a><\/li>\
   <li><a href="praktikumsaufgaben-teil-11.html">Teil 11 - GitHub Actions<\/a><\/li>\
   <\/li>\

@@ -9,17 +9,17 @@ a|
 [unstyled]
 * icon:hand-o-right[] <<praktikumsaufgaben-teil-01.adoc#, Teil 1 - Grundlagen>>
 * icon:hand-o-right[] <<praktikumsaufgaben-teil-02.adoc#, Teil 2 - AsciiDoc>>
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-03.adoc#, Teil 3 - Zusammenarbeit 1>>
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-04.adoc#, Teil 4 - Zusammenarbeit 2>>
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-05.adoc#, Teil 5 - Zusammenarbeit 3>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-03.adoc#, Teil 3 - Teamarbeit: Merge-Konflikte>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-04.adoc#, Teil 4 - Teamarbeit: Issues>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-05.adoc#, Teil 5 - Teamarbeit: Projektplanung>>
 * icon:hand-o-right[] <<praktikumsaufgaben-teil-06.adoc#, Teil 6 - Diagramme 1>>
 a|
 [discrete]
 === Praktika - SE II
 [unstyled]
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-07.adoc#, Teil 7 - Versionen>>
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-08.adoc#, Teil 8 - Branches>>
-* icon:hand-o-right[] <<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Zusammenarbeit 4>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-07.adoc#, Teil 7 - Git: Versionen>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-08.adoc#, Teil 8 - Git: Branches>>
+* icon:hand-o-right[] <<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Teamarbeit: Code-Review>>
 * icon:hand-o-right[] <<praktikumsaufgaben-teil-10.adoc#, Teil 10 - Diagramme 2>>
 * icon:hand-o-right[] <<praktikumsaufgaben-teil-11.adoc#, Teil 11 - GitHub Actions>>
 |===

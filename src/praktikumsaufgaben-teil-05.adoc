@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Organisation von Aufgaben, Risiken und Prozessen im Team mit Hilfe von *Issues*, *Projects* und des *OpenUP* an einem gemeinsamen Repository auf *GitHub*
 
-== Praktikumsaufgaben Teil 5 - Zusammenarbeit 3
+== Praktikumsaufgaben Teil 5 - Teamarbeit: Projektplanung
 
 ////
 - *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_

@@ -32,17 +32,18 @@ Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden 
 - Umgang mit *Git* und der Erstellung von Versionen.
 - Anwenden des Zusammenspiels von *Visual Studio Code*, *Git* und *GitHub*
 
-.Praktikumsaufgaben Teil 3 - Zusammenarbeit 1
+.Praktikumsaufgaben Teil 3 - Teamarbeit: Merge-Konflikte
 - Zusammenarbeit im Team mit *GitHub* (_Collaborators_, ...)
 - Weiterführende Anwendung von *Git* (_pull_, _merge-conflicts_)
 
-.Praktikumsaufgaben Teil 4 - Zusammenarbeit 2
+.Praktikumsaufgaben Teil 4 - Teamarbeit: Issues
 - Zusammenarbeit im Team mit *GitHub* (_Issues_, _Labels_, _Projects_, _Milestones_, ...)
 - Issues mit Filtern im Überblick behalten
 
-.Praktikumsaufgaben Teil 5 - Zusammenarbeit 3
-- Issues und Projects im Kontext des *OpenUP*
-- *Risikomanagement* (Risks, Risk-board)
+.Praktikumsaufgaben Teil 5 - Teamarbeit: Projektplanung
+- Issues und Projects im Kontext der Teamarbeit
+- Product und Sprint Backlog
+- Risikomanagement (Risks, Risk-board)
 - Issue-Templates
 
 .Praktikumsaufgaben Teil 6 - Asciidoctor und Diagramme 1
@@ -58,7 +59,7 @@ Es geht um das praktische Kennenlernen von Grundlagen und dem Abbau von Hürden 
 .Praktikumsaufgaben Teil 8 - Branches
 - Branching (_branch_, _switch_, _checkout_, _rebase_, _merge_, _local-/remote-Branch_)
 
-.Praktikumsaufgaben Teil 9 - Zusammenarbeit 4
+.Praktikumsaufgaben Teil 9 - Teamarbeit: Code-Review
 - Code-Review (Pull-/Merge-Request), Fork
 
 .Praktikumsaufgaben Teil 10 - Asciidoctor und Diagramme 2

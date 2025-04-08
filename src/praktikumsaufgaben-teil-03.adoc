@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Kennenlernen der Zusammenarbeit im Team mit Hilfe von *Git* an einem gemeinsamen Repository auf *GitHub*
 
-== Praktikumsaufgaben Teil 3 - Zusammenarbeit 1
+== Praktikumsaufgaben Teil 3 - Teamarbeit: Merge-Konflikte
 
 ////
 - *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_
@@ -260,7 +260,7 @@ NOTE: Mehrere Autoren werden in eine Zeile getrennt mit `;` + Leerzeichen geschr
 
 === Ausblick
 
-Eine weitere Möglichkeiten für die Zusammenarbeit über GitHub sind *Pull requests*, welche wir uns im nächsten Semester (<<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Zusammenarbeit 4>>) anschauen.
+Eine weitere Möglichkeiten für die Zusammenarbeit über GitHub sind *Pull requests*, welche wir uns im nächsten Semester (<<praktikumsaufgaben-teil-09.adoc#, Teil 9 - Teamarbeit 4: Code-Review>>) anschauen.
 
 Pull requests::
 Anfrage mit Diskussion für das Mitarbeiten oder Aufnehmen (_merge_) einer ausgelagerten Bearbeitungen (extra _Branch_ oder _Fork_) in den Haupt-Branch.

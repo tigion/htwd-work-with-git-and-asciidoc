@@ -2,7 +2,7 @@ include::header.inc.adoc[]
 
 Ziel: Organisation von Aufgaben im Team mit Hilfe von *GitHub Issues* an einem gemeinsamen Repository auf *GitHub*
 
-== Praktikumsaufgaben Teil 4 - Zusammenarbeit 2
+== Praktikumsaufgaben Teil 4 - Teamarbeit: Issues
 
 ////
 - *GitHub*: _Collaborators_, _Issues_, _Pull request_, _Projects_
