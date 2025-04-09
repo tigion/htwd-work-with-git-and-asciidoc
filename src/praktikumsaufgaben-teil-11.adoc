@@ -2,11 +2,11 @@ include::header.inc.adoc[]
 
 Ziel: Kennenlernen der Automatisierung von Softwareentwicklungsprozesse mit Hilfe von *Workflows* und *Actions* auf *GitHub*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 11 - GitHub Actions
 
 In diesem Aufgabenteil wollen wir erste Möglichkeiten von *Github Actions* kennenlernen, was *Workflows* sind und wie sie unsere Arbeit mit dem Repository auf GitHub unterstützen können.
-
-include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 

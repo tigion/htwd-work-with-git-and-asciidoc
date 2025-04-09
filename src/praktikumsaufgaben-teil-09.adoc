@@ -2,11 +2,11 @@ include::header.inc.adoc[]
 
 Ziel: Vertiefung der Zusammenarbeit im Team mit Hilfe von *Code-Reviews* als Möglichkeit der Pull-/Merge-Requests von *Git* und *GitHub*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 9 - Teamarbeit: Code-Review
 
 In diesem Aufgabenteil werden Pull-/Merge-Requests als Variante eines Code-Reviews, das Filtern von Issues und das Organisieren von Issues angelehnt am OpenUP betrachtet.
-
-include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 

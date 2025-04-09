@@ -2,6 +2,8 @@ include::header.inc.adoc[]
 
 Ziel: Vertiefung der Anwendung von *Versionen* in *Git*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 7 - Versionen
 
 In den folgenden Aufgaben wird die Änderungs-/Versionsverwaltung von Git genauer betrachtet.

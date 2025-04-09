@@ -2,6 +2,8 @@ include::header.inc.adoc[]
 
 Ziel: Kennenlernen der Zusammenarbeit im Team mit Hilfe von *Git* an einem gemeinsamen Repository auf *GitHub*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 3 - Teamarbeit: Merge-Konflikte
 
 ////
@@ -13,11 +15,11 @@ Ziel: Kennenlernen der Zusammenarbeit im Team mit Hilfe von *Git* an einem gemei
 Für die Bearbeitung der Aufgaben bilden Sie bitte Teams aus drei Personen. Entscheiden Sie, wer aus Ihrem Team der Verantwortliche für das Git-Repository ist.
 
 ====
-.Hinweise für ein nicht an der HTWD in Präsenz stattfindendes Praktikum
+.Hinweise zum Praktikum
 
 * Bilden Sie mit Ihren Kommilitonen Teams aus 2 bis 3 Personen.
 * Sind Sie nur zu zweit, teilen Sie sich in die Aufgaben für Person C rein.
-* Es empfiehlt sich für eine geeignete Kommunikation (Video-, Sprach- oder Textchat) in Ihrem Team zu sorgen. Einige Aufgaben sind so ausgelegt, dass Sie erst auf das Bearbeiten der anderen Teammitglieder warten oder sich absprechen müssen.
+* Einige Aufgaben sind so ausgelegt, dass Sie erst auf das Bearbeiten der anderen Teammitglieder warten oder sich absprechen müssen.
 ====
 
 .Rollen im Team:
@@ -26,8 +28,6 @@ Für die Bearbeitung der Aufgaben bilden Sie bitte Teams aus drei Personen. Ents
 
 .Zusammenarbeit im Team mit Git
 image::grafik_overview_git_teamarbeit.jpg["Zusammenspiel von Git, GitHub und AsciiDoc im Praktikum", width=800, link="images/grafik_overview_git_teamarbeit.jpg"]
-
-include::hinweise-windows-labor.inc.adoc[]
 
 
 {section-separator}

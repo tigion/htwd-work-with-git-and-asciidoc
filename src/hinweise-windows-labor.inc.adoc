@@ -1,6 +1,8 @@
 
-====
 .Hinweise zum Praktikum in den Windows-Laboren
+[%collapsible]
+====
+=====
 Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind zu jedem Praktikumsbeginn folgende Schritte durchzuführen:
 
 ****
@@ -15,7 +17,7 @@ Aufgrund der nicht gespeicherten Nutzer-Profile in den *Windows-Laboren*, sind z
 
 .Schritte zur Vorbereitung des Praktikums
 [%collapsible]
-=====
+======
 . Git-Konfiguration `C:\Users\<username>\.gitconfig` *wiederherstellen* oder anpassen:
 +
 .per Editor in der _.gitconfig_
@@ -69,5 +71,6 @@ Authentifizierung ...
 > git clone https://github.com/.../<repo-name>
 Authentifizierung ...
 ----
+======
 =====
 ====

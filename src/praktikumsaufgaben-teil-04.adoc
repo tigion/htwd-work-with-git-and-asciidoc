@@ -2,6 +2,8 @@ include::header.inc.adoc[]
 
 Ziel: Organisation von Aufgaben im Team mit Hilfe von *GitHub Issues* an einem gemeinsamen Repository auf *GitHub*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 4 - Teamarbeit: Issues
 
 ////
@@ -11,8 +13,6 @@ Ziel: Organisation von Aufgaben im Team mit Hilfe von *GitHub Issues* an einem g
 ////
 
 Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Repository *htwd-se-example-teamproject* aus dem letzten Praktikum. In Aufgabe 3 nehmen Sie Ihr Repository *htwd-se-example-project*.
-
-include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 

@@ -2,12 +2,12 @@ include::header.inc.adoc[]
 
 Ziel: Kennenlernen und Erstellen von Dokumenten mit der *AsciiDoc*-Syntax und das Anwenden des *Git*-Workflows zur Versionsverwaltung
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 2 - AsciiDoc
 
 .Überblick zum Git Workflow
 image::grafik_git_workflow.jpg[Überblick zum Git Workflow, width=800]
-
-include::hinweise-windows-labor.inc.adoc[]
 
 {section-separator}
 

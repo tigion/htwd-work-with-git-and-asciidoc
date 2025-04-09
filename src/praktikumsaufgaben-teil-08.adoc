@@ -2,6 +2,8 @@ include::header.inc.adoc[]
 
 Ziel: Vertiefung der Anwendung von *Branches* in *Git*
 
+include::hinweise-windows-labor.inc.adoc[]
+
 == Praktikumsaufgaben Teil 8 - Branches
 
 In den folgenden Aufgaben wird das Branching von Git genauer betrachtet.
