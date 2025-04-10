@@ -16,10 +16,10 @@ Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Re
 
 {section-separator}
 
-=== 1. Issues im Kontext der Projektarbeit #TODO#
+=== 1. Issues im Kontext der Projektplanung #TODO#
 
 [#image_github_openup]
-:imageTitle: GitHub Issues im Kontext der Projektarbeit
+:imageTitle: GitHub Issues im Kontext der Projektplanung
 :imageFile: grafik_github_openup.png
 .{imageTitle} #TODO#
 image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
