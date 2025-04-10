@@ -30,7 +30,7 @@ Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (t
 Folgend eine Variante der Abbildung mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
 
 ====
-.Abbildungsvariante in GitHub #TODO#
+.Abbildungsvariante in GitHub
 [cols="1,1,2"]
 |===
 | -      | GitHub    | Hinweise
@@ -131,8 +131,8 @@ Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
 * Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories, Projekten und Meilensteinen.
 
 :imageTitle: Übersicht der Issues
-:imageFile: screenshot_github_issues_overview.png
-.{imageTitle} #TODO#
+:imageFile: screenshot_github_issues_overview.webp
+.{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 =====
 ====
@@ -174,6 +174,7 @@ Ausführliche Informationen findet man unter folgenden Links:
 
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects[Planning and tracking with Projects]
 * https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-iteration-fields[About iteration fields - Create iterations to plan upcoming work]
+* https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/filtering-projects[Use filters to choose which items appear in your project's views]
 ======
 
 Folgend zwei Beispiele für eine Übersicht über alle Iterationen und eine fokussierte Sicht auf die aktuelle Iteration:
@@ -237,10 +238,12 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 . Mit dem Button kbd:[+ New view] können weitere alternative Sichten als *Table* oder *Bord* hinzugefügt werden. +
 Der Inhalt und das Aussehen der Views können über den kleinen kbd:[▼] neben dem View-Namen angepasst werden. Anpassungsmöglichkeiten wären: gruppieren, sortieren, filtern, extra Spalten und weiteres.
 . Vorschläge für hilfreiche Views:
-** *Overview*: Table view, Gruppierung: Iteration
-** *Current Iteration*: Board view, Filter: `iteration:@current`
-** *Current & Next Iteration*: Table view, Filter: `iteration:>=@current`, Gruppierung: Iteration, Sortierung: Status
-** *Backlog*: Table view, Filer: `no:iteration`
+** *Overview*: Table view, Gruppierung: Iteration, Filter: `label:"task"`
+** *Current Iteration*: Board view, Filter: `label:"task" iteration:@current`
+** *Current & Next Iteration*: Table view, Filter: `label:"task" iteration:>=@current`, Gruppierung: Iteration, Sortierung: Status
+** *Backlog*: Table view, Filer: `label:"task" no:iteration`
+
+// UND/ODER: `(label:"l1" label:"l2"), label:"l3"` ... Label 1 und 2 oder Label 3
 
 .*Workflows* anpassen:
 . Im Projekt oben rechts auf kbd:[...] klicken
@@ -327,7 +330,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 . Erstellen Sie ein neues Projekt *HTWD Beispielprojekt* mit einer ersten *Table* Sicht.
 
 . Richten Sie eine Sicht *Overview* (oder *Iterations*) ein.
-** Eigenschaften: Table view, Filter: `label:"work item"`, Gruppierung: Iteration
+** Eigenschaften: Table view, Filter: `label:"task"`, Gruppierung: Iteration
 
 
 . Erstellen Sie in der *Overview* Sicht vier *Tasks* als neue Issues mit dem Label `task`, wovon sich die *zwei ersten* auf die vorhandene User Story beziehen sollen. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
@@ -433,8 +436,8 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 ==== Aufgabe 2.3
 
-. Blenden Sie die Risiken in den anderen Sichten (Overview, Current Iteration) aus oder beschränken Sie die Anzeige auf Issues mit dem Label `work item`.
-** Filterzusatz: `label:"work item"` oder `-label:risk`
+. Blenden Sie die Risiken in den anderen Sichten (Overview, Current Iteration) aus oder beschränken Sie die Anzeige auf Issues mit dem Label `task`.
+** Filterzusatz: `label:"task"` oder `-label:risk`
 
 
 {section-separator}
