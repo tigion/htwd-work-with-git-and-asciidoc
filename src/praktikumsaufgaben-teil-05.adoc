@@ -20,8 +20,8 @@ Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Re
 
 [#image_github_openup]
 :imageTitle: GitHub Issues im Kontext der Projektplanung
-:imageFile: grafik_github_openup.png
-.{imageTitle} #TODO#
+:imageFile: grafik_github_projektplanung.png
+.{imageTitle}
 image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
 
 
@@ -50,15 +50,15 @@ a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
 
-| Defects   | Issue
+| Defect   | Issue
 a|
 * ...
 
-| Constraints   | Issue
+| Constraint   | ...
 a|
 * ...
 
-| #*Risks*#   | #*Issue*#
+| #*Risk*#   | #*Issue*#
 a|
 * ...
 
