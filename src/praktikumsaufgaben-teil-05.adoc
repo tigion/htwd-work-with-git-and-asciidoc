@@ -18,7 +18,7 @@ Die Bearbeitung der Aufgabe 1 und zum Teil in Aufgabe 2 erfolgt in Ihrem Team-Re
 
 === 1. Issues im Kontext der Projektplanung #TODO#
 
-[#image_github_openup]
+[#image_github_projektplanung]
 :imageTitle: GitHub Issues im Kontext der Projektplanung
 :imageFile: grafik_github_projektplanung.png
 .{imageTitle}
@@ -27,7 +27,7 @@ image::{imageFile}["{imageTitle}", width=1000, link="{imagesdir}/{imageFile}"]
 
 Mit *Issues* lassen sich in icon:github[] GitHub zu einem Repository Aufgaben (tasks), Verbesserungen (enhancements) und Fehler (bugs) sowie die Risiken (risks) verwalten (Siehe <<praktikumsaufgaben-teil-03.adoc#_3_github_issues, Issues>>). *Projects* helfen diese Issues zusätzlich zu organisieren, zu priorisieren und den Fortschritt im Blick zu halten.
 
-Folgend eine Variante der Abbildung mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_openup>>):
+Folgend eine Variante der Abbildung mit den Möglichkeiten von Issues und Projects von GitHub (Siehe auch <<#image_github_projektplanung>>):
 
 ====
 .Abbildungsvariante in GitHub
