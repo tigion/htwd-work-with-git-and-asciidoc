@@ -128,7 +128,7 @@ Macht euch mit Aufgabenlisten vertraut.
 
 .Aufgabe - icon:users[] Person A, B, C
 . Erstellen Sie jeweils eine neue *Issue* und verwenden Sie in der Beschreibung eine *Aufgabenliste*.
-. Wandeln Sie eine der *Teilaufgaben* in der Aufgabenliste in eine neue *Issue* um.
+. Wandeln Sie eine der *Teilaufgaben* in der Aufgabenliste in eine neue *Sub-Issue* oder *Issue* um.
 . Schauen Sie sich die eben erstellten Issues an.
 
 
