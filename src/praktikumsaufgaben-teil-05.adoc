@@ -45,7 +45,7 @@ a|
 * extra View
 * ...
 
-| #*Sprint* (Iteration)#   | #*Project*#
+| #*Iteration* (Sprint)#   | #*Project*#
 a|
 * Einteilung der Tasks in Iteration [1..n]
 * extra Spalte (Field, iteration)
@@ -60,7 +60,7 @@ a|
 a|
 * Priorität einer User Story
 * extra Spalte (Field)
-* z.B. nach _must have_, _could have_, _should have_, _won't have_
+* z.B. _must have_, _could have_, _should have_, _won't have_
 
 | #*Task*#   | #*Issue*#
 a|
@@ -112,14 +112,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 *Dabei ist zu beachten:*
 
 - Projekte und Meilensteine können wie Issues nach Fertigstellung geschlossen (bzw. wieder geöffnet) werden.
-- Issues können ebenfalls einen Fortschrittsbalken anzeigen, wenn im Kommentar Checklisten mit `- [ ] task` angelegt werden.
 - Issues können in Projekten zwischen den Zuständen mit Drag&Drop (Table View) oder durch bestimmte Schlüsselwörter (automatisiert, Status-Spalte) bewegt werden.
-
-////
-*Einschränkungen:*
-
-- GitHub bietet aktuell noch keine Möglichkeit Projekte einem Meilensteinen zuzuordnen. Die im Projekt enthaltenen Issues müssen von Hand, einzeln oder per Mehrfachauswahl, dem entsprechenden Meilenstein zugeordnet werden.
-////
 
 ====
 
@@ -127,17 +120,16 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 [%collapsible]
 ====
 =====
-Beispiel mit Issues, Labels und Zuordnung zu Projekten und Meilensteinen.
+Beispiel mit Issues, Labels und Zuordnung zu Projekten.
 
 * Priorisierung von Tasks (Issues) nach Wichtigkeit (bspw. hoch, mittel, niedrig):
 ** *hoch*: Tasks werden in die aktuelle Iteration aufgenommen
 ** *mittel*: Tasks werden in die aktuelle oder nächste Iteration aufgenommen
 ** *niedrig*: Tasks sind noch keiner Iteration zugeordnet oder dienen als Notiz einer weiteren Ausarbeitung.
 ** *Zeit* und *Ressourcen* spielen ebenfalls eine Rolle, ob die Zuteilung der Tasks auf die aktuelle bzw. folgenden Iterationen erfolgt.
-* Es ist sinnvoll den Issues (Tasks) Asignees (Nutzer, Role) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
+* Es ist sinnvoll den Issues (Tasks) Assignees (Nutzer) zuzuordnen, damit Klarheit über die Aufgabenzuteilung herrscht.
 * Für die Bezeichnungen der Issues hier im Beispiel als *User Story X* und *Task X* in Ihrem Repository bitte passendere verwenden.
-* Labels, die sich an den Rollen des OpenUP orientieren, helfen sie entsprechend zu filtern.
-* Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories, Projekten und Meilensteinen.
+* Die Issues dienen als Beispiele für die folgenden Hinweise zu User Stories und Projekten.
 
 :imageTitle: Übersicht der Issues
 :imageFile: screenshot_github_issues_overview.webp
@@ -198,7 +190,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 .{imageTitle}
 image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
-Damit so ein Projekt im Team genutzt werden kann, legt der Repository-Eigentümer das neue Projekt an und läd die anderen Teammitglieder, wie auch zum Repository, dazu ein.
+Damit so ein Projekt im Team genutzt werden kann, legt der Repository-Eigentümer das neue Projekt an und lädt die anderen Teammitglieder, wie auch zum Repository, dazu ein.
 
 .Ein neues *Projekt* anlegen:
 . Neue Projekte werden über den "Account-Button > Your projects" gefolgt von kbd:[New project] angelegt:
@@ -451,7 +443,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 {section-separator}
 
-=== 3. Issue Templates (optional)
+=== 3. Issue Templates #TODO#
 
 // TODO: Templates für Issues (User Story, Task, Risk, etc.)
 WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
