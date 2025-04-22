@@ -1,6 +1,6 @@
 include::header.inc.adoc[]
 
-Ziel: Organisation von Aufgaben, Risiken und Prozessen im Team mit Hilfe von *Issues*, *Projects* und des *OpenUP* an einem gemeinsamen Repository auf *GitHub*
+Ziel: Organisation von Aufgaben, Risiken und Prozessen im Team mit Hilfe von GitHub *Issues* und *Projects* an einem gemeinsamen Repository.
 
 include::hinweise-windows-labor.inc.adoc[]
 
@@ -35,7 +35,17 @@ Folgend eine Variante der Abbildung mit den Möglichkeiten von Issues und Projec
 |===
 | -      | GitHub    | Hinweise
 
-| #*Iteration*#   | #*Project*#
+| #Product Backlog# | Project
+a|
+* extra View
+* ...
+
+| #Sprint Backlog# | Project
+a|
+* extra View
+* ...
+
+| #*Sprint* (Iteration)#   | #*Project*#
 a|
 * Einteilung der Tasks in Iteration [1..n]
 * extra Spalte (Field, iteration)
@@ -44,6 +54,13 @@ a|
 a|
 * Kurze Beschreibung einer Anforderung
 * Noch kein konkreter Task
+
+| #Priority#
+| Project
+a|
+* Priorität einer User Story
+* extra Spalte (Field)
+* z.B. nach _must have_, _could have_, _should have_, _won't have_
 
 | #*Task*#   | #*Issue*#
 a|
@@ -83,14 +100,6 @@ a|
 | Project Note
 a|
 * Karte im Projekt vom Type Notiz
-
-.2+| Role
-| Label
-a|
-* Analyst, Developer, Project Manager, ...
-| Assignee
-a|
-* Legt zu einer Issue den Bearbeiter/Verantwortlichen (Nutzer) fest
 |===
 
 Mit einem *GitHub Project* und verschiedenen Sichten (Views) ist der Projektfortschritt mit seinen Iterationen und Tasks (Issues) für alle Teammitglieder immer ersichtlich. Folgend ein Beispiel:
