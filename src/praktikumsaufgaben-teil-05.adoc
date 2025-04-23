@@ -399,7 +399,7 @@ a|
 * Bewältigungsstrategie
 | #*Project*#
 a|
-* Sicht Liste der Risiken)
+* Sicht Liste der Risiken
 * Felder für Risikostatus und Risikostufe
 * Sicht Risk-Board
 |===
@@ -445,7 +445,7 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 {section-separator}
 
-=== 3. Issue Templates #TODO#
+=== 3. Issue Templates
 
 // TODO: Templates für Issues (User Story, Task, Risk, etc.)
 WARNING: Diese Aufgabe ist noch nicht vollständig ausgearbeitet. (Hinweise im Praktikum beachten!)
@@ -456,7 +456,11 @@ Diese Vorlage kann dann beim Erstellen einer Issue ausgewählt werden.
 - Repository-Einstellungen -> General -> Features -> Issues -> kbd:[Set up templates]
 ** Die Templates werden unter dem Verzeichnis `.github/ISSUE_TEMPLATE/` im Repository gespeichert und mit versioniert.
 
-.Beispiel für Template content eines Risiko Issue-Templates
+==== Aufgabe 3.1
+
+. Legen Sie für die Risk-Issues eine Template names *Risk template* mit folgendem Inhalt und dem Label *Risk* an.
++
+.Beispiel-Inhlalt eines Risiko Issue-Templates
 [source,md]
 ----
 ## Risikobeschreibung
@@ -465,6 +469,8 @@ Diese Vorlage kann dann beim Erstellen einer Issue ausgewählt werden.
 ## Bewältigungsstrategie
 <!-- Please describe the mitigation strategy. -->
 ----
+. Legen Sie für die User Story- und Task-Issues jeweils ein weiteres Template mit einem passenden Label an.
+. Testen Sie Ihre Templates, in dem Sie jeweils eine User Story, eine Task oder ein Risiko Issue erstellen.
 
 ////
 {section-separator}
