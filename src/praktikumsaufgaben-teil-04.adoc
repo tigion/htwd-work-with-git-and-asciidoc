@@ -93,9 +93,13 @@ Korrigiere falschen Teamnamen (Issue #6)
 ----
 . Schauen Sie sich die Issues (Open & Closed) und die dazu entstandenen Kommentare und Verweise durch die Referenzen an.
 
-==== Aufgabe 1.3 - Aufgabenlisten in Issues
+==== Aufgabe 1.3 - Sub-Issues
 
-In den Issue-Beschreibungen können auch Aufgabenlisten angelegt werden. Dies können Teilschritte einer Issue sein oder eine Art Check-Liste, ob bspw. alle genannten Teammitglieder diese erfüllt haben. Bei Bedarf können Teilaufgaben auch in neue Issues umgewandelt werden.
+- #TODO#
+
+==== Aufgabe 1.4 - Aufgabenlisten in Issues
+
+In den Issue-Beschreibungen können auch Aufgabenlisten angelegt werden. Dies können Teilschritte einer Issue sein oder eine Art Check-Liste, ob bspw. alle genannten Teammitglieder diese erfüllt haben. Bei Bedarf können Teilaufgaben auch in Sub-Issues oder neue Issues umgewandelt werden.
 
 Siehe auch: https://docs.github.com/de/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists[Informationen zu Aufgabenlisten]
 

@@ -336,9 +336,9 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 
 . Richten Sie eine Sicht *User Stories* ein, welche nur die Issues mit dem Label `user story` anzeigt und nehmen Sie die vorhandene *User Story* in das Projekt auf.
 
-. Erstellen Sie in der *Overview* Sicht vier *Tasks* als neue Issues mit dem Label `task`, wovon sich die *zwei ersten* auf die vorhandene User Story beziehen sollen (als Sub-Issue zur User Story oder als Referenz `#<number>`). Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
+. Erstellen Sie ausgehend von der *User Story* zwei neue *Tasks* als neue Sub-Issues mit dem Label `task`. Legen Sie sich jeweils als zugeordneter Nutzer fest. Schauen Sie sich Ihre *User Story* (Issue) an, ob die Referenzen aufgetaucht sind. Bspw.:
 +
-.Tasks
+.User Story Sub-Tasks
 [cols="1,4,8"]
 |===
 | Nr. | Title | Description
@@ -350,6 +350,14 @@ image::{imageFile}["{imageTitle}", width=800, link="{imagesdir}/{imageFile}"]
 | 2
 | *Ausgelagerte Dateiinhalte einbinden*
 | Einbinden (include) der Dateien für die Software und Mitglieder in die Dokumentation.
+|===
+
+. Erstellen Sie in der *Overview* Sicht zwei weitere *Tasks* als neue Issues mit dem Label `task`. Legen Sie sich jeweils als zugeordneter Nutzer fest.  Bspw.:
++
+.Tasks
+[cols="1,4,8"]
+|===
+| Nr. | Title | Description
 
 | 3
 | *Datei .gitignore anlegen*
@@ -369,9 +377,7 @@ Terminanfrage per E-Mail oder Telefon an den Auftraggeber.
 . Weisen Sie *zwei* Tasks der *aktuellen Iteration* zu.
 
 . Richten Sie eine Sicht *Current Iteration* ein.
-** Eigenschaften: Board view, Filter: `iteration:@current label:task"`
-
-. Richten Sie eine Sicht *User Stories* als Tabelle ein, welche nur die Issues mit dem Label `user story` anzeigt und nehmen Sie die vorhandene *User Story* in das Projekt auf.
+** Eigenschaften: Board view, Filter: `iteration:@current label:task`
 
 . Schließen Sie ein *Task* (Issue) in der Issue-Ansicht (oder per Commit) und schauen Sie sich die Änderung im Projekt bzw. den enthaltenen Views (Sichten) an.
 
