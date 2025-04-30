@@ -91,6 +91,7 @@ NOTE: Wird die Diagrammunterstützung von Asciidoctor nicht benötigt, muss *jav
 | asciidoctor-pdf | https://asciidoctor.org/docs/asciidoctor-pdf/[Asciidoctor PDF] is a native PDF converter for AsciiDoc
 | rouge | https://github.com/rouge-ruby/rouge[Rouge] is a pure Ruby syntax highlighter. Use in AsciiDoc documents the attribute `:source-highlighter: rouge`.
 | asciidoctor-diagram | https://asciidoctor.org/docs/asciidoctor-diagram/[Asciidoctor Diagram] is a set of Asciidoctor extensions that enable you to add diagrams, which you describe using plain text, to your AsciiDoc document.
+| asciidoctor-diagram-plantuml | PlantUML Erweiterung für asciidoctor-diagram |
 | graphviz | https://graphviz.org/[Graphviz] is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks.
 |===
 
@@ -108,57 +109,57 @@ Tests im Terminal, ob Ruby, Java, Asciidoctor, Graphviz und benötigte RubyGems 
 [source,console]
 ----
 $ ruby -v
-ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]
+ruby 3.4.3 (2025-04-14 revision d0b7e5b6a0) +PRISM [x86_64-darwin23]
 ----
 
 .Java
 [source,console]
 ----
 $ java --version
-openjdk 17.0.2 2022-01-18
-OpenJDK Runtime Environment (build 17.0.2+8-86)
-OpenJDK 64-Bit Server VM (build 17.0.2+8-86, mixed mode, sharing)
+openjdk 23.0.2 2025-01-21
+OpenJDK Runtime Environment Homebrew (build 23.0.2)
+OpenJDK 64-Bit Server VM Homebrew (build 23.0.2, mixed mode, sharing)
 ----
 
 .Asciidoctor
 [source,console]
 ----
 $ asciidoctor -v
-Asciidoctor 2.0.17 [https://asciidoctor.org]
-Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+Asciidoctor 2.0.23 [https://asciidoctor.org]
+Runtime Environment (ruby 3.4.3 (2025-04-14 revision d0b7e5b6a0) +PRISM [x86_64-darwin23]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
 ----
 
 .Asciidoctor-PDF (falls extra vorhanden)
 [source,console]
 ----
 $ asciidoctor-pdf -v
-Asciidoctor PDF 1.6.2 using Asciidoctor 2.0.17 [https://asciidoctor.org]
-Runtime Environment (ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [arm64-darwin21]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
+Asciidoctor PDF 2.3.19 using Asciidoctor 2.0.23 [https://asciidoctor.org]
+Runtime Environment (ruby 3.4.3 (2025-04-14 revision d0b7e5b6a0) +PRISM [x86_64-darwin23]) (lc:UTF-8 fs:UTF-8 in:UTF-8 ex:UTF-8)
 ----
 
 .Graphviz Dot
 [source,console]
 ----
 $ dot -V
-dot - graphviz version 3.0.0 (20220226.1711)
+dot - graphviz version 12.2.1 (20241206.2353)
 ----
 
 .RubyGems
 [source,console]
 ----
 $ gem list | grep rouge
-rouge (3.28.0)
+rouge (4.5.1)
 
 $ gem list | grep asciidoctor-pdf
-asciidoctor-pdf (1.6.2)
+asciidoctor-pdf (2.3.19)
 
 $ gem list | grep asciidoctor-diagram
-asciidoctor-diagram (2.2.1)
-asciidoctor-diagram-ditaamini (1.0.1)
-asciidoctor-diagram-plantuml (1.2022.1)
+asciidoctor-diagram (3.0.0)
+asciidoctor-diagram-plantuml (1.2025.2)
+...
 
 $ gem list | grep text-hyphen
-text-hyphen (1.4.1)
+text-hyphen (1.5.0)
 ----
 
 ===== icon:windows[] Windows
@@ -177,6 +178,7 @@ $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
+$ gem install asciidoctor-diagram-plantuml
 $ gem install text-hyphen
 ----
 
@@ -235,6 +237,7 @@ $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
+$ gem install asciidoctor-diagram-plantuml
 $ gem install text-hyphen
 ----
 
@@ -342,6 +345,7 @@ $ gem install asciidoctor
 $ gem install asciidoctor-pdf
 $ gem install rouge
 $ gem install asciidoctor-diagram
+$ gem install asciidoctor-diagram-plantuml
 $ gem install text-hyphen
 ----
 
