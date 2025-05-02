@@ -45,6 +45,10 @@ a|
 * extra View
 * ...
 
+| #Grobe/Feine Anforderung#   | Issue + Label
+a|
+* Epic, User Story, Feature, Spike, Defect, Task, etc. (siehe Vorlesung)
+
 | #*Iteration* (Sprint)#   | #*Project*#
 a|
 * Einteilung der Tasks in Iteration [1..n]
@@ -66,10 +70,6 @@ a|
 a|
 * Konkrete Aufgabe/Task
 * Wenn aus User Story entstanden, Verweis im Kommentar auf Issue-ID der zugehörigen User Story angeben
-
-| Defect   | Issue
-a|
-* ...
 
 | Constraint   | ...
 a|
