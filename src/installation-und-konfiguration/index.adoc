@@ -91,7 +91,7 @@ NOTE: Wird die Diagrammunterstützung von Asciidoctor nicht benötigt, muss *jav
 | asciidoctor-pdf | https://asciidoctor.org/docs/asciidoctor-pdf/[Asciidoctor PDF] is a native PDF converter for AsciiDoc
 | rouge | https://github.com/rouge-ruby/rouge[Rouge] is a pure Ruby syntax highlighter. Use in AsciiDoc documents the attribute `:source-highlighter: rouge`.
 | asciidoctor-diagram | https://asciidoctor.org/docs/asciidoctor-diagram/[Asciidoctor Diagram] is a set of Asciidoctor extensions that enable you to add diagrams, which you describe using plain text, to your AsciiDoc document.
-| asciidoctor-diagram-plantuml | PlantUML Erweiterung für asciidoctor-diagram |
+| asciidoctor-diagram-plantuml | PlantUML Erweiterung für asciidoctor-diagram
 | graphviz | https://graphviz.org/[Graphviz] is open source graph visualization software. Graph visualization is a way of representing structural information as diagrams of abstract graphs and networks.
 |===
 
