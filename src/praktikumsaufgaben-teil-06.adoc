@@ -31,12 +31,10 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 ****
 ////
 
-[NOTE]
-====
-* Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
-====
-
-include::hinweise-windows-labor.inc.adoc[]
+// [NOTE]
+// ====
+// * Seit https://plantuml.com/de/changes[V1.2022.2 (5 Mars, 2022)] verwendet PlantUML einen neuen Standardstil (_default style_) und eine https://plantuml.com/de/style-evolution[Stilanpassung] ähnlich CSS.
+// ====
 
 
 {section-separator}
@@ -397,11 +395,11 @@ Schauen Sie sich auf https://crashedmind.github.io/PlantUMLHitchhikersGuide/C4/C
 =====
 
 .Layout-Optionen
-```
+----
 LAYOUT_TOP_DOWN or LAYOUT_LEFT_RIGHT <1>
 LAYOUT_WITH_LEGEND <2>
 LAYOUT_AS_SKETCH <3>
-```
+----
 <1> Diagrammausrichtung
 <2> Legende anzeigen
 <3> Darstellungsstil skizzenhaft
