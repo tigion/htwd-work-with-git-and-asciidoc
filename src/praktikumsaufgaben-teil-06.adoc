@@ -18,6 +18,7 @@ plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagra
 * https://plantuml.com/de/sitemap-language-specification[PlantUML - Language specification]
 * https://crashedmind.github.io/PlantUMLHitchhikersGuide/[The Hitchhiker’s Guide to PlantUML]
 * https://real-world-plantuml.com/[Seite mit verschiedene PlantUML Beispielen]
+* https://www.planttext.com/[Online PlantUML Editor]
 
 ////
 ****
@@ -327,8 +328,8 @@ Hilfreich für das Layout bzw. zur Positionierung von Elementen ist auch ein Bli
 * Pro Zeile wird immer ein Elemente definiert.
 * Beziehungen können immer nur für zwei beteiligte Elemente pro Zeile angegeben werden. (Bspw. `A -- B` und `B -- C` statt `A -- B -- C`)
 * Die Hintergrundfarbe von Elemente kann durch Angabe eine Hexadezimalwertes festgelegt werden: `class MyClass #f00` (Siehe auch https://plantuml.com/de/color[Colors])
-** Weitere Möglichkeiten bieten https://plantuml.com/de/skinparam[Skinparam Befehl] und https://plantuml.com/de/style-evolution[Style (or CSS like style)]
-** Mit `skinparam shadowing false` können bspw. Schatten deaktiviert werden.
+** Weitere Möglichkeiten das Aussehen anzupassen bieten die https://plantuml.com/de/style-evolution[CSS styles]
+// ** Mit `skinparam shadowing false` können bspw. Schatten deaktiviert werden.
 * Stereotypen werden nach der Elementbezeichnung angegeben. Bsp.: `+class MyClass <<MyStereotype>>+`
 * Kommentare werden einzeilig mit `'` eingeleitet und mehrzeilig in `/' ... '/` eingeschlossen.
 * Standardmäßig werden Diagramme von oben nach unten aufgebaut. Je nach Diagramm kann auch ein Aufbau von links nach rechts besser aussehen.
