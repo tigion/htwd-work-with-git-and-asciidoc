@@ -354,7 +354,9 @@ note right of {variable1} : {variable2}
 
 ==== Aufgabe 1 - Erstes Diagramm
 
-. Erstellen Sie auf *GitHub* einen *Fork* des Vorführprojekts https://github.com/tigion/htwd-se-practical-asciidoc-diagram-demo[htwd-se-practical-asciidoc-diagram-demo] und *clonen* Ihr Repository in das Verzeichnis, in dem ihre Repositories aus dem Praktikum liegen.
+. Erstellen Sie auf *GitHub* ein neues Repository vom Template des Vorführprojektes https://github.com/tigion/htwd-se-practical-asciidoc-diagram-demo[htwd-se-practical-asciidoc-diagram-demo].
+
+. *Clonen* Sie das eben erstellte Repository auf Ihren Rechner. Am besten in das Verzeichnis, in dem ihre Repositories aus dem Praktikum liegen.
 
 . Öffnen Sie das Projekt/Repository in Visual Studio Code und passen Sie folgende Einstellung an:
 ** AsciiDoc -> Extensions: *Enable Kroki*: icon:check-square-o[] (aktiviert)
