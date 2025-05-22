@@ -6,7 +6,7 @@ note right: The first <del>Avenger</del> Activity
 
 if (Some Test) then (yes)
   :Some Activity;
-  #LightBlue:Object] /'idea: activity as object flow'/
+  #LightBlue:Object; /'idea: activity as object flow'/
   :Another Activity;
 else (no)
   :Something else;
