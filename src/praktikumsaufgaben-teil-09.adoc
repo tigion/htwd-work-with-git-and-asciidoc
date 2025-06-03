@@ -284,7 +284,7 @@ $ git clone ...
 +
 ----
 $ git checkout -b tigion-main main
-$ git pull https://github.com/tigion/htw-playground-fork-colors.git main
+$ git pull https://github.com/tigion/htwd-playground-fork-colors.git main
 ----
 . In den eigenen _main_-Branch wechseln und den _tigion-main_-Branch hinein mergen:
 +
@@ -384,18 +384,18 @@ NOTE: Ist der Pull-Request vom Repository-Eigentümer erfolgreich übernommen bz
 In dieser Aufgabe wollen wir eine Änderung an einem öffentlichen (public) Repository auf GitHub vornehmen bzw. vorschlagen, in welchem wir keine Bearbeitungsrechte haben. Dazu benötigen wir einen *Fork* des betreffenden Repositories.
 
 ====
-Als Beispiel soll das Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htw-playground-fork-colors/[Fork Colors] darstellt.
+Als Beispiel soll das Demo-Projekt https://github.com/tigion/htwd-playground-fork-colors[htwd-playground-fork-colors] dienen, welches anhand einer JSON-Datei Farbkreise auf der Webseite https://tigion.github.io/htwd-playground-fork-colors/[Fork Colors] darstellt.
 ====
 
-. Legen Sie auf GitHub über den kbd:[Fork]-Button einen **Fork** vom https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] Projekt an.
+. Legen Sie auf GitHub über den kbd:[Fork]-Button einen **Fork** vom https://github.com/tigion/htwd-playground-fork-colors[htwd-playground-fork-colors] Projekt an.
 . **Clonen** Sie die in Ihrem Account entstandene Kopie lokal auf Ihren Rechner.
 . (optional) Erstellen Sie einen extra Branch für diese Änderung und wechseln Sie in diesen.
-. Nehmen Sie lokal **eine** Änderung laut https://github.com/tigion/htw-playground-fork-colors#readme[*README*] entsprechend *Ihres Platzes im Praktikum* (siehe `_comment`-Attribute) in der Datei */data/colors.json* vor.
+. Nehmen Sie lokal **eine** Änderung laut https://github.com/tigion/htwd-playground-fork-colors#readme[*README*] entsprechend *Ihres Platzes im Praktikum* (siehe `_comment`-Attribute) in der Datei */data/colors.json* vor.
 +
 IMPORTANT: Die Beachtung der Platznummer verhindert unnötige Merge-Konflikte. Alternativ müssten Sie Ihren Fork erst aktualisieren und ihn für eine neue Version händisch auflösen.
 . Nehmen Sie die Änderung als **neue Version** in Ihr Repository auf und **pushen** Sie in Ihr _remote_-Repository auf GitHub.
 . Erzeugen Sie jetzt einen **Pull-Request** auf das ursprüngliche Repository.
-. Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htw-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
+. Nach erfolgreicher Übernahme Ihrer Änderung, erscheint auf https://tigion.github.io/htwd-playground-fork-colors/[Fork Colors (Demo Seite)] ein zusätzlicher Farbkreis mit Ihren Angaben.
 . (optional) Jetzt können Sie den Fork auf GitHub und lokal löschen.
 
 
