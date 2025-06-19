@@ -4,7 +4,7 @@ Ziel: Einrichtung und Anwendung der textbasierten Diagrammgenerierung mit *Ascii
 
 include::hinweise-windows-labor.inc.adoc[]
 
-== Praktikumsaufgaben Teil 5 - Diagramme 1
+== Praktikumsaufgaben Teil 6 - Diagramme 1
 
 In diesem Aufgabenteil betrachten wir die Möglichkeit der textbasierten Diagrammgenerierung mit Asciidoctor und der textuellen Notation http://plantuml.com/de/guide[PlantUML].
 
