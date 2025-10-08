@@ -1,38 +1,62 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# cd & check
+# This script builds the HTML files from the AsciiDoc files
+# to the build folder and adds an extra sidemap.
+
+# Sets the src and build folder.
+source_folder="src"
+build_folder="build"
+
+# Ensures that the script runs from its own folder.
 if ! cd "$(dirname "$0")"; then exit; fi
 
-# check TODO
-buildFolder="build"
-sourceFolder="src"
+# Checks if Asciidoctor is installed.
+if ! command -v asciidoctor &>/dev/null; then
+  echo "Error: The asciidoctor command is not installed. Please install it first."
+  exit 1
+fi
 
-# clear 'build' folder
-#rm -rf "$buildFolder"; mkdir "$buildFolder"
-##rm -rf `ls -Ad "$buildFolder"/{*,.*}`
-###rm -rf "$buildFolder"/{..?*,.[!.]*,*}
-printf "Clear '%s' folder: ", "$buildFolder"
-mkdir -p "$buildFolder"
-if [ -d "$buildFolder" ]; then
-  find "$buildFolder" -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
+# Checks if the required Asciidoctor libraries are installed.
+error=0
+for gem_name in "asciidoctor-diagram" "asciidoctor-diagram-plantuml"; do
+  if ! gem list -i "$gem_name" &>/dev/null; then
+    echo "Error: The $gem_name gem is not installed. Please install it first."
+    echo "> gem install $gem_name"
+    error=1
+  fi
+done
+if [ $error -ne 0 ]; then exit 1; fi
+
+# Checks the src folder.
+if [ ! -d "$source_folder" ]; then
+  echo "Error: Source folder '$source_folder' does not exist."
+  exit 1
+fi
+
+# Cleans or creates the build folder.
+printf "Clean '%s' folder: " "$build_folder"
+mkdir -p "$build_folder"
+if [ -d "$build_folder" ]; then
+  find "$build_folder" -mindepth 1 -maxdepth 1 -exec rm -rf {} \;
 else
-  echo "Error: Can't open '${buildFolder}' directory!"
-  exit
+  echo "Error: Build folder '${build_folder}' does not exist or cannot be created."
+  exit 1
 fi
 echo "done"
 
-# asciidoctor: generate html files in the 'build' folder
-attributes="-a toc=left"
-resources="-r asciidoctor-diagram"
+# Generates the HTML files from the AsciiDoc files
+# in the src folder to the build folder.
 echo "Generate HTML files:"
-find "$sourceFolder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "$buildFolder" {} \;
+attributes="-a toc=left"
+required_libs="-r asciidoctor-diagram"
+find "$source_folder" -maxdepth 1 -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $required_libs -D "$build_folder" {} \;
 attributes="-a toc=auto"
-specialSubFolder="faq"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
-specialSubFolder="installation-und-konfiguration"
-find "${sourceFolder}/${specialSubFolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $resources -D "${buildFolder}/${specialSubFolder}" {} \;
+for special_subfolder in "faq" "installation-und-konfiguration"; do
+  find "${source_folder}/${special_subfolder}" -type f -name "*.adoc" -not -name "*.inc.adoc" -exec echo "  "{} \; -exec asciidoctor $attributes $required_libs -D "${build_folder}/${special_subfolder}" {} \;
+done
+echo "done"
 
-# sed: add sitemap to html files in 'build' folder
+# Adds an extra sitemap to the HTML files in 'build' folder:
 search='<li><a href="#sitemap"><span class="icon"><i class="fa fa-sitemap"><\/i><\/span> Seitenübersicht<\/a><\/li>'
 replace='\
   <li><span style="color: #7a2518"><br \/><span class="icon"><i class="fa fa-sitemap"><\/i><\/span> Seitenübersicht<\/span><\/li>\
@@ -56,38 +80,36 @@ replace='\
   <li><a href="praktikumsaufgaben-teil-11.html">Teil 11 - GitHub Actions<\/a><\/li>\
   <\/li>\
 '
-
-printf "Replace text: "
+printf "Add extra sidemap: "
 if [ "$(uname -s)" = "Darwin" ]; then
-  find "$buildFolder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
+  find "$build_folder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
 else
-  find "$buildFolder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
+  find "$build_folder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
 fi
 echo "done"
 
-# add preview warning
-gitBranch=$(git rev-parse --abbrev-ref HEAD)
-if [ "$gitBranch" = "next" ]; then
+# Adds a preview warning if in 'next' branch.
+git_branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$git_branch" = "next" ]; then
   search='<div id="header">'
   replace='<div id="cz_preview_warning" style="position: fixed;padding: 15px;background-color: rgba(255,244,0,.9);right: -130px;top: 15px;z-index: 1000;width: 400px;text-align: center;transform: rotate(35deg);border: 3px dashed #e00;">PREVIEW<br \/><a href="..\/arbeiten-mit-git-und-asciidoc\/" style="font-size: 10px;">Come to the productive side!<\/a><\/div><div id="header">'
   printf "Add preview warning: "
   if [ "$(uname -s)" = "Darwin" ]; then
-    find "$buildFolder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
+    find "$build_folder" -type f -name "*.html" -exec sed -i '' "s/${search}/${replace}/g" {} \; #macOS
   else
-    find "$buildFolder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
+    find "$build_folder" -type f -name "*.html" -exec sed -i "s/${search}/${replace}/g" {} \; #Linux
   fi
   echo "done"
 fi
 
-# copy additionally folders and files to 'build' folder
-printf "Copy additionally files: "
-find "$sourceFolder" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" -o -name "faq" -o -name "installation-und-konfiguration" \) -exec cp -r {} "${buildFolder}/" \;
-find "${sourceFolder}/faq" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" \) -exec cp -r {} "${buildFolder}/faq/" \;
-find "${sourceFolder}/installation-und-konfiguration" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" \) -exec cp -r {} "${buildFolder}/installation-und-konfiguration/" \;
+# Copies additional folders and files to the build folder.
+printf "Copy additional files: "
+find "$source_folder" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" -o -name "faq" -o -name "installation-und-konfiguration" \) -exec cp -r {} "${build_folder}/" \;
+find "${source_folder}/faq" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" \) -exec cp -r {} "${build_folder}/faq/" \;
+find "${source_folder}/installation-und-konfiguration" -mindepth 1 -maxdepth 1 -not \( -name "*.adoc" -o -name "*docinfo*" -o -name ".*" -o -name "plantuml" \) -exec cp -r {} "${build_folder}/installation-und-konfiguration/" \;
 echo "done"
 
-# check options
-# deploy
-if [ "$1" = "--deploy" ] || [ "$1" = "-d" ]; then
+# Runs the deploy script if needed.
+if [ "$1" = "--deploy" ]; then
   ./deploy.sh
 fi
