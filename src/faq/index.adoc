@@ -3,7 +3,8 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 :toc:
 :toclevels: 2
 :icons: font
-:source-highlighter: rouge
+// :source-highlighter: rouge
+:source-highlighter: highlight.js
 :xrefstyle: full
 :experimental:
 :!example-caption:
@@ -34,6 +35,7 @@ Folgend eine Variante für das Standardthema von Asciidoctor mit den selbst geho
 
 . Es werden zwei Dokumenten-Attribute benötigt:
 +
+[source,asciidoc]
 ----
 :!webfonts: <1>
 :docinfo: shared-head <2>
@@ -44,6 +46,7 @@ Folgend eine Variante für das Standardthema von Asciidoctor mit den selbst geho
 . Eine eigene Stylesheet-Anpassung (Link zur Stylesheet-Datei) dem Projekt mit der Datei _docinfo.html_ mitgeben:
 +
 .docinfo.html
+[source,html]
 ----
 <link rel="stylesheet" media="screen" type="text/css" href="css/fonts.css" />
 ----
@@ -91,6 +94,7 @@ open-sans-v29-latin-regular.woff2
 .Inhalt der fonts.css:
 [%collapsible]
 ====
+[source,css]
 ----
 /* open-sans-300 - latin */
 @font-face {
@@ -258,6 +262,7 @@ In der Asciidoctor-Dokumentation findet man unter https://asciidoctor.org/docs/u
 
 Folgend ein paar ausgewählte Dokument-Attribute, die die standardmäßig in englisch vorgegebene Beschriftung umbenennen:
 
+[source,asciidoc]
 ----
 :toc-title: Inhaltsverzeichnis
 :table-caption: Tabelle
@@ -270,6 +275,7 @@ Alternativ lassen sich diese auch sprachabhängig oder angepasst aus dem Asciido
 2. In dieses Verzeichnis werden aus dem https://github.com/asciidoctor/asciidoctor/tree/master/data/locale[Asciidoctor-Repository] die Dateien _attributes.adoc_ und _attributes-de.adoc_ kopiert.
 3. Dokument-Attribute wir folgt ergänzen:
 +
+[source,asciidoc]
 ----
 :lang: de
 \include::locale/attributes.adoc[]
@@ -295,6 +301,7 @@ Weitere Hinweise und Varianten (bspw. Tags) findet man im offiziellen https://as
 === Wie kann ich einen ausklappbaren Block erstellen?
 
 .Syntax mit aufklappbarem Block
+[source,asciidoc]
 -----
 .Ergebnis <1>
 [%collapsible] <2>
@@ -313,8 +320,13 @@ Weitere Hinweise und Varianten (bspw. Tags) findet man im offiziellen https://as
 ====
 [source,c]
 ----
-fgets(vBuf, 128, stdin);
-x = atof(vBuf);
+#include <stdio.h>
+
+int main(int argc, char* argv[])
+{
+    printf("Hello, World!\n");
+    return 0;
+}
 ----
 ====
 
@@ -327,12 +339,14 @@ Um Schreibfehler beim mehrfachen Verwenden der Angaben eines Bildes bei der Einb
 [%collapsible]
 ====
 =====
+[source,asciidoc]
 ----
 :imageTitle: Ich bin ein Bildtitel <1>
 :imageFile: image-file.jpg <2>
 :imageWidth: 800 <3>
 image::{imageFile}[title="{imageTitle}", alt="{imageTitle}", width={imageWidth}] <5> <6>
 ----
+[source,asciidoc]
 ----
 :imageTitle: Ich bin ein Bildtitel <1>
 :imageFile: image-file.jpg <2>
@@ -356,11 +370,13 @@ image::{imageFile}[title="{imageTitle}", alt="{imageTitle}", id="{imageID}", wid
 [%collapsible]
 ====
 =====
+[source,asciidoc]
 ----
 :diagramTitle: Asciidoctor mit PlantUML <1>
 :diagramFile: asciidoctor-with-plantuml <2>
 plantuml::{plantumlsdir}/{diagramFile}.puml[title="{diagramTitle}", alt="{diagramTitle}", format="svg", target="{diagramsdir}/{diagramFile}"] <5>
 ----
+[source,asciidoc]
 ----
 :diagramTitle: Asciidoctor mit PlantUML <1>
 :diagramFile: asciidoctor-with-plantuml <2>
@@ -389,12 +405,14 @@ Damit Silbentrennung in den exportierten PDF-Dokumenten angewendet wird, muss da
 
 . Vorbereitung:
 +
+[source,console]
 ----
 $ gem install text-hyphen
 ----
 
 . Dokumentenattribute:
 +
+[source,asciidoc]
 ----
 :lang: DE
 :hyphens:
@@ -411,7 +429,7 @@ Am einfachsten kann man Bilder nebeneinander als *inline-Makro* (Variante 1) aus
 ====
 =====
 .Code:
-[source]
+[source,asciidoc]
 ----
 image:test.jpg[test, width=200]
 image:test.jpg[test, width=200]
@@ -434,7 +452,7 @@ Möchte man zusätzlich die Abbildungsbezeichnung mit ausgeben, wofür das *bloc
 NOTE: Diese Variante funktioniert nur für die Generierung von HTML-Dokumenten. In PDFs werden Sie untereinander angeordnet.
 
 .Code:
-[source]
+[source,asciidoc]
 ----
 [.clearfix] <1>
 --
@@ -468,7 +486,7 @@ image::test.jpg[test, width=200, float="left"]
 ====
 =====
 .Code:
-[source]
+[source,asciidoc]
 ----
 [%autowidth, frame=none, grid=none, cols="3*a"] <1>
 |===
@@ -541,6 +559,7 @@ Damit das System bei zwischengespeicherten Logindaten (Passwortmanager, Schlüss
 
 Direkt beim Clonen des Repositories:
 
+[source,console]
 ----
 $ git clone https://<USERNAME>@github.com/username/repository.git
 ----
@@ -549,6 +568,7 @@ Oder nachträglich in der Konfiguration:
 
 * Das Kommando `git remote set-url` ändert die vorhandene Remote-URL eines Repositories:
 +
+[source,console]
 ----
 $ git remote -v
 origin	https://github.com/username/repository.git (fetch)
@@ -559,6 +579,7 @@ $ git remote set-url origin https://<USERNAME>@github.com/username/repository.gi
 
 * Alternativ kann die Konfiguration mit `git config` angepasst werden:
 +
+[source,console]
 ----
 $ git config remote.origin.url
 github.com/username/repository.git
@@ -569,6 +590,7 @@ $ git config remote.origin.url <USERNAME>@github.com/username/repository.git
 === Was ist bei mehreren Git-Identitäten zu beachten?
 Alle Repositories verwenden standardmäßig die in der globalen Konfiguration mit `git config --global` angegebene Identität (_user.name_, _user.email_).
 
+[source,console]
 ----
 $ git config --global user.name "Vorname Nachname"
 $ git config --global user.email mail@example.org
@@ -582,6 +604,7 @@ Möchte man in verschiedenen lokalen Repositories mit jeweils anderen Git-Identi
 =====
 Angaben der globalen Konfiguration können innerhalb jedes Repositories in einer lokalen Konfiguration überschrieben werden:
 
+[source,console]
 ----
 $ cd ~/Git/Studium/Projekt-Repository
 $ git config user.name "Vorname Nachname"
@@ -600,6 +623,7 @@ private Identität::
 Globale Konfiguration _~/.gitconfig_ für alle Repositories mit *privater* Identität (+privat@example.org+):
 +
 .~/.gitconfig
+[source,gitconfig]
 ----
 [user]
     name = Vorname Nachname
@@ -615,6 +639,7 @@ studentische Identität::
 Spezielle Konfiguration _~/.gitconfig_studium_ für alle Repositories unterhalb des Verzeichnisses _~/Git/Studium/_ mit *studentischer* Identität (+studium@example.org+):
 +
 .~/.gitconfig_studium
+[source,gitconfig]
 ----
 [user]
     name = Vorname Nachname
@@ -622,6 +647,7 @@ Spezielle Konfiguration _~/.gitconfig_studium_ für alle Repositories unterhalb 
 ----
 
 Test:
+[source,console]
 ----
 % cd ~
 % git config user.email
@@ -644,7 +670,7 @@ studium@example.org
 Es gibt im Dokument Bilder, welche mit einem nicht unterstützten https://de.wikipedia.org/wiki/Interlacing_(Grafiken)[Interlacing]-Format erstellt wurden. Dies kann beim Erstellen von PDF-Dokumenten aus Asciidoctor heraus zu obigem Fehler und dem Nichteinfügen führen.
 
 .Fehlermeldung:
-[source]
+[source,console]
 ----
 % asciidoctor-pdf documentation.adoc
 asciidoctor: WARNING: could not embed image: /.../example.png; PNG uses unsupported interlace method; install prawn-gmagick gem to add support
@@ -656,7 +682,7 @@ asciidoctor: WARNING: could not embed image: /.../example.png; PNG uses unsuppor
 ==== Lösungsvariante 2
 Installieren Sie, wie in der obigen Fehlermeldung erwähnt, noch zusätzlich das RubyGem prawn-gmagick:
 
-[source, sh]
+[source,console]
 ----
 % gem install prawn-gmagick
 ----
