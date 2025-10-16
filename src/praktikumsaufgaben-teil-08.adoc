@@ -371,7 +371,8 @@ rebase -i + merge
 [#aufgabe_1-1]
 ==== Aufgabe 1.1 - Branches (_local_)
 
-. Legen Sie in Ihrem Repository ein neues Asciidoctor-Dokument _temp.adoc_ mit folgendem Inhalt an:
+. Legen Sie in Ihrem Repository ein neues Asciidoctor-Dokument _temp.adoc_ mit
+  folgendem Inhalt an:
 +
 .Vorlage: temp.adoc
 [source,asciidoc]
@@ -392,23 +393,61 @@ rebase -i + merge
 
 ----
 
-. Nehmen Sie das eben angelegte Dokument in den _main_-Branch als neue Version auf und pushen Sie es in Ihr _remote_-Repository.
+. Nehmen Sie das eben angelegte Dokument in den _main_-Branch als neue Version
+  auf und pushen Sie es in Ihr _remote_-Repository (`git push`).
 
-. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _feature_-Branch an und wechseln Sie in diesen. Fügen Sie in den Abschnitte *Feature 1* neuen Text, verteilt auf *zwei* Commits, ein.
+. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _feature_-Branch an
+  und wechseln Sie in diesen (`git switch -c feature`). Fügen Sie in den
+  Abschnitte *Feature 1* neuen Text, verteilt auf *zwei* Commits, ein.
++
+WARNING: Den eben angelegten _feature_-Branch nicht zu GitHub publizieren!
 
-. Legen Sie ausgehend vom _main_-Branch einen neuen lokalen _bugfix_-Branch an und wechseln Sie in diesen. Korrigieren Sie, verteilt auf *zwei* Commits, die beiden Bugfixes im Abschnitt *Beschreibung*. Führen Sie anschließend ein interaktives Rebasing aus, um die beiden Bugfix-Änderungen in einem Commit zu vereinen. Jetzt übernehmen (mergen) Sie die Änderungen vom _bugfix_-Branch in den _main_-Branch und entfernen den _bugfix_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
+. Legen Sie ausgehend vom _main_-Branch (`git switch main`) einen neuen lokalen
+  _bugfix_-Branch an und wechseln Sie in diesen (`git switch -c bugfix`).
+  Legen Sie, verteilt auf *zwei* Commits, zwei Bugfixes im
+  Abschnitt *Beschreibung* an.
++
+WARNING: Den eben angelegten _bugfix_-Branch nicht zu GitHub publizieren!
 
-. Wechseln Sie in den _feature_-Branch und fügen in den Abschnitte *Feature 1* weiteren Text als neuen Commit ein. Nehmen Sie anschließend die Änderungen aus dem _feature_-Branch in den _main_-Branch auf und entfernen den _feature_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
+. Führen Sie anschließend ein interaktives Rebasing (`git rebase -i HEAD~2`) aus, um die beiden
+  Bugfix-Änderungen in einem Commit zu vereinen.
+
+. Jetzt übernehmen (mergen) Sie die Änderungen vom _bugfix_-Branch in den
+  _main_-Branch (`git switch main`, `git merge bugfix`) und entfernen den
+  _bugfix_-Branch (`git branch -d bugfix`). Synchronisieren Sie Ihre Änderung
+  in Ihr _remote_-Repository (`git push`).
+
+. Wechseln Sie in den _feature_-Branch (`git switch feature`) und aktualisieren
+  diesen mit der neuen Änderungen aus dem _main_-Branch per `git rebase main`.
+
+. Fügen Sie in den Abschnitte *Feature 1* weiteren Text als neuen Commit ein.
+  Nehmen Sie anschließend die Änderungen aus dem _feature_-Branch in den
+  _main_-Branch ohne fast-forward-Merge (`git switch main`, `git merge --no-ff
+  feature`) auf und entfernen den _feature_-Branch (`git branch -d feature`).
+
+. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository (`git push`).
 
 
 ==== Aufgabe 1.2 - Branches (_remote_)
-Lokale Branches können auf einem _remote_-Repository bereitgestellt werden, so dass diese öffentlich bzw. von Teammitglieder mit genutzt werden können.
 
-1. Legen Sie in Ihrem Repository einen neuen lokalen _feature-x_-Branch an und wechseln Sie in diesen.
-2. Nehmen Sie in den _feature-x_-Branch ein paar Commits auf.
-3. Veröffentlichen Sie Ihren lokalen _feature-x_-Branch auf Ihrem _remote_-Repository.
-4. Übernehmen (mergen) Sie im lokalen Repository die Änderungen vom _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr _remote_-Repository.
-5. Entfernen Sie jetzt den _feature-x_-Branch auf Ihrem _remote_-Repository.
+Lokale Branches können auf einem _remote_-Repository bereitgestellt werden, so
+dass diese öffentlich bzw. von Teammitglieder mit genutzt werden können.
+
+. Legen Sie in Ihrem Repository einen neuen lokalen _feature-x_-Branch an und
+  wechseln Sie in diesen.
+
+. Nehmen Sie in den _feature-x_-Branch ein paar Commits auf.
+
+. Veröffentlichen Sie den lokalen _feature-x_-Branch auf Ihrem
+  _remote_-Repository (`git push -u origin feature-x`).
+
+. Übernehmen (mergen) Sie im lokalen Repository die Änderungen vom
+  _feature-x_-Branch in den _main_-Branch und entfernen Sie anschließend den
+  lokalen _feature-x_-Branch. Synchronisieren Sie Ihre Änderung in Ihr
+  _remote_-Repository.
+
+. Entfernen Sie jetzt den _feature-x_-Branch auf Ihrem _remote_-Repository
+  (`git push origin --delete feature-x`).
 
 .Hinweise: _remote_-Branches
 [%collapsible]
