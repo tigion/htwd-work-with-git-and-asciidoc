@@ -181,6 +181,33 @@ IMPORTANT: Ein Rebase erzeugt immer neue Versionen (Commits-IDs, Commit-Inhalte)
 =====
 ====
 
+.Vorteile von `merge` und `rebase`
+[%collapsible]
+====
+=====
+*`merge` (recursive, `--no-ff`)*
+
+* Ist einfach und sicher, da die Historie beibehalten wird und Merges und
+   beteiligte Commits erkennbar bleiben.
+* Merge-Commits lassen sich einfacher per `revert` rückgängig machen.
+
+*`merge` (fast-forward)*
+
+* Führt zu einer lineareren (flachen) Historie, was die Nachverfolgbarkeit
+   verbessert.
+* Variante, falls man keine Merge-Commits haben möchte.
+
+*`rebase`*
+
+* Führt zu einer lineareren (flachen) Historie, was nachfolgende
+   _fast-forward_-Merges erlaubt.
+* Kann helfen, Konflikte frühzeitig zu erkennen und zu lösen, da der
+   _aktuelle_-Branch auf den aktuellen Stand des _basis_-Branches gebracht
+   wird.
+* Mit `-i` können Commits angepasst und zusammengefasst werden, um die
+   Historie übersichtlicher zu gestalten oder Fehler zu korrigieren.
+====
+
 .Hinweise: Aktualisierung eines Branches
 [%collapsible]
 ====
@@ -280,6 +307,37 @@ $ git merge --no-ff feature → git branch -d feature <10>
 <8> in den _feature_-Branch wechseln
 <9> in den _main_-Branch wechseln
 <10> _feature_-Branch in den _main_-Branch mergen und anschließend löschen
+=====
+====
+
+.Unterschied von `local` und `remote`
+[%collapsible]
+====
+=====
+*local*
+
+* Commits und Branches existieren nur im lokalen Repository und sind nur für
+  den Benutzer sichtbar, der das Repository auf seinem Rechner verwaltet.
+  Änderungen in einem lokalen Branch wirken sich nicht auf andere Benutzer oder
+  das zentrale (remote) Repository aus, bis sie explizit in ein
+  _remote_-Repository gepusht werden.
+* Lokale Änderungen könne so noch bearbeitet, getestet und überprüft werden, bevor sie
+  in das zentrale Repository übernommen werden.
+* Normales vorgehen für rein lokale Repositories ohne zentrale (remote) Repositories.
+
+*remote*
+
+* Commits und Branches existieren in einem zentralen Repository (z.B. auf
+  GitHub, GitLab, Bitbucket, etc.) und sind für alle Benutzer sichtbar, die
+  Zugriff auf dieses Repository haben.
+* Änderungen in einem _remote_-Branch wirken sich auf alle Benutzer aus, die
+  dieses Repository klonen oder darauf zugreifen.
+* Lokale Repositories müssen regelmäßig mit dem _remote_-Repository
+  synchronisiert werden, um die neuesten Änderungen zu erhalten.
+* Remote-Branches ermöglichen die Zusammenarbeit und das Teilen von Branches
+  zwischen mehreren Benutzern in einem Team.
+* Remote-Branches erlauben das Verwenden von Pull-Requests oder Merge-Requests,
+  um Änderungen per Git-Workflow und Code-Reviews zu überprüfen und zu mergen.
 =====
 ====
 
