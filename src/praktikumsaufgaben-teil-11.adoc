@@ -412,7 +412,7 @@ public void setResidents(int residents) {
 
 ==== Aufgabe 3 - Diskussion
 
-. Schauen Sie sich im Demo-Projekt https://github.com/tigion/htw-playground-fork-colors[htw-playground-fork-colors] aus dem Praktikum <<praktikumsaufgaben-teil-09.adoc#_aufgabe_1_2_fork_mit_pull_request, Teil 6 - Aufgabe 1.2 Fork mit Pull-Request>> den enthaltenen Workflow an. Dieser enthält Beispiele für komplexere Shell Kommandos und Testmöglichkeiten.
+. Schauen Sie sich im Demo-Projekt https://github.com/tigion/htwd-playground-fork-colors[htwd-playground-fork-colors] aus dem Praktikum <<praktikumsaufgaben-teil-09.adoc#_aufgabe_1_2_fork_mit_pull_request, Teil 6 - Aufgabe 1.2 Fork mit Pull-Request>> den enthaltenen Workflow an. Dieser enthält Beispiele für komplexere Shell Kommandos und Testmöglichkeiten.
 . Diskutieren Sie in Ihrem Projektteam, ob es in Ihrem Beleg-Projekt sinnvolle Möglichkeiten für den Einsatz von GitHub Actions gibt und ob diese umsetzbar wären.
 
 
