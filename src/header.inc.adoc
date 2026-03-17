@@ -59,5 +59,13 @@ Christoph Zirkelbach <christoph.zirkelbach@htw-dresden.de>
 // V2: You can also set it in the VS Code preferences -> extensions -> asciidoc -> Asciidoc: Preview Attributes -> Edit in settings.json. Add here "data-uri": "" in "asciidoc.preview.attributes": {}. A generation in the terminal is then not affected.
 
 
-// Don't delete the last two empty lines to avoid include errors
+// Link to the new version of the documentation
+****
+[IMPORTANT]
+=====
+Der Aufgabenstand ist bis zum Wintersemester 2025 gültig gewesen und steht weiterhin ergänzend zur Verfügung.
+Die aktuelle Version ist https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/git-docs-collab/[hier] zu finden.
+=====
+****
 
+// Don't delete the last two empty lines to avoid include errors
